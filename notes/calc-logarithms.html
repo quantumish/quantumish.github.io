@@ -6,7 +6,7 @@
 <!-- 2020-09-07 Mon 16:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Limits</title>
+<title>Exponentials and Logarithms</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="David Freifeld" />
 <style type="text/css">
@@ -265,82 +265,152 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Limits</h1>
+<h1 class="title">Exponentials and Logarithms</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6e341fe">1. A Problem</a></li>
-<li><a href="#org912ce22">2. Some Notation</a></li>
-<li><a href="#org4265d65">3. Links</a></li>
+<li><a href="#orgcf0430c">1. Exponentials and Logarithms&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></a>
+<ul>
+<li><a href="#org3daf939">1.1. Exponential Functions</a></li>
+<li><a href="#org13337b6">1.2. The Natural Log</a></li>
+<li><a href="#org0c2d20c">1.3. Back to The Exponential</a></li>
+</ul>
+</li>
+<li><a href="#org0b84dd1">2. Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6e341fe" class="outline-2">
-<h2 id="org6e341fe"><span class="section-number-2">1</span> A Problem</h2>
+<div id="outline-container-orgcf0430c" class="outline-2">
+<h2 id="orgcf0430c"><span class="section-number-2">1</span> Exponentials and Logarithms&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></h2>
 <div class="outline-text-2" id="text-1">
-<p>
-Normal or "easy" limits are rather simple, as examples like \(\lim_{x\rightarrow4} \frac{x+3}{x^2 + 1}\) just need some plugging in.
-Derivatives are usually harder as \(\lim_{x\rightarrow0} \frac{f(x_0+\Delta x) - f(x_0)}{x-x_0}\) always evaluates to \(\frac{0}{0}\), and needs some cancellation.
-</p>
 </div>
-</div>
-
-<div id="outline-container-org912ce22" class="outline-2">
-<h2 id="org912ce22"><span class="section-number-2">2</span> Some Notation</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org3daf939" class="outline-3">
+<h3 id="org3daf939"><span class="section-number-3">1.1</span> Exponential Functions</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
-<b>DEFINITION</b> Right hand limit or \(lim_{x\rightarrow x_0^+} f(x)\) indicates that \(x\) is greater than \(x_0\) (or that \(x\) begins on the right side of the number line).
+Goal: Calculate \(\frac{d}{dx} a^x\)
 </p>
 
 <p>
-<b>DEFINITION</b> Left hand limit or \(lim_{x\rightarrow x_0^-} f(x)\) indicates that \(x\) is less than \(x_0\) (or that \(x\) begins on the left side of the number line).
-These notations will make dealing with limits of these functions more convienient.
+-\(\lim\limits_{\Delta x\rightarrow0} \frac{a^{x+\Delta x} - a^x}{\Delta x}\)
+</p>
+
+<p>
+As \(a^{x + \Delta x} = a^xa^{\Delta x}\), \(\lim\limits_{\Delta x\rightarrow0} a^x \frac{a^{\Delta x} - 1}{\Delta x}\)
+</p>
+
+<p>
+\(a^x\) is a constant so \(a^x \lim\limits_{\Delta x\rightarrow0} \frac{a^{\Delta x} - 1}{\Delta x}\)
+</p>
+
+<p>
+<i>DEFN</i> \(M(a) := \lim\limits_{\Delta x\rightarrow0} \frac{a^{\Delta x} - 1}{\Delta x}\)
+</p>
+
+<p>
+With new definition \(\frac{d}{dx} a^x = M(a)a^x\).
+Plug in \(x=0\) to get \(\frac{d}{dx} a^0 = M(a)\), showing \(M(a)\) is the slope at 0.
+</p>
+
+<p>
+<span class="underline">What is M(a)?</span>
+</p>
+<ul class="org-ul">
+<li>Define base \(e\) as the unique number such that \(M(e) = 1\)</li>
+<li>If this is the case \(\frac{d}{dx} e^x = e^x\) (as \(\frac{d}{dx} a^x = M(a)a^x\)).</li>
+</ul>
+
+<p>
+<span class="underline">Why does e exist?</span>
+</p>
+
+<ul class="org-ul">
+<li>Take example \(f(x) = 2\), \(f'(0) = M(2)\) and stretch by constant \(k\).</li>
+</ul>
+<p>
+\(f(kx) = 2^{kx} = (2^k)^x = b^x\), where \(b = 2^k\).
+</p>
+<ul class="org-ul">
+<li>As \(k\) is increased the slope of the function gets steeper. \(\frac{d}{dx} b^x = kf'(kx)\)
+<ul class="org-ul">
+<li>At 0, \(\frac{d}{dx} b^x = kf'(kx) = kf'(0) = kM(2)\) so \(b=e\) when \(k = \frac{1}{M(2)}\)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org13337b6" class="outline-3">
+<h3 id="org13337b6"><span class="section-number-3">1.2</span> The Natural Log</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Recall that \(\ln{x_1 x_2} = \ln{x_1} + \ln{x_2}\) and \(\ln{1} = 0\) and \(\ln{e} = 1\).
+</p>
+
+<p>
+Differentiate \(w = \ln{x}\) implicitly in the form \(e^w = x\):
+</p>
+
+<ul class="org-ul">
+<li>\(\frac{d}{dx} e^w = \frac{d}{dx} x = 1\)</li>
+
+<li>\(\frac{d}{dw} e^w \frac{dw}{dx} = 1\) or \(e^w \frac{dw}{dx} = 1\)</li>
+<li>Algebra yields \(\frac{dw}{dx} = \frac{1}{e^w} = \frac{1}{x}\)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0c2d20c" class="outline-3">
+<h3 id="org0c2d20c"><span class="section-number-3">1.3</span> Back to The Exponential</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+<span class="underline">Method 1</span>
+Use base \(e\) = \((e^{\ln{a}})^x = e^{x\ln{a}}\).
+</p>
+
+<p>
+Just as the derivative of \(e^{3x}\) is \(3e^{3x}\) by chain rule, \(\frac{d}{dx} e^{x\ln{a}} = (\ln{a}) e^{x\ln{a}}}\). So, \(\frac{d}{dx} a^x = (\ln{a})a^x\).
+</p>
+
+<p>
+NOTE: No matter what our base (2 or 10 or something else) the derivative is still \((\ln{a})a^x\) and that's one reason why it's the "natural" log  as it comes up naturally.
+</p>
+
+<p>
+<span class="underline">Method 2</span>
+</p>
+
+<p>
+<b>HEY I NEED REVISITING REWATCH THE LAST 15 MIN OF <a href="https://ia800203.us.archive.org/8/items/MIT18.01JF07/ocw-18.01-f07-lec06_300k.mp4">THIS</a></b>
+</p>
+
+<p>
+Logarithmic differentiation. Chain rule + differentiation of logarithm.
+\((\ln{u})' = \frac{u'}{u}\)
 </p>
 
 <p>
 <b>EXAMPLE</b>
-Take the following example of a conditional function:
 </p>
 
 <p>
-if \(x > 0\), \(f(x) = x+1\)
-</p>
-
-<p>
-if \(x < 0\), \(f(x) = -x+2\)
-</p>
-
-
-<p>
-\(lim_{x\rightarrow x_0^+} f(x) = lim_{x\rightarrow x_0} x+1 = 1\)
-</p>
-
-<p>
-\(lim_{x\rightarrow x_0^-} f(x) = lim_{x\rightarrow x_0} -x+2 = 2\)
-</p>
-
-<p>
-We did not need a \(x=0\) value to compute these limits!
+\(v = x^x\)
+\(\ln{v} = x\ln{x}\)
+\((\ln{v})' = \ln{x} + x \frac{1}{x}\)
+\(\frac{v'}{v} = 1 + \ln{x}\)
+\(v' = v(1+\ln{x})\)
+\(\frac{d}{dx} x^x = x^x(1+\ln{x})\) 
 </p>
 </div>
 </div>
+</div>
 
-
-<div id="outline-container-org4265d65" class="outline-2">
-<h2 id="org4265d65"><span class="section-number-2">3</span> Links</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org0b84dd1" class="outline-2">
+<h2 id="org0b84dd1"><span class="section-number-2">2</span> Links</h2>
+<div class="outline-text-2" id="text-2">
 <p>
-Adjacent to this: <a href="continuity.html">Continuity</a>
-</p>
-
-<p>
-Building upon this: <a href="calculating-derivatives.html">Calculating Derivatives</a>
-</p>
-
-<p>
-Further reference can be found at <a href="limits-continuity-problems.html">Limits and Continuity Practice</a>.
+Further review can be found in <a href="calc-mit-exam-review.html">MIT SVC Exam Review (Unit 1)</a>.
 </p>
 </div>
 </div>

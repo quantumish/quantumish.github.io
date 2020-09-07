@@ -6,7 +6,7 @@
 <!-- 2020-09-07 Mon 16:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Limits</title>
+<title>Curve Sketching</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="David Freifeld" />
 <style type="text/css">
@@ -265,82 +265,45 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Limits</h1>
+<h1 class="title">Curve Sketching</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6e341fe">1. A Problem</a></li>
-<li><a href="#org912ce22">2. Some Notation</a></li>
-<li><a href="#org4265d65">3. Links</a></li>
+<li><a href="#org827eab0">1. Curve Sketching&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit2">unit2</span></span></a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6e341fe" class="outline-2">
-<h2 id="org6e341fe"><span class="section-number-2">1</span> A Problem</h2>
+<div id="outline-container-org827eab0" class="outline-2">
+<h2 id="org827eab0"><span class="section-number-2">1</span> Curve Sketching&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit2">unit2</span></span></h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Normal or "easy" limits are rather simple, as examples like \(\lim_{x\rightarrow4} \frac{x+3}{x^2 + 1}\) just need some plugging in.
-Derivatives are usually harder as \(\lim_{x\rightarrow0} \frac{f(x_0+\Delta x) - f(x_0)}{x-x_0}\) always evaluates to \(\frac{0}{0}\), and needs some cancellation.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org912ce22" class="outline-2">
-<h2 id="org912ce22"><span class="section-number-2">2</span> Some Notation</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-<b>DEFINITION</b> Right hand limit or \(lim_{x\rightarrow x_0^+} f(x)\) indicates that \(x\) is greater than \(x_0\) (or that \(x\) begins on the right side of the number line).
+Goal: Draw a graph of \(f(x)\) using \(f'(x)\) and \(f''(x)\) (see <a href="calculating-derivatives.html">Calculating Derivatives</a>).
+<i>Warning!</i> Don't abandon precalculus knowledge and common sense! Lots of common sense is involved in this and the calculus mostly just fills in the gaps.
 </p>
 
 <p>
-<b>DEFINITION</b> Left hand limit or \(lim_{x\rightarrow x_0^-} f(x)\) indicates that \(x\) is less than \(x_0\) (or that \(x\) begins on the left side of the number line).
-These notations will make dealing with limits of these functions more convienient.
+Two principles (really one) will aid this endeavour:
+</p>
+<ul class="org-ul">
+<li>If \(f' > 0\), \(f\) is increasing (and vice versa).</li>
+<li>If \(f'' > 0\), \(f'\) is increasing (and vice versa).</li>
+</ul>
+
+<p>
+<span class="underline">Ex 1</span>. \(f(x) + 3x - x^3\)
+\(f'(x) = 3-3x^2 \rightarrow 3(1-x)(1+x)\)
+\(f'(x) > 0\) in the range \(-1<x<1\) and therefore \(f\) is increasing in that range.
+\(f'(x) < 0\) in the range \(1<x\) and therefore \(f\) is increasing in that range (similarly for the range \(x < -1\).
 </p>
 
 <p>
-<b>EXAMPLE</b>
-Take the following example of a conditional function:
+General shape of function can be deduced from these facts.
 </p>
 
 <p>
-if \(x > 0\), \(f(x) = x+1\)
-</p>
-
-<p>
-if \(x < 0\), \(f(x) = -x+2\)
-</p>
-
-
-<p>
-\(lim_{x\rightarrow x_0^+} f(x) = lim_{x\rightarrow x_0} x+1 = 1\)
-</p>
-
-<p>
-\(lim_{x\rightarrow x_0^-} f(x) = lim_{x\rightarrow x_0} -x+2 = 2\)
-</p>
-
-<p>
-We did not need a \(x=0\) value to compute these limits!
-</p>
-</div>
-</div>
-
-
-<div id="outline-container-org4265d65" class="outline-2">
-<h2 id="org4265d65"><span class="section-number-2">3</span> Links</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Adjacent to this: <a href="continuity.html">Continuity</a>
-</p>
-
-<p>
-Building upon this: <a href="calculating-derivatives.html">Calculating Derivatives</a>
-</p>
-
-<p>
-Further reference can be found at <a href="limits-continuity-problems.html">Limits and Continuity Practice</a>.
+<b>DEFINITION</b> If \(f'(x_0) = 0\), \(x_0\) is a <i>critical point</i>. At this point \(f(x_0)\) is called the <i>critical value</i>.
 </p>
 </div>
 </div>

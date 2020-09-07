@@ -6,7 +6,7 @@
 <!-- 2020-09-07 Mon 16:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Limits</title>
+<title>Implicit Differentiation</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="David Freifeld" />
 <style type="text/css">
@@ -265,82 +265,170 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Limits</h1>
+<h1 class="title">Implicit Differentiation</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6e341fe">1. A Problem</a></li>
-<li><a href="#org912ce22">2. Some Notation</a></li>
-<li><a href="#org4265d65">3. Links</a></li>
+<li><a href="#org333160a">1. Implicit Differentiation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></a>
+<ul>
+<li><a href="#org7af2133">1.1. David's Summary</a></li>
+<li><a href="#org945ffce">1.2. Initial Example</a></li>
+<li><a href="#org906baba">1.3. Another Example</a></li>
+<li><a href="#org6683da8">1.4. A Trickier Example</a></li>
+<li><a href="#org9d35442">1.5. Derivatives of Inverse Functions</a></li>
+</ul>
+</li>
+<li><a href="#org8ef33ba">2. Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6e341fe" class="outline-2">
-<h2 id="org6e341fe"><span class="section-number-2">1</span> A Problem</h2>
+<div id="outline-container-org333160a" class="outline-2">
+<h2 id="org333160a"><span class="section-number-2">1</span> Implicit Differentiation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></h2>
 <div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org7af2133" class="outline-3">
+<h3 id="org7af2133"><span class="section-number-3">1.1</span> David's Summary</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
-Normal or "easy" limits are rather simple, as examples like \(\lim_{x\rightarrow4} \frac{x+3}{x^2 + 1}\) just need some plugging in.
-Derivatives are usually harder as \(\lim_{x\rightarrow0} \frac{f(x_0+\Delta x) - f(x_0)}{x-x_0}\) always evaluates to \(\frac{0}{0}\), and needs some cancellation.
+This is how I understand implicit differentiation.
+</p>
+
+<p>
+Say you want to take a derivative of an implicit function like \(x^2 + y^2 = 3\).
+</p>
+
+<ol class="org-ol">
+<li>Take the derivative of everything with respect to \(x\):
+\(\frac{d}{dx} x^2 + \frac{d}{dx} y^2 = \frac{d}{dx} 3\)
+With a little simplification this is just \(2x + \frac{d}{dx} y^2 = 0\).</li>
+
+<li>Cleverly apply the chain rule to get \(\frac{d}{dx} y^2\).
+Chain rule states that \(\frac{d}{du}\frac{du}{dx} = \frac{d}{dx}\).
+Define \(u = y^2\).
+By chain rule \(\frac{du}{dy}\frac{dy}{dx}\) = \(\frac{du}{dx}\).</li>
+
+<li>Our formula is now \(2x + (2y)\frac{dy}{dx} = 0\). Time for some algebra!
+\(\frac{dy}{dx} = \frac{-2x}{2y} = \frac{-x}{y}\)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org945ffce" class="outline-3">
+<h3 id="org945ffce"><span class="section-number-3">1.2</span> Initial Example</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Technique based on the Chain Rule that allows diffrentiation of more functions.
+</p>
+
+<p>
+<b>EXAMPLE</b> \(\frac{d}{dx} x^a = ax^{a-1}\)
+This holds true for \(a=0, \pm 1, \pm 2\)&#x2026;
+What about fractional powers? Take \(a = \frac{m}{n}\)
+</p>
+
+<p>
+\(y = x^{\frac{m}{n}}\) or \(y^n = x^m\)
+We can apply derivative to equation 2 because the methods of diffrentiating the fractional exponent is unknown to us.
+</p>
+
+<p>
+\(\frac{d}{dx} y^n = \frac{d}{dx} x^m\)
+</p>
+
+<p>
+\(\big(\frac{d}{dy} y^n\big) \frac{dy}{dx}= \frac{d}{dx} x^m\)
+or&#x2026;
+\(ny^{n-1} \frac{dy}{dx}= mx^{m-1}\)
+</p>
+
+<p>
+$\frac{dy}{dx} =
 </p>
 </div>
 </div>
 
-<div id="outline-container-org912ce22" class="outline-2">
-<h2 id="org912ce22"><span class="section-number-2">2</span> Some Notation</h2>
+<div id="outline-container-org906baba" class="outline-3">
+<h3 id="org906baba"><span class="section-number-3">1.3</span> Another Example</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+\(x^2 + y^2 = 1\) is an implicit function, explicitly it is \(y = \pm \sqrt{1-x}\) (for convienience limit to positives for now).
+</p>
+
+<p>
+Solving it explicitly:
+\(y' = \frac{1}{2}()^{-1/2} (-2x)\)
+NOTE: \(\frac{1}{2}()^{-1/2}\) = \(\frac{d}{d()}()^{-1/2}\)
+</p>
+
+<p>
+Or implicitly:
+</p>
+
+<ul class="org-ul">
+<li>Diffrentiate function in the form \(x^2 + y^2 = 1\).</li>
+<li>\(\frac{d}{dx} (x^2 + y^2 = 1)\) or \(2x + 2yy' = 0\)</li>
+<li>Solve for y' which is \(\frac{-2x}{2y} = \frac{-x}{y}\) (solve algebraically).</li>
+</ul>
+
+<p>
+Compare \(\frac{-x}{y}\) to explicit solution \(\frac{1}{2}(1-x^2)^{-1/2} (-2x) = \frac{-x}{\sqrt{1-x^2}}\) and find they are the same as \(y = \sqrt{1-x^2}\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6683da8" class="outline-3">
+<h3 id="org6683da8"><span class="section-number-3">1.4</span> A Trickier Example</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+\(y^4 + xy^2 -2 = 0\)
+</p>
+
+<ul class="org-ul">
+<li>One can solve it explicitly by using the quadratic equation.</li>
+<li>Implicitly one can apply the product rule and the previous examples to diffrentiate this function.</li>
+<li>Writeup is left as an exercise for the reader.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9d35442" class="outline-3">
+<h3 id="org9d35442"><span class="section-number-3">1.5</span> Derivatives of Inverse Functions</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+<b>EXAMPLE</b> \(y=\sqrt{x}, x > 0, y^2 = x\)
+\(f(x) = \sqrt{x}, g(y) = x, g(y) = y^2\)
+NOTE: If \(y = f(x)\) and \(g(y)=x\), \(g(f(x)) = x\)
+</p>
+
+<p>
+<i>STATEMENT</i> Implicit differentiation allows computing derivatives of any inverse function provided we know the derivative of the function.
+</p>
+
+<p>
+<b>EXAMPLE</b> \(y = \tan^{-1}{x}\) and we'll use the equation \(\tan{y} = x\)
+</p>
+<ul class="org-ul">
+<li>Note that inverse functions are the function reflected over the line \(x=y\).</li>
+<li>Recall that derivative of tangent is \(\frac{d}{dy} \frac{\sin{y}}{\cos{y}} = \frac{1}{\cos^2{y}} = \sec^2{y}\).</li>
+<li>\(\frac{d}{dy} \tan{y} = 1\) or \(\sec^2{y} * y' = 1\).</li>
+<li>\(y' = \cos^2{y}\) which leads to \(\frac{d}{dx} \tan^{-1}{x} = \cos^2(\tan^{-1}{x})\).
+<ul class="org-ul">
+<li>Too complicated!</li>
+</ul></li>
+<li>Modelling as a right triangle and simplifying more yields \(\frac{d}{dx} \tan^{-1}{x} = \frac{1}{1+x^2}\).</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org8ef33ba" class="outline-2">
+<h2 id="org8ef33ba"><span class="section-number-2">2</span> Links</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-<b>DEFINITION</b> Right hand limit or \(lim_{x\rightarrow x_0^+} f(x)\) indicates that \(x\) is greater than \(x_0\) (or that \(x\) begins on the right side of the number line).
-</p>
-
-<p>
-<b>DEFINITION</b> Left hand limit or \(lim_{x\rightarrow x_0^-} f(x)\) indicates that \(x\) is less than \(x_0\) (or that \(x\) begins on the left side of the number line).
-These notations will make dealing with limits of these functions more convienient.
-</p>
-
-<p>
-<b>EXAMPLE</b>
-Take the following example of a conditional function:
-</p>
-
-<p>
-if \(x > 0\), \(f(x) = x+1\)
-</p>
-
-<p>
-if \(x < 0\), \(f(x) = -x+2\)
-</p>
-
-
-<p>
-\(lim_{x\rightarrow x_0^+} f(x) = lim_{x\rightarrow x_0} x+1 = 1\)
-</p>
-
-<p>
-\(lim_{x\rightarrow x_0^-} f(x) = lim_{x\rightarrow x_0} -x+2 = 2\)
-</p>
-
-<p>
-We did not need a \(x=0\) value to compute these limits!
-</p>
-</div>
-</div>
-
-
-<div id="outline-container-org4265d65" class="outline-2">
-<h2 id="org4265d65"><span class="section-number-2">3</span> Links</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Adjacent to this: <a href="continuity.html">Continuity</a>
-</p>
-
-<p>
-Building upon this: <a href="calculating-derivatives.html">Calculating Derivatives</a>
-</p>
-
-<p>
-Further reference can be found at <a href="limits-continuity-problems.html">Limits and Continuity Practice</a>.
+Other techniques for differentiation as well as the topic of logarithms are covered in <a href="calc-logarithms.html">Exponentials and Logarithms</a>.
+Further review can be found in <a href="calc-mit-exam-review.html">MIT SVC Exam Review (Unit 1)</a>.
 </p>
 </div>
 </div>

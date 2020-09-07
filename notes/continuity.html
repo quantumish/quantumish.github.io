@@ -6,7 +6,7 @@
 <!-- 2020-09-07 Mon 16:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Limits</title>
+<title>Continuity</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="David Freifeld" />
 <style type="text/css">
@@ -265,80 +265,107 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Limits</h1>
+<h1 class="title">Continuity</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6e341fe">1. A Problem</a></li>
-<li><a href="#org912ce22">2. Some Notation</a></li>
-<li><a href="#org4265d65">3. Links</a></li>
+<li><a href="#org65a6990">1. Continuity</a></li>
+<li><a href="#orgcb83daa">2. Discontinuity</a>
+<ul>
+<li><a href="#org738e00c">2.1. <b>DEFINITION</b> A "jump discontinuity" is when the limit from the left and right exist but are not equal.</a></li>
+<li><a href="#org2810d32">2.2. <b>DEFINITION</b> A "removable discontinuity" is when the limit from the left and right are equal.</a></li>
+<li><a href="#org35d9dc6">2.3. <b>DEFINITION</b> A "infinite discontinuity" is where both sides of the functions go towards an infinite value (such as a function with many asymptotes).</a></li>
+<li><a href="#org189c91e">2.4. <i>SIDENOTE</i> There are plenty of other types of discontinuities.</a></li>
+<li><a href="#orge64af62">2.5. <i>THEOREM</i> If \(f\) is differentiable at \(x_0\), then \(f\) is continuous at \(x_0\)</a></li>
+</ul>
+</li>
+<li><a href="#org463a0de">3. Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6e341fe" class="outline-2">
-<h2 id="org6e341fe"><span class="section-number-2">1</span> A Problem</h2>
+<div id="outline-container-org65a6990" class="outline-2">
+<h2 id="org65a6990"><span class="section-number-2">1</span> Continuity</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Normal or "easy" limits are rather simple, as examples like \(\lim_{x\rightarrow4} \frac{x+3}{x^2 + 1}\) just need some plugging in.
-Derivatives are usually harder as \(\lim_{x\rightarrow0} \frac{f(x_0+\Delta x) - f(x_0)}{x-x_0}\) always evaluates to \(\frac{0}{0}\), and needs some cancellation.
+<b>DEFINITION</b> \(f\) is <span class="underline">continuous</span> at \(x_0\) means \(\lim_{x \rightarrow x_0} f(x) = f(x_0)\)
+  The left side of the equation is evaluated independently here, and \(x\) \(\neq\) \(x_0\) is always true.
+Continuous at \(x_0\) means that the general limit exists from left or right, and \(f(x_0)\) is defined. Left and right hand limits are the same.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org912ce22" class="outline-2">
-<h2 id="org912ce22"><span class="section-number-2">2</span> Some Notation</h2>
+<div id="outline-container-orgcb83daa" class="outline-2">
+<h2 id="orgcb83daa"><span class="section-number-2">2</span> Discontinuity</h2>
 <div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org738e00c" class="outline-3">
+<h3 id="org738e00c"><span class="section-number-3">2.1</span> <b>DEFINITION</b> A "jump discontinuity" is when the limit from the left and right exist but are not equal.</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
-<b>DEFINITION</b> Right hand limit or \(lim_{x\rightarrow x_0^+} f(x)\) indicates that \(x\) is greater than \(x_0\) (or that \(x\) begins on the right side of the number line).
-</p>
-
-<p>
-<b>DEFINITION</b> Left hand limit or \(lim_{x\rightarrow x_0^-} f(x)\) indicates that \(x\) is less than \(x_0\) (or that \(x\) begins on the left side of the number line).
-These notations will make dealing with limits of these functions more convienient.
-</p>
-
-<p>
-<b>EXAMPLE</b>
-Take the following example of a conditional function:
-</p>
-
-<p>
-if \(x > 0\), \(f(x) = x+1\)
-</p>
-
-<p>
-if \(x < 0\), \(f(x) = -x+2\)
-</p>
-
-
-<p>
-\(lim_{x\rightarrow x_0^+} f(x) = lim_{x\rightarrow x_0} x+1 = 1\)
-</p>
-
-<p>
-\(lim_{x\rightarrow x_0^-} f(x) = lim_{x\rightarrow x_0} -x+2 = 2\)
-</p>
-
-<p>
-We did not need a \(x=0\) value to compute these limits!
+<b>EXAMPLE</b> The left and right hand limits of \(f(x) = |x|\).
+  Discontinuity, while appearing technical in some regards, is important in many applications (such as modelling stock prices). Some applications have left as the 'past' and right as the 'future', making these concepts of direction more relevant.
 </p>
 </div>
 </div>
+<div id="outline-container-org2810d32" class="outline-3">
+<h3 id="org2810d32"><span class="section-number-3">2.2</span> <b>DEFINITION</b> A "removable discontinuity" is when the limit from the left and right are equal.</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<b>EXAMPLE</b> Any function with a hole in it.
+<b>EXAMPLE</b> \(g(x) = \frac{sin(x)}{x}\) as \(g(0) = \text{ ??}\)
+However, this does in fact have a removable discontinuity as the \(\lim_{x \rightarrow x_0} g(x) = 1\)
+<b>EXAMPLE</b> \(h(x) = \frac{1-cos(x)}{x}\) as \(h(0) =\text{ ??}\)
+This too has a removable discontinuity as the \(\lim_{x \rightarrow x_0} h(x) = 0\)
+  This is called "removable" because a redefinition of the function that lacked this hole would be continuous.
+</p>
+</div>
+</div>
+<div id="outline-container-org35d9dc6" class="outline-3">
+<h3 id="org35d9dc6"><span class="section-number-3">2.3</span> <b>DEFINITION</b> A "infinite discontinuity" is where both sides of the functions go towards an infinite value (such as a function with many asymptotes).</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+<b>EXAMPLE</b> \(y=\frac{1}{x}\)
+The asymptotes allow left and right hand limits to be rather different.
+\(\lim_{x \rightarrow 0^+} f(x) = \infty\)
+\(\lim_{x \rightarrow 0^-} f(x) = - \infty\)
+  Expressions like \(\lim_{x \rightarrow x_0} \frac{1}{x} = \infty\) are incorrect as this only takes into account the right side. Avoid generalizations like this!
+  Derivatives do not need to look like the original function.
+A good example is how \(\frac{1}{x}\) looks different than it's derivative \(\frac{1}{x^2}\).
+</p>
+</div>
+</div>
+<div id="outline-container-org189c91e" class="outline-3">
+<h3 id="org189c91e"><span class="section-number-3">2.4</span> <i>SIDENOTE</i> There are plenty of other types of discontinuities.</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+<b>EXAMPLE</b> \(y = sin \frac{1}{x}\), where there is no left or right limit.
+<b>EXAMPLE</b> Many other oscillating functions behave this way as well.
+Derivatives do not need to look like the original function.
+<b>EXAMPLE</b> \(\frac{1}{x}\) looks different than it's derivative \(\frac{1}{x^2}\)
+</p>
+</div>
+</div>
+<div id="outline-container-orge64af62" class="outline-3">
+<h3 id="orge64af62"><span class="section-number-3">2.5</span> <i>THEOREM</i> If \(f\) is differentiable at \(x_0\), then \(f\) is continuous at \(x_0\)</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+<b>PROOF</b>
+This is equivalent to proving \(\lim_{x \rightarrow x_0} f(x) - f(x_0) = 0\).
+  This is because the definition of continuity is that \(\lim_{x \rightarrow x_0} f(x) = f(x_0)\)
+The above expression is equivalent to \(\lim_{x\rightarrow0} \frac{f(x) - f(x_0)}{x-x_0} (x-x_0)\).
+Evaluating this limit gives us 0, and therefore the theorem is true.
+\(\lim_{x\rightarrow0} \frac{f(x) - f(x_0)}{x-x_0} (x-x_0) = f'(x_0) * 0 = 0\)
+While it may appear that this proof divides by zero and this invalidates it, remember that \(x \neq x_0\) at all times. Operations like divisions are legal because \(x\) will get very small but will always remain nonzero. This property is central to the usefulness of limits.
+</p>
+</div>
+</div>
+</div>
 
-
-<div id="outline-container-org4265d65" class="outline-2">
-<h2 id="org4265d65"><span class="section-number-2">3</span> Links</h2>
+<div id="outline-container-org463a0de" class="outline-2">
+<h2 id="org463a0de"><span class="section-number-2">3</span> Links</h2>
 <div class="outline-text-2" id="text-3">
-<p>
-Adjacent to this: <a href="continuity.html">Continuity</a>
-</p>
-
-<p>
-Building upon this: <a href="calculating-derivatives.html">Calculating Derivatives</a>
-</p>
-
 <p>
 Further reference can be found at <a href="limits-continuity-problems.html">Limits and Continuity Practice</a>.
 </p>

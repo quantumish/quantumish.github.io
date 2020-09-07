@@ -6,7 +6,7 @@
 <!-- 2020-09-07 Mon 16:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Limits</title>
+<title>Differentiation Rules</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="David Freifeld" />
 <style type="text/css">
@@ -265,82 +265,190 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Limits</h1>
+<h1 class="title">Differentiation Rules</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6e341fe">1. A Problem</a></li>
-<li><a href="#org912ce22">2. Some Notation</a></li>
-<li><a href="#org4265d65">3. Links</a></li>
+<li><a href="#org022f952">1. Differentiation Rules&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></a>
+<ul>
+<li><a href="#org6098ba3">1.1. Review</a></li>
+<li><a href="#org4635ca3">1.2. Product Rule</a></li>
+<li><a href="#org89d9290">1.3. Quotient Rule</a></li>
+<li><a href="#org7b70978">1.4. Chain Rule / Composition Rule</a></li>
+<li><a href="#org85bc012">1.5. Higher Derivatives</a></li>
+</ul>
+</li>
+<li><a href="#org8c6a2d5">2. Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6e341fe" class="outline-2">
-<h2 id="org6e341fe"><span class="section-number-2">1</span> A Problem</h2>
+<div id="outline-container-org022f952" class="outline-2">
+<h2 id="org022f952"><span class="section-number-2">1</span> Differentiation Rules&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></h2>
 <div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org6098ba3" class="outline-3">
+<h3 id="org6098ba3"><span class="section-number-3">1.1</span> Review</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>\(\frac{d}{dx} cu = c \frac{d}{dx} u\)</li>
+<li>\(\frac{d}{dx} u + v = \frac{d}{dx} u + \frac{d}{dx} v\)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4635ca3" class="outline-3">
+<h3 id="org4635ca3"><span class="section-number-3">1.2</span> Product Rule</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
-Normal or "easy" limits are rather simple, as examples like \(\lim_{x\rightarrow4} \frac{x+3}{x^2 + 1}\) just need some plugging in.
-Derivatives are usually harder as \(\lim_{x\rightarrow0} \frac{f(x_0+\Delta x) - f(x_0)}{x-x_0}\) always evaluates to \(\frac{0}{0}\), and needs some cancellation.
+Differentiating a product of functions: rule is \((uv)' = u'v + uv'\)
+</p>
+
+<p>
+<b>PROOF</b>
+</p>
+
+<p>
+\(\Delta(uv) = u(x+\Delta x)v(x+\Delta x) - u(x)v(x)\)
+</p>
+
+<p>
+\(= (u(x+\Delta x) - u(x))v(x + \Delta x) + u(x)v(x+\Delta x) - u(x)\)
+</p>
+
+<p>
+\(= (\Delta u)(v(x+\Delta x) + u(x)\Delta v\)
+</p>
+
+<p>
+\(\frac{\Delta(uv)}{\Delta x} = \frac{\Delta(u)}{\Delta x} v(x+\Delta x) + u \frac{\Delta v}{\Delta x}\)
+</p>
+
+<p>
+Take limit to get \(\frac{d(uv)}{d x} = \frac{du}{dx} v + u \frac{dv}{dx}\)
 </p>
 </div>
 </div>
 
-<div id="outline-container-org912ce22" class="outline-2">
-<h2 id="org912ce22"><span class="section-number-2">2</span> Some Notation</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org89d9290" class="outline-3">
+<h3 id="org89d9290"><span class="section-number-3">1.3</span> Quotient Rule</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
-<b>DEFINITION</b> Right hand limit or \(lim_{x\rightarrow x_0^+} f(x)\) indicates that \(x\) is greater than \(x_0\) (or that \(x\) begins on the right side of the number line).
+Differentiating a quotient of functions: rule is \(\big(\frac{u}{v}\big)' = \frac{u'v - uv'}{v^2}\)
 </p>
 
 <p>
-<b>DEFINITION</b> Left hand limit or \(lim_{x\rightarrow x_0^-} f(x)\) indicates that \(x\) is less than \(x_0\) (or that \(x\) begins on the left side of the number line).
-These notations will make dealing with limits of these functions more convienient.
+<b>PROOF</b>
+</p>
+
+<p>
+TIMESTAMP: ~15:00 Lecture 4
+<i>Type me out later!</i>
+</p>
+
+<p>
+Shows us that Power Rule works for negative powers!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7b70978" class="outline-3">
+<h3 id="org7b70978"><span class="section-number-3">1.4</span> Chain Rule / Composition Rule</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+<b>EXAMPLE</b> \(y = sin(x)^{10}\)
+</p>
+
+<p>
+Solution is to add intermediate variable names.
+</p>
+
+<p>
+<b>EXAMPLE</b> \(u = sin(x)\), \(y = u^{10}\)
+</p>
+
+<p>
+*PROOF
+</p>
+<p>
+*
+\(\frac{\Delta y}{\Delta x} = \frac{\Delta y}{\Delta u}\frac{\Delta u}{\Delta x}\)
+</p>
+
+<p>
+The \(\Delta u\) cancels!
+</p>
+
+<p>
+As \(\Delta x\) goes to 0: 
+</p>
+
+<p>
+\(\frac{dy}{dx} = \frac{dy}{du}\frac{du}{dx}\)
+</p>
+
+<p>
+Differentiation of a composition is a product.
 </p>
 
 <p>
 <b>EXAMPLE</b>
-Take the following example of a conditional function:
+\(y = sin(x)^{10}\)
+Introduce intermediate variable:
+\(u = sin(x)\), \(y = u^{10}\)
+\(\frac{dy}{du} = cos(x)\)
+\(\frac{du}{dy} = 10x^9\)
+Multiply to get:
+\(\frac{dy}{dx} = 10u^9 cos(x)\)
+Substitute \(u\) to end up with:
+\(\frac{dy}{dx} = 10(sin(x))^9 cos(x)\)
 </p>
 
 <p>
-if \(x > 0\), \(f(x) = x+1\)
+WARN: Variable names are confusing&#x2026;
 </p>
 
 <p>
-if \(x < 0\), \(f(x) = -x+2\)
-</p>
-
-
-<p>
-\(lim_{x\rightarrow x_0^+} f(x) = lim_{x\rightarrow x_0} x+1 = 1\)
-</p>
-
-<p>
-\(lim_{x\rightarrow x_0^-} f(x) = lim_{x\rightarrow x_0} -x+2 = 2\)
-</p>
-
-<p>
-We did not need a \(x=0\) value to compute these limits!
+You can skip the intermediate calculations when trying to to calculate it quickly.
 </p>
 </div>
 </div>
 
-
-<div id="outline-container-org4265d65" class="outline-2">
-<h2 id="org4265d65"><span class="section-number-2">3</span> Links</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org85bc012" class="outline-3">
+<h3 id="org85bc012"><span class="section-number-3">1.5</span> Higher Derivatives</h3>
+<div class="outline-text-3" id="text-1-5">
 <p>
-Adjacent to this: <a href="continuity.html">Continuity</a>
+Rinse and repeat.
 </p>
 
 <p>
-Building upon this: <a href="calculating-derivatives.html">Calculating Derivatives</a>
+\(u = u(x)\)
+\(u'\) is a new function which can be differentiated again to get \(u''\)
+<b>EXAMPLE</b> \(u = \sin(x)\), \(u' = \cos(x)\), \(u'' = -\sin(x)\), \(u''' = -\cos(x)\)&#x2026;
 </p>
 
 <p>
-Further reference can be found at <a href="limits-continuity-problems.html">Limits and Continuity Practice</a>.
+Sometimes notation is $u<sup>(4)</sup> instead of \(u''''\).
+</p>
+
+<p>
+The other notation, specifically l\(\frac{d}{dx}\), has an "operator" \(d\) which is applied to a function to get another function (that is the derivative). This can be just \(D\) instead of a fraction sometimes.
+</p>
+
+<p>
+Lots of notation.
+\(u'' = \frac{d}{dx} \frac{du}{dx} = \frac{d}{dx} \frac{d}{dx} u = \big(\frac{d}{dx}\big)^2 u = \frac{d^2}{(dx)^2} u = \frac{d^2u}{dx^2}\)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8c6a2d5" class="outline-2">
+<h2 id="org8c6a2d5"><span class="section-number-2">2</span> Links</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+More complex differentiation is covered in <a href="implicit-diff.html">Implicit Differentiation</a>.
+Further review can be found in <a href="calc-mit-exam-review.html">MIT SVC Exam Review (Unit 1)</a>.
 </p>
 </div>
 </div>
