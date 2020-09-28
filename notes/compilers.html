@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-26 Sat 15:58 -->
+<!-- 2020-09-27 Sun 17:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Compilers</title>
@@ -240,6 +240,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -250,21 +272,39 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#org4dd400b">1. Basic Structure</a>
 <ul>
-<li><a href="#orga62a42e">1.1. Lexical Analysis</a></li>
+<li><a href="#org2ac8be8">1.1. Lexical Analysis</a></li>
 <li><a href="#orgb32c72f">1.2. Syntax Analysis</a></li>
 <li><a href="#org0aef86c">1.3. Semantic Analysis</a></li>
-<li><a href="#org5031d57">1.4. Intermediate Code Generation</a></li>
+<li><a href="#org0ea9be5">1.4. Intermediate Code Generation</a></li>
 <li><a href="#orga13a72e">1.5. Code Optimization</a></li>
 <li><a href="#orgfd49b48">1.6. Code Generation</a></li>
 <li><a href="#org7cff5ae">1.7. Machine-Dependent Code Optimization</a></li>
 <li><a href="#org03b51f1">1.8. Symbol-Table Management</a></li>
 </ul>
 </li>
+<li><a href="#org5996bef">2. Simple Compiler Frontend</a>
+<ul>
+<li><a href="#org93b10c5">2.1. Context-Free Grammar</a></li>
+<li><a href="#orgda101f8">2.2. Parse Trees</a>
+<ul>
+<li><a href="#org9f053f0">2.2.1. Ambiguity</a></li>
+<li><a href="#orgb7eea8d">2.2.2. Operator Associativity</a></li>
+<li><a href="#org8046c54">2.2.3. Operator Precedence</a></li>
+</ul>
+</li>
+<li><a href="#org02230ff">2.3. Syntax-Directed Translation</a></li>
+<li><a href="#org2471b25">2.4. Parsing</a></li>
+<li><a href="#orgbd3ddcc">2.5. Simple Translation</a></li>
+<li><a href="#orgae0e3ea">2.6. Lexical Analysis</a></li>
+<li><a href="#org5ca9c19">2.7. Symbol Tables</a></li>
+<li><a href="#org345b4c5">2.8. Intermediate Code Generation</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <p>
-These are my notes on the high-level summary of the stages of a compiler in the first chapter of <i>Compilers: Principles, Techniques, and Tools</i>.
+These are my notes on the book <i>Compilers: Principles, Techniques, and Tools</i>.
 </p>
 
 <div id="outline-container-org4dd400b" class="outline-2">
@@ -276,13 +316,13 @@ A simple compiler goes through about seven stages, maintaining a symbol table to
 
 
 <div class="figure">
-<p><img src="https://i.imgur.com/5XzTL35.png" alt="steps.png" />
+<p><img src="./images/steps.png" alt="steps.png" />
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga62a42e" class="outline-3">
-<h3 id="orga62a42e"><span class="section-number-3">1.1</span> Lexical Analysis</h3>
+<div id="outline-container-org2ac8be8" class="outline-3">
+<h3 id="org2ac8be8"><span class="section-number-3">1.1</span> Lexical Analysis</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 After being handed modified code from the preprocessor, the compiler begins the lexical analysis stage in which it parses the code for tokens (or <i>lexemes</i>) of form <code>&lt;token-type, value&gt;</code>.
@@ -329,8 +369,8 @@ The semantic analyzer also collects type information and stores it within the sy
 </div>
 </div>
 
-<div id="outline-container-org5031d57" class="outline-3">
-<h3 id="org5031d57"><span class="section-number-3">1.4</span> Intermediate Code Generation</h3>
+<div id="outline-container-org0ea9be5" class="outline-3">
+<h3 id="org0ea9be5"><span class="section-number-3">1.4</span> Intermediate Code Generation</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Most compilers generate abstract assembly-like code not specific to any architecture (but easily translatable to real assembly) to allow for high-level optimization in the next stage. This code is called <i>three-address code</i>, because it has at most three operands, and at most a single operator on the right side.
@@ -408,10 +448,198 @@ The symbol table is an important data-structure for recording the variable/funct
 </div>
 </div>
 </div>
+
+<div id="outline-container-org5996bef" class="outline-2">
+<h2 id="org5996bef"><span class="section-number-2">2</span> Simple Compiler Frontend</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org93b10c5" class="outline-3">
+<h3 id="org93b10c5"><span class="section-number-3">2.1</span> Context-Free Grammar</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Grammars describe the syntactical constructs we use in code. 
+</p>
+
+<p>
+Example:
+\(stmt \rightarrow \textbf{if (} expr \textbf{) } stmt \textbf{ else } stmt\)
+</p>
+
+<p>
+This arrow (called a <i>production</i>) is a sort of definition, meaning that the statement can have that form.
+The keywords like <b>if</b> and <b>else</b> are called <i>terminals</i>, while <i>expr</i> and <i>stmt</i> are <i>nonterminals</i>.
+</p>
+
+<p>
+Grammars must have:
+</p>
+<ul class="org-ul">
+<li>A set of terminals</li>
+<li>A set of nonterminals</li>
+<li>A set of productions for nonterminals</li>
+<li>A "start" nonterminal</li>
+</ul>
+
+<p>
+Example:
+A grammar for processing simple one-digit arithmetic (like <code>9-5+2</code>) could be defined by the following productions (note that since digits must be separated by operators, it can be thought of a list of digits separated by operators):
+</p>
+
+<p>
+\(list \rightarrow list \textbf{ + } digit \text{ | } list \textbf{ - } digit \text{ | } digit\)
+</p>
+
+<p>
+\(digit \rightarrow 0 \text{ | } 1 \text{ | } 2 \text{ | } 3 \text{ | } 4 \text{ | } 5 \text{ | } 6 \text{ | } 7 \text{ | } 8 \text{ | } 9\)
+</p>
+
+<p>
+The class of a string is determined by beginning with the start nonterminal and replacing each nonterminal with one of its productions.
+</p>
+
+<p>
+Example: 
+The string <code>9-5+2</code> is a \(list\) because:
+</p>
+<ul class="org-ul">
+<li><code>9</code> is a \(list\) by production \(list \rightarrow digit\), as <code>9</code> is a \(digit\).</li>
+<li><code>9-5</code> is a \(list\) by production \(list \rightarrow list \textbf{ - } digit\), as <code>9</code> is a \(list\) and <code>5</code> is a \(digit\).</li>
+<li><code>9-5+2</code> is a \(list\) by production \(list \rightarrow list \textbf{ + } digit\) , as <code>9-5</code> is a \(list\) and <code>2</code> is a \(digit\).</li>
+</ul>
+
+<p>
+Example:
+The grammar for a function call would look something like this:
+</p>
+
+<p>
+\(call \rightarrow \textbf{id ( } params \textbf{ )}\)
+</p>
+
+<p>
+\(params \rightarrow params \textbf{ , } param \text{ | } param\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgda101f8" class="outline-3">
+<h3 id="orgda101f8"><span class="section-number-3">2.2</span> Parse Trees</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Parsing is the step where the compiler attempts to derive what nonterminal the string is from the start symbol of the grammar.
+</p>
+
+<p>
+Parse trees represent how this derivation takes place. In a parse tree, 
+</p>
+<ul class="org-ul">
+<li>The root is the start symbol</li>
+<li>Interior nodes (those with children and parents) are nonterminals</li>
+<li>Leaves (nodes with no children) are terminals</li>
+<li>The children of an interior node must represent a production for that node.</li>
+</ul>
+
+<p>
+The leaves of a parse tree, from left to right, are called its <i>yield</i> which is the string derived from the root of the parse tree.
+</p>
+</div>
+<div id="outline-container-org9f053f0" class="outline-4">
+<h4 id="org9f053f0"><span class="section-number-4">2.2.1</span> Ambiguity</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+Note that grammars can have more than one possible parse tree for a string. These are called ambigous grammars.
+</p>
+
+<p>
+Example:
+If the \(digits\) nonterminal was combined with \(list\) to create a more 
+general \(string\), the grammar would be ambigous.
+</p>
+
+
+<div class="figure">
+<p><img src="./images/ambigous.png" alt="ambigous.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb7eea8d" class="outline-4">
+<h4 id="orgb7eea8d"><span class="section-number-4">2.2.2</span> Operator Associativity</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+<code>9+5+2</code> is the same as <code>(9+5)+2</code> and <code>9+(5+2)</code>, and therefore a decision must be made on which operation the <code>5</code> is a part of. Operations that priortize the <code>(9+5)+2</code> are called left-associative, whilst the opposite is known as right-associative. Most basic arithmetic operations are implemented as left-associative, but operators like exponentiation and assignment (in the case of C) are right-associative.
+</p>
+
+<p>
+Example:
+A grammar for C assignment would be something like
+</p>
+
+<p>
+\(right \rightarrow letter \textbf{ = } right \text{ | } letter\)
+</p>
+
+<p>
+\(letter \rightarrow \textbf{a}\text{ | }\textbf{b}\text{ | }\ldots\text{ | }\textbf{z}\)
+</p>
+
+
+<div class="figure">
+<p><img src="./images/associative.png" alt="associative.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8046c54" class="outline-4">
+<h4 id="org8046c54"><span class="section-number-4">2.2.3</span> Operator Precedence</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+<code>9+5*2</code> could be read as <code>(9+5)*2</code> or <code>9+(5*2)</code> and associativity does not resolve which one should be chose (as one is blatantly incorrect) so the concept of <i>operator precedence</i> is used instead, with operators of higher precedence like <code>*</code> claiming <code>5</code>. 
+</p>
+
+<p>
+Example:
+A more complete set of productions can be used to represent our grammar for simple math now with the knowledge of operator precedence and associativity.
+</p>
+
+
+<div class="figure">
+<p><img src="./images/simple-grammar.png" alt="simple-grammar.png" />
+</p>
+</div>
+
+<p>
+The production rules for \(expr\) ensure that \(term\) will have precedence.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org02230ff" class="outline-3">
+<h3 id="org02230ff"><span class="section-number-3">2.3</span> Syntax-Directed Translation</h3>
+</div>
+
+<div id="outline-container-org2471b25" class="outline-3">
+<h3 id="org2471b25"><span class="section-number-3">2.4</span> Parsing</h3>
+</div>
+<div id="outline-container-orgbd3ddcc" class="outline-3">
+<h3 id="orgbd3ddcc"><span class="section-number-3">2.5</span> Simple Translation</h3>
+</div>
+<div id="outline-container-orgae0e3ea" class="outline-3">
+<h3 id="orgae0e3ea"><span class="section-number-3">2.6</span> Lexical Analysis</h3>
+</div>
+<div id="outline-container-org5ca9c19" class="outline-3">
+<h3 id="org5ca9c19"><span class="section-number-3">2.7</span> Symbol Tables</h3>
+</div>
+<div id="outline-container-org345b4c5" class="outline-3">
+<h3 id="org345b4c5"><span class="section-number-3">2.8</span> Intermediate Code Generation</h3>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: David Freifeld</p>
-<p class="date">Created: 2020-09-26 Sat 15:58</p>
+<p class="date">Created: 2020-09-27 Sun 17:21</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
