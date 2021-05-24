@@ -3,12 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-07 Mon 18:22 -->
+<!-- 2021-05-23 Sun 21:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Limits</title>
+<title>&lrm;</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="David Freifeld" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -40,7 +39,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -52,7 +51,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -193,155 +192,176 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="../org.css">
 <script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Inter|Barlow:bold&display=swap");
+body {
+    margin: 40px auto;
+    max-width: 900px;
+    line-height: 1.6;
+    font-size: 16px;
+    background: #ffffff;
+    color: #3a1616;
+    padding: 0 10px;
+    font-family: "Inter", sans-serif;
+}
+input {
+    padding: 10px 16px;
+    margin: 2px 0;
+    box-sizing: border-box;
+    border: 2px solid #dabebe;
+    border-radius: 6px;
+    background: #fffff4;
+    color: #3a1616;
+    font-size: 16px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+input:focus {
+    border: 2px solid #3a1616;
+}
+.button {
+    background-color: #fffff4;
+    border: none;
+    color: black;
+    padding: 6px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border: 2px solid #3a1616;
+    border-radius: 6px;
+}
+.button:hover {
+    background-color: #3a1616;
+    color: white;
+}
+.isa_info, .isa_success, .isa_warning, .isa_error {
+    width: 90%;
+    margin: 10px 0px;
+    padding:12px;
+}
+.isa_info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.isa_success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.isa_warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.isa_error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+}
+h1 {
+	font-family: "Barlow";
+	font-weight: bold;
+	color: #6cad50;
+	text-transform: lowercase;
+}
+h2 {
+	font-family: "Barlow";
+	font-weight: bold;
+	color: #6cad50;
+	text-transform: lowercase;
+}
+  
+h3 {
+	font-family: "Barlow";
+	font-weight: bold;
+	color: #6cad50;
+	text-transform: lowercase;
+    line-height: 1.2;
+    /* font-family: "Inter", sans-serif; */
+}
+img {
+    max-width: 750px;
+    border-radius: 10px;
+}
+a {
+    cursor: pointer;
+    color: #6cad50;
+    line-height: inherit;
+}
+a:hover {
+  color: white;
+  background-color: #6cad50;
+}
+a:visited {
+  color: #43458b;
+  border-color: #43458b;
+}
+a:visited:hover {
+  color: white;
+  background-color: #9251ac;
+}
+.image-txt-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+pre {
+    font-family: "Roboto Mono", monospace;
+}
+::selection {
+    color: white;
+    background: #6cad50;
+</style> 
 
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+
 </head>
 <body>
 <div id="content">
-<h1 class="title">Limits</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#org6e341fe">1. A Problem</a></li>
-<li><a href="#org912ce22">2. Some Notation</a></li>
-<li><a href="#org4265d65">3. Links</a></li>
+<div id="outline-container-org5f275ca" class="outline-2">
+<h2 id="org5f275ca">Notes</h2>
+<div class="outline-text-2" id="text-org5f275ca">
+  <div class ="image-txt-container">
+	  <p style="width: 500px;" >		
+Warning: you're entering the disorganized system that is my exported notes. It's vaguely Zettlekasten, but there are plenty of orphans and no good indexing system (work in progress), meaning you likely won't find plenty of things even if you spend time crawling links. You probably should only see any of this if I directly link them to you. Another obvious warning: not all of this is necessarily correct information.<br />
+ <br />
+		</p>
+	<img src="zettle.png" style="float: right; height: 240px;">
+</div>
+
+
+<ul class="org-ul">
+<li><a href="./notes/calculus.html">single variable calculus</a><br /></li>
+<li><a href="./notes/mvcalc-index.html">multi-variable calculus</a><br /></li>
+<li><a href="./notes/bio-index.html">biology</a><br /></li>
+<li><a href="./notes/phys-index.html">physics</a><br /></li>
+<li><a href="./notes/ml-index.html">machine learning</a><br /></li>
+<li><a href="./notes/cosmology-index.html">cosmology</a><br /></li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-org6e341fe" class="outline-2">
-<h2 id="org6e341fe"><span class="section-number-2">1</span> A Problem</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-Normal or "easy" limits are rather simple, as examples like \(\lim_{x\rightarrow4} \frac{x+3}{x^2 + 1}\) just need some plugging in.
-Derivatives are usually harder as \(\lim_{x\rightarrow0} \frac{f(x_0+\Delta x) - f(x_0)}{x-x_0}\) always evaluates to \(\frac{0}{0}\), and needs some cancellation.
-</p>
-</div>
-</div>
-
-<div id="outline-container-org912ce22" class="outline-2">
-<h2 id="org912ce22"><span class="section-number-2">2</span> Some Notation</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-<b>DEFINITION</b> Right hand limit or \(lim_{x\rightarrow x_0^+} f(x)\) indicates that \(x\) is greater than \(x_0\) (or that \(x\) begins on the right side of the number line).
-</p>
-
-<p>
-<b>DEFINITION</b> Left hand limit or \(lim_{x\rightarrow x_0^-} f(x)\) indicates that \(x\) is less than \(x_0\) (or that \(x\) begins on the left side of the number line).
-These notations will make dealing with limits of these functions more convienient.
-</p>
-
-<p>
-<b>EXAMPLE</b>
-Take the following example of a conditional function:
-</p>
-
-<p>
-if \(x > 0\), \(f(x) = x+1\)
-</p>
-
-<p>
-if \(x < 0\), \(f(x) = -x+2\)
-</p>
-
-
-<p>
-\(lim_{x\rightarrow x_0^+} f(x) = lim_{x\rightarrow x_0} x+1 = 1\)
-</p>
-
-<p>
-\(lim_{x\rightarrow x_0^-} f(x) = lim_{x\rightarrow x_0} -x+2 = 2\)
-</p>
-
-<p>
-We did not need a \(x=0\) value to compute these limits!
-</p>
-</div>
-</div>
-
-
-<div id="outline-container-org4265d65" class="outline-2">
-<h2 id="org4265d65"><span class="section-number-2">3</span> Links</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Adjacent to this: <a href="continuity.html">Continuity</a>
-</p>
-
-<p>
-Building upon this: <a href="calculating-derivatives.html">Calculating Derivatives</a>
-</p>
-
-<p>
-Further reference can be found at <a href="limits-continuity-problems.html">Limits and Continuity Practice</a>.
-</p>
 </div>
 </div>
 </div>

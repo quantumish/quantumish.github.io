@@ -1,6 +1,4 @@
-<head>
-<style>
-  @import url("https://fonts.googleapis.com/css?family=Inter|Barlow:bold&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Inter|Barlow:bold&display=swap");
 body {
     margin: 40px auto;
     max-width: 900px;
@@ -124,18 +122,3 @@ pre {
 ::selection {
     color: white;
     background: #6cad50;
-</style>
-</head>
-<h1>Hello!</h1>
-
-<p>
-  I'm a student interested in low level programming, code optimization, intersections between CS and science, and much more! I go by <code>quantumish</code> in most places, but you can find me on github at <a href="https://github.com/richardfeynmanrocks">richardfeynmanrocks</a>. 
-  
-</p>
-
-<h2> <a href="https://github.com/richardfeynmanrocks?tab=repositories">Projects</a></h2> 
-Come back soon ... maybe.
-<h2> Blog </h2> 
-Come back soon ... maybe.
-<h2> <a href="./notes.html">Notes</a> </h2> 
-My personal notes: beware, they are woefully unorganized.
