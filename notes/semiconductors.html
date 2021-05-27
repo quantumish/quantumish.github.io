@@ -6,7 +6,7 @@
 <!-- 2021-05-26 Wed 23:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Differentiation Rules</title>
+<title>Semiconductors</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -215,201 +215,80 @@
     /*]]>*///-->
 // @license-end
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
-</script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
-<h1 class="title">Differentiation Rules</h1>
-
-<div id="outline-container-org72a29f5" class="outline-2">
-<h2 id="org72a29f5">Differentiation Rules&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></h2>
-<div class="outline-text-2" id="text-org72a29f5">
-</div>
-<div id="outline-container-org393e765" class="outline-3">
-<h3 id="org393e765">Review</h3>
-<div class="outline-text-3" id="text-org393e765">
-<ul class="org-ul">
-<li>\(\frac{d}{dx} cu = c \frac{d}{dx} u\)<br /></li>
-<li>\(\frac{d}{dx} u + v = \frac{d}{dx} u + \frac{d}{dx} v\)<br /></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org81977e0" class="outline-3">
-<h3 id="org81977e0">Product Rule</h3>
-<div class="outline-text-3" id="text-org81977e0">
+<h1 class="title">Semiconductors</h1>
 <p>
-Differentiating a product of functions: rule is \((uv)' = u'v + uv'\)<br />
+Semiconductors, as their name suggests, are not particularly conductive or insulative: they are ~10<sup>9</sup> times more conductive than a strong insulator and ~10<sup>9</sup> times less conductive than something like iron.<br />
 </p>
 
 <p>
-<b>PROOF</b><br />
+Silicon, a well known semiconductor (along with germanium), has four electrons in its valence shell - allowing it to form four separate covalent bonds which create a strong grid structure for the element. However this means that what it forms is not a very conductive substance, as there are no free electrons, they are all locked up in covalent bonds. However, when impurities are introduced in the form of elements near it on the periodic table (horizontally as it is the valence electrons that matter in this situation), free electrons and electrons acceptors can arise. Antimony is an example of an atom with 5 valence electrons and this means it can form all 4 covalent bonds with the surrounding silicon as usual, but will have an extra free electron to spare. Boron on the other hand has 3 valence electrons and will form a hole where an electron would usually be. As a result, silicon with boron impurities will accept electrons and those with antimony impurities will donate them.<br />
 </p>
 
 <p>
-\(\Delta(uv) = u(x+\Delta x)v(x+\Delta x) - u(x)v(x)\)<br />
+We call silicon that has impurities that act as electron donors <i>N-doped</i> or <i>N-type</i> semiconductors, while those that accept electrons are <i>P-doped</i> or <i>P-type</i> semiconductors.<br />
 </p>
 
 <p>
-\(= (u(x+\Delta x) - u(x))v(x + \Delta x) + u(x)v(x+\Delta x) - u(x)\)<br />
+:WARN:/ <b>DO NOT FORGET:</b> Both of these types of semiconductor are <b>NET NEUTRAL</b> as the protons within  the impurities cancel everything out. What actually matters is how there are free electrons and holes to accept them (so there is flow).<br />
 </p>
 
-<p>
-\(= (\Delta u)(v(x+\Delta x) + u(x)\Delta v\)<br />
-</p>
 
-<p>
-\(\frac{\Delta(uv)}{\Delta x} = \frac{\Delta(u)}{\Delta x} v(x+\Delta x) + u \frac{\Delta v}{\Delta x}\)<br />
-</p>
-
-<p>
-Take limit to get \(\frac{d(uv)}{d x} = \frac{du}{dx} v + u \frac{dv}{dx}\)<br />
+<div id="org6a77eb0" class="figure">
+<p><img src="./images/dopants.png" alt="dopants.png" /><br />
 </p>
 </div>
+
+<p>
+The region inbetween adjacent N-type and P-type experience a sort of diffusion: the free electrons of the N-type semiconductor close to the region are driven to the holes in the P-type impurities near them. This leads to a polarization: the boron atom does not have enough protons to cancel out the extra electron and the antimony atom has just enough to cancel out the now-missing extra electron. The P-type near the middle becomes net negative, and the N-type near the middle becomes net positive. The region in which this polarization occurs is called the <i>depletion region</i>.<br />
+</p>
+
+<p>
+:WARN:/ Remember that this zone is terrible at conducting electrons as it acts like normal silicon: all the holes are filled in and there are no free electrons.<br />
+</p>
+
+
+<div id="orge241953" class="figure">
+<p><img src="./images/semiconductor_junction.png" alt="semiconductor_junction.png" /><br />
+</p>
 </div>
 
-<div id="outline-container-org62be62a" class="outline-3">
-<h3 id="org62be62a">Quotient Rule</h3>
-<div class="outline-text-3" id="text-org62be62a">
 <p>
-Differentiating a quotient of functions: rule is \(\big(\frac{u}{v}\big)' = \frac{u'v - uv'}{v^2}\)<br />
+:NOTE:/ The voltage difference across this junction is usually 0.3 V for silicon (0.7 V for germanium).<br />
 </p>
 
 <p>
-<b>PROOF</b><br />
+A junction like this attached to wires is called a <i>diode</i>.<br />
 </p>
 
 <p>
-TIMESTAMP: ~15:00 Lecture 4<br />
-<i>Type me out later!</i><br />
+When voltage is applied across this gap in such a way that the positive end is at the N-type region further electrons fill in the hole in the P-type region. Electrons in the N-type region move towards the outer edge (away from the junction) towards the positive end of the semicoductor induced by the voltage, further dramatizing the depletion region. The overall depletion region expands and as a result conductivity of the overall material drops even further (essentially not onductive). aaaaaa<br />
+						 aaaa<br />
+sfdssdfsfdsfdsfdsdfsdfsdfsdssdffds<br />
+When voltage is applied in the opposite manner the depletion region shrinks: external electrons flow along with the free electrons within the N-type region, essentially replacing any lost free electrons. The electrons on the P-type side are then attracted to the negative side of the junction and the depletion region is shrunk from that side as well. This reduced depletion region allows increasing amounts of current (as most of the material has the holes and free electrons now) to flow through the junction.<br />
 </p>
 
-<p>
-Shows us that Power Rule works for negative powers!<br />
+
+<div id="org9d87ac1" class="figure">
+<p><img src="./images/diodebias.png" alt="diodebias.png" /><br />
 </p>
 </div>
+
+<p>
+Current as a function of bias (aka external voltage) is exponential with an asymptote near y=0.<br />
+</p>
+
+
+<div id="org893a7bd" class="figure">
+<p><img src="./images/diodecurrent.png" alt="diodecurrent.png" /><br />
+</p>
 </div>
 
-<div id="outline-container-orgd59145f" class="outline-3">
-<h3 id="orgd59145f">Chain Rule / Composition Rule</h3>
-<div class="outline-text-3" id="text-orgd59145f">
 <p>
-<b>EXAMPLE</b> \(y = sin(x)^{10}\)<br />
+One of the main applications of semiconductors are <a href="20201124214937-transistors.html">Transistors</a>.<br />
 </p>
-
-<p>
-Solution is to add intermediate variable names.<br />
-</p>
-
-<p>
-<b>EXAMPLE</b> \(u = sin(x)\), \(y = u^{10}\)<br />
-</p>
-
-<p>
-*PROOF<br />
-</p>
-<p>
-*<br />
-\(\frac{\Delta y}{\Delta x} = \frac{\Delta y}{\Delta u}\frac{\Delta u}{\Delta x}\)<br />
-</p>
-
-<p>
-The \(\Delta u\) cancels!<br />
-</p>
-
-<p>
-As \(\Delta x\) goes to 0:<br />
-</p>
-
-<p>
-\(\frac{dy}{dx} = \frac{dy}{du}\frac{du}{dx}\)<br />
-</p>
-
-<p>
-Differentiation of a composition is a product.<br />
-</p>
-
-<p>
-<b>EXAMPLE</b><br />
-\(y = sin(x)^{10}\)<br />
-Introduce intermediate variable:<br />
-\(u = sin(x)\), \(y = u^{10}\)<br />
-\(\frac{dy}{du} = cos(x)\)<br />
-\(\frac{du}{dy} = 10x^9\)<br />
-Multiply to get:<br />
-\(\frac{dy}{dx} = 10u^9 cos(x)\)<br />
-Substitute \(u\) to end up with:<br />
-\(\frac{dy}{dx} = 10(sin(x))^9 cos(x)\)<br />
-</p>
-
-<p>
-WARN: Variable names are confusing&#x2026;<br />
-</p>
-
-<p>
-You can skip the intermediate calculations when trying to to calculate it quickly.<br />
-</p>
-</div>
-</div>
-
-<div id="outline-container-org3a1eaa7" class="outline-3">
-<h3 id="org3a1eaa7">Higher Derivatives</h3>
-<div class="outline-text-3" id="text-org3a1eaa7">
-<p>
-Rinse and repeat.<br />
-</p>
-
-<p>
-\(u = u(x)\)<br />
-\(u'\) is a new function which can be differentiated again to get \(u''\)<br />
-<b>EXAMPLE</b> \(u = \sin(x)\), \(u' = \cos(x)\), \(u'' = -\sin(x)\), \(u''' = -\cos(x)\)&#x2026;<br />
-</p>
-
-<p>
-Sometimes notation is $u<sup>(4)</sup> instead of \(u''''\).<br />
-</p>
-
-<p>
-The other notation, specifically l\(\frac{d}{dx}\), has an "operator" \(d\) which is applied to a function to get another function (that is the derivative). This can be just \(D\) instead of a fraction sometimes.<br />
-</p>
-
-<p>
-Lots of notation.<br />
-\(u'' = \frac{d}{dx} \frac{du}{dx} = \frac{d}{dx} \frac{d}{dx} u = \big(\frac{d}{dx}\big)^2 u = \frac{d^2}{(dx)^2} u = \frac{d^2u}{dx^2}\)<br />
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org7cf7558" class="outline-2">
-<h2 id="org7cf7558">Links</h2>
-<div class="outline-text-2" id="text-org7cf7558">
-<p>
-More complex differentiation is covered in <a href="implicit-diff.html">Implicit Differentiation</a>.<br />
-Further review can be found in <a href="calc-mit-exam-review.html">MIT SVC Exam Review (Unit 1)</a>.<br />
-</p>
-</div>
-</div>
 </div>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <!-- 2021-05-26 Wed 23:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Differentiation Rules</title>
+<title>Capsule Networks</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -240,173 +240,52 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Differentiation Rules</h1>
+<h1 class="title">Capsule Networks</h1>
 
-<div id="outline-container-org72a29f5" class="outline-2">
-<h2 id="org72a29f5">Differentiation Rules&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></h2>
-<div class="outline-text-2" id="text-org72a29f5">
-</div>
-<div id="outline-container-org393e765" class="outline-3">
-<h3 id="org393e765">Review</h3>
-<div class="outline-text-3" id="text-org393e765">
-<ul class="org-ul">
-<li>\(\frac{d}{dx} cu = c \frac{d}{dx} u\)<br /></li>
-<li>\(\frac{d}{dx} u + v = \frac{d}{dx} u + \frac{d}{dx} v\)<br /></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org81977e0" class="outline-3">
-<h3 id="org81977e0">Product Rule</h3>
-<div class="outline-text-3" id="text-org81977e0">
+<div id="outline-container-org6e50483" class="outline-2">
+<h2 id="org6e50483">Motivation</h2>
+<div class="outline-text-2" id="text-org6e50483">
 <p>
-Differentiating a product of functions: rule is \((uv)' = u'v + uv'\)<br />
+The logic behind CNNs is questionable. This is evident mostly in the presence of the pooling layer, which serves to add an element of invariance (i.e. if you wiggle the image around a bit, the prediction should be the same). However this does not actually address the problem of pose and perspective.<br />
 </p>
 
 <p>
-<b>PROOF</b><br />
-</p>
-
-<p>
-\(\Delta(uv) = u(x+\Delta x)v(x+\Delta x) - u(x)v(x)\)<br />
-</p>
-
-<p>
-\(= (u(x+\Delta x) - u(x))v(x + \Delta x) + u(x)v(x+\Delta x) - u(x)\)<br />
-</p>
-
-<p>
-\(= (\Delta u)(v(x+\Delta x) + u(x)\Delta v\)<br />
-</p>
-
-<p>
-\(\frac{\Delta(uv)}{\Delta x} = \frac{\Delta(u)}{\Delta x} v(x+\Delta x) + u \frac{\Delta v}{\Delta x}\)<br />
-</p>
-
-<p>
-Take limit to get \(\frac{d(uv)}{d x} = \frac{du}{dx} v + u \frac{dv}{dx}\)<br />
+Capsule Networks are a solution to this that are modelled more similarly to the brain.<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org62be62a" class="outline-3">
-<h3 id="org62be62a">Quotient Rule</h3>
-<div class="outline-text-3" id="text-org62be62a">
+<div id="outline-container-org89ae22d" class="outline-2">
+<h2 id="org89ae22d">Capsules</h2>
+<div class="outline-text-2" id="text-org89ae22d">
 <p>
-Differentiating a quotient of functions: rule is \(\big(\frac{u}{v}\big)' = \frac{u'v - uv'}{v^2}\)<br />
+Capsule are organized in a surprisingly hierarchical manner. Capsules are clumps of neurons that have "children" and "parents", with another main difference being their output form. Capsules output vector representations of the activation as opposed to a single scalar. The magnitude of a capsule output represents the likelihood of a prediction, while the direction of it signifies properties of the input.<br />
 </p>
 
 <p>
-<b>PROOF</b><br />
+An element of nonlinearity is then introduced with the squashing function, and then the output is passed upwards to its parent.<br />
 </p>
 
 <p>
-TIMESTAMP: ~15:00 Lecture 4<br />
-<i>Type me out later!</i><br />
-</p>
-
-<p>
-Shows us that Power Rule works for negative powers!<br />
+The main idea of the vector output is to avoid the problem with pooling and CNNs where changes in image properties like perspective affect likelihood of prediction. When pose changes in the input of a CapsNet, the output vector's magnitude stays the same but its direction spins around with the changing pose. Because of the more complex representation the information and prediction are preserved.<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd59145f" class="outline-3">
-<h3 id="orgd59145f">Chain Rule / Composition Rule</h3>
-<div class="outline-text-3" id="text-orgd59145f">
+<div id="outline-container-org91affb0" class="outline-2">
+<h2 id="org91affb0">The Math</h2>
+<div class="outline-text-2" id="text-org91affb0">
 <p>
-<b>EXAMPLE</b> \(y = sin(x)^{10}\)<br />
-</p>
-
-<p>
-Solution is to add intermediate variable names.<br />
-</p>
-
-<p>
-<b>EXAMPLE</b> \(u = sin(x)\), \(y = u^{10}\)<br />
-</p>
-
-<p>
-*PROOF<br />
-</p>
-<p>
-*<br />
-\(\frac{\Delta y}{\Delta x} = \frac{\Delta y}{\Delta u}\frac{\Delta u}{\Delta x}\)<br />
-</p>
-
-<p>
-The \(\Delta u\) cancels!<br />
-</p>
-
-<p>
-As \(\Delta x\) goes to 0:<br />
-</p>
-
-<p>
-\(\frac{dy}{dx} = \frac{dy}{du}\frac{du}{dx}\)<br />
-</p>
-
-<p>
-Differentiation of a composition is a product.<br />
-</p>
-
-<p>
-<b>EXAMPLE</b><br />
-\(y = sin(x)^{10}\)<br />
-Introduce intermediate variable:<br />
-\(u = sin(x)\), \(y = u^{10}\)<br />
-\(\frac{dy}{du} = cos(x)\)<br />
-\(\frac{du}{dy} = 10x^9\)<br />
-Multiply to get:<br />
-\(\frac{dy}{dx} = 10u^9 cos(x)\)<br />
-Substitute \(u\) to end up with:<br />
-\(\frac{dy}{dx} = 10(sin(x))^9 cos(x)\)<br />
-</p>
-
-<p>
-WARN: Variable names are confusing&#x2026;<br />
-</p>
-
-<p>
-You can skip the intermediate calculations when trying to to calculate it quickly.<br />
+A capsule takes in a vector from its child capsule and runs an affine transform on it: \(\widehat{\mathbf{u}}_{j|i} = \mathbf{W}_{ij}\mathbf{u}_i\). This is then brought into the traditional part of a layer (normally the \(w_i x_i + b\) part) \(\mathbf{s}_j = \sum_{i}c_{ij}\widehat{\mathbf{u}}_{j|i}\). Finally, they apply the nonlinearity squashing function \(\frac{||\mathbf{s}_j||^2}{1+||\mathbf{s}_j||^2}\frac{\mathbf{s}_j}{||\mathbf{s}||_j}\).<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3a1eaa7" class="outline-3">
-<h3 id="org3a1eaa7">Higher Derivatives</h3>
-<div class="outline-text-3" id="text-org3a1eaa7">
+<div id="outline-container-org29a9a88" class="outline-2">
+<h2 id="org29a9a88">Structure</h2>
+<div class="outline-text-2" id="text-org29a9a88">
 <p>
-Rinse and repeat.<br />
-</p>
-
-<p>
-\(u = u(x)\)<br />
-\(u'\) is a new function which can be differentiated again to get \(u''\)<br />
-<b>EXAMPLE</b> \(u = \sin(x)\), \(u' = \cos(x)\), \(u'' = -\sin(x)\), \(u''' = -\cos(x)\)&#x2026;<br />
-</p>
-
-<p>
-Sometimes notation is $u<sup>(4)</sup> instead of \(u''''\).<br />
-</p>
-
-<p>
-The other notation, specifically l\(\frac{d}{dx}\), has an "operator" \(d\) which is applied to a function to get another function (that is the derivative). This can be just \(D\) instead of a fraction sometimes.<br />
-</p>
-
-<p>
-Lots of notation.<br />
-\(u'' = \frac{d}{dx} \frac{du}{dx} = \frac{d}{dx} \frac{d}{dx} u = \big(\frac{d}{dx}\big)^2 u = \frac{d^2}{(dx)^2} u = \frac{d^2u}{dx^2}\)<br />
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org7cf7558" class="outline-2">
-<h2 id="org7cf7558">Links</h2>
-<div class="outline-text-2" id="text-org7cf7558">
-<p>
-More complex differentiation is covered in <a href="implicit-diff.html">Implicit Differentiation</a>.<br />
-Further review can be found in <a href="calc-mit-exam-review.html">MIT SVC Exam Review (Unit 1)</a>.<br />
+A capsule network begins with normal convolutional layers that feed into the capsules.<br />
 </p>
 </div>
 </div>

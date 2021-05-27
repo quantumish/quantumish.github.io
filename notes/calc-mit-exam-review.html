@@ -3,12 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-07 Mon 18:22 -->
+<!-- 2021-05-26 Wed 23:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MIT SVC Exam Review (Unit 1)</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="David Freifeld" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -40,7 +39,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -52,7 +51,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -193,52 +192,28 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="../org.css">
+<link rel="stylesheet" href="https://richardfeynmanrocks.github.io/org.css">
 <script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -266,226 +241,204 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">MIT SVC Exam Review (Unit 1)</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#org5283b0c">1. Exam Review&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span></span></a>
-<ul>
-<li><a href="#org5435c35">1.1. Exponents (Continued)</a></li>
-<li><a href="#org1f46df1">1.2. Derivative of The Powers</a></li>
-<li><a href="#org32a0e56">1.3. The Natural Log</a></li>
-<li><a href="#orge1d460f">1.4. Unit 1 Formula Review</a>
-<ul>
-<li><a href="#org8a6a105">1.4.1. General Formulas</a></li>
-<li><a href="#orge259976">1.4.2. Specific Formulas</a></li>
-</ul>
-</li>
-<li><a href="#org5b10413">1.5. Chain Rule Tangent</a></li>
-<li><a href="#org75fb762">1.6. Unit 1 Misc. Concept Review</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-org5283b0c" class="outline-2">
-<h2 id="org5283b0c"><span class="section-number-2">1</span> Exam Review&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span></span></h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-orgb209be9" class="outline-2">
+<h2 id="orgb209be9">Exam Review&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span></span></h2>
+<div class="outline-text-2" id="text-orgb209be9">
 </div>
-<div id="outline-container-org5435c35" class="outline-3">
-<h3 id="org5435c35"><span class="section-number-3">1.1</span> Exponents (Continued)</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-orgedc5cda" class="outline-3">
+<h3 id="orgedc5cda">Exponents (Continued)</h3>
+<div class="outline-text-3" id="text-orgedc5cda">
 <p>
-\(\lim\limits_{k\rightarrow\infty} a_k = (1+\frac{1}{k})^k\) as definition of \(e\).
+\(\lim\limits_{k\rightarrow\infty} a_k = (1+\frac{1}{k})^k\) as definition of \(e\).<br />
 </p>
 
 <p>
-<span class="underline">Why?</span>
-<i>PREVIOUSLY</i> We found that \(\lim\limits_{k\rightarrow\infty} \ln{a_k} = 1\).
+<span class="underline">Why?</span><br />
+<i>PREVIOUSLY</i> We found that \(\lim\limits_{k\rightarrow\infty} \ln{a_k} = 1\).<br />
 </p>
 
 <p>
-As a result the limit of \(e^{\ln{a_k}}\) will be \(e^\).
-\(e^{\ln{a_k}} = a_k\) by properties of logs/exponents so \(a_k = e\).
+As a result the limit of \(e^{\ln{a_k}}\) will be \(e^\).<br />
+\(e^{\ln{a_k}} = a_k\) by properties of logs/exponents so \(a_k = e\).<br />
 </p>
 
 <p>
-\(e\) is approximated with this expression (by plugging in large values of \(k\)).
+\(e\) is approximated with this expression (by plugging in large values of \(k\)).<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1f46df1" class="outline-3">
-<h3 id="org1f46df1"><span class="section-number-3">1.2</span> Derivative of The Powers</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgc153d9f" class="outline-3">
+<h3 id="orgc153d9f">Derivative of The Powers</h3>
+<div class="outline-text-3" id="text-orgc153d9f">
 <p>
-Validate that the Power Rule is true for all real numbers.
+Validate that the Power Rule is true for all real numbers.<br />
 </p>
 
 <p>
-<span class="underline">Method 1</span>
+<span class="underline">Method 1</span><br />
 </p>
 
 <ul class="org-ul">
-<li>\(x^2 = (e^{\ln{x}})^r = e^{r\ln{x}}\)</li>
+<li>\(x^2 = (e^{\ln{x}})^r = e^{r\ln{x}}\)<br /></li>
 </ul>
 <p>
--\(\frac{d}{dx} x^r = (e^{r\ln{x}})' = e^{r\ln{x}} (r \ln{x})'\) by chain rule.
-\(= x^r * \frac{r}{x}\) by both exponent rules and the fact that \(r\) is a constant and the derivative of the log is \(\frac{1}{x}\)
-\(= rx^{r-1}\) and so Power Rule is correct.
+-\(\frac{d}{dx} x^r = (e^{r\ln{x}})' = e^{r\ln{x}} (r \ln{x})'\) by chain rule.<br />
+\(= x^r * \frac{r}{x}\) by both exponent rules and the fact that \(r\) is a constant and the derivative of the log is \(\frac{1}{x}\)<br />
+\(= rx^{r-1}\) and so Power Rule is correct.<br />
 </p>
 
 <p>
-<span class="underline">Method 2</span>
+<span class="underline">Method 2</span><br />
 </p>
 
 <p>
-Logarithmic diffrentiation!
+Logarithmic diffrentiation!<br />
 </p>
 
 <ul class="org-ul">
-<li>-\(u = x^r\) and take log: \(\ln{u} = r \ln{x}\).</li>
-<li>\(\frac{u'}{u} = (\ln{u})' = \frac{r}{x}\)</li>
-<li>\(u' = u * \frac{r}{x} = x^r * \frac{r}{x} = rx^{r-1}\)</li>
+<li>-\(u = x^r\) and take log: \(\ln{u} = r \ln{x}\).<br /></li>
+<li>\(\frac{u'}{u} = (\ln{u})' = \frac{r}{x}\)<br /></li>
+<li>\(u' = u * \frac{r}{x} = x^r * \frac{r}{x} = rx^{r-1}\)<br /></li>
 </ul>
 
 <p>
-<b>NOTE:</b> The notation here is incredibly confusing! Note that the \(\frac{y'}{y}\) is really implicit diffrentiation in disguise! Logarithmic differentiation diffrentiates the equation with respect to \(x\) and so the same chain rule trickery applies. It is in fact \(\frac{u}{dy}\frac{dy}{dx}\) where \(u = \ln{y}\) but because the derivative of log is \(\frac{1}{x}\) and we're using prime notation it looks like \(\frac{y'}{y}\). but with Read up more thourough overview of the steps <a href="./implicit-diff.html">here</a>.
+<b>NOTE:</b> The notation here is incredibly confusing! Note that the \(\frac{y'}{y}\) is really implicit diffrentiation in disguise! Logarithmic differentiation diffrentiates the equation with respect to \(x\) and so the same chain rule trickery applies. It is in fact \(\frac{u}{dy}\frac{dy}{dx}\) where \(u = \ln{y}\) but because the derivative of log is \(\frac{1}{x}\) and we're using prime notation it looks like \(\frac{y'}{y}\). but with Read up more thourough overview of the steps <a href="./implicit-diff.html">here</a>.<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org32a0e56" class="outline-3">
-<h3 id="org32a0e56"><span class="section-number-3">1.3</span> The Natural Log</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org0096d19" class="outline-3">
+<h3 id="org0096d19">The Natural Log</h3>
+<div class="outline-text-3" id="text-org0096d19">
 <p>
-The natural log is natural.
-Example: economics is a field where only ratios matter ("my stock went up by a dollar" depends on context). If FTSE went down by 27.9 today we'd only care about \(\frac{\Delta p}{p} = \frac{27.9}{6432} = .43%\). However infinitesmal changes matter in this context as well as small timeframes can be important and so \(\frac{p'}{p} = (\ln{p})'\) is used to model prices! Natural log is natural.
+The natural log is natural.<br />
+Example: economics is a field where only ratios matter ("my stock went up by a dollar" depends on context). If FTSE went down by 27.9 today we'd only care about \(\frac{\Delta p}{p} = \frac{27.9}{6432} = .43%\). However infinitesmal changes matter in this context as well as small timeframes can be important and so \(\frac{p'}{p} = (\ln{p})'\) is used to model prices! Natural log is natural.<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge1d460f" class="outline-3">
-<h3 id="orge1d460f"><span class="section-number-3">1.4</span> Unit 1 Formula Review</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-orga689ebc" class="outline-3">
+<h3 id="orga689ebc">Unit 1 Formula Review</h3>
+<div class="outline-text-3" id="text-orga689ebc">
 <p>
-<b><i>/</i> !! FILL ME IN !! <i>/</i></b>
+<b><i>/</i> !! FILL ME IN !! <i>/</i></b><br />
 </p>
 </div>
 
-<div id="outline-container-org8a6a105" class="outline-4">
-<h4 id="org8a6a105"><span class="section-number-4">1.4.1</span> General Formulas</h4>
-<div class="outline-text-4" id="text-1-4-1">
+<div id="outline-container-org9ab8ef9" class="outline-4">
+<h4 id="org9ab8ef9">General Formulas</h4>
+<div class="outline-text-4" id="text-org9ab8ef9">
 <ul class="org-ul">
-<li>\((u+v)'\) = \(u' + v'\)</li>
-<li>\((cu)'\) = \(cu'\)</li>
-<li>\((uv)'\) = \(u'v + v'u\)</li>
-<li>\((u/v)'\) = \(\frac{u'v - uv'}{v^2}\)</li>
-<li>\((u(v(x))'\) = \(v'(x) u'(v(x))\) (more generally \(\frac{dx}{du}\frac{du}{dy} = \frac{dx}{dy}\))</li>
+<li>\((u+v)'\) = \(u' + v'\)<br /></li>
+<li>\((cu)'\) = \(cu'\)<br /></li>
+<li>\((uv)'\) = \(u'v + v'u\)<br /></li>
+<li>\((u/v)'\) = \(\frac{u'v - uv'}{v^2}\)<br /></li>
+<li>\((u(v(x))'\) = \(v'(x) u'(v(x))\) (more generally \(\frac{dx}{du}\frac{du}{dy} = \frac{dx}{dy}\))<br /></li>
 <li><p>
-Implicit differentiation
+Implicit differentiation<br />
 </p>
 
 <p>
-Implicit differentiation is a method of computing derivatives implicitly. Implicit equations are where the equation is not explicitly in the form y = &#x2026; but in a different form like \(y^2 + x^2 = 1\). One can usually express the equation in an explicit form to avoid implicit differentiation but this process can be significantly simpler sometimes.
+Implicit differentiation is a method of computing derivatives implicitly. Implicit equations are where the equation is not explicitly in the form y = &#x2026; but in a different form like \(y^2 + x^2 = 1\). One can usually express the equation in an explicit form to avoid implicit differentiation but this process can be significantly simpler sometimes.<br />
 </p>
 
 <p>
-First, one attempts to differentiate the entire equation with respect to x: \(\frac{d}{dx} y^2 + 2x = 0\). This is all well and good but how is the derivative of the y term determined? A clever application of the chain rule: \(\frac{du}{dy}\frac{dy}{dx} = \frac{du}{dx}\) and by declaring \(u = y^2\) we get \(2y\frac{dy}{dx} = \frac{du}{dx}\). Finally, solve for \(\frac{dy}{dx}\) algebraically in the larger formula to get \(\frac{-2x}{2y}\) or \(\frac{-x}{y}\) and as \(y = \sqrt{1-x}\) our final answer is \(\frac{-1}{\sqrt{1-x}}\).
+First, one attempts to differentiate the entire equation with respect to x: \(\frac{d}{dx} y^2 + 2x = 0\). This is all well and good but how is the derivative of the y term determined? A clever application of the chain rule: \(\frac{du}{dy}\frac{dy}{dx} = \frac{du}{dx}\) and by declaring \(u = y^2\) we get \(2y\frac{dy}{dx} = \frac{du}{dx}\). Finally, solve for \(\frac{dy}{dx}\) algebraically in the larger formula to get \(\frac{-2x}{2y}\) or \(\frac{-x}{y}\) and as \(y = \sqrt{1-x}\) our final answer is \(\frac{-1}{\sqrt{1-x}}\).<br />
 </p>
 
 <ul class="org-ul">
 <li><p>
-Inverses
+Inverses<br />
 </p>
 
 <p>
-Simply structure the inverse as a implicit function.
+Simply structure the inverse as a implicit function.<br />
 </p>
 
 <p>
-Example: \(y = \sin^{-1}{x}\) is equivalent to \(\sin{y} = x\).
-\(\frac{d}{dx} \sin{y} = 1 \rightarrow \cos{y}\frac{dy}{dx} = 1 \rightarrow \frac{dy}{dx} = \frac{1}{\cos{y}} \rightarrow \frac{dy}{dx} = \frac{1}{\cos{(\sin^{-1}{x})}}\)
-Finally, through trig identities, it can be reduced to \(\frac{1}{\sqrt{1-x^2}}\)
+Example: \(y = \sin^{-1}{x}\) is equivalent to \(\sin{y} = x\).<br />
+\(\frac{d}{dx} \sin{y} = 1 \rightarrow \cos{y}\frac{dy}{dx} = 1 \rightarrow \frac{dy}{dx} = \frac{1}{\cos{y}} \rightarrow \frac{dy}{dx} = \frac{1}{\cos{(\sin^{-1}{x})}}\)<br />
+Finally, through trig identities, it can be reduced to \(\frac{1}{\sqrt{1-x^2}}\)<br />
 </p></li>
 
 <li><p>
-Logarithmic diffrentiation
+Logarithmic diffrentiation<br />
 </p>
 
 <p>
-Another, albeit more confusing, application of implicit differentiation is logarithmic differentiation.
+Another, albeit more confusing, application of implicit differentiation is logarithmic differentiation.<br />
 </p>
 
 <p>
-Example: \(y = x^x\) can be rephrased as \(\ln{y} = x \ln{x}\) (Note that properties of logs help here)
-\(\frac{d}{dx}\ln{y} = \ln{x} + 1\) (product rule), so \(\frac{d}{dx}\ln{y} = \ln{x}\). \(\frac{1}{y}\frac{dy}{dx} = \ln{x} \rightarrow \frac{dy}{dx} = y \ln{x}\) so \(x^x (\ln{x} + 1)\)
+Example: \(y = x^x\) can be rephrased as \(\ln{y} = x \ln{x}\) (Note that properties of logs help here)<br />
+\(\frac{d}{dx}\ln{y} = \ln{x} + 1\) (product rule), so \(\frac{d}{dx}\ln{y} = \ln{x}\). \(\frac{1}{y}\frac{dy}{dx} = \ln{x} \rightarrow \frac{dy}{dx} = y \ln{x}\) so \(x^x (\ln{x} + 1)\)<br />
 </p></li>
 </ul></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge259976" class="outline-4">
-<h4 id="orge259976"><span class="section-number-4">1.4.2</span> Specific Formulas</h4>
-<div class="outline-text-4" id="text-1-4-2">
+<div id="outline-container-org9605929" class="outline-4">
+<h4 id="org9605929">Specific Formulas</h4>
+<div class="outline-text-4" id="text-org9605929">
 <ul class="org-ul">
-<li>\((x^r)'\) = \(rx^{r-1}\)</li>
-<li>\((\sin{x})'\) = \(\cos{x}\)</li>
-<li>\((\cos{x})'\) = \(-\sin{x}\)</li>
-<li>\((\tan{x})'\) = \(\sec^2{x}\)</li>
-<li>\((\sec{x})'\) = \(\sec{x}\tan{x}\)
-NOTE: See lecture for sec formula.</li>
-<li>\((e^x)'\) = \(e^x\)</li>
-<li>\((\ln{x})'\) = \(\frac{1}{x}\)</li>
-<li>\((\sin^{-1}{x})'\) = \(\frac{1}{\sqrt{1-x^2}}\)</li>
-<li>\((\tan^{-1}{x})'\) = \(\frac{1}{x^2+1}\)</li>
-<li><b>REMEMBER</b>: You can easily derive many of these trig formulas through either implicit differentiation or the quotient rule.</li>
+<li>\((x^r)'\) = \(rx^{r-1}\)<br /></li>
+<li>\((\sin{x})'\) = \(\cos{x}\)<br /></li>
+<li>\((\cos{x})'\) = \(-\sin{x}\)<br /></li>
+<li>\((\tan{x})'\) = \(\sec^2{x}\)<br /></li>
+<li>\((\sec{x})'\) = \(\sec{x}\tan{x}\)<br />
+NOTE: See lecture for sec formula.<br /></li>
+<li>\((e^x)'\) = \(e^x\)<br /></li>
+<li>\((\ln{x})'\) = \(\frac{1}{x}\)<br /></li>
+<li>\((\sin^{-1}{x})'\) = \(\frac{1}{\sqrt{1-x^2}}\)<br /></li>
+<li>\((\tan^{-1}{x})'\) = \(\frac{1}{x^2+1}\)<br /></li>
+<li><b>REMEMBER</b>: You can easily derive many of these trig formulas through either implicit differentiation or the quotient rule.<br /></li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5b10413" class="outline-3">
-<h3 id="org5b10413"><span class="section-number-3">1.5</span> Chain Rule Tangent</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-org545ed77" class="outline-3">
+<h3 id="org545ed77">Chain Rule Tangent</h3>
+<div class="outline-text-3" id="text-org545ed77">
 <p>
-Intuitive demo:
-\(y = 10x + b\), \(y' = 10\) with respect to x.
-\(x = 5t + a\), \(x' = 5\) with respect to t.
-\(y = 10(5t + a)+b = 50t + 10a + b\), \(y' = 50\) with respect to t.
+Intuitive demo:<br />
+\(y = 10x + b\), \(y' = 10\) with respect to x.<br />
+\(x = 5t + a\), \(x' = 5\) with respect to t.<br />
+\(y = 10(5t + a)+b = 50t + 10a + b\), \(y' = 50\) with respect to t.<br />
 </p>
 
 <p>
-Also note that the quotient rule can be avoided with chain rule and product rule.
+Also note that the quotient rule can be avoided with chain rule and product rule.<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org75fb762" class="outline-3">
-<h3 id="org75fb762"><span class="section-number-3">1.6</span> Unit 1 Misc. Concept Review</h3>
-<div class="outline-text-3" id="text-1-6">
+<div id="outline-container-org86e5068" class="outline-3">
+<h3 id="org86e5068">Unit 1 Misc. Concept Review</h3>
+<div class="outline-text-3" id="text-org86e5068">
 <ul class="org-ul">
-<li>Defined derivative as \(f'(x) = \lim\limits_{\Delta x\rightarrow0} \frac{f(x+\Delta x) - f(x)}{\Delta x}\)
+<li>Defined derivative as \(f'(x) = \lim\limits_{\Delta x\rightarrow0} \frac{f(x+\Delta x) - f(x)}{\Delta x}\)<br />
 <ul class="org-ul">
-<li>Reviewed lots of functions like \(\frac{1}{x}\), \(x^n\), \(\sin{x}\), \(\cos{x}\), \(a^x\). Note that the arguments for trig functions were done with case \(x=0\).</li>
+<li>Reviewed lots of functions like \(\frac{1}{x}\), \(x^n\), \(\sin{x}\), \(\cos{x}\), \(a^x\). Note that the arguments for trig functions were done with case \(x=0\).<br /></li>
 </ul></li>
 <li><p>
-Read Formula Backwards
+Read Formula Backwards<br />
 </p>
 
 <p>
-\(\lim_{x\rightarrow0} \frac{f(x_0+\Delta x) - f(x_0)}{x-x_0} = f'(x)\)
+\(\lim_{x\rightarrow0} \frac{f(x_0+\Delta x) - f(x_0)}{x-x_0} = f'(x)\)<br />
 </p>
 
 <p>
-See lecture for more details, essentially how the x=0 case works.
+See lecture for more details, essentially how the x=0 case works.<br />
 </p></li>
 
-<li class="on"><code>[X]</code> You should be able to derive formulas for \((\sin^{-1}{x})'\) and \((\ln{x})'\) by implicit differentiation (as \(y=\sin^{-1}{x}\) is the same as \(\sin{y} = x\)).</li>
-<li>You will be expected to compute tangent lines as well as graph derivatives.</li>
-<li>You will be expected to recognize differentiable functions by check if left/right tangents are equal.</li>
+<li class="on"><code>[X]</code> You should be able to derive formulas for \((\sin^{-1}{x})'\) and \((\ln{x})'\) by implicit differentiation (as \(y=\sin^{-1}{x}\) is the same as \(\sin{y} = x\)).<br /></li>
+<li>You will be expected to compute tangent lines as well as graph derivatives.<br /></li>
+<li>You will be expected to recognize differentiable functions by check if left/right tangents are equal.<br /></li>
 </ul>
 </div>
 </div>

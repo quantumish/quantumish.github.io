@@ -6,7 +6,7 @@
 <!-- 2021-05-26 Wed 23:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Differentiation Rules</title>
+<title>Fields</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -192,7 +192,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="https://richardfeynmanrocks.github.io/org.css">
+<link rel="stylesheet" href="https://richardfeynmanrocks.github.io/org.css"
 <script type="text/javascript">
 // @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
@@ -240,173 +240,102 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Differentiation Rules</h1>
+<h1 class="title">Fields</h1>
 
-<div id="outline-container-org72a29f5" class="outline-2">
-<h2 id="org72a29f5">Differentiation Rules&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></h2>
-<div class="outline-text-2" id="text-org72a29f5">
+<div id="outline-container-org327c3aa" class="outline-2">
+<h2 id="org327c3aa">Fields (in general)</h2>
+<div class="outline-text-2" id="text-org327c3aa">
+<p>
+How do forces between separated objects arise?<br />
+</p>
+
+<p>
+For gravity, The Earth creates a "gravitational field" which can be represented by a sort of infinite sea of vectors, each with the direction and magnitude corresponding to the force from the Earth a "test mass" would feel at that point. This is an example olf a <a href="20200831153854-vector_field.html">vector field</a>.<br />
+</p>
+
+<p>
+Calculating Earth's gravitational field shouldn't involve the Moon in any way, so we take the Moon term out of our traditional gravitational force equation to get that the gravitational field of Earth is equal to \(\frac{GM_{earth}}{R^2}\), and \(F_{grav} = M_{moon} * \text{Gravitational field of Earth}\). The units for a gravitational field are N/kg, which is equivalent to m/s<sup>2</sup>.<br />
+</p>
 </div>
-<div id="outline-container-org393e765" class="outline-3">
-<h3 id="org393e765">Review</h3>
-<div class="outline-text-3" id="text-org393e765">
+</div>
+
+<div id="outline-container-orgee74774" class="outline-2">
+<h2 id="orgee74774">Electric Fields</h2>
+<div class="outline-text-2" id="text-orgee74774">
+<p>
+Electric fields are the same as the electric force equation is the same. However, we have charges in the numerator instead of masses. It has units of N/C, and this is <b>not</b> the same as acceleration.<br />
+</p>
+
+<p>
+<i>SIDENOTE: The electric field is represented by the variable \(E\).</i><br />
+</p>
+
+<p>
+Note that fields are not "mathematical tricks", they are a physical reality and can transmit energy. Every mass has a gravitational field, and every charge an electric field.<br />
+</p>
+</div>
+
+<div id="outline-container-orgf7b69c7" class="outline-3">
+<h3 id="orgf7b69c7">Direction</h3>
+<div class="outline-text-3" id="text-orgf7b69c7">
+<p>
+Gravity is straightforward - all masses attract other masses, making determining the direction of the field simple. However, electric charges can attract or repel so there are two possibilities: either the field has two values for each point (one if it the "test charge" is positive, and the other if it's negative) or a single-direction field but keeping in mind that the direction of \(Q_{\text{test}}\) depends on the sign \(Q_{\text{test}}\). Option 2 is what was chosen by scientists and engineers.<br />
+</p>
+
 <ul class="org-ul">
-<li>\(\frac{d}{dx} cu = c \frac{d}{dx} u\)<br /></li>
-<li>\(\frac{d}{dx} u + v = \frac{d}{dx} u + \frac{d}{dx} v\)<br /></li>
+<li>Positive test charge: electrical force described by field is in the same direction<br /></li>
+<li>Negative test charge: direction is opposite of field<br /></li>
 </ul>
-</div>
-</div>
-<div id="outline-container-org81977e0" class="outline-3">
-<h3 id="org81977e0">Product Rule</h3>
-<div class="outline-text-3" id="text-org81977e0">
 <p>
-Differentiating a product of functions: rule is \((uv)' = u'v + uv'\)<br />
-</p>
-
-<p>
-<b>PROOF</b><br />
-</p>
-
-<p>
-\(\Delta(uv) = u(x+\Delta x)v(x+\Delta x) - u(x)v(x)\)<br />
-</p>
-
-<p>
-\(= (u(x+\Delta x) - u(x))v(x + \Delta x) + u(x)v(x+\Delta x) - u(x)\)<br />
-</p>
-
-<p>
-\(= (\Delta u)(v(x+\Delta x) + u(x)\Delta v\)<br />
-</p>
-
-<p>
-\(\frac{\Delta(uv)}{\Delta x} = \frac{\Delta(u)}{\Delta x} v(x+\Delta x) + u \frac{\Delta v}{\Delta x}\)<br />
-</p>
-
-<p>
-Take limit to get \(\frac{d(uv)}{d x} = \frac{du}{dx} v + u \frac{dv}{dx}\)<br />
-</p>
-</div>
-</div>
-
-<div id="outline-container-org62be62a" class="outline-3">
-<h3 id="org62be62a">Quotient Rule</h3>
-<div class="outline-text-3" id="text-org62be62a">
-<p>
-Differentiating a quotient of functions: rule is \(\big(\frac{u}{v}\big)' = \frac{u'v - uv'}{v^2}\)<br />
-</p>
-
-<p>
-<b>PROOF</b><br />
-</p>
-
-<p>
-TIMESTAMP: ~15:00 Lecture 4<br />
-<i>Type me out later!</i><br />
-</p>
-
-<p>
-Shows us that Power Rule works for negative powers!<br />
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgd59145f" class="outline-3">
-<h3 id="orgd59145f">Chain Rule / Composition Rule</h3>
-<div class="outline-text-3" id="text-orgd59145f">
-<p>
-<b>EXAMPLE</b> \(y = sin(x)^{10}\)<br />
-</p>
-
-<p>
-Solution is to add intermediate variable names.<br />
-</p>
-
-<p>
-<b>EXAMPLE</b> \(u = sin(x)\), \(y = u^{10}\)<br />
-</p>
-
-<p>
-*PROOF<br />
-</p>
-<p>
-*<br />
-\(\frac{\Delta y}{\Delta x} = \frac{\Delta y}{\Delta u}\frac{\Delta u}{\Delta x}\)<br />
-</p>
-
-<p>
-The \(\Delta u\) cancels!<br />
-</p>
-
-<p>
-As \(\Delta x\) goes to 0:<br />
-</p>
-
-<p>
-\(\frac{dy}{dx} = \frac{dy}{du}\frac{du}{dx}\)<br />
-</p>
-
-<p>
-Differentiation of a composition is a product.<br />
-</p>
-
-<p>
-<b>EXAMPLE</b><br />
-\(y = sin(x)^{10}\)<br />
-Introduce intermediate variable:<br />
-\(u = sin(x)\), \(y = u^{10}\)<br />
-\(\frac{dy}{du} = cos(x)\)<br />
-\(\frac{du}{dy} = 10x^9\)<br />
-Multiply to get:<br />
-\(\frac{dy}{dx} = 10u^9 cos(x)\)<br />
-Substitute \(u\) to end up with:<br />
-\(\frac{dy}{dx} = 10(sin(x))^9 cos(x)\)<br />
-</p>
-
-<p>
-WARN: Variable names are confusing&#x2026;<br />
-</p>
-
-<p>
-You can skip the intermediate calculations when trying to to calculate it quickly.<br />
-</p>
-</div>
-</div>
-
-<div id="outline-container-org3a1eaa7" class="outline-3">
-<h3 id="org3a1eaa7">Higher Derivatives</h3>
-<div class="outline-text-3" id="text-org3a1eaa7">
-<p>
-Rinse and repeat.<br />
-</p>
-
-<p>
-\(u = u(x)\)<br />
-\(u'\) is a new function which can be differentiated again to get \(u''\)<br />
-<b>EXAMPLE</b> \(u = \sin(x)\), \(u' = \cos(x)\), \(u'' = -\sin(x)\), \(u''' = -\cos(x)\)&#x2026;<br />
-</p>
-
-<p>
-Sometimes notation is $u<sup>(4)</sup> instead of \(u''''\).<br />
-</p>
-
-<p>
-The other notation, specifically l\(\frac{d}{dx}\), has an "operator" \(d\) which is applied to a function to get another function (that is the derivative). This can be just \(D\) instead of a fraction sometimes.<br />
-</p>
-
-<p>
-Lots of notation.<br />
-\(u'' = \frac{d}{dx} \frac{du}{dx} = \frac{d}{dx} \frac{d}{dx} u = \big(\frac{d}{dx}\big)^2 u = \frac{d^2}{(dx)^2} u = \frac{d^2u}{dx^2}\)<br />
+No matter what, \(F = qE\).<br />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7cf7558" class="outline-2">
-<h2 id="org7cf7558">Links</h2>
-<div class="outline-text-2" id="text-org7cf7558">
+<div id="outline-container-org93f0fae" class="outline-2">
+<h2 id="org93f0fae">Alternate Representations</h2>
+<div class="outline-text-2" id="text-org93f0fae">
 <p>
-More complex differentiation is covered in <a href="implicit-diff.html">Implicit Differentiation</a>.<br />
-Further review can be found in <a href="calc-mit-exam-review.html">MIT SVC Exam Review (Unit 1)</a>.<br />
+Representing a field as rays emanating or arriving in the origin can be used to describe a field, where density of rays represents magnitude and the direction is tangent to the rays.<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeafaea9" class="outline-2">
+<h2 id="orgeafaea9"><span class="todo TODO">TODO</span> Improve notes on alternative representations of fields: <a href="https://nuevaschool.instructure.com/courses/2851/pages/electrostatics-video-screencast">Here</a> at ~38:00</h2>
+</div>
+
+<div id="outline-container-org6c306de" class="outline-2">
+<h2 id="org6c306de">Combined Fields</h2>
+<div class="outline-text-2" id="text-org6c306de">
+<ul class="org-ul">
+<li>Method 1: Illustrating the combined effects on a test charge.<br /></li>
+<li>Method 2: Adding said forces up to show net force<br /></li>
+<li>Method 3: Connecting these with the line representation to show the electric field<br /></li>
+</ul>
+
+<p>
+None of these actually show repulsion, just the force on a third test charge.<br />
+<i>SIDENOTE: This is three dimensional and better represented with a 3d diagram.</i><br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org10a79ef" class="outline-2">
+<h2 id="org10a79ef"><a href="phys250-electrostatics.html">Conductors</a></h2>
+<div class="outline-text-2" id="text-org10a79ef">
+<p>
+If the charges in a conductor are static (net equilibrium), the electric field in the material must be zero (in order to be in equilibrium), and the field on the surface must be perpendicular to each point on the surface (as if there was a horizontal component to the field electrons would flow).<br />
+</p>
+
+<p>
+Example (note that due to the topology of the conductor, certain regions will feel a stronger field):<br />
+<img src="file:///home/quantumish/Desktop/curve_field.png" alt="curve_field.png" /><br />
+</p>
+
+<p>
+Take the example of a neutral conductor surrounding a positive charge. The conductor will be polarized - but to what extent? A balancing electric field created by the continued polarization of the conductor brings equilibrium and an \(E_{net}\) of 0 inside the conductor.<br />
 </p>
 </div>
 </div>

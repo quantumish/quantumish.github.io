@@ -3,12 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-07 Mon 18:22 -->
+<!-- 2021-05-26 Wed 23:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear and Quadratic Approximations</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="David Freifeld" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -40,7 +39,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -52,7 +51,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -193,52 +192,28 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="../org.css">
+<link rel="stylesheet" href="https://richardfeynmanrocks.github.io/org.css">
 <script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -266,121 +241,108 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Linear and Quadratic Approximations</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#org99c99a7">1. Linear and Quadratic Approximations&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit2">unit2</span>&#xa0;<span class=""></span>&#xa0;<span class="approximations">approximations</span></span></a>
-<ul>
-<li><a href="#org05538a0">1.1. Linear Approximations</a></li>
-<li><a href="#org606b05b">1.2. Useful Examples</a></li>
-<li><a href="#orgbbcb2c5">1.3. Quadratic Approximations</a></li>
-</ul>
-</li>
-</ul>
+<p>
+More applications of <a href="calculating-derivatives.html">Calculating Derivatives</a>.<br />
+</p>
+
+<div id="outline-container-org49f739b" class="outline-2">
+<h2 id="org49f739b">Linear and Quadratic Approximations&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit2">unit2</span>&#xa0;<span class=""></span>&#xa0;<span class="approximations">approximations</span></span></h2>
+<div class="outline-text-2" id="text-org49f739b">
 </div>
-</div>
+<div id="outline-container-org7a48995" class="outline-3">
+<h3 id="org7a48995">Linear Approximations</h3>
+<div class="outline-text-3" id="text-org7a48995">
 <p>
-More applications of <a href="calculating-derivatives.html">Calculating Derivatives</a>.
-</p>
-
-<div id="outline-container-org99c99a7" class="outline-2">
-<h2 id="org99c99a7"><span class="section-number-2">1</span> Linear and Quadratic Approximations&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit2">unit2</span>&#xa0;<span class=""></span>&#xa0;<span class="approximations">approximations</span></span></h2>
-<div class="outline-text-2" id="text-1">
-</div>
-<div id="outline-container-org05538a0" class="outline-3">
-<h3 id="org05538a0"><span class="section-number-3">1.1</span> Linear Approximations</h3>
-<div class="outline-text-3" id="text-1-1">
-<p>
-\(f(x) \approx f(x_0) + f'(x_0)(x-x_0)\)
+\(f(x) \approx f(x_0) + f'(x_0)(x-x_0)\)<br />
 </p>
 
 <p>
-Tangent line is near the function curve at values close to \(x_0\) so it serves as an approximation there.
+Tangent line is near the function curve at values close to \(x_0\) so it serves as an approximation there.<br />
 </p>
 
 <p>
-Think back to \(\lim_{x\rightarrow0} \frac{f(x_0+\Delta x) - f(x_0)}{x-x_0}\) and realize that the approximation \(\frac{\Delta f}{\Delta x} \approx f'(x_0)\) arises. This is the same relationship as the first equation! 
+Think back to \(\lim_{x\rightarrow0} \frac{f(x_0+\Delta x) - f(x_0)}{x-x_0}\) and realize that the approximation \(\frac{\Delta f}{\Delta x} \approx f'(x_0)\) arises. This is the same relationship as the first equation!<br />
 </p>
 
 <p>
-<span class="underline">Why?</span>
+<span class="underline">Why?</span><br />
 </p>
 
 <ul class="org-ul">
-<li>Manipulate second approximation to yield the relation \(\Delta f \approx f'(x_0)\Delta x\).</li>
-<li>Substitute to get \(f(x)-f(x_0) \approx f'(x_0)(x-x_0)\).</li>
-<li>Put constant on the other side to get the original equation.
-\(f(x) \approx f(x_0) + f'(x_0)(x-x_0)\)</li>
+<li>Manipulate second approximation to yield the relation \(\Delta f \approx f'(x_0)\Delta x\).<br /></li>
+<li>Substitute to get \(f(x)-f(x_0) \approx f'(x_0)(x-x_0)\).<br /></li>
+<li>Put constant on the other side to get the original equation.<br />
+\(f(x) \approx f(x_0) + f'(x_0)(x-x_0)\)<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org606b05b" class="outline-3">
-<h3 id="org606b05b"><span class="section-number-3">1.2</span> Useful Examples</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-org701e99e" class="outline-3">
+<h3 id="org701e99e">Useful Examples</h3>
+<div class="outline-text-3" id="text-org701e99e">
 <p>
-To simplify, base point (\(x_0\)) will be 0.
-Formula becomes \(f(x) \approx f(0) + f'(0)x\) with \(x_0 = 0\).
+To simplify, base point (\(x_0\)) will be 0.<br />
+Formula becomes \(f(x) \approx f(0) + f'(0)x\) with \(x_0 = 0\).<br />
 </p>
 
 <p>
-NOTE: This formula and the examples based off of it only approximate for values of \(x\) near 0.
+NOTE: This formula and the examples based off of it only approximate for values of \(x\) near 0.<br />
 </p>
 
 <p>
-For \(x\approx 0\):
+For \(x\approx 0\):<br />
 </p>
 <ul class="org-ul">
-<li>\(\sin{x}\): \(f(x) \approx f(0) + f'(0)x\) so \(\sin{x} \approx x\)</li>
-<li>\(\cos{x}\): \(f(x) \approx f(0) + f'(0)x\) so \(\cos{x} \approx 1\)</li>
-<li>\(e^{x}\): \(f(x) \approx f(0) + f'(0)x\) so \(e^{x} \approx 1+x\)</li>
-<li>\(\ln{(1+x)}\): \(f(x) \approx f(0) + f'(0)x\) so \(\ln{(x+1)} \approx x\)</li>
-<li>\((1+x)^{r}\): \(f(x) \approx f(0) + f'(0)x\) so \((1+x)^{r} \approx 1+rx\)</li>
+<li>\(\sin{x}\): \(f(x) \approx f(0) + f'(0)x\) so \(\sin{x} \approx x\)<br /></li>
+<li>\(\cos{x}\): \(f(x) \approx f(0) + f'(0)x\) so \(\cos{x} \approx 1\)<br /></li>
+<li>\(e^{x}\): \(f(x) \approx f(0) + f'(0)x\) so \(e^{x} \approx 1+x\)<br /></li>
+<li>\(\ln{(1+x)}\): \(f(x) \approx f(0) + f'(0)x\) so \(\ln{(x+1)} \approx x\)<br /></li>
+<li>\((1+x)^{r}\): \(f(x) \approx f(0) + f'(0)x\) so \((1+x)^{r} \approx 1+rx\)<br /></li>
 </ul>
 
 <p>
-Linear approximations greatly simplify what can sometimes be more complicated functions (i.e. logarithms which would require a calculator, while 1+x is much simpler).
+Linear approximations greatly simplify what can sometimes be more complicated functions (i.e. logarithms which would require a calculator, while 1+x is much simpler).<br />
 </p>
 
 <p>
-<span class="underline">Example 3</span> <i>For \(x\approx0\), find a linear approximation of \(\frac{e^{-3x}}{\sqrt{1+x}}\).</i>
+<span class="underline">Example 3</span> <i>For \(x\approx0\), find a linear approximation of \(\frac{e^{-3x}}{\sqrt{1+x}}\).</i><br />
 </p>
 
 <ul class="org-ul">
-<li>Remember the earlier approximations of \(e^x\) and \((1+x)^r\).</li>
-<li>Rewrite as product: \(e^{-3x}(1+x)^{-1/2} \approx (1-3x)(1-\frac{1}{2}x)\).</li>
-<li>Expand: \(e^{-3x}(1+x)^{-1/2} \approx 1-3x-\frac{1}{2}x+\frac{3}{2}x^2\).</li>
-<li>Goal is a linear approximation so loosely approximate to \(e^{-3x}(1+x)^{-1/2} \approx 1-\frac{7}{2}x\) (sum up coefficients).
+<li>Remember the earlier approximations of \(e^x\) and \((1+x)^r\).<br /></li>
+<li>Rewrite as product: \(e^{-3x}(1+x)^{-1/2} \approx (1-3x)(1-\frac{1}{2}x)\).<br /></li>
+<li>Expand: \(e^{-3x}(1+x)^{-1/2} \approx 1-3x-\frac{1}{2}x+\frac{3}{2}x^2\).<br /></li>
+<li>Goal is a linear approximation so loosely approximate to \(e^{-3x}(1+x)^{-1/2} \approx 1-\frac{7}{2}x\) (sum up coefficients).<br />
 <ul class="org-ul">
-<li>Drop the \(x^2\) and higher terms as they get small as \(x\) is near zero.</li>
+<li>Drop the \(x^2\) and higher terms as they get small as \(x\) is near zero.<br /></li>
 </ul></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbbcb2c5" class="outline-3">
-<h3 id="orgbbcb2c5"><span class="section-number-3">1.3</span> Quadratic Approximations</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org8d26ae6" class="outline-3">
+<h3 id="org8d26ae6">Quadratic Approximations</h3>
+<div class="outline-text-3" id="text-org8d26ae6">
 <p>
-Serves as an <i>extension</i> of the linear approximation formula.
+Serves as an <i>extension</i> of the linear approximation formula.<br />
 </p>
 
 <p>
-\(f(x) \approx f(x_0) + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2}(x-x_0)^2\)
+\(f(x) \approx f(x_0) + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2}(x-x_0)^2\)<br />
 </p>
 
 <p>
-<span class="underline">Example 2</span> <i>Compute \(\ln{1.1}\) with a quadratic approximation.</i>
+<span class="underline">Example 2</span> <i>Compute \(\ln{1.1}\) with a quadratic approximation.</i><br />
 </p>
 
 <ul class="org-ul">
-<li>Algebra yields \(\ln{1+x} \approx x-\frac{x^2}{2}\).</li>
-<li>Plug in: \(\ln(1.1) \approx \frac{1}{10} - \frac{1}{2}\big(\frac{1}{10}\big)^2\) or 0.95</li>
+<li>Algebra yields \(\ln{1+x} \approx x-\frac{x^2}{2}\).<br /></li>
+<li>Plug in: \(\ln(1.1) \approx \frac{1}{10} - \frac{1}{2}\big(\frac{1}{10}\big)^2\) or 0.95<br /></li>
 </ul>
 
 <p>
-Quadratic is not always more helpful, as in approximations like that of \(\sin{x}\), quadratic term vanishes.
+Quadratic is not always more helpful, as in approximations like that of \(\sin{x}\), quadratic term vanishes.<br />
 </p>
+</div>
 </div>
 </div>
 </div>

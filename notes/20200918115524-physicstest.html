@@ -6,7 +6,7 @@
 <!-- 2021-05-26 Wed 23:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Differentiation Rules</title>
+<title>Electrostatics/Circuits Test Prep</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -240,174 +240,186 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Differentiation Rules</h1>
+<h1 class="title">Electrostatics/Circuits Test Prep
+<br />
+<span class="subtitle">Or David's Constant Physics Anxiety</span>
+</h1>
 
-<div id="outline-container-org72a29f5" class="outline-2">
-<h2 id="org72a29f5">Differentiation Rules&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></h2>
-<div class="outline-text-2" id="text-org72a29f5">
+<div id="outline-container-org1c410bb" class="outline-2">
+<h2 id="org1c410bb">Electrostatics</h2>
+<div class="outline-text-2" id="text-org1c410bb">
 </div>
-<div id="outline-container-org393e765" class="outline-3">
-<h3 id="org393e765">Review</h3>
-<div class="outline-text-3" id="text-org393e765">
+<div id="outline-container-org2b2ce7b" class="outline-3">
+<h3 id="org2b2ce7b">Concepts</h3>
+<div class="outline-text-3" id="text-org2b2ce7b">
+</div>
+<div id="outline-container-org287dd89" class="outline-4">
+<h4 id="org287dd89"><a href="phys250-electrostatics.html">Conductors/Insulators</a></h4>
+</div>
+<div id="outline-container-org9aae867" class="outline-4">
+<h4 id="org9aae867"><a href="phys250-fields.html">Fields</a></h4>
+</div>
+</div>
+</div>
+<div id="outline-container-org8667cc1" class="outline-2">
+<h2 id="org8667cc1"><a href="circuits.html">Circuits</a></h2>
+<div class="outline-text-2" id="text-org8667cc1">
+</div>
+<div id="outline-container-org2129e4b" class="outline-3">
+<h3 id="org2129e4b">Concepts</h3>
+<div class="outline-text-3" id="text-org2129e4b">
+</div>
+<div id="outline-container-org60cd4b2" class="outline-4">
+<h4 id="org60cd4b2">Circuits and Fields</h4>
+</div>
+<div id="outline-container-org7b0f977" class="outline-4">
+<h4 id="org7b0f977"><a href="20200909105807-current.html">Current</a>/Resistance</h4>
+</div>
+</div>
+<div id="outline-container-org5d5fe05" class="outline-3">
+<h3 id="org5d5fe05">Calculating Basic Properties</h3>
+</div>
+<div id="outline-container-org02bb2e4" class="outline-3">
+<h3 id="org02bb2e4">Multi-Battery Circuits</h3>
+</div>
+</div>
+<div id="outline-container-orga780cda" class="outline-2">
+<h2 id="orga780cda">Types of Problems</h2>
+<div class="outline-text-2" id="text-orga780cda">
+</div>
+<div id="outline-container-orgbaead18" class="outline-3">
+<h3 id="orgbaead18">Problems related to <a href="phys250-electricalforce.html">Electrical Force</a> and <a href="phys250-fields.html">Fields</a></h3>
+<div class="outline-text-3" id="text-orgbaead18">
+<p>
+Apply the equation \(F = k\frac{q_1q_2}{r^2}\) for most problems.<br />
+</p>
+
 <ul class="org-ul">
-<li>\(\frac{d}{dx} cu = c \frac{d}{dx} u\)<br /></li>
-<li>\(\frac{d}{dx} u + v = \frac{d}{dx} u + \frac{d}{dx} v\)<br /></li>
+<li>Remember that dividing by 10<sup>6</sup> to account for the microcoloumbs is just flat out incorrect.<br /></li>
+<li>Remember that you can apply other equations like \(\vec{F}=ma\).<br /></li>
+<li>To calculate field strength, use the equation $k\frac{Q}{r<br /></li>
+</ul>
+<p>
+^2}$, where \(Q\) is the charge creating the field.<br />
+</p>
+<ul class="org-ul">
+<li>For questions that supply the strength of the field at the point of the second charge, just multiply the second charge by the strength to get force magnitude.<br /></li>
+<li>For scarier multiple field questions, break it down into net force and use sin(x) and cos(x).<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org81977e0" class="outline-3">
-<h3 id="org81977e0">Product Rule</h3>
-<div class="outline-text-3" id="text-org81977e0">
-<p>
-Differentiating a product of functions: rule is \((uv)' = u'v + uv'\)<br />
-</p>
 
+<div id="outline-container-orgb788db2" class="outline-3">
+<h3 id="orgb788db2">Interacting with Field Visualizations</h3>
+<div class="outline-text-3" id="text-orgb788db2">
 <p>
-<b>PROOF</b><br />
-</p>
-
-<p>
-\(\Delta(uv) = u(x+\Delta x)v(x+\Delta x) - u(x)v(x)\)<br />
-</p>
-
-<p>
-\(= (u(x+\Delta x) - u(x))v(x + \Delta x) + u(x)v(x+\Delta x) - u(x)\)<br />
-</p>
-
-<p>
-\(= (\Delta u)(v(x+\Delta x) + u(x)\Delta v\)<br />
-</p>
-
-<p>
-\(\frac{\Delta(uv)}{\Delta x} = \frac{\Delta(u)}{\Delta x} v(x+\Delta x) + u \frac{\Delta v}{\Delta x}\)<br />
-</p>
-
-<p>
-Take limit to get \(\frac{d(uv)}{d x} = \frac{du}{dx} v + u \frac{dv}{dx}\)<br />
+Remember that density of lines in the field line view represents magnitude and that a test charge would move tangent to the field lines.<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org62be62a" class="outline-3">
-<h3 id="org62be62a">Quotient Rule</h3>
-<div class="outline-text-3" id="text-org62be62a">
+<div id="outline-container-org00bd5ce" class="outline-3">
+<h3 id="org00bd5ce">Resistance</h3>
+<div class="outline-text-3" id="text-org00bd5ce">
 <p>
-Differentiating a quotient of functions: rule is \(\big(\frac{u}{v}\big)' = \frac{u'v - uv'}{v^2}\)<br />
-</p>
-
-<p>
-<b>PROOF</b><br />
-</p>
-
-<p>
-TIMESTAMP: ~15:00 Lecture 4<br />
-<i>Type me out later!</i><br />
-</p>
-
-<p>
-Shows us that Power Rule works for negative powers!<br />
+Use resistance formula \(R = \rho\frac{L}{A}\).<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd59145f" class="outline-3">
-<h3 id="orgd59145f">Chain Rule / Composition Rule</h3>
-<div class="outline-text-3" id="text-orgd59145f">
+<div id="outline-container-orgb09a4d8" class="outline-3">
+<h3 id="orgb09a4d8">DC Circuits</h3>
+<div class="outline-text-3" id="text-orgb09a4d8">
 <p>
-<b>EXAMPLE</b> \(y = sin(x)^{10}\)<br />
+Remember \(I = \frac{\Delta V}{R}\) and \(P = IV\) for filling in table values.<br />
+Remember Kirchoff's Laws:<br />
 </p>
+<ol class="org-ol">
+<li>Net voltage change throughout any closed loop in a circuit must be zero (think like GPE and a rollercoaster ride).<br /></li>
+<li>Current coming into a node is equal to current coming out of a node.<br /></li>
+</ol>
 
 <p>
-Solution is to add intermediate variable names.<br />
+There are two options when it comes to dealing with complex circuits<br />
 </p>
-
-<p>
-<b>EXAMPLE</b> \(u = sin(x)\), \(y = u^{10}\)<br />
-</p>
-
-<p>
-*PROOF<br />
-</p>
-<p>
-*<br />
-\(\frac{\Delta y}{\Delta x} = \frac{\Delta y}{\Delta u}\frac{\Delta u}{\Delta x}\)<br />
-</p>
-
-<p>
-The \(\Delta u\) cancels!<br />
-</p>
-
-<p>
-As \(\Delta x\) goes to 0:<br />
-</p>
-
-<p>
-\(\frac{dy}{dx} = \frac{dy}{du}\frac{du}{dx}\)<br />
-</p>
-
-<p>
-Differentiation of a composition is a product.<br />
-</p>
-
-<p>
-<b>EXAMPLE</b><br />
-\(y = sin(x)^{10}\)<br />
-Introduce intermediate variable:<br />
-\(u = sin(x)\), \(y = u^{10}\)<br />
-\(\frac{dy}{du} = cos(x)\)<br />
-\(\frac{du}{dy} = 10x^9\)<br />
-Multiply to get:<br />
-\(\frac{dy}{dx} = 10u^9 cos(x)\)<br />
-Substitute \(u\) to end up with:<br />
-\(\frac{dy}{dx} = 10(sin(x))^9 cos(x)\)<br />
-</p>
-
-<p>
-WARN: Variable names are confusing&#x2026;<br />
-</p>
-
-<p>
-You can skip the intermediate calculations when trying to to calculate it quickly.<br />
-</p>
+<ol class="org-ol">
+<li>Combining all of the resistors into one resistor using the parallel resistor formula (\frac{1}{R} = \frac{1}{R_1} \frac{1}{R_2}) and some addition for the resistors in series. Use this to calculate the original current. Then, isolate the resistors that are not part of something complicated and calculate their voltage drops so that you can be sure of how much the voltage needs to drop within the complicated portions. Then, choose random paths within the complicated parts knowing that no matter what the voltage needs to drop by the amount you just calculated. If you need to know the current coming into a parallel portion of a complicated part, just combine the resistors and use the voltage drop you know is necessary to calculate current at beginning.<br /></li>
+<li>Be a masochist and use Kirchoff's laws to manually solve a large system of equations.<br /></li>
+</ol>
 </div>
 </div>
 
-<div id="outline-container-org3a1eaa7" class="outline-3">
-<h3 id="org3a1eaa7">Higher Derivatives</h3>
-<div class="outline-text-3" id="text-org3a1eaa7">
+<div id="outline-container-org3d5f3df" class="outline-3">
+<h3 id="org3d5f3df">DC Circuits (Multiple Batteries)</h3>
+<div class="outline-text-3" id="text-org3d5f3df">
 <p>
-Rinse and repeat.<br />
+Guess current flow, illustrate how currents combine to help with Kirchoff's Laws, then apply Kirchoff's first law to get systems of equations you can solve.<br />
 </p>
 
 <p>
-\(u = u(x)\)<br />
-\(u'\) is a new function which can be differentiated again to get \(u''\)<br />
-<b>EXAMPLE</b> \(u = \sin(x)\), \(u' = \cos(x)\), \(u'' = -\sin(x)\), \(u''' = -\cos(x)\)&#x2026;<br />
+Assign random directions for each branch with a battery. It doesn't matter and will just be negative if you're wrong. Use Kirchoff's second law to get a simple equation for a junction.<br />
 </p>
 
 <p>
-Sometimes notation is $u<sup>(4)</sup> instead of \(u''''\).<br />
+Note that if you go through a battery in direction it emits electrons, you gain voltage and vice verca? (minus to plus is gain, plus to minus is drop)<br />
 </p>
 
 <p>
-The other notation, specifically l\(\frac{d}{dx}\), has an "operator" \(d\) which is applied to a function to get another function (that is the derivative). This can be just \(D\) instead of a fraction sometimes.<br />
+For the loops just choose a direction to go in and subtract the resistors times whatever current you may encounter, whilst subtracting/adding voltages from batteries you encounter. IT DOESN'T MATTER AND WORKS ITSELF OUT.<br />
 </p>
 
 <p>
-Lots of notation.<br />
-\(u'' = \frac{d}{dx} \frac{du}{dx} = \frac{d}{dx} \frac{d}{dx} u = \big(\frac{d}{dx}\big)^2 u = \frac{d^2}{(dx)^2} u = \frac{d^2u}{dx^2}\)<br />
+See following images:<br />
+<img src="./images/phys-batt-fig.png" alt="phys-batt-fig.png" /><br />
+<img src="./images/phys-bat-eq.png" alt="phys-bat-eq.png" /><br />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7cf7558" class="outline-2">
-<h2 id="org7cf7558">Links</h2>
-<div class="outline-text-2" id="text-org7cf7558">
+<div id="outline-container-org60914d0" class="outline-2">
+<h2 id="org60914d0">Questions about Circuits</h2>
+<div class="outline-text-2" id="text-org60914d0">
+</div>
+<div id="outline-container-orgb3d7983" class="outline-3">
+<h3 id="orgb3d7983">Why does current have to stay the same through a node?</h3>
+<div class="outline-text-3" id="text-orgb3d7983">
 <p>
-More complex differentiation is covered in <a href="implicit-diff.html">Implicit Differentiation</a>.<br />
-Further review can be found in <a href="calc-mit-exam-review.html">MIT SVC Exam Review (Unit 1)</a>.<br />
+If it didn't the current coming in would not be equal to the current coming out and there would be some sort of pileup within the node and that's not ok.<br />
 </p>
+</div>
+</div>
+<div id="outline-container-orgb4ecd62" class="outline-3">
+<h3 id="orgb4ecd62">Why is voltage 0 at the end of a battery?</h3>
+<div class="outline-text-3" id="text-orgb4ecd62">
+<p>
+Refer to Fields exploration for why voltage zero-points are arbitrary and set as convention. Think how origins on a graph are just a tool, and could be anywhere.<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org765512e" class="outline-3">
+<h3 id="org765512e">Why isn't voltage continous?</h3>
+<div class="outline-text-3" id="text-org765512e">
+<p>
+Voltage is continous within resistors but not outside of it because in theory wires are basically nothing (they have no resistance whatsoever so electron flow is instantaneous) so voltage does not drop continously within them.<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgef6c396" class="outline-3">
+<h3 id="orgef6c396">Why does voltage need to drop?</h3>
+<div class="outline-text-3" id="text-orgef6c396">
+<p>
+We define voltage differently than the standard definition with fields and because of this voltage drops naturally because zero is defined to be that way and you are getting closer to zero. Again, think of it like an origin that you're getting closer to.<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org366d2b0" class="outline-3">
+<h3 id="org366d2b0">Why do larger resistors have larger drops?</h3>
+<div class="outline-text-3" id="text-org366d2b0">
+<p>
+Since voltage drops continously within resistors, a larger resistor/more resistive resistor has more continous change and therefore larger voltage drop. (The wire between them may just be a little slit in which you can measure voltage in one larger resistor).<br />
+</p>
+</div>
 </div>
 </div>
 </div>

@@ -6,7 +6,7 @@
 <!-- 2021-05-26 Wed 23:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Differentiation Rules</title>
+<title>Capacitance</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -240,173 +240,100 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Differentiation Rules</h1>
+<h1 class="title">Capacitance</h1>
 
-<div id="outline-container-org72a29f5" class="outline-2">
-<h2 id="org72a29f5">Differentiation Rules&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></h2>
-<div class="outline-text-2" id="text-org72a29f5">
-</div>
-<div id="outline-container-org393e765" class="outline-3">
-<h3 id="org393e765">Review</h3>
-<div class="outline-text-3" id="text-org393e765">
+<div id="outline-container-orgefc8d65" class="outline-2">
+<h2 id="orgefc8d65">Capacitors</h2>
+<div class="outline-text-2" id="text-orgefc8d65">
 <ul class="org-ul">
-<li>\(\frac{d}{dx} cu = c \frac{d}{dx} u\)<br /></li>
-<li>\(\frac{d}{dx} u + v = \frac{d}{dx} u + \frac{d}{dx} v\)<br /></li>
+<li>Batteries try to push electrons in a direction.<br />
+<ul class="org-ul">
+<li>Zooming in on each end, would one see some charge since the electrons within the positive terminal would leave<br />
+<ul class="org-ul">
+<li>Yes, but tiny (this is tiny capacitance)<br /></li>
+</ul></li>
+</ul></li>
+<li>Capacitors are designed to store amounts of charge in compact volumes<br />
+<ul class="org-ul">
+<li>Two conducting plates that connect to batteries and the high surface area allows significant amount of charge (one negative plate, one pos)<br /></li>
+<li>Net charge of a capacitor is zero due to cancellation. Charge usually refers to positive plate in this context.<br /></li>
+</ul></li>
+<li>No current flows across a capacitor as there is a gap of air/plastic (insulator called dieletric) between them.<br />
+<ul class="org-ul">
+<li>This insulator is to prevent loss of all charge as they would cancel when given the opportunity to touch<br /></li>
+</ul></li>
+<li>Capacitors have no cap when it comes to storing things (think water balloon vs bucket) and it varies related to voltage.<br /></li>
+<li>At same voltage, capacitors can vary in stored charge because of differences in area and distance between plates (and quality of dieletric)<br /></li>
+</ul>
+
+<p>
+\(C = \frac{Q}{V}\) in units of \(\frac{\text{Coloumbs}}{\text{Volts}}\) or \(\frac{\text{Couloumbs}^2}{\text{Joules}}\)<br />
+</p>
+
+<p>
+\(C = k\epsilon_0 \frac{A}{d}\) where A is plate area and d plate separation.<br />
+\(\epsilon_0\) shows up in <a href="./phys250-electricalforce.html">Coloumb's Law</a> as well.<br />
+</p>
+
+<ul class="org-ul">
+<li>Dieletric will polarize due to attempted transfer of electrons<br /></li>
+<li>Capacitors are one-way (sort of like LEDs), and the shorter end is negative<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org81977e0" class="outline-3">
-<h3 id="org81977e0">Product Rule</h3>
-<div class="outline-text-3" id="text-org81977e0">
+
+<div id="outline-container-org94e4c07" class="outline-2">
+<h2 id="org94e4c07">Batteries vs. Capacitors</h2>
+<div class="outline-text-2" id="text-org94e4c07">
 <p>
-Differentiating a product of functions: rule is \((uv)' = u'v + uv'\)<br />
+Batteries convert stored chemical potential energy into electrical energy.<br />
+Capacitors store electrical potential energy and converting it to electrical energy,<br />
 </p>
 
 <p>
-<b>PROOF</b><br />
+Batteries maintain constant voltages as charge flow out (until it exhausts chemicals).<br />
+Capacitors decrease linearly in voltage as charge flows out (charge remaining is capacitance times voltage).<br />
 </p>
 
 <p>
-\(\Delta(uv) = u(x+\Delta x)v(x+\Delta x) - u(x)v(x)\)<br />
-</p>
-
-<p>
-\(= (u(x+\Delta x) - u(x))v(x + \Delta x) + u(x)v(x+\Delta x) - u(x)\)<br />
-</p>
-
-<p>
-\(= (\Delta u)(v(x+\Delta x) + u(x)\Delta v\)<br />
-</p>
-
-<p>
-\(\frac{\Delta(uv)}{\Delta x} = \frac{\Delta(u)}{\Delta x} v(x+\Delta x) + u \frac{\Delta v}{\Delta x}\)<br />
-</p>
-
-<p>
-Take limit to get \(\frac{d(uv)}{d x} = \frac{du}{dx} v + u \frac{dv}{dx}\)<br />
+Energy stored in capacitors can be calculated through looking at the units.<br />
+\(E = \frac{V_c \cdot Q}{2}\)<br />
+\(Joules = \frac{Joules}{Coulomb} \cdot Coulomb\)<br />
+1/2 comes from the average voltage (also can be thought of integral of voltage over charge flowed out)<br />
+\(E = \frac{V_c \cdot Q}{2} = \frac{CV^2}{2}\) is energy stored on a charged capacitor (second equation derived from use of \(Q = CV\))<br />
 </p>
 </div>
-</div>
 
-<div id="outline-container-org62be62a" class="outline-3">
-<h3 id="org62be62a">Quotient Rule</h3>
-<div class="outline-text-3" id="text-org62be62a">
+<div id="outline-container-orga158bbc" class="outline-3">
+<h3 id="orga158bbc">Water analogy</h3>
+<div class="outline-text-3" id="text-orga158bbc">
 <p>
-Differentiating a quotient of functions: rule is \(\big(\frac{u}{v}\big)' = \frac{u'v - uv'}{v^2}\)<br />
-</p>
-
-<p>
-<b>PROOF</b><br />
-</p>
-
-<p>
-TIMESTAMP: ~15:00 Lecture 4<br />
-<i>Type me out later!</i><br />
-</p>
-
-<p>
-Shows us that Power Rule works for negative powers!<br />
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgd59145f" class="outline-3">
-<h3 id="orgd59145f">Chain Rule / Composition Rule</h3>
-<div class="outline-text-3" id="text-orgd59145f">
-<p>
-<b>EXAMPLE</b> \(y = sin(x)^{10}\)<br />
-</p>
-
-<p>
-Solution is to add intermediate variable names.<br />
-</p>
-
-<p>
-<b>EXAMPLE</b> \(u = sin(x)\), \(y = u^{10}\)<br />
-</p>
-
-<p>
-*PROOF<br />
-</p>
-<p>
-*<br />
-\(\frac{\Delta y}{\Delta x} = \frac{\Delta y}{\Delta u}\frac{\Delta u}{\Delta x}\)<br />
-</p>
-
-<p>
-The \(\Delta u\) cancels!<br />
-</p>
-
-<p>
-As \(\Delta x\) goes to 0:<br />
-</p>
-
-<p>
-\(\frac{dy}{dx} = \frac{dy}{du}\frac{du}{dx}\)<br />
-</p>
-
-<p>
-Differentiation of a composition is a product.<br />
-</p>
-
-<p>
-<b>EXAMPLE</b><br />
-\(y = sin(x)^{10}\)<br />
-Introduce intermediate variable:<br />
-\(u = sin(x)\), \(y = u^{10}\)<br />
-\(\frac{dy}{du} = cos(x)\)<br />
-\(\frac{du}{dy} = 10x^9\)<br />
-Multiply to get:<br />
-\(\frac{dy}{dx} = 10u^9 cos(x)\)<br />
-Substitute \(u\) to end up with:<br />
-\(\frac{dy}{dx} = 10(sin(x))^9 cos(x)\)<br />
-</p>
-
-<p>
-WARN: Variable names are confusing&#x2026;<br />
-</p>
-
-<p>
-You can skip the intermediate calculations when trying to to calculate it quickly.<br />
-</p>
-</div>
-</div>
-
-<div id="outline-container-org3a1eaa7" class="outline-3">
-<h3 id="org3a1eaa7">Higher Derivatives</h3>
-<div class="outline-text-3" id="text-org3a1eaa7">
-<p>
-Rinse and repeat.<br />
-</p>
-
-<p>
-\(u = u(x)\)<br />
-\(u'\) is a new function which can be differentiated again to get \(u''\)<br />
-<b>EXAMPLE</b> \(u = \sin(x)\), \(u' = \cos(x)\), \(u'' = -\sin(x)\), \(u''' = -\cos(x)\)&#x2026;<br />
-</p>
-
-<p>
-Sometimes notation is $u<sup>(4)</sup> instead of \(u''''\).<br />
-</p>
-
-<p>
-The other notation, specifically l\(\frac{d}{dx}\), has an "operator" \(d\) which is applied to a function to get another function (that is the derivative). This can be just \(D\) instead of a fraction sometimes.<br />
-</p>
-
-<p>
-Lots of notation.<br />
-\(u'' = \frac{d}{dx} \frac{du}{dx} = \frac{d}{dx} \frac{d}{dx} u = \big(\frac{d}{dx}\big)^2 u = \frac{d^2}{(dx)^2} u = \frac{d^2u}{dx^2}\)<br />
+Capacitors are like a flexible membrane stretched across a pipe. Applying pressure will have it flex and eventually this will hit a maximum and stop (pressures reach equilibrium). The volume of water in the membrane is proportional to the pressure, much like how \(Q \propto V\). Bigger capacitors are larger more flexible membranes, and vice versa.<br />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7cf7558" class="outline-2">
-<h2 id="org7cf7558">Links</h2>
-<div class="outline-text-2" id="text-org7cf7558">
+<div id="outline-container-org5066a07" class="outline-2">
+<h2 id="org5066a07">Charging Time</h2>
+<div class="outline-text-2" id="text-org5066a07">
 <p>
-More complex differentiation is covered in <a href="implicit-diff.html">Implicit Differentiation</a>.<br />
-Further review can be found in <a href="calc-mit-exam-review.html">MIT SVC Exam Review (Unit 1)</a>.<br />
+Experimental evidence suggests \(\tau = RC\).<br />
+<i>Unit check!</i> \(R = \frac{Volts \cdot Seconds}{Coulombs}\) and \(C = \frac{Coulombs}{Volt}\) so \(RC = Seconds\)<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc770d29" class="outline-2">
+<h2 id="orgc770d29">Derivations</h2>
+<div class="outline-text-2" id="text-orgc770d29">
+<p>
+Assume battery of voltage \(V_b\), resistor of resistance \(R\), and capacitor of capacitance \(C\). Assume measurement of current \(I\) is possible (note that there is a switch in the circuit). \(I\) will be a function of <i>time</i>.<br />
+</p>
+
+<p>
+\(I(t) = \frac{V_b}{R} e^{\frac{-t}{RC}}\)<br />
+\(V_c(t) = V_b (1 - e^{\frac{-t}{RC}}\)<br />
 </p>
 </div>
 </div>

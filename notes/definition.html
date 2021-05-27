@@ -6,7 +6,7 @@
 <!-- 2021-05-26 Wed 23:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Differentiation Rules</title>
+<title>Limits</title>
 <meta name="generator" content="Org mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
@@ -240,173 +240,105 @@
 </head>
 <body>
 <div id="content">
-<h1 class="title">Differentiation Rules</h1>
+<h1 class="title">Limits</h1>
 
-<div id="outline-container-org72a29f5" class="outline-2">
-<h2 id="org72a29f5">Differentiation Rules&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></h2>
-<div class="outline-text-2" id="text-org72a29f5">
+<div id="outline-container-orgf0932a8" class="outline-2">
+<h2 id="orgf0932a8">Definition</h2>
 </div>
-<div id="outline-container-org393e765" class="outline-3">
-<h3 id="org393e765">Review</h3>
-<div class="outline-text-3" id="text-org393e765">
-<ul class="org-ul">
-<li>\(\frac{d}{dx} cu = c \frac{d}{dx} u\)<br /></li>
-<li>\(\frac{d}{dx} u + v = \frac{d}{dx} u + \frac{d}{dx} v\)<br /></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org81977e0" class="outline-3">
-<h3 id="org81977e0">Product Rule</h3>
-<div class="outline-text-3" id="text-org81977e0">
-<p>
-Differentiating a product of functions: rule is \((uv)' = u'v + uv'\)<br />
-</p>
 
+<div id="outline-container-orgec3ef4d" class="outline-2">
+<h2 id="orgec3ef4d">A Problem</h2>
+<div class="outline-text-2" id="text-orgec3ef4d">
 <p>
-<b>PROOF</b><br />
-</p>
-
-<p>
-\(\Delta(uv) = u(x+\Delta x)v(x+\Delta x) - u(x)v(x)\)<br />
-</p>
-
-<p>
-\(= (u(x+\Delta x) - u(x))v(x + \Delta x) + u(x)v(x+\Delta x) - u(x)\)<br />
-</p>
-
-<p>
-\(= (\Delta u)(v(x+\Delta x) + u(x)\Delta v\)<br />
-</p>
-
-<p>
-\(\frac{\Delta(uv)}{\Delta x} = \frac{\Delta(u)}{\Delta x} v(x+\Delta x) + u \frac{\Delta v}{\Delta x}\)<br />
-</p>
-
-<p>
-Take limit to get \(\frac{d(uv)}{d x} = \frac{du}{dx} v + u \frac{dv}{dx}\)<br />
+Normal or "easy" limits are rather simple, as examples like \(\lim_{x\rightarrow4} \frac{x+3}{x^2 + 1}\) just need some plugging in.<br />
+Derivatives are usually harder as \(\lim_{x\rightarrow0} \frac{f(x_0+\Delta x) - f(x_0)}{x-x_0}\) always evaluates to \(\frac{0}{0}\), and needs some cancellation.<br />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org62be62a" class="outline-3">
-<h3 id="org62be62a">Quotient Rule</h3>
-<div class="outline-text-3" id="text-org62be62a">
+<div id="outline-container-orgb2353b1" class="outline-2">
+<h2 id="orgb2353b1">Some Notation</h2>
+<div class="outline-text-2" id="text-orgb2353b1">
 <p>
-Differentiating a quotient of functions: rule is \(\big(\frac{u}{v}\big)' = \frac{u'v - uv'}{v^2}\)<br />
+<b>DEFINITION</b> Right hand limit or \(lim_{x\rightarrow x_0^+} f(x)\) indicates that \(x\) is greater than \(x_0\) (or that \(x\) begins on the right side of the number line).<br />
 </p>
 
 <p>
-<b>PROOF</b><br />
-</p>
-
-<p>
-TIMESTAMP: ~15:00 Lecture 4<br />
-<i>Type me out later!</i><br />
-</p>
-
-<p>
-Shows us that Power Rule works for negative powers!<br />
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgd59145f" class="outline-3">
-<h3 id="orgd59145f">Chain Rule / Composition Rule</h3>
-<div class="outline-text-3" id="text-orgd59145f">
-<p>
-<b>EXAMPLE</b> \(y = sin(x)^{10}\)<br />
-</p>
-
-<p>
-Solution is to add intermediate variable names.<br />
-</p>
-
-<p>
-<b>EXAMPLE</b> \(u = sin(x)\), \(y = u^{10}\)<br />
-</p>
-
-<p>
-*PROOF<br />
-</p>
-<p>
-*<br />
-\(\frac{\Delta y}{\Delta x} = \frac{\Delta y}{\Delta u}\frac{\Delta u}{\Delta x}\)<br />
-</p>
-
-<p>
-The \(\Delta u\) cancels!<br />
-</p>
-
-<p>
-As \(\Delta x\) goes to 0:<br />
-</p>
-
-<p>
-\(\frac{dy}{dx} = \frac{dy}{du}\frac{du}{dx}\)<br />
-</p>
-
-<p>
-Differentiation of a composition is a product.<br />
+<b>DEFINITION</b> Left hand limit or \(lim_{x\rightarrow x_0^-} f(x)\) indicates that \(x\) is less than \(x_0\) (or that \(x\) begins on the left side of the number line).<br />
+These notations will make dealing with limits of these functions more convienient.<br />
 </p>
 
 <p>
 <b>EXAMPLE</b><br />
-\(y = sin(x)^{10}\)<br />
-Introduce intermediate variable:<br />
-\(u = sin(x)\), \(y = u^{10}\)<br />
-\(\frac{dy}{du} = cos(x)\)<br />
-\(\frac{du}{dy} = 10x^9\)<br />
-Multiply to get:<br />
-\(\frac{dy}{dx} = 10u^9 cos(x)\)<br />
-Substitute \(u\) to end up with:<br />
-\(\frac{dy}{dx} = 10(sin(x))^9 cos(x)\)<br />
+Take the following example of a conditional function:<br />
 </p>
 
 <p>
-WARN: Variable names are confusing&#x2026;<br />
+if \(x > 0\), \(f(x) = x+1\)<br />
 </p>
 
 <p>
-You can skip the intermediate calculations when trying to to calculate it quickly.<br />
+if \(x < 0\), \(f(x) = -x+2\)<br />
 </p>
-</div>
-</div>
 
-<div id="outline-container-org3a1eaa7" class="outline-3">
-<h3 id="org3a1eaa7">Higher Derivatives</h3>
-<div class="outline-text-3" id="text-org3a1eaa7">
+
 <p>
-Rinse and repeat.<br />
+\(lim_{x\rightarrow x_0^+} f(x) = lim_{x\rightarrow x_0} x+1 = 1\)<br />
 </p>
 
 <p>
-\(u = u(x)\)<br />
-\(u'\) is a new function which can be differentiated again to get \(u''\)<br />
-<b>EXAMPLE</b> \(u = \sin(x)\), \(u' = \cos(x)\), \(u'' = -\sin(x)\), \(u''' = -\cos(x)\)&#x2026;<br />
+\(lim_{x\rightarrow x_0^-} f(x) = lim_{x\rightarrow x_0} -x+2 = 2\)<br />
 </p>
 
 <p>
-Sometimes notation is $u<sup>(4)</sup> instead of \(u''''\).<br />
-</p>
-
-<p>
-The other notation, specifically l\(\frac{d}{dx}\), has an "operator" \(d\) which is applied to a function to get another function (that is the derivative). This can be just \(D\) instead of a fraction sometimes.<br />
-</p>
-
-<p>
-Lots of notation.<br />
-\(u'' = \frac{d}{dx} \frac{du}{dx} = \frac{d}{dx} \frac{d}{dx} u = \big(\frac{d}{dx}\big)^2 u = \frac{d^2}{(dx)^2} u = \frac{d^2u}{dx^2}\)<br />
+We did not need a \(x=0\) value to compute these limits!<br />
 </p>
 </div>
 </div>
+
+<div id="outline-container-orga735702" class="outline-2">
+<h2 id="orga735702">Nested Limits</h2>
+<div class="outline-text-2" id="text-orga735702">
+<p>
+A checklist for what to do before dealing with nested limits.<br />
+</p>
+
+<p>
+<b>EXAMPLE</b>: \(\sin{\sqrt{x}}\)<br />
+</p>
+
+<ul class="org-ul">
+<li class="off"><code>[&#xa0;]</code> Check domain + range of inner function (in this case \([0, \infty)\), \([0, \infty)\)).<br /></li>
+<li class="off"><code>[&#xa0;]</code> Check domain + range of outer function as well as what it takes in. (takes in \([0, \infty)\), range is \([-1, 1]\))<br /></li>
+<li class="off"><code>[&#xa0;]</code> Restrict domain based on requirements of inner + outer functions<br /></li>
+</ul>
+
+<p>
+<b>EXAMPLE</b>: \(\ln{\sin{x}}\)<br />
+</p>
+
+<ul class="org-ul">
+<li class="on"><code>[X]</code> Domain of \(\sin{x}\) is $(-&infin;, &infin;), range is \([-1, 1]\).<br /></li>
+<li class="on"><code>[X]</code> Domain of \(\ln{x}\) is \([0, \infty)\), range is \((-\infty, \infty)\).<br /></li>
+<li class="on"><code>[X]</code> As \(\ln{x}\) takes only positive values, the restricted domain for the composite function is \([0, \pi]\), \([2\pi, 3\pi]\), etc. The range of the composite function would be \((-\infty, 0]\).<br /></li>
+<li></li>
+</ul>
+</div>
 </div>
 
-<div id="outline-container-org7cf7558" class="outline-2">
-<h2 id="org7cf7558">Links</h2>
-<div class="outline-text-2" id="text-org7cf7558">
+<div id="outline-container-org003d00f" class="outline-2">
+<h2 id="org003d00f">Links</h2>
+<div class="outline-text-2" id="text-org003d00f">
 <p>
-More complex differentiation is covered in <a href="implicit-diff.html">Implicit Differentiation</a>.<br />
-Further review can be found in <a href="calc-mit-exam-review.html">MIT SVC Exam Review (Unit 1)</a>.<br />
+Adjacent to this: <a href="continuity.html">Continuity</a><br />
+</p>
+
+<p>
+Building upon this: <a href="calculating-derivatives.html">Calculating Derivatives</a><br />
+</p>
+
+<p>
+Further reference can be found at <a href="limits-continuity-problems.html">Limits and Continuity Practice</a>.<br />
 </p>
 </div>
 </div>

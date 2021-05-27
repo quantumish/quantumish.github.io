@@ -3,12 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-09-07 Mon 18:22 -->
+<!-- 2021-05-26 Wed 23:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Exponentials and Logarithms</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="David Freifeld" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -40,7 +39,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -52,7 +51,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -193,52 +192,28 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" href="../org.css">
+<link rel="stylesheet" href="https://richardfeynmanrocks.github.io/org.css">
 <script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -266,151 +241,136 @@ for the JavaScript code in this tag.
 <body>
 <div id="content">
 <h1 class="title">Exponentials and Logarithms</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#orgcf0430c">1. Exponentials and Logarithms&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></a>
-<ul>
-<li><a href="#org3daf939">1.1. Exponential Functions</a></li>
-<li><a href="#org13337b6">1.2. The Natural Log</a></li>
-<li><a href="#org0c2d20c">1.3. Back to The Exponential</a></li>
-</ul>
-</li>
-<li><a href="#org0b84dd1">2. Links</a></li>
-</ul>
+
+<div id="outline-container-org1d82147" class="outline-2">
+<h2 id="org1d82147">Exponentials and Logarithms&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></h2>
+<div class="outline-text-2" id="text-org1d82147">
 </div>
-</div>
-
-<div id="outline-container-orgcf0430c" class="outline-2">
-<h2 id="orgcf0430c"><span class="section-number-2">1</span> Exponentials and Logarithms&#xa0;&#xa0;&#xa0;<span class="tag"><span class="unit1">unit1</span>&#xa0;<span class=""></span>&#xa0;<span class="derivatives">derivatives</span></span></h2>
-<div class="outline-text-2" id="text-1">
-</div>
-<div id="outline-container-org3daf939" class="outline-3">
-<h3 id="org3daf939"><span class="section-number-3">1.1</span> Exponential Functions</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-org5ca150f" class="outline-3">
+<h3 id="org5ca150f">Exponential Functions</h3>
+<div class="outline-text-3" id="text-org5ca150f">
 <p>
-Goal: Calculate \(\frac{d}{dx} a^x\)
+Goal: Calculate \(\frac{d}{dx} a^x\)<br />
 </p>
 
 <p>
--\(\lim\limits_{\Delta x\rightarrow0} \frac{a^{x+\Delta x} - a^x}{\Delta x}\)
+-\(\lim\limits_{\Delta x\rightarrow0} \frac{a^{x+\Delta x} - a^x}{\Delta x}\)<br />
 </p>
 
 <p>
-As \(a^{x + \Delta x} = a^xa^{\Delta x}\), \(\lim\limits_{\Delta x\rightarrow0} a^x \frac{a^{\Delta x} - 1}{\Delta x}\)
+As \(a^{x + \Delta x} = a^xa^{\Delta x}\), \(\lim\limits_{\Delta x\rightarrow0} a^x \frac{a^{\Delta x} - 1}{\Delta x}\)<br />
 </p>
 
 <p>
-\(a^x\) is a constant so \(a^x \lim\limits_{\Delta x\rightarrow0} \frac{a^{\Delta x} - 1}{\Delta x}\)
+\(a^x\) is a constant so \(a^x \lim\limits_{\Delta x\rightarrow0} \frac{a^{\Delta x} - 1}{\Delta x}\)<br />
 </p>
 
 <p>
-<i>DEFN</i> \(M(a) := \lim\limits_{\Delta x\rightarrow0} \frac{a^{\Delta x} - 1}{\Delta x}\)
+<i>DEFN</i> \(M(a) := \lim\limits_{\Delta x\rightarrow0} \frac{a^{\Delta x} - 1}{\Delta x}\)<br />
 </p>
 
 <p>
-With new definition \(\frac{d}{dx} a^x = M(a)a^x\).
-Plug in \(x=0\) to get \(\frac{d}{dx} a^0 = M(a)\), showing \(M(a)\) is the slope at 0.
+With new definition \(\frac{d}{dx} a^x = M(a)a^x\).<br />
+Plug in \(x=0\) to get \(\frac{d}{dx} a^0 = M(a)\), showing \(M(a)\) is the slope at 0.<br />
 </p>
 
 <p>
-<span class="underline">What is M(a)?</span>
+<span class="underline">What is M(a)?</span><br />
 </p>
 <ul class="org-ul">
-<li>Define base \(e\) as the unique number such that \(M(e) = 1\)</li>
-<li>If this is the case \(\frac{d}{dx} e^x = e^x\) (as \(\frac{d}{dx} a^x = M(a)a^x\)).</li>
+<li>Define base \(e\) as the unique number such that \(M(e) = 1\)<br /></li>
+<li>If this is the case \(\frac{d}{dx} e^x = e^x\) (as \(\frac{d}{dx} a^x = M(a)a^x\)).<br /></li>
 </ul>
 
 <p>
-<span class="underline">Why does e exist?</span>
+<span class="underline">Why does e exist?</span><br />
 </p>
 
 <ul class="org-ul">
-<li>Take example \(f(x) = 2\), \(f'(0) = M(2)\) and stretch by constant \(k\).</li>
+<li>Take example \(f(x) = 2\), \(f'(0) = M(2)\) and stretch by constant \(k\).<br /></li>
 </ul>
 <p>
-\(f(kx) = 2^{kx} = (2^k)^x = b^x\), where \(b = 2^k\).
+\(f(kx) = 2^{kx} = (2^k)^x = b^x\), where \(b = 2^k\).<br />
 </p>
 <ul class="org-ul">
-<li>As \(k\) is increased the slope of the function gets steeper. \(\frac{d}{dx} b^x = kf'(kx)\)
+<li>As \(k\) is increased the slope of the function gets steeper. \(\frac{d}{dx} b^x = kf'(kx)\)<br />
 <ul class="org-ul">
-<li>At 0, \(\frac{d}{dx} b^x = kf'(kx) = kf'(0) = kM(2)\) so \(b=e\) when \(k = \frac{1}{M(2)}\)</li>
+<li>At 0, \(\frac{d}{dx} b^x = kf'(kx) = kf'(0) = kM(2)\) so \(b=e\) when \(k = \frac{1}{M(2)}\)<br /></li>
 </ul></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org13337b6" class="outline-3">
-<h3 id="org13337b6"><span class="section-number-3">1.2</span> The Natural Log</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-org2507da5" class="outline-3">
+<h3 id="org2507da5">The Natural Log</h3>
+<div class="outline-text-3" id="text-org2507da5">
 <p>
-Recall that \(\ln{x_1 x_2} = \ln{x_1} + \ln{x_2}\) and \(\ln{1} = 0\) and \(\ln{e} = 1\).
+Recall that \(\ln{x_1 x_2} = \ln{x_1} + \ln{x_2}\) and \(\ln{1} = 0\) and \(\ln{e} = 1\).<br />
 </p>
 
 <p>
-Differentiate \(w = \ln{x}\) implicitly in the form \(e^w = x\):
+Differentiate \(w = \ln{x}\) implicitly in the form \(e^w = x\):<br />
 </p>
 
 <ul class="org-ul">
-<li>\(\frac{d}{dx} e^w = \frac{d}{dx} x = 1\)</li>
+<li>\(\frac{d}{dx} e^w = \frac{d}{dx} x = 1\)<br /></li>
 
-<li>\(\frac{d}{dw} e^w \frac{dw}{dx} = 1\) or \(e^w \frac{dw}{dx} = 1\)</li>
-<li>Algebra yields \(\frac{dw}{dx} = \frac{1}{e^w} = \frac{1}{x}\)</li>
+<li>\(\frac{d}{dw} e^w \frac{dw}{dx} = 1\) or \(e^w \frac{dw}{dx} = 1\)<br /></li>
+<li>Algebra yields \(\frac{dw}{dx} = \frac{1}{e^w} = \frac{1}{x}\)<br /></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0c2d20c" class="outline-3">
-<h3 id="org0c2d20c"><span class="section-number-3">1.3</span> Back to The Exponential</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org17a847a" class="outline-3">
+<h3 id="org17a847a">Back to The Exponential</h3>
+<div class="outline-text-3" id="text-org17a847a">
 <p>
-<span class="underline">Method 1</span>
-Use base \(e\) = \((e^{\ln{a}})^x = e^{x\ln{a}}\).
+<span class="underline">Method 1</span><br />
+Use base \(e\) = \((e^{\ln{a}})^x = e^{x\ln{a}}\).<br />
 </p>
 
 <p>
-Just as the derivative of \(e^{3x}\) is \(3e^{3x}\) by chain rule, \(\frac{d}{dx} e^{x\ln{a}} = (\ln{a}) e^{x\ln{a}}}\). So, \(\frac{d}{dx} a^x = (\ln{a})a^x\).
+Just as the derivative of \(e^{3x}\) is \(3e^{3x}\) by chain rule, \(\frac{d}{dx} e^{x\ln{a}} = (\ln{a}) e^{x\ln{a}}}\). So, \(\frac{d}{dx} a^x = (\ln{a})a^x\).<br />
 </p>
 
 <p>
-NOTE: No matter what our base (2 or 10 or something else) the derivative is still \((\ln{a})a^x\) and that's one reason why it's the "natural" log  as it comes up naturally.
+NOTE: No matter what our base (2 or 10 or something else) the derivative is still \((\ln{a})a^x\) and that's one reason why it's the "natural" log  as it comes up naturally.<br />
 </p>
 
 <p>
-<span class="underline">Method 2</span>
+<span class="underline">Method 2</span><br />
 </p>
 
 <p>
-<b>HEY I NEED REVISITING REWATCH THE LAST 15 MIN OF <a href="https://ia800203.us.archive.org/8/items/MIT18.01JF07/ocw-18.01-f07-lec06_300k.mp4">THIS</a></b>
+<b>HEY I NEED REVISITING REWATCH THE LAST 15 MIN OF <a href="https://ia800203.us.archive.org/8/items/MIT18.01JF07/ocw-18.01-f07-lec06_300k.mp4">THIS</a></b><br />
 </p>
 
 <p>
-Logarithmic differentiation. Chain rule + differentiation of logarithm.
-\((\ln{u})' = \frac{u'}{u}\)
+Logarithmic differentiation. Chain rule + differentiation of logarithm.<br />
+\((\ln{u})' = \frac{u'}{u}\)<br />
 </p>
 
 <p>
-<b>EXAMPLE</b>
+<b>EXAMPLE</b><br />
 </p>
 
 <p>
-\(v = x^x\)
-\(\ln{v} = x\ln{x}\)
-\((\ln{v})' = \ln{x} + x \frac{1}{x}\)
-\(\frac{v'}{v} = 1 + \ln{x}\)
-\(v' = v(1+\ln{x})\)
-\(\frac{d}{dx} x^x = x^x(1+\ln{x})\) 
+\(v = x^x\)<br />
+\(\ln{v} = x\ln{x}\)<br />
+\((\ln{v})' = \ln{x} + x \frac{1}{x}\)<br />
+\(\frac{v'}{v} = 1 + \ln{x}\)<br />
+\(v' = v(1+\ln{x})\)<br />
+\(\frac{d}{dx} x^x = x^x(1+\ln{x})\) <br />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0b84dd1" class="outline-2">
-<h2 id="org0b84dd1"><span class="section-number-2">2</span> Links</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgc3fdc03" class="outline-2">
+<h2 id="orgc3fdc03">Links</h2>
+<div class="outline-text-2" id="text-orgc3fdc03">
 <p>
-Further review can be found in <a href="calc-mit-exam-review.html">MIT SVC Exam Review (Unit 1)</a>.
+Further review can be found in <a href="calc-mit-exam-review.html">MIT SVC Exam Review (Unit 1)</a>.<br />
 </p>
 </div>
 </div>
