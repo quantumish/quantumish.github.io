@@ -77,7 +77,57 @@ h2 {
 	color: #6cad50;
 	text-transform: lowercase;
 }
-  
+
+.good-box {
+	// border-radius: 10px;
+	background: #6cad50;	
+	padding-left: 5px;
+	padding-right: 5px;
+	display: inline-block;
+	color: white;
+	font-family: "Barlow";	
+}
+
+.neutral-box {
+	// border-radius: 10px;
+	background: #b5b5b5;	
+	padding-left: 5px;
+	padding-right: 5px;
+	display: inline-block;
+	color: white;
+	font-family: "Barlow";	
+}
+
+.bad-box {
+	background: #e32319;	
+	padding-left: 5px;
+	padding-right: 5px;
+	display: inline-block;
+	color: white;
+	font-family: "Barlow";	
+}
+
+.maybe-bad-box {
+	background: #e8b323;	
+	padding-left: 5px;
+	padding-right: 5px;
+	display: inline-block;
+	color: white;
+	font-family: "Barlow";	
+}
+
+.note {
+	padding-left: 5px;
+	padding-top: 2px;
+}
+
+.note-box {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+
 h3 {
 	font-family: "Barlow";
 	font-weight: bold;
