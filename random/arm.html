@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-12-07 Mon 13:00 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Una mirada rápida a ARM, la tecnología detrás la revolución de teléfonos inteligentes.</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="David Freifeld" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="./test.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Una mirada rápida a ARM, la tecnología detrás la revolución de teléfonos inteligentes.</h1>
+
+<div id="outline-container-org1288b4e" class="outline-2">
+<h2 id="org1288b4e"><span class="section-number-2"></span>Terminología</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>CPU:</b> unidad central de proceso<br />
+<b>ISA:</b> ingeniería de instrucciones<br />
+<b>Registro:</b> almacenamiento muy rápido y pequeño en la CPU<br />
+<b>I/O:</b> entrada/salida, alias operaciones de archivos.<br />
+<b>CISC:</b> computadora de ingeniería de instrucciones complejos<br />
+<b>RISC:</b> computadora de ingeniería de instrucciones reducidos<br />
+<b>SoC:</b> sistema en un chip<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org47db6aa" class="outline-2">
+<h2 id="org47db6aa"><span class="section-number-2"></span>¿Que es ARM? ¿Que es una ISA?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+ Una ingeniería de instrucciones (o ISA) es uno diseño para una computadora que especificas la norma para el funcionamiento de instrucciones, los registros, operaciones de I/O, usa de memoria, y mas. La ISA mas popular de las computadoras personales es la ingeniería de x86 — Intel inventó esta para el chip de Intel 8086 en 1978, que era muy popular en computadoras de la generación X como el IBM PC-AT y crecía para ser la norma para computadoras personales, servidores, y mas. Para teléfonos, la ISA de ARM (inventado en 1985) es la norma hoy, empezando con la usa de ARM en calculadores y un teléfono de Nokia 6110 en 1994. ARM dominaba el mercado de los teléfonos en las dos décadas pasadas, y es difundiendo al mercado de computadoras personales por los beneficios de la ingeniería de ARM.<br />
+  
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6211780" class="outline-2">
+<h2 id="org6211780"><span class="section-number-2"></span>El éxito de ARM y CISC frente RISC</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Un chip de ARM es una RISC: el chip tiene una pequeña cantidad de instrucciones muy simple y rápido. En comparación, un chip de x86 tiene muchas instrucciones, algunos relativamente complejas y mas lento que instrucciones de ARM. Por ejemplo, vamos a compilar este programa simple de C. <br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #999999;">// </span><span style="color: #999999;">Un examen de primalidad muy ingenuo</span>
+
+<span style="color: #00008b;">int</span> main()
+{
+    <span style="color: #999999;">// </span><span style="color: #999999;">Un ejemplo de un numero para examen</span>
+    <span style="color: #00008b;">int</span> n = 31;
+    <span style="color: #999999;">// </span><span style="color: #999999;">Sup&#243;n que el numero es primo por defecto</span>
+    <span style="color: #00008b;">int</span> primo = 1; 
+    <span style="color: #999999;">// </span><span style="color: #999999;">Por todos de los numeros menos de la ra&#237;z cuadrada de N:</span>
+    <span style="color: #999999;">// </span><span style="color: #999999;">ejecuta el codigo en estes corchetes</span>
+    <span style="color: #00008b;">for</span> (<span style="color: #00008b;">int</span> i = 2; i*i &lt; n; i++) {
+        <span style="color: #999999;">// </span><span style="color: #999999;">Si N es divisible que i ejecuta el codigo en estes corchetes</span>
+        <span style="color: #00008b;">if</span> (n % i == 0) {
+            <span style="color: #999999;">// </span><span style="color: #999999;">El numero no es primo</span>
+            primo = 0;
+            <span style="color: #999999;">// </span><span style="color: #999999;">Termina la vuelta</span>
+            <span style="color: #00008b;">break</span>;
+        }
+    }
+    <span style="color: #00008b;">return</span> primo;
+}
+</pre>
+</div>
+
+<img alt="ARM instructions" src="./images/compiler_arm.png" width=750" height="320">
+<center><i>El programa y las instrucciones correspondientes de x86.</i></center>
+<br />
+<img alt="x86 instructions" src="./images/compiler_x86.png" width=750" height="320">
+<center><i>El programa y las instrucciones correspondientes de ARM.</i></center>
+<br />
+<p>
+El programa para ARM usa mas instrucciones simples (con operaciones de registros) y el programa de x86 usa menos instrucciones un poco mas complejo (con operaciones de memoria).<br />
+</p>
+
+<p>
+Empezando con tratos con Instrumentos de Texas y Nokia, cada vez más teléfonos usaban ARM para la CPU: porque de la manera simple de las instrucciones, chips de ARM no usamos mucha energía y estamos pequeños. La Nokia era un celular con popularidad extendido con los Milenas y la generación X, y por esto los chips de ARM recibieron un estimulo muy grande. Cuatro años después del trato con Nokia en 1994 ARM convirtió a una compañía publica de NASDAQ. Mientras chips se reducían sus tamaños, ARM expandían al mercado de SoCs después de la milena segundo: la manufactura de sistemas completas en uno solo chip para optimizar la eficacia y rapidez de teléfonos. ARM continuaba a expandir en el mercado en 2005 con una nueva línea de chips llamada “Cortex” que era en los iPhones y iPads de los Milenas, y la tecnología “big.LITTLE” en 2011 para chips heterogéneos que usa unidades de procesa mas grande para tareas mas complicadas. Ahora, ARM tiene mas que 85% de la participación en el mercado de celulares, y mas que 95% para tecnologías llevables.<br />
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org2ef395a" class="outline-2">
+<h2 id="org2ef395a"><span class="section-number-2"></span>Los beneficios de la ingeniería de ARM</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Chips de ARM estamos muy atractivo para compañías de celulares (y computadoras) para muchas razones.  Por ejemplo,<br />
+</p>
+<ul class="org-ul">
+<li>La ISA de RISC usa menos energía y es mejor para batería.<br /></li>
+<li>Chips de ARM estamos mas pequeños y flexible para uso.<br /></li>
+<li>ARM es mejor para paralelismo (ejecución de muchas instrucciones simultáneamente).<br /></li>
+</ul>
+<p>
+El fondo final es muy importante: porque la reducción de los tamaños de chips es menos viable con el paso de tiempo (es mas difícil), progresos recientes enfocaban en la procesa aumentando la habilidad para ejecutar instrucciones simultáneamente. La habilidad de ARM para apoyar estés progresos con la eficiente, barato, y pequeño diseño es muy prometedor.<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9c5168e" class="outline-2">
+<h2 id="org9c5168e"><span class="section-number-2"></span>El futuro</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Recientemente, Apple anunció que computadoras futuras usará a medida chip de ARM — a lo que resalta el mercado en desarrollo de computadoras personales de ARM. Personalmente, creo porque del aumento de machinas paralelos, un futuro donde computadoras personales de ARM es la norma no es muy lejos — la generación alfa será alimentar por ARM. ¿Que piensas? ¿ARM continuará expandir en el mercado de computadoras personales o x86 permanecerá en la cima? 
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
