@@ -85,7 +85,7 @@ h2 {
 	padding-right: 5px;
 	display: inline-block;
 	color: white;
-	font-family: "Barlow";	
+	font-family: "Barlow";
 }
 
 .neutral-box {
@@ -122,9 +122,11 @@ h2 {
 }
 
 .note-box {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	padding-bottom: 1px;
+	padding-top: 1px;
 }
 
 
