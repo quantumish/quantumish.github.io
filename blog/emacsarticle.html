@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-08-02 Mon 02:23 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>A Quick Emacs Setup</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="David Freifeld" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+
+        <style>
+        /* From: https://endlessparentheses.com/public/css/endless.css */
+        /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+        kbd
+        {
+          -moz-border-radius: 6px;
+          -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          -webkit-border-radius: 6px;
+          -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          background-color: #f7f7f7;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          color: #333;
+          display: inline-block;
+          font-family: 'Droid Sans Mono', monospace;
+          font-size: 80%;
+          font-weight: normal;
+          line-height: inherit;
+          margin: 0 .1em;
+          padding: .08em .4em;
+          text-shadow: 0 1px 0 #fff;
+          word-spacing: -4px;
+        
+          box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+        }
+        </style>
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+        <script type="text/javascript">
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+            }
+        </script>
+        
+         <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+          <script>
+                 $(document).ready(function() {
+                     $('.tooltip').tooltipster({
+                         theme: 'tooltipster-punk',
+                         contentAsHTML: true,
+                         animation: 'grow',
+                         delay: [100,500],
+                         // trigger: 'click'
+                         trigger: 'custom',
+                         triggerOpen: {
+                             mouseenter: true
+                         },
+                         triggerClose: {
+                             originClick: true,
+                             scroll: true
+                         }
+         });
+                 });
+             </script>
+        
+        <style>
+           abbr {color: red;}
+        
+           .tooltip { border-bottom: 1px dotted #000;
+                      color:red;
+                      text-decoration: none;}
+        </style>
+		<link rel="stylesheet" href="https://quantumish.github.io/org.css">
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">A Quick Emacs Setup</h1>
+
+<div id="outline-container-orga6ff767" class="outline-2">
+<h2 id="orga6ff767">About</h2>
+<div class="outline-text-2" id="text-orga6ff767">
+<p>
+In my crusade to convince everyone to use Emacs, I've realized a <i>somewhat</i> (i.e. packages I prefer but nothing too specific like keybinds) opinionated guide that allows for a nice setup could be useful. The goal is to quickly get to an editor that looks pretty and can be used comfortably to write code.<br />
+</p>
+
+<table align="center">
+  <tr>
+     <td style="text-align:center">
+        <img style="width: 400px;" src="emacs-before.png"/>
+        Before        
+     </td>
+     <td style="text-align:center">
+        <img style="width: 400px;" src="emacs-after.png"/>
+        After
+     </td>
+  </tr>
+</table>
+
+<p>
+This assumes you have a general idea of how to get around in Emacs: if not, see below for a quick refresher.<br />
+</p>
+<details>
+             <summary> <i> Basic keybinds </i> </summary>
+<ul class="org-ul">
+<li><kbd>C-x C-f</kbd> to open files<br /></li>
+<li><kbd>C-x b</kbd> to switch buffers<br /></li>
+<li><kbd>M-x</kbd> to run a command<br /></li>
+<li><kbd>M-x eval-buffer</kbd> to evaluate a Lisp buffer<br /></li>
+<li><kbd>C-x C-e</kbd> to evaluate Lisp at point<br /></li>
+<li><kbd>M-:</kbd> to evaluate Lisp directly<br /></li>
+<li><kbd>C-s</kbd> to search for a string<br /></li>
+<li><kbd>C-x 3</kbd> to split horizontally<br /></li>
+<li><kbd>C-x 2</kbd> to split vertically<br /></li>
+<li><kbd>C-x 1</kbd> to maximize a split<br /></li>
+<li><kbd>C-x 0</kbd> to remove a split<br /></li>
+<li><kbd>C-x C-c</kbd> to exit Emacs (the horror!)<br /></li>
+</ul>
+
+
+</details>
+</div>
+</div>
+
+<div id="outline-container-org23f48b9" class="outline-2">
+<h2 id="org23f48b9">Packages</h2>
+<div class="outline-text-2" id="text-org23f48b9">
+<p>
+First, let's set the package archives.<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #537b42;">setq</span> package-archives '((<span style="color: #6cad50;">"ELPA"</span> . <span style="color: #6cad50;">"https://tromey.com/elpa/"</span>)
+                         (<span style="color: #6cad50;">"gnu"</span> . <span style="color: #6cad50;">"https://elpa.gnu.org/packages/"</span>)
+                         (<span style="color: #6cad50;">"melpa"</span> . <span style="color: #6cad50;">"https://melpa.org/packages/"</span>)))
+</pre>
+</div>
+
+<p>
+We're going to use <code>use-package</code> for package configuration: it's a macro that'll make things much easier. All that's generally important to understand right now is that code after the <code>:init</code> keyword argument will be evaluated as the package is initialized, code after the <code>:config</code> keyword arg is lazy-loaded, the <code>:bind</code> and <code>:hook</code> keyword Argos are for specifying package-related keybinds and hooks respectively.<br />
+</p>
+
+<p>
+Install it via <kbd>M-x package-install RET use-package</kbd>. Then, we can set it up.<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #537b42;">eval-when-compile</span>
+  (<span style="color: #537b42;">require</span> '<span style="color: #537b42;">use-package</span>))
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Automatically install all packages if not present.</span>
+(<span style="color: #537b42;">setq</span> use-package-always-ensure t)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd6c4419" class="outline-2">
+<h2 id="orgd6c4419">Undoing Defaults</h2>
+<div class="outline-text-2" id="text-orgd6c4419">
+<p>
+Emacs has some default behaviors that are generally annoying. Let's disable them!<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Turn off all unnecessary GUI elements.</span>
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">If you compiled with native compilation, turn off warning popups.</span>
+(<span style="color: #537b42;">setq</span> warning-suppress-log-types '((comp)))
+
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">These keybinds suspend Emacs (in order to mimic terminal behavior).</span>
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">This has *only* caused me trouble in GUI Emacs.</span>
+(<span style="color: #537b42;">if</span> (display-graphic-p)
+    (<span style="color: #537b42;">progn</span>
+      (global-unset-key (kbd <span style="color: #6cad50;">"C-z"</span>))
+      (global-unset-key (kbd <span style="color: #6cad50;">"C-x C-z"</span>))))
+
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Stop Emacs from bothering you about disabled commands.</span>
+(<span style="color: #537b42;">setq</span> disabled-command-function nil)
+
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Prevent any attempts to resize the frame.</span>
+(<span style="color: #537b42;">setq</span> frame-inhibit-implied-resize t)
+
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Stop Emacs from trying to use dialog boxes.</span>
+(<span style="color: #537b42;">setq</span> use-dialog-box nil)
+
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Prefer y/n over yes/no.</span>
+(fset 'yes-or-no-p 'y-or-n-p)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org087c8f2" class="outline-2">
+<h2 id="org087c8f2">Doom-Themes</h2>
+<div class="outline-text-2" id="text-org087c8f2">
+<p>
+In my opinion, Doom Emacs has the cleanest-looking UI setup for Emacs, so it's up next. Soon, we'll be at a setup that looks much closer to a modern editor by setting up a nice theme that overhauls Emacs' normal look as well as adding plenty of extra improvements: icons, contrast, tabs, and a tree.<br />
+</p>
+
+<p>
+Note: you'll need to run <code>all-the-icons-install-fonts</code> once in order to have icons work properly.<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">doom-themes</span>
+  <span style="color: #537b42;">:init</span>
+  (<span style="color: #537b42;">setq</span> doom-themes-enable-bold t)
+  (<span style="color: #537b42;">setq</span> doom-themes-enable-italic t)
+  <span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Flash modeline on error.</span>
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config)
+  <span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Set default theme.</span>
+  (load-theme 'doom-one))
+
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Icons!</span>
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">all-the-icons</span>)
+
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">doom-modeline</span>
+  <span style="color: #537b42;">:init</span>
+  (<span style="color: #537b42;">setq</span> doom-modeline-height 40)
+  <span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Don't show text encoding by default.</span>
+  (<span style="color: #537b42;">setq</span> doom-modeline-buffer-encoding nil)
+  (doom-modeline-mode))
+
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Add increased contrast to buffers with code.</span>
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">solaire-mode</span>
+  <span style="color: #537b42;">:init</span>
+  (solaire-global-mode))
+
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Tabs showing related buffers!</span>
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">centaur-tabs</span>
+  <span style="color: #537b42;">:init</span>
+  (<span style="color: #537b42;">setq</span> centaur-tabs-height 16)
+  (<span style="color: #537b42;">setq</span> centaur-tabs-style <span style="color: #6cad50;">"bar"</span>)
+  (<span style="color: #537b42;">setq</span> centaur-tabs-set-icons t)
+  (<span style="color: #537b42;">setq</span> centaur-tabs-icon-scale-factor 0.7)
+  (<span style="color: #537b42;">setq</span> centaur-tabs-set-bar 'left)
+  (<span style="color: #537b42;">setq</span> x-underline-at-descent-line t)
+  (centaur-tabs-mode))
+
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">A nice file tree for Emacs.</span>
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">treemacs</span>
+  <span style="color: #537b42;">:after</span> doom-themes
+  <span style="color: #537b42;">:init</span>
+  (doom-themes-treemacs-config)
+  (<span style="color: #537b42;">setq</span> doom-themes-treemacs-theme <span style="color: #6cad50;">"doom-colors"</span>)
+  (<span style="color: #537b42;">setq</span> treemacs-width 30))
+
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Icons for Treemacs!</span>
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">treemacs-all-the-icons</span>
+  <span style="color: #537b42;">:after</span> treemacs
+  <span style="color: #537b42;">:init</span>
+  (treemacs-load-theme <span style="color: #6cad50;">"all-the-icons"</span>))
+</pre>
+</div>
+
+<details>
+             <summary> <i> Alternatives to doom-themes </i> </summary>
+<p>
+There are general themeing alternatives to doom-themes, namely:<br />
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/rougier/nano-emacs">Nano Emacs</a>, or its precursor <a href="https://github.com/rougier/elegant-emacs">Elegant Emacs</a> which is what I used previously<br /></li>
+<li><a href="https://github.com/nashamri/spacemacs-theme">spacemacs-theme</a> (from Spacemacs)<br /></li>
+<li><a href="https://protesilaos.com/modus-themes/">Modus Operandi</a> (quite extensive)<br /></li>
+</ul>
+
+
+</details>
+</div>
+</div>
+
+<div id="outline-container-org6b51a7f" class="outline-2">
+<h2 id="org6b51a7f">Minbuffer completion</h2>
+<div class="outline-text-2" id="text-org6b51a7f">
+<p>
+Next, let's improve interactions with Emacs: things like finding files, running commands, switching buffers, etc&#x2026; by using <code>ivy</code>, a light(ish) minibuffer completion system. Ivy is one of the more popular packages for this, meaning that there's quite a bit of integration with other packages. Notably, <code>counsel</code> extends its functionality and <code>swiper</code> provides a nicer interface to interactive search.<br />
+</p>
+
+<p>
+On top of this, <code>prescient</code> allows for completions to be even more useful by basing them off of history and sorting them better. Finally, we can add some icons and extra text to make it all prettier.<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">prescient</span>
+  <span style="color: #537b42;">:init</span> (<span style="color: #537b42;">setq</span> prescient-persist-mode t))
+
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">ivy</span>
+  <span style="color: #537b42;">:init</span>
+  (<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">counsel</span> <span style="color: #537b42;">:config</span> (counsel-mode 1))
+  (<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">swiper</span> <span style="color: #537b42;">:defer</span> t)
+  (ivy-mode 1)
+  <span style="color: #537b42;">:bind</span>
+  ((<span style="color: #6cad50;">"C-s"</span>     . swiper-isearch)
+   (<span style="color: #6cad50;">"M-x"</span>     . counsel-M-x)
+   (<span style="color: #6cad50;">"C-x C-f"</span> . counsel-find-file)))
+
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">ivy-rich</span>
+  <span style="color: #537b42;">:after</span> ivy
+  <span style="color: #537b42;">:init</span> (ivy-rich-mode))
+
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">all-the-icons-ivy-rich</span>
+  <span style="color: #537b42;">:after</span> ivy-rich counsel
+  <span style="color: #537b42;">:init</span> (all-the-icons-ivy-rich-mode))
+
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">ivy-prescient</span>
+  <span style="color: #537b42;">:after</span> ivy prescient
+  <span style="color: #537b42;">:init</span> (ivy-prescient-mode))
+
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">marginalia</span>
+  <span style="color: #537b42;">:config</span> (marginalia-mode))
+</pre>
+</div>
+
+<details>
+             <summary> <i> Alternatives to Ivy </i> </summary>
+<p>
+There's quite a bit of competition here:<br />
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/emacs-helm/helm">Helm</a> is the next major contender. It's generally heavier and uses a buffer to show completions instead of just the minibuffer. Much like Ivy, it has quite a lot of support from other packages.<br /></li>
+<li><a href="https://www.emacswiki.org/emacs/InteractivelyDoThings">Ido</a> is very minimal and built into Emacs, and by default uses horizontal completion. It's nice but the minimalism comes at the cost of support by other packages and features.<br /></li>
+<li><a href="https://github.com/raxod502/selectrum">Selectrum</a> is intended to be an easier and simpler alternative to everything listed thus far, and is a newer addition to the scene.<br /></li>
+<li><a href="https://github.com/minad/consult">Consult</a> also is a newer contender? I don't fully understand it.<br /></li>
+</ul>
+
+
+</details>
+</div>
+</div>
+
+<div id="outline-container-org464f695" class="outline-2">
+<h2 id="org464f695">LSP</h2>
+<div class="outline-text-2" id="text-org464f695">
+<p>
+<code>lsp-mode</code> enables us to get Intellisense-esque features in Emacs: setting it up requires both config on Emacs' side and installing actual language servers on your side. Check the <a href="https://github.com/emacs-lsp/lsp-mode">lsp-mode page</a> to find the server for your preferred language - although brace yourself for the potential for lots of debugging if the server doesn't work as expected on your system.<br />
+</p>
+
+<p>
+It can do more than just provide good completions: you can jump to definitions and references with <code>lsp-find-definition</code> and <code>lsp-find-references</code> respectively, as well as most other things you'd expect from an IDE.<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">lsp-mode</span>
+  <span style="color: #537b42;">:init</span>
+  <span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Disable annoying headerline</span>
+  (<span style="color: #537b42;">setq</span> lsp-headerline-breadcrumb-enable nil)
+  <span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Don't show unneeded function info in completions</span>
+  (<span style="color: #537b42;">setq</span> lsp-completion-show-detail nil)
+  <span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Disable annoying autoformatting!</span>
+  (<span style="color: #537b42;">setq-default</span> lsp-enable-indentation nil)
+  (<span style="color: #537b42;">setq-default</span> lsp-enable-on-type-formatting nil)
+  <span style="color: #537b42;">:commands</span> lsp
+  <span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Add languages of your choice!</span>
+  <span style="color: #537b42;">:hook</span> ((c-mode . lsp)
+         (c++-mode . lsp)
+         (python-mode . lsp)
+         (typescript-mode . lsp)
+         (rust-mode . lsp)))
+
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">lsp-ui</span>
+  <span style="color: #537b42;">:after</span> lsp
+  <span style="color: #537b42;">:init</span>
+  (<span style="color: #537b42;">setq</span> lsp-ui-doc-delay 5)
+  <span style="color: #537b42;">:hook</span> ((lsp-mode . lsp-ui-mode)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd0f5bc7" class="outline-2">
+<h2 id="orgd0f5bc7">Company</h2>
+<div class="outline-text-2" id="text-orgd0f5bc7">
+<p>
+<code>company-mode</code> provides code completions in Emacs, and will work together with <code>lsp-mode</code> to provide a nice experience. On top of that, let's use add-ons that allow documentation for completions to pop up and also let <code>prescient</code> make things better like it did with Ivy.<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">company</span>
+  <span style="color: #537b42;">:init</span>
+  (<span style="color: #537b42;">setq</span> company-idle-delay 0)
+  (<span style="color: #537b42;">setq</span> company-tooltip-maximum-width 40)
+  <span style="color: #537b42;">:hook</span>
+  (prog-mode . company-mode))
+
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">company-quickhelp</span>
+  <span style="color: #537b42;">:after</span> company
+  <span style="color: #537b42;">:init</span> (company-quickhelp-mode))
+
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">company-quickhelp-terminal</span>
+  <span style="color: #537b42;">:after</span> company-quickhelp)
+
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">company-prescient</span>
+  <span style="color: #537b42;">:after</span> company prescient
+  <span style="color: #537b42;">:init</span>
+  (<span style="color: #537b42;">setq-default</span> history-length 1000)
+  (<span style="color: #537b42;">setq-default</span> prescient-history-length 1000)
+  <span style="color: #537b42;">:init</span> (company-prescient-mode))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdae88a9" class="outline-2">
+<h2 id="orgdae88a9">Flycheck</h2>
+<div class="outline-text-2" id="text-orgdae88a9">
+<p>
+Next, we can add linting to the editor with flycheck!<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">flycheck</span>
+  <span style="color: #537b42;">:hook</span>
+  (prog-mode . flycheck-mode)
+  (flycheck-mode . (<span style="color: #537b42;">lambda</span> () (set-window-fringes nil 15 0))))
+</pre>
+</div>
+
+<details>
+             <summary> <i> Want a cosmetic tweak? </i> </summary>
+<p>
+<i>Courtesy of <a href="https://github.com/jemoka/">@jemoka</a></i><br />
+</p>
+
+<p>
+Want an alternative look for flycheck? Hate squigglies? Add this under the <code>:config</code> block of the above flycheck block to get a sleeker look for flycheck.<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(set-face-attribute 'flycheck-error nil <span style="color: #537b42;">:underline</span> t)
+(set-face-attribute 'flycheck-warning nil <span style="color: #537b42;">:underline</span> t)
+(set-face-attribute 'flycheck-info nil <span style="color: #537b42;">:underline</span> t)
+(define-fringe-bitmap 'my-flycheck-fringe-indicator
+  (vector #b00000000
+          #b00000000
+          #b00000000
+          #b00000000
+          #b00000000
+          #b00000000
+          #b00000000
+          #b00011100
+          #b00111110
+          #b00111110
+          #b00111110
+          #b00011100
+          #b00000000
+          #b00000000
+          #b00000000
+          #b00000000
+          #b00000000))
+(<span style="color: #537b42;">let</span> ((bitmap 'my-flycheck-fringe-indicator))
+  (flycheck-define-error-level 'error
+    <span style="color: #537b42;">:severity</span> 2
+    <span style="color: #537b42;">:overlay-category</span> 'flycheck-error-overlay
+    <span style="color: #537b42;">:fringe-bitmap</span> bitmap
+    <span style="color: #537b42;">:error-list-face</span> 'flycheck-error-list-error
+    <span style="color: #537b42;">:fringe-face</span> 'flycheck-fringe-error)
+  (flycheck-define-error-level 'warning
+    <span style="color: #537b42;">:severity</span> 1
+    <span style="color: #537b42;">:overlay-category</span> 'flycheck-warning-overlay
+    <span style="color: #537b42;">:fringe-bitmap</span> bitmap
+    <span style="color: #537b42;">:error-list-face</span> 'flycheck-error-list-warning
+    <span style="color: #537b42;">:fringe-face</span> 'flycheck-fringe-warning)
+  (flycheck-define-error-level 'info
+    <span style="color: #537b42;">:severity</span> 0
+    <span style="color: #537b42;">:overlay-category</span> 'flycheck-info-overlay
+    <span style="color: #537b42;">:fringe-bitmap</span> bitmap
+    <span style="color: #537b42;">:error-list-face</span> 'flycheck-error-list-info
+    <span style="color: #537b42;">:fringe-face</span> 'flycheck-fringe-info))
+</pre>
+</div>
+
+
+</details>
+</div>
+</div>
+
+<div id="outline-container-orgadaef56" class="outline-2">
+<h2 id="orgadaef56">YASnippet</h2>
+<div class="outline-text-2" id="text-orgadaef56">
+<p>
+YASnippet is the premiere package for snippets, so let's install it.<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">yasnippet</span>
+  <span style="color: #537b42;">:init</span> (yas-global-mode))
+</pre>
+</div>
+
+<p>
+To make a snippet for a specific mode, call <code>yas-new-snippet</code>. Refer to <a href="http://joaotavora.github.io/yasnippet/">the manual</a> after that. Then, to use the snippet, press <kbd>TAB</kbd> after typing the key.<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org21f87df" class="outline-2">
+<h2 id="org21f87df">Git</h2>
+<div class="outline-text-2" id="text-org21f87df">
+<p>
+Let's install the wonderful git porcelain Magit and some extra usefulness.<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">The ultimate Git porcelain.</span>
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">magit</span>)
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Show all TODOs in a git repo</span>
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">magit-todos</span>)
+<span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Edit gitignores w/ highlighting</span>
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">gitignore-mode</span>)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9180917" class="outline-3">
+<h3 id="org9180917">Speedy guide to Magit</h3>
+<div class="outline-text-3" id="text-org9180917">
+<p>
+Essentially everything you see is interactive: try pressing <kbd>TAB</kbd> or <kbd>RET</kbd> over it.<br />
+</p>
+
+<ul class="org-ul">
+<li><kbd>C-x g</kbd> to open Magit status (where you will do everything)<br /></li>
+<li>Type <kbd>s</kbd> over filename to stage it<br /></li>
+<li>Type <kbd>u</kbd> over filename to unstage it<br /></li>
+<li><kbd>c c</kbd> to commit<br /></li>
+<li><kbd>P u</kbd> to push to remote<br /></li>
+<li><kbd>F-u</kbd> to pull from remote<br /></li>
+<li><kbd>?</kbd> to use Magit interactively<br /></li>
+</ul>
+
+<p>
+Go to <a href="https://magit.vc/manual/magit.html">Magit's manual</a> for more detail.<br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5c69efe" class="outline-2">
+<h2 id="org5c69efe">Help</h2>
+<div class="outline-text-2" id="text-org5c69efe">
+<p>
+In order to make some parts of exploring Emacs slightly nicer, let's install <code>helpful</code> which overhauls the Help interface, and <code>which-key</code> which helps you discover keybinds.<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">helpful</span>
+  <span style="color: #537b42;">:init</span>
+  <span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Advise describe-style functions so that Helpful appears no matter what</span>
+  (advice-add 'describe-function <span style="color: #537b42;">:override</span> #'helpful-function)
+  (advice-add 'describe-variable <span style="color: #537b42;">:override</span> #'helpful-variable)
+  (advice-add 'describe-command <span style="color: #537b42;">:override</span> #'helpful-callable)
+  (advice-add 'describe-key <span style="color: #537b42;">:override</span> #'helpful-key)
+  (advice-add 'describe-symbol <span style="color: #537b42;">:override</span> #'helpful-symbol)
+  <span style="color: #537b42;">:config</span>
+  <span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Baseline keybindings, not very opinionated</span>
+  (global-set-key (kbd <span style="color: #6cad50;">"C-h f"</span>) #'helpful-callable)
+  (global-set-key (kbd <span style="color: #6cad50;">"C-h v"</span>) #'helpful-variable)
+  (global-set-key (kbd <span style="color: #6cad50;">"C-h k"</span>) #'helpful-key)
+  (global-set-key (kbd <span style="color: #6cad50;">"C-c C-d"</span>) #'helpful-at-point)
+  (global-set-key (kbd <span style="color: #6cad50;">"C-h F"</span>) #'helpful-function)
+  (global-set-key (kbd <span style="color: #6cad50;">"C-h C"</span>) #'helpful-command)
+  <span style="color: #b1b1b1;">;; </span><span style="color: #b1b1b1;">Counsel integration</span>
+  (<span style="color: #537b42;">setq</span> counsel-describe-function-function #'helpful-callable)
+  (<span style="color: #537b42;">setq</span> counsel-describe-variable-function #'helpful-variable))    
+
+(<span style="color: #537b42;">use-package</span> <span style="color: #537b42;">which-key</span>
+  <span style="color: #537b42;">:init</span> (which-key-mode))
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgb82ec5d" class="outline-2">
+<h2 id="orgb82ec5d">That's all, folks!</h2>
+<div class="outline-text-2" id="text-orgb82ec5d">
+<p>
+Congrats, you have a base config that looks nice and has a decent set of features now!<br />
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
