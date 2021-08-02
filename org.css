@@ -129,6 +129,31 @@ h2 {
 	padding-top: 1px;
 }
 
+kbd {
+	all: revert;
+}
+
+kbd {          
+    background-color: #f7f7f7;
+    border: 1px solid #f7f7f7;
+    border-radius: 6px;
+    color: #333;
+    display: inline-block;
+    font-family: 'Droid Sans Mono', monospace;
+    font-size: 80%;
+    font-weight: normal;
+    line-height: inherit;
+    margin: 0 .1em;
+    padding: .08em .4em;
+    word-spacing: -4px;
+}
+
+pre {
+	background-color: #f2f2f250
+}
+pre.src:before {
+	background-color: #f2f2f230
+}
 
 h3 {
 	font-family: "Barlow";
