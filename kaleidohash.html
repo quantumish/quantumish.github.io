@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-10-13 Wed 14:00 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rainbow Tables</title>
+<meta name="author" content="NUS15260-11-davfrei" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<link rel="stylesheet" href="https://quantumish.github.io/admonition.css">
+<link rel="stylesheet" href="https://quantumish.github.io/org.css">
+<script src="https://kit.fontawesome.com/76c5ce8bda.js" crossorigin="anonymous">
+
+        <style>
+        /* From: https://endlessparentheses.com/public/css/endless.css */
+        /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+        kbd
+        {
+          -moz-border-radius: 6px;
+          -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          -webkit-border-radius: 6px;
+          -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          background-color: #f7f7f7;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          color: #333;
+          display: inline-block;
+          font-family: 'Droid Sans Mono', monospace;
+          font-size: 80%;
+          font-weight: normal;
+          line-height: inherit;
+          margin: 0 .1em;
+          padding: .08em .4em;
+          text-shadow: 0 1px 0 #fff;
+          word-spacing: -4px;
+        
+          box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+        }
+        </style>
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+        <script type="text/javascript">
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+            }
+        </script>
+        
+         <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+          <script>
+                 $(document).ready(function() {
+                     $('.tooltip').tooltipster({
+                         theme: 'tooltipster-punk',
+                         contentAsHTML: true,
+                         animation: 'grow',
+                         delay: [100,500],
+                         // trigger: 'click'
+                         trigger: 'custom',
+                         triggerOpen: {
+                             mouseenter: true
+                         },
+                         triggerClose: {
+                             originClick: true,
+                             scroll: true
+                         }
+         });
+                 });
+             </script>
+        
+        <style>
+           abbr {color: red;}
+        
+           .tooltip { border-bottom: 1px dotted #000;
+                      color:red;
+                      text-decoration: none;}
+        </style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Rainbow Tables</h1>
+<div class="admonition" style="--admonition-color: 108, 173, 96;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-list" aria-hidden="true"></i></div><div class="admonition-title-markdown">Details</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+This project was inspired the excellent article <a href="https://fasterthanli.me/articles/whats-in-a-rainbow-table">What's In A Rainbow Table?</a>, but I did my best to keep my implementation distinct from it.
+</p>
+
+<p>
+You can open this file in Emacs and run <code>org-babel-tangle</code> (aka C-c c-v c-t) to generate source code from it! It's mainly for easier viewing purposes, as you'll need to actually generate a new Rust project yourself and run the <code>cargo add</code> commands listed throughout this article to actually be able to run it. This writeup itself is distinct from the actual code which has some minor niceities (like loading bars and pretty printing).
+</p>
+
+</div></div></div>
+
+
+<div id="outline-container-org7ea12d8" class="outline-2">
+<h2 id="org7ea12d8">Introduction</h2>
+<div class="outline-text-2" id="text-org7ea12d8">
+<p>
+A simple and common hash-cracking technique is to brute-force the hash. This can be done in a bit more of a straightforward manner by precomputing a large table of hashes from a set of plaintexts, then comparing any new hash to those in the table to quickly verify if the hash is the same as the hash of a known plaintext. The one major issue with this is that disk space is limited. Just doing some back of the envelope calculations in Python, we can see that we're either going to need to start buying hard drives in bulk or think of a better strategy:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #000000;">disk_size</span> = 2e+12 <span style="color: #b1b1b1;"># </span><span style="color: #b1b1b1;">2TB hard drive</span>
+<span style="color: #000000;">hash_size</span> = 20 <span style="color: #b1b1b1;"># </span><span style="color: #b1b1b1;">standard SHA-1 output size</span>
+<span style="color: #000000;">alphabet</span> = 62 <span style="color: #b1b1b1;"># </span><span style="color: #b1b1b1;">only alphanumeric for now</span>
+<span style="color: #000000;">i</span> = 1
+<span style="color: #537b42;">while</span> hash_size*(alphabet**i) &lt; disk_size:
+    <span style="color: #537b42;">print</span>(<span style="color: #6cad50;">"{}% of disk space needed for hashes of all {} char passwords"</span>
+          .<span style="color: #537b42;">format</span>((hash_size*(alphabet**i))/disk_size * 100, i))
+    <span style="color: #000000;">i</span>+=1
+</pre>
+</div>
+
+<pre class="example">
+6.2e-08% of disk space needed for hashes of all 1 char passwords
+3.844e-06% of disk space needed for hashes of all  2 char passwords
+0.000238328% of disk space needed for hashes of all 3 char passwords
+0.014776336% of disk space needed for hashes of all 4 char passwords
+0.9161328320000001% of disk space needed for hashes of all 5 char passwords
+56.800235584000006% of disk space needed for hashes of all 6 char passwords
+</pre>
+
+<p>
+Ouch! 6 characters isn't very long - and that's only for alphanumeric passwords. What if the user had some special character in their password? This doesn't seem very feasible.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org76361fd" class="outline-2">
+<h2 id="org76361fd">A Solution</h2>
+<div class="outline-text-2" id="text-org76361fd">
+<p>
+<i>Rainbow tables</i> offer a unique solution to take up far less space while covering roughly the same amount of potential hashes. Instead of hashing every possible plaintext, we generate <i>rainbow chains</i>. To generate a rainbow chain, we start with a random plaintext like "rainbow", hash it, apply a <i>reduction function</i> that produces a new and unique plaintext from that like "topical", hash that, apply a reduction function, again, etc. for however long we wish. We then save the first plaintext (in this case "rainbow") and the final hash. Since our chain generation process is deterministic, we can always regenerate the chain given the start and stop point.
+</p>
+
+<p>
+Let's try to make our own to crack SHA-1 hashes!
+</p>
+
+<div class="admonition" style="--admonition-color: 235, 195, 52;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Ethical Note</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+This project is intended for learning purposes only and intentionally targets an old standard to prevent actual use.
+Unauthorized access to computer systems is both unethical and a crime. More specifically, the state of California defines that "any person who commits any of the following acts is guilty of a public offense":
+</p>
+
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-quote-left" aria-hidden="true"></i></div><div class="admonition-title-markdown">California Penal Code 502 (c) (1-3, 6, 7)</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<ul class="org-ul">
+<li><i>Knowingly accesses and without permission alters, damages, deletes, destroys, or otherwise uses any data, computer, computer system, or computer network in order to either (A) devise or execute any scheme or artifice to defraud, deceive, or extort, or (B) wrongfully control or obtain money, property, or data.</i></li>
+
+<li><i>Knowingly accesses and without permission takes, copies, or makes use of any data from a computer, computer system, or computer network, or takes or copies any supporting documentation, whether existing or residing internal or external to a computer, computer system, or computer network.</i></li>
+
+<li><i>Knowingly and without permission uses or causes to be used computer services.</i></li>
+
+<li><i>Knowingly and without permission provides or assists in providing a means of accessing a computer, computer system, or computer network in violation of this section.</i></li>
+
+<li><i>Knowingly and without permission accesses or causes to be accessed any computer, computer system, or computer network.</i></li>
+</ul>
+
+</div></div></div>
+
+<p>
+If you crack someone's password accidentally, the ethical thing to do is to disclose it privately and responsibly to them.
+</p>
+
+</div></div></div>
+</div>
+</div>
+
+<div id="outline-container-org06be0e1" class="outline-2">
+<h2 id="org06be0e1">Boilerplate</h2>
+<div class="outline-text-2" id="text-org06be0e1">
+<div class="org-src-container">
+<pre class="src src-bash">cargo add rand
+cargo add openssl
+</pre>
+</div>
+
+<div class="aside" id="org96e8e39">
+<p>
+<code>cargo add</code> is part of <code>cargo-edit</code>, which can be installed via <code>cargo install cargo-edit</code>.
+</p>
+
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #537b42;">use</span> <span style="color: #537b42;">rand</span>::{thread_rng, <span style="color: #6cad50;">Rng</span>, <span style="color: #537b42;">seq</span>::<span style="color: #6cad50;">SliceRandom</span>};
+<span style="color: #537b42;">use</span> <span style="color: #537b42;">openssl</span>::<span style="color: #537b42;">sha</span>::sha1;
+</pre>
+</div>
+
+<p>
+Our hashes are 20-byte arrays, so let's define a type alias to be a bit more concise.
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #537b42;">const</span> <span style="color: #000000;">HASH_SIZE</span>: <span style="color: #6cad50;">usize</span> = 20;
+<span style="color: #537b42;">type</span> <span style="color: #6cad50;">Hash</span> = [<span style="color: #6cad50;">u8</span>; <span style="color: #6cad50;">HASH_SIZE</span>];
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org6a7a8fe" class="outline-3">
+<h3 id="org6a7a8fe">Character Sets</h3>
+<div class="outline-text-3" id="text-org6a7a8fe">
+<p>
+Let's implement our own character set that's sampleable by <code>std::rand</code>. We'll stick with any ASCII character between 0 and z for now, since that'll make writing our reduction function slightly easier.
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #537b42;">struct</span> <span style="color: #6cad50;">Charset</span>;
+
+<span style="color: #537b42;">impl</span> <span style="color: #537b42;">rand</span>::<span style="color: #537b42;">distributions</span>::<span style="color: #6cad50;">Distribution</span>&lt;<span style="color: #6cad50;">u8</span>&gt; <span style="color: #537b42;">for</span> <span style="color: #6cad50;">Charset</span> {
+    <span style="color: #537b42;">fn</span> <span style="color: #537b42;">sample</span>&lt;<span style="color: #000000;">R</span>: <span style="color: #6cad50;">Rng</span> + <span style="color: #537b42; font-weight: bold;">?</span><span style="color: #6cad50;">Sized</span>&gt;(&amp;<span style="color: #537b42;">self</span>, <span style="color: #000000;">rng</span>: &amp;<span style="color: #537b42;">mut</span> <span style="color: #6cad50;">R</span>) -&gt; <span style="color: #6cad50;">u8</span> {
+        *<span style="color: #6cad50;">"0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz"</span>
+            .to_string().into_bytes().choose(rng).unwrap()
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org766026a" class="outline-2">
+<h2 id="org766026a">Chains</h2>
+<div class="outline-text-2" id="text-org766026a">
+<p>
+Let's make a simple struct to represent our chain:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #537b42;">struct</span> <span style="color: #6cad50;">RainbowChain</span> {
+  <span style="color: #000000;">initial</span>: <span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">u8</span>&gt;,
+  <span style="color: #000000;">last</span>: <span style="color: #6cad50;">Hash</span>,
+}
+</pre>
+</div>
+
+<p>
+We can then implement a simple <code>forward</code> function that computes the entire chain given a starting plaintext:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #537b42;">impl</span> <span style="color: #6cad50;">RainbowChain</span> {
+    <span style="color: #537b42;">fn</span> <span style="color: #537b42;">forward</span>(<span style="color: #000000;">original</span>: <span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">u8</span>&gt;, <span style="color: #000000;">len</span>: <span style="color: #6cad50;">usize</span>) -&gt; <span style="color: #6cad50;">RainbowChain</span> { 
+        <span style="color: #537b42;">let</span> <span style="color: #537b42;">mut</span> <span style="color: #000000;">hash</span>: <span style="color: #6cad50;">Hash</span> = sha1(&amp;original);
+        <span style="color: #537b42;">for</span> <span style="color: #000000;">i</span> <span style="color: #537b42;">in</span> 0..len/2 {
+            hash = sha1(&amp;reduce(&amp;hash, original.len()));
+        }
+        <span style="color: #6cad50;">RainbowChain</span> {
+            <span style="color: #000000;">initial</span>: original,
+            <span style="color: #000000;">last</span>: hash,
+        }
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6176b0c" class="outline-2">
+<h2 id="org6176b0c">Reduction Functions</h2>
+<div class="outline-text-2" id="text-org6176b0c">
+<p>
+Reduction functions provide a whole set of issues: we need a set of functions that will generate lots of <span class="underline">unique</span> plaintexts from hashes. If there's duplicates in our table, lookup will be harder (as if the end hash for a chain is found in other places, we might stop there when we snouldn't!) and we'll waste a lot of space.
+</p>
+
+<p>
+For now, we'll generate a plaintext by adding the column number to each byte of the hash, taking the modulo and adding the correct offset to make sure it falls within our character set, and chopping it off so that it fits our password size.
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #537b42;">fn</span> <span style="color: #537b42;">reduce</span>(hash &amp;<span style="color: #6cad50;">Hash</span>, <span style="color: #000000;">i</span>: <span style="color: #6cad50;">u64</span>, <span style="color: #000000;">pass_size</span>: <span style="color: #6cad50;">usize</span>) -&gt; <span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">u8</span>&gt; {
+    hash.map(|c| (((c <span style="color: #537b42;">as</span> <span style="color: #6cad50;">u64</span> + i <span style="color: #537b42;">as</span> <span style="color: #6cad50;">u64</span>) % 75) + 48))[..pass_size].collect();
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4a6eaee" class="outline-2">
+<h2 id="org4a6eaee">Tables</h2>
+<div class="outline-text-2" id="text-org4a6eaee">
+<p>
+Let's set up some basic boilerplate for a rainbow table: a small <code>RainbowMetadata</code> struct for storing related info and a <code>RainbowTable</code> struct that is essentially just a vector of <code>RainbowChain</code>. 
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #537b42;">struct</span> <span style="color: #6cad50;">RainbowMetadata</span> {
+    <span style="color: #000000;">chain_len</span>: <span style="color: #6cad50;">usize</span>,
+    <span style="color: #000000;">num_chains</span>: <span style="color: #6cad50;">usize</span>,
+    <span style="color: #000000;">pass_size</span>: <span style="color: #6cad50;">usize</span>,
+}
+
+<span style="color: #537b42;">struct</span> <span style="color: #6cad50;">RainbowTable</span> {
+    <span style="color: #000000;">info</span>: <span style="color: #6cad50;">RainbowMetadata</span>,
+    <span style="color: #000000;">chains</span>: <span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">RainbowChain</span>&gt;,    
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8e67da1" class="outline-2">
+<h2 id="org8e67da1">Parallelizing</h2>
+<div class="outline-text-2" id="text-org8e67da1">
+<p>
+Generating a lot of these chains could still get slow, so let's leverage the <a href="https://crates.io/crates/rayon">rayon</a> library for free data parallelism. 
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">cargo add rayon
+</pre>
+</div>
+
+<p>
+Let's not forget to put the <code>rayon</code> prelude at the top to import all the important bits of the library:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust" id="org134a2e0"><span style="color: #537b42;">use</span> <span style="color: #537b42;">rayon</span>::<span style="color: #537b42;">prelude</span>::*;
+</pre>
+</div>
+
+<p>
+With <code>rayon</code> we can replace a normal <code>.iter()</code> call with a <code>.par_iter()</code>, which does our parallelization for us.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga27902d" class="outline-2">
+<h2 id="orga27902d">Generation</h2>
+<div class="outline-text-2" id="text-orga27902d">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #537b42;">impl</span> <span style="color: #6cad50;">RainbowTable</span> {
+    <span style="color: #537b42;">fn</span> <span style="color: #537b42;">new</span>(<span style="color: #000000;">chain_len</span>: <span style="color: #6cad50;">usize</span>, <span style="color: #000000;">num_chains</span>: <span style="color: #6cad50;">usize</span>, <span style="color: #000000;">pass_size</span>: <span style="color: #6cad50;">usize</span>) -&gt; <span style="color: #6cad50;">RainbowTable</span> {
+        <span style="color: #537b42;">let</span> <span style="color: #537b42;">mut</span> <span style="color: #000000;">r</span> = <span style="color: #6cad50;">RainbowTable</span> {
+            <span style="color: #000000;">info</span>: <span style="color: #6cad50;">RainbowMetadata</span> {
+                chain_len,
+                num_chains,
+                pass_size,
+            },
+            <span style="color: #000000;">chains</span>: <span style="color: #6cad50;">Vec</span>::new(),
+        };
+
+        <span style="color: #537b42;">for</span> <span style="color: #000000;">_i</span> <span style="color: #537b42;">in</span> 0..r.info.num_chains {
+            <span style="color: #b1b1b1;">// </span><span style="color: #b1b1b1;">Keep trying to generate unique plaintext</span>
+            <span style="color: #537b42;">loop</span> {
+                <span style="color: #537b42;">let</span> <span style="color: #000000;">plaintext</span>: <span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">u8</span>&gt; = thread_rng()
+                    .sample_iter(&amp;<span style="color: #6cad50;">Charset</span>)
+                    .take(r.info.pass_size)
+                    .collect();
+                <span style="color: #537b42;">if</span> initials.insert(plaintext.clone()) {             
+                    r.chains.push(<span style="color: #6cad50;">RainbowChain</span> {<span style="color: #000000;">initial</span>: plaintext,
+                                                <span style="color: #000000;">last</span>: [0; <span style="color: #6cad50;">HASH_SIZE</span>]});
+                    <span style="color: #537b42;">break</span>;
+                }
+            }
+        }
+
+
+        <span style="color: #b1b1b1;">// </span><span style="color: #b1b1b1;">Generate chains in parallel</span>
+            r.chains = r.chains.par_iter()
+            .map(|i| <span style="color: #6cad50;">RainbowChain</span>::forward(i.initial.clone(), r.info.chain_len))
+            .collect::&lt;<span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">RainbowChain</span>&gt;&gt;();
+
+            r
+    }
+}
+</pre>
+</div>
+
+<p>
+You'll notice this function doesn't actually initialize the chains. We could do that like this (before we actually generate the chains) for now, but as we'll see later, it may be worth tweaking a bit.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #537b42;">for</span> <span style="color: #000000;">_i</span> <span style="color: #537b42;">in</span> 0..r.info.num_chains {
+      <span style="color: #b1b1b1;">// </span><span style="color: #b1b1b1;">Keep trying to generate unique plaintext</span>
+    <span style="color: #537b42;">let</span> <span style="color: #000000;">plaintext</span>: <span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">u8</span>&gt; = thread_rng()
+        .sample_iter(&amp;<span style="color: #6cad50;">Charset</span>)
+        .take(r.info.pass_size)
+        .collect();
+    r.chains.push(<span style="color: #6cad50;">RainbowChain</span> {<span style="color: #000000;">initial</span>: plaintext, <span style="color: #000000;">last</span>: [0; <span style="color: #6cad50;">HASH_SIZE</span>]});
+
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org19d0508" class="outline-2">
+<h2 id="org19d0508">Lookup</h2>
+<div class="outline-text-2" id="text-org19d0508">
+<p>
+We've entirely ignored how to look up a hash from a rainbow table up until now, but the actual process of getting a plaintext comes in two phases.
+</p>
+
+<p>
+First, we compare our hash against all of the final hashes for each chain. If it matches one of them, simply recompute that chain starting from the chain's initial plaintext and return the final plaintext (which is what the final hash is of). This is the ideal and fastest case.
+</p>
+
+<p>
+If it <i>isn't</i> the same as any of the final hashes, we apply the traditional rainbow chain process to the hash we have, running the reduction function on it, hashing the new plaintext, etc. Each time we generate a new hash in this step, we compare it against all of the final hashes of the other chains. If it matches one, we use the initial value for that chain and generate up until the hash we're trying to look up, and return the last plaintext (which will therefore be the plaintext of our hash). This acts as a sort of "guess and check" with where in the chain the hash might be -  with the first reduce, hash, and comparison being  "is it one column before the end of a chain?", then the second "is it two columns before?", etc. This does the mean the worst case (that it's the first column of a chain) is equivalent to reading an entire table, since we're checking each row for each column. 
+</p>
+
+<p>
+Let's implement the first step. One key optimization we can quickly make before we start, however, is sorting the table by its hashes so that we can do binary search (which is <code>O(log n)</code>) to check if a hash is in one of the chains' end values instead of comparing all of the hashes (which is <code>O(n)</code>). We can add a quick one-liner to sort the rainbow table <code>r</code> we generate in <code>RainbowTable::new()</code> at the end of the function:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust" id="org2a4b48a"><span style="color: #b1b1b1;">// </span><span style="color: #b1b1b1;">Sort chains for very fast lookup</span>
+r.chains.sort_by(|a,b| b.last.cmp(&amp;a.last));
+</pre>
+</div>
+
+<p>
+Now we can implement the two steps needed for lookup and make use of binary search for a quicker lookup time:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #537b42;">impl</span> <span style="color: #6cad50;">RainbowTable</span> {
+    <span style="color: #537b42;">fn</span> <span style="color: #537b42;">check_column</span>(&amp;<span style="color: #537b42;">self</span>, <span style="color: #000000;">target</span>: <span style="color: #6cad50;">Hash</span>) -&gt; <span style="color: #6cad50;">Option</span>&lt;<span style="color: #6cad50;">String</span>&gt; {
+        <span style="color: #537b42;">let</span> <span style="color: #000000;">a</span> = <span style="color: #537b42;">self</span>.chains.binary_search_by(|i| target.cmp(&amp;i.last));
+        <span style="color: #537b42;">if</span> <span style="color: #537b42;">let</span> <span style="color: #6cad50;">Ok</span>(c) = a {          
+            <span style="color: #537b42;">let</span> <span style="color: #537b42;">mut</span> <span style="color: #000000;">string</span>: <span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">u8</span>&gt; = <span style="color: #537b42;">self</span>.chains.get(c).unwrap().initial.clone();
+            <span style="color: #537b42;">let</span> <span style="color: #537b42;">mut</span> <span style="color: #000000;">hash</span>: <span style="color: #6cad50;">Hash</span> = sha1(&amp;string);
+            <span style="color: #537b42;">for</span> <span style="color: #000000;">i</span> <span style="color: #537b42;">in</span> 0..<span style="color: #537b42;">self</span>.info.chain_len/2 {
+                string = reduce(&amp;hash, <span style="color: #537b42;">self</span>.info.pass_size);
+                hash = sha1(&amp;string);
+            }
+            <span style="color: #537b42;">return</span> <span style="color: #6cad50;">Some</span>(<span style="color: #6cad50;">String</span>::from_utf8(string).unwrap());
+        }
+        <span style="color: #537b42;">return</span> <span style="color: #6cad50;">None</span>;
+    }
+    <span style="color: #537b42;">fn</span> <span style="color: #537b42;">check_rows</span>(&amp;<span style="color: #537b42;">self</span>, <span style="color: #000000;">target</span>: <span style="color: #6cad50;">Hash</span>) -&gt; <span style="color: #6cad50;">Option</span>&lt;<span style="color: #6cad50;">String</span>&gt; {
+        <span style="color: #537b42;">let</span> <span style="color: #537b42;">mut</span> <span style="color: #000000;">hash</span>: <span style="color: #6cad50;">Hash</span> = target;
+        <span style="color: #537b42;">let</span> <span style="color: #537b42;">mut</span> <span style="color: #000000;">string</span>: <span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">u8</span>&gt;;
+        <span style="color: #537b42;">for</span> <span style="color: #000000;">i</span> <span style="color: #537b42;">in</span> 0..<span style="color: #537b42;">self</span>.info.chain_len/2 {
+            string = reduce(&amp;hash, <span style="color: #537b42;">self</span>.info.pass_size);
+            hash = sha1(&amp;string);
+            <span style="color: #537b42;">let</span> <span style="color: #000000;">a</span> = <span style="color: #537b42;">self</span>.chains.binary_search_by(|i| hash.cmp(&amp;i.last));
+            <span style="color: #537b42;">if</span> <span style="color: #537b42;">let</span> <span style="color: #6cad50;">Ok</span>(c) = a {
+                <span style="color: #537b42;">let</span> <span style="color: #537b42;">mut</span> <span style="color: #000000;">string2</span> = <span style="color: #537b42;">self</span>.chains.get(c).unwrap().initial.clone();
+                <span style="color: #537b42;">let</span> <span style="color: #537b42;">mut</span> <span style="color: #000000;">hash2</span>: <span style="color: #6cad50;">Hash</span> = sha1(&amp;string2);
+                <span style="color: #537b42;">for</span> <span style="color: #000000;">k</span> <span style="color: #537b42;">in</span> 0..<span style="color: #537b42;">self</span>.info.chain_len/2 {
+                    <span style="color: #537b42;">if</span> hash2 == target {
+                        <span style="color: #537b42;">return</span> <span style="color: #6cad50;">Some</span>(<span style="color: #6cad50;">String</span>::from_utf8(string2).unwrap());
+                    }
+                    string2 = reduce(&amp;hash2, <span style="color: #537b42;">self</span>.info.pass_size);
+                    hash2 = sha1(&amp;string2);
+                }
+            }
+        }
+        <span style="color: #537b42;">return</span> <span style="color: #6cad50;">None</span>;
+    }
+}
+</pre>
+</div>
+
+<p>
+Finally, we can write a little <code>RainbowTable::lookup()</code> function that combines these steps. 
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #537b42;">impl</span> <span style="color: #6cad50;">RainbowTable</span> {
+    <span style="color: #537b42;">fn</span> <span style="color: #537b42;">lookup</span>(&amp;<span style="color: #537b42;">self</span>, <span style="color: #000000;">target</span>: <span style="color: #6cad50;">Hash</span>) -&gt; <span style="color: #6cad50;">Option</span>&lt;<span style="color: #6cad50;">String</span>&gt; {
+        <span style="color: #537b42;">if</span> <span style="color: #537b42;">let</span> <span style="color: #6cad50;">Some</span>(string) = <span style="color: #537b42;">self</span>.check_column(target) {
+            <span style="color: #537b42;">return</span> <span style="color: #6cad50;">Some</span>(string);
+        } <span style="color: #537b42;">else</span> {
+            <span style="color: #537b42;">return</span> <span style="color: #537b42;">self</span>.check_rows(target);         
+        }
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6423aaf" class="outline-2">
+<h2 id="org6423aaf">Duplicates</h2>
+<div class="outline-text-2" id="text-org6423aaf">
+<p>
+If one were to experiment with this table, you would find one key problem: there is a <i>ton</i> of duplicates. Duplicates can cause chains to have duplicate end values, which both wastes space and slows down or even potentially ruins hash lookup. Duplicates are (theoretically) caused by a poor set of initial plaintexts, a poor reduction function, and a rainbow table that is much larger than your search space (if your rainbow table is bigger than the number of possible combinations of passwords, you'll have duplicates).
+</p>
+
+<p>
+Let's try and address these issues.
+</p>
+</div>
+<div id="outline-container-orgbb109de" class="outline-3">
+<h3 id="orgbb109de">Better Initial Values</h3>
+<div class="outline-text-3" id="text-orgbb109de">
+<p>
+We'll tweak our initial plaintext generation by forcing it to generate a unique starting plaintext by checking if it can be successfully inserted into a set data structure and generating another if it can't.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust" id="orgf53b784"><span style="color: #b1b1b1;">// </span><span style="color: #b1b1b1;">Only allow unique initial plaintexts</span>
+<span style="color: #537b42;">let</span> <span style="color: #537b42;">mut</span> <span style="color: #000000;">initials</span>: <span style="color: #6cad50;">HashSet</span>&lt;<span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">u8</span>&gt;&gt; = <span style="color: #6cad50;">HashSet</span>::new();    
+<span style="color: #537b42;">for</span> <span style="color: #000000;">_i</span> <span style="color: #537b42;">in</span> 0..r.info.num_chains {
+    <span style="color: #b1b1b1;">// </span><span style="color: #b1b1b1;">Keep trying to generate unique plaintext</span>
+    <span style="color: #537b42;">loop</span> {
+        <span style="color: #537b42;">let</span> <span style="color: #000000;">plaintext</span>: <span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">u8</span>&gt; = thread_rng()
+            .sample_iter(&amp;<span style="color: #6cad50;">Charset</span>)
+            .take(r.info.pass_size)
+            .collect();
+        <span style="color: #537b42;">if</span> initials.insert(plaintext.clone()) {             
+            r.chains.push(<span style="color: #6cad50;">RainbowChain</span> {<span style="color: #000000;">initial</span>: plaintext, <span style="color: #000000;">last</span>: [0; <span style="color: #6cad50;">HASH_SIZE</span>]});
+            <span style="color: #537b42;">break</span>;
+        }
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfa27882" class="outline-3">
+<h3 id="orgfa27882">Better Reduction Functions</h3>
+<div class="outline-text-3" id="text-orgfa27882">
+<p>
+If we're being really desperate (which we are, because we have a lot of duplicates!) we could try and seed a random number generator with the hash and generate a plaintext from that. 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">cargo add rand_pcg
+cargo add rand_seeder
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #b1b1b1;">// </span><span style="color: #b1b1b1;">Prefix `i` with an underscore to say won't be using it (keep it for compatibility).</span>
+<span style="color: #537b42;">fn</span> <span style="color: #537b42;">reduce</span>(hash &amp;<span style="color: #6cad50;">Hash</span>, <span style="color: #000000;">pass_size</span>: <span style="color: #6cad50;">usize</span>) -&gt; <span style="color: #6cad50;">Vec</span>&lt;<span style="color: #6cad50;">u8</span>&gt; {
+    <span style="color: #537b42;">let</span> <span style="color: #000000;">rng</span>: <span style="color: #537b42;">rand_pcg</span>::<span style="color: #6cad50;">Pcg64</span> = <span style="color: #537b42;">rand_seeder</span>::<span style="color: #6cad50;">Seeder</span>::from(hash).make_rng();
+    rng.sample_iter(&amp;<span style="color: #6cad50;">Charset</span>)
+        .take(pass_size)
+        .collect()
+}
+</pre>
+</div>
+
+<p>
+Is this that much better? In theory, yes, as it should produce very random values. In reality, the results aren't too much better.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2e4abd4" class="outline-2">
+<h2 id="org2e4abd4">Potential Improvements</h2>
+<div class="outline-text-2" id="text-org2e4abd4">
+<p>
+There's a lot to improve on in this design - first off, this implementation is plagued by duplicate values for larger tables, so writing an improved reduction function or addressing this in another matter would improve accuracy and peformance.
+</p>
+
+<p>
+Hashing takes up most of the time, so either fine-tuning a custom CPU implementation or restructuring to allow utilization of the GPU would speed the generation process up dramatically.
+</p>
+
+<p>
+You can also optimize the file size by converting the plaintexts to numbers - if you have a set password size, you can assign a number to each permutation and store the plaintext as a u64 or u128.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc65f38f" class="outline-2">
+<h2 id="orgc65f38f">Response</h2>
+<div class="outline-text-2" id="text-orgc65f38f">
+<p>
+Rainbow tables are quite old at this point, and they have generally ceased to be relevant in the place of GPUs. Additionally, the response to this optimized password-cracking technique was to add "salt" to a password, which means adding a small random string of characters (usually dependent on the user) to the end of their password, and then hashing <i>that</i>. Despite the optimizations rainbow tables provide, exponential growth still trumps all in the end, so the table size increase needed to account for this starts to become problematic (especially since generating intelligent initial plaintexts like the most common passwords no longer works).
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
