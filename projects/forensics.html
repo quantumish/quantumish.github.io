@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-10 Wed 23:32 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Investigating OSX Daemons</title>
+<meta name="author" content="NUS15260-11-davfrei" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<link rel="stylesheet" href="file:///Users/davfrei/org.css"><link rel="stylesheet" href="https://quantumish.github.io/admonition.css"><script src="https://kit.fontawesome.com/76c5ce8bda.js" crossorigin="anonymous"
+
+        <style>
+        /* From: https://endlessparentheses.com/public/css/endless.css */
+        /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+        kbd
+        {
+          -moz-border-radius: 6px;
+          -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          -webkit-border-radius: 6px;
+          -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          background-color: #f7f7f7;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          color: #333;
+          display: inline-block;
+          font-family: 'Droid Sans Mono', monospace;
+          font-size: 80%;
+          font-weight: normal;
+          line-height: inherit;
+          margin: 0 .1em;
+          padding: .08em .4em;
+          text-shadow: 0 1px 0 #fff;
+          word-spacing: -4px;
+        
+          box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+        }
+        </style>
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+        <script type="text/javascript">
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+            }
+        </script>
+        
+         <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+          <script>
+                 $(document).ready(function() {
+                     $('.tooltip').tooltipster({
+                         theme: 'tooltipster-punk',
+                         contentAsHTML: true,
+                         animation: 'grow',
+                         delay: [100,500],
+                         // trigger: 'click'
+                         trigger: 'custom',
+                         triggerOpen: {
+                             mouseenter: true
+                         },
+                         triggerClose: {
+                             originClick: true,
+                             scroll: true
+                         }
+         });
+                 });
+             </script>
+        
+        <style>
+           abbr {color: red;}
+        
+           .tooltip { border-bottom: 1px dotted #000;
+                      color:red;
+                      text-decoration: none;}
+        </style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Investigating OSX Daemons</h1>
+
+<div id="outline-container-org3f1c593" class="outline-2">
+<h2 id="org3f1c593">Part 1: Some Suspicious Processes</h2>
+<div class="outline-text-2" id="text-org3f1c593">
+<p>
+It's a slow day on the machine, but just for the fun of it, let's idly open up Activity Monitor to alleviate some boredom.
+</p>
+
+
+<div id="orgbed9f15" class="figure">
+<p><img src="./images/capture.png" alt="capture.png" />
+</p>
+</div>
+
+<p>
+Looks normal. Just some userspace application like Spotify or Firefox, some system processes like <code>kernel_task</code> or <code>coreaudiod</code>, and&#x2026; wait.
+</p>
+
+
+<div id="orgaf6c496" class="figure">
+<p><img src="./images/gcd.png" alt="gcd.png" />
+</p>
+</div>
+
+<p>
+What's this about? I certainly don't have a game controller plugged in, and this process is taking up a nontrivial amount of my CPU (2.5%)! What does this daemon even do? Some quick google searches reveal the scattered cries of other panicked OSX users over the years with similarly high CPU usages, only to be informed that it is a system process that should be left alone. Maybe the man page will offer some insight.
+</p>
+
+<pre class="example">
+$ man gamecontrollerd                
+No manual entry for gamecontrollerd
+</pre>
+
+<p>
+No luck. Well, we can try to track it's behavior more carefully. Let's write a quick Python script called <code>monitor.py</code> that uses <code>psutils</code> and <code>matplotlib</code> to plot a process' CPU and memory usage over time.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #537b42;">import</span> time
+<span style="color: #537b42;">import</span> psutil
+<span style="color: #537b42;">import</span> sys
+
+<span style="color: #537b42;">import</span> matplotlib.pyplot <span style="color: #537b42;">as</span> plt
+<span style="color: #537b42;">from</span> matplotlib.animation <span style="color: #537b42;">import</span> FuncAnimation
+
+<span style="color: #000000;">p</span> = psutil.Process(<span style="color: #537b42;">int</span>(sys.argv[1]))
+
+<span style="color: #000000;">fig</span>, <span style="color: #000000;">ax</span> = plt.subplots()
+<span style="color: #000000;">cpu</span>, <span style="color: #000000;">memory</span> = [], []
+
+<span style="color: #537b42;">def</span> <span style="color: #537b42;">update</span>(frame):
+    cpu.append(p.cpu_percent())
+    memory.append(p.memory_percent())
+    ax.clear()
+    plt.plot(cpu, label=<span style="color: #6cad50;">"CPU usage (%)"</span>, color=<span style="color: #6cad50;">"#537b42"</span>)
+    plt.plot(memory, label=<span style="color: #6cad50;">"Memory usage (%)"</span>, color=<span style="color: #6cad50;">"#6cad50"</span>)
+    plt.legend(loc=<span style="color: #6cad50;">"lower left"</span>)
+    <span style="color: #537b42;">return</span> plt.plot(cpu)
+
+
+<span style="color: #000000;">ani</span> = FuncAnimation(fig, update,  blit=<span style="color: #537b42;">True</span>)
+plt.show()
+</pre>
+</div>
+
+<p>
+We'll need to gather some quick information about the process in order to monitor it. We can do this by using <code>ps</code>, the UNIX process status utility, and <code>grep</code>, everyone's favorite searching tool.
+</p>
+
+<pre class="example">
+$ ps aux | grep -E "(PID|gamecontrollerd)" | grep -v grep
+USER               PID  %CPU %MEM      VSZ    RSS   TT  STAT STARTED      TIME COMMAND
+_gamecontrollerd 59288   0.2  0.1 408528848   8688   ??  Ss    1:24PM   1:24.68 /usr/libexec/gamecontrollerd
+</pre>
+<p>
+Excellent - we now know the PID is 59288, and we even know the location of the binary! Also huh, it's using less CPU all of a sudden now, and that prompts another question that we can answer with our improved monitoring script: when exactly does it spike in CPU usage? 
+</p>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 125, 125, 125;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-arrow-right" aria-hidden="true"></i></div><div class="admonition-title-markdown">What was that command you ran?</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content"><p>
+<p>
+<code>ps</code> lists the statuses of processes. The 'aux' argument is actually a compressed way of enabling three flags:
+</p>
+<ol class="org-ol">
+<li><code>-a</code> lists other user's processes. This is important because this process is actually owned by the <code>_gamecontrollerd</code> user.</li>
+<li><code>-u</code> <i>used</i> to list expanded information like user, pid, memory, etc. which are what we need. Apparently this is now deprecated, but it still works in compressed format like it used to. I mostly format it this way out of habit.</li>
+<li><code>-x</code> lists processes not attached to a terminal, which is important because this is a daemon that was not started by a terminal.</li>
+</ol>
+
+<p>
+<code>grep</code> searches for patterns in files (or in information piped into it). The <code>-E</code> flag enables "extended regular expression" mode which allows us to more easily search for one keyword or another via the <code>"(PID|gamecontrollerd)"</code> argument. It specifies that <code>grep</code> should search for any line that has PID or <code>gamecontrollerd</code> in it, leaving us with both the column titles and the process for the information.
+</p>
+
+<p>
+Finally, we call <code>grep</code> once more, since the previous <code>grep</code> call will actually show up in the process list. <code>-v</code> makes <code>grep</code> search for the anything <i>but</i> the keyword (which is <code>grep</code> itself in this case), filtering out our search from the process list.
+</p>
+
+</p></div></div></details>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 235, 195, 52;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Wait. Why is that PID so high? And it started at 1:24 PM? That looks fishy...</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content"><p>
+<p>
+This is unfortunately an inconsistency caused by me messing with the process a bit too much during the experimentation process for this writeup. I believe I actually killed the process at one point to see if it would have an impact (this was not an amazing idea - do not try at home!).
+</p>
+
+</p></div></div></details>
+
+<pre class="example">
+$ sudo python3 monitor.py 59288
+</pre>
+
+
+<div id="org45d6067" class="figure">
+<p><img src="./images/boring.gif" alt="boring.gif" />
+</p>
+</div>
+
+<p>
+That's&#x2026; rather boring. Maybe if we pass the time for a little bit it'll show something interesting?
+</p>
+
+
+<div id="org132e7ef" class="figure">
+<p><img src="./images/wack.gif" alt="wack.gif" />
+</p>
+</div>
+
+<p>
+Wow! There's the suspicious behavior we're looking for! For what possible reason could it be using the CPU whenever there's some significant mouse movement?
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7f7c657" class="outline-2">
+<h2 id="org7f7c657">Part 2: What's Actually Happening Here?</h2>
+<div class="outline-text-2" id="text-org7f7c657">
+<p>
+What's this process actually doing? Let's use a couple tools to get an idea: first off, we can try and use <code>lsof</code> (a shell utility that lists all open files as well as what's opening them) to see if it has any files open.
+</p>
+
+<pre class="example">
+$ lsof | grep gamecontrollerd
+
+</pre>
+
+<p>
+Nope. Nothing. Well, let's track what system calls it's making. 
+</p>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 125, 125, 125;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-arrow-right" aria-hidden="true"></i></div><div class="admonition-title-markdown">What's a system call?</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content"><p>
+<p>
+Processes request the operating system to do things via <i>system calls</i>. There are system calls for opening up files, terminating processes, allocating memory, and more. To actually perform the task requested by the system call ("syscall" for short), the computer switches over to the operating system's core (the "kernel") and then back to the user process.
+</p>
+
+</p></div></div></details>
+
+<p>
+How exactly do we do that on OSX again? A quick google search yields that <code>dtruss</code> is the tool to use, and quickly viewing the manual of <code>dtruss</code> with <code>man dtruss</code> shows the following at the top:
+</p>
+
+<pre class="example">
+dtruss(1m)                          USER COMMANDS                         dtruss(1m)
+
+NAME
+       dtruss - process syscall details. Uses DTrace.
+
+SYNOPSIS
+       dtruss [-acdeflhoLs] [-t syscall] { -p PID | -n name | command }
+
+DESCRIPTION
+       dtruss prints details on process system calls. It is like a DTrace version of
+       truss, and has been designed to be less intrusive than truss.
+</pre>
+
+<p>
+<code>sudo dtruss -p 59288</code> looks like about the right thing to try.
+</p>
+
+<pre class="example">
+$ sudo dtruss -p 59288
+
+^C^C
+</pre>
+<p>
+<i>Not pictured: my computer freezing and requiring a reboot.</i>
+</p>
+
+<p>
+Perhaps this isn't the best place to start. We can instead direct our attention to what functions it's calling, and Activity Monitor has a convienient button that lets you sample a process and get a visualization of the "call stack" in the form of a sort of tree where the nodes are functions and the children of those nodes are functions those functions called (except this is displayed via nested dropdowns and not an actual tree). 
+</p>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 125, 125, 125;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-arrow-right" aria-hidden="true"></i></div><div class="admonition-title-markdown">How does Activity Monitor do that?</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content"><p>
+<p>
+Activity Monitor in this case is an example of a <i>sampling profiler</i>. Sampling profilers get an idea of how long much time is spent calling a function in a process by regularly pausing the process (via the signal SIGSTOP), getting its current call stack (which would be the current function and all its parents), and resuming the process (via the signal SIGCONT). While it does this, it counts how many times it sees a given function in the call stack. If it sees it more times, the function is running for longer.
+</p>
+
+<p>
+It can then aggregate all the call stacks it ever saw to visualize what functions the process ran and can also display the number of times it saw a function on the call stack (or that number divided by the total number of pauses to get a percentage) to visualize how much time was spent executing it.
+</p>
+
+</p></div></div></details>
+
+
+<div id="orgbb978cf" class="figure">
+<p><img src="./images/sample_intro.png" alt="sample_intro.png" />
+</p>
+</div>
+
+<p>
+That's a lot of information (and that's only part of the results for one thread) - but let's focus on the functions that are taking up the most time:
+</p>
+<ul class="org-ul">
+<li><code>mach_msg</code> takes up 96.33% of the time in the main thread. It's documented in <a href="https://web.mit.edu/darwin/src/modules/xnu/osfmk/man/mach_msg.html">some old XNU manual page</a> as being used for sending "Mach messages" which can include "port rights and adreesses of large regions of memory".</li>
+<li><code>__workq_kernreturn</code> takes up near 100% of multiple threads. Unfortunately, this function (system call?) is completely undocumented. According to a <a href="https://stackoverflow.com/questions/9129952/what-does-workq-kernreturn-indicate-in-an-ios-crash-log-or-when-you-pause-ex#comment11522833_9131285">random stackoverflow comment</a>, they are "GCD dispatch worker threads that are waiting for work", so we can likely ignore them for now.</li>
+<li>One specific thread has a reasonable looking divide, with functions like <code>__IOHIDEventSystemClientQueueCallback</code>, <code>__IOHIDEventCreateWithBytes</code>, and <code>+[_GCControllerManager sharedInstance]</code> taking up chunks of time. Perhaps this is the thread that's actually doing something important.</li>
+</ul>
+
+<p>
+We could validate our guess by sampling the process again when we're <i>not</i> moving the mouse and seeing what we get:
+</p>
+
+
+<div id="orgf0bc727" class="figure">
+<p><img src="./images/sample_without.png" alt="sample_without.png" />
+</p>
+</div>
+
+<p>
+Yup. <code>mach_msg</code> and <code>__workq_kernreturn</code> are still there, but not the other thread. On the subject of those two, let's try and check again what other system calls the process is making - but properly this time. Hidden away in <code>/usr/bin</code> are a variety of DTrace scripts that allow us to get the job done in a bit of an easier way. In particular <code>/usr/bin/syscallbypid.d</code> dumps out all syscalls and the PIDs of the processes calling them.
+</p>
+
+<pre class="example">
+$ /usr/bin/syscallbypid.d
+PID   CMD                      SYSCALL                     COUNT
+# not pictured: many, many, many other syscalls
+58602 gamecontrollerd          __disable_threadsignal          1
+58602 gamecontrollerd          bsdthread_terminate             1
+58602 gamecontrollerd          thread_selfid                   1
+58602 gamecontrollerd          madvise                         5
+58602 gamecontrollerd          ulock_wait                     13
+58602 gamecontrollerd          ulock_wake                     13
+58602 gamecontrollerd          kevent_qos                   3140
+58602 gamecontrollerd          bsdthread_ctl                6336
+58602 gamecontrollerd          workq_kernreturn             9694
+</pre>
+
+<p>
+Wow, that's a lot of <code>workq_kernreturn</code>. But wait - where is <code>mach_msg</code>? We already know that's a syscall&#x2026; right? Maybe it uses a different interface than the other system calls? Something tells me this isn't the full picture.
+</p>
+
+<p>
+Let's bust out Instruments, OSX's official profiler for monitoring procceses. Hopefully that will have all the convieniences we need to make things more readable.
+</p>
+
+
+<div id="org7f59f6c" class="figure">
+<p><img src="./images/instruments_syscall.png" alt="instruments_syscall.png" />
+</p>
+</div>
+
+<p>
+<code>mach_msg</code> is back, alongside some entirely new calls, but things still aren't very clear. However, the CPU profiling that Instruments does (essentially a cleaner version of Activity Monitor's earlier sampling) may shed more light:
+</p>
+
+
+<div id="orge6f7e2f" class="figure">
+<p><img src="./images/instruments.png" alt="instruments.png" />
+</p>
+</div>
+
+<p>
+Aha! Those calls to <code>mouseEventListener</code> and <code>-[GCMouseEventData setType:]</code> are our first concrete evidence that <code>gamecontrollerd</code>  is monitoring the mouse. Furthermore, lots of time is spent in <code>SLEventCreateFromDataAndSource</code>, and other miscellaneous functions from "SkyLight". SkyLight seems to be associated with the OSX WindowServer process, according to this <a href="https://eclecticlight.co/2020/06/08/windowserver-display-compositor-and-input-event-router/">random blog post that happens to be the one website on the internet acknowledging its existence</a>. That seems reasonable - maybe this daemon is for reporting mouse events to windows (and is just weirdly named).
+</p>
+
+
+<div id="org1370ba9" class="figure">
+<p><img src="./images/instruments_otherthread.png" alt="instruments_otherthread.png" />
+</p>
+</div>
+
+<p>
+Another thread seems to be making a lot of calls to IOKit's HID-related functions, and since HID stands for "human interface device" and mouses/trackpads are a type of HID, this seems reasonable. Also, the <code>_HIDEventCallback</code> and the (not pictured) <code>-[_GCHIDEventSubject publishHIDEvent:]</code> calls made by the daemon itself also seem  like they're part of the mouse monitoring process. However, these calls and the <code>mouseEventListener</code> are the only functions directly called by the daemon, so there's no interesting computation happening on its side, and how it's communicating this information is still unclear. Perhaps the continous <code>mach_msg</code> thread is reporting it?
+</p>
+
+<p>
+Finally, let's take a look at OSX's system logs via the Console app. Instruments didn't report any logging, but over a longer time period there happens to be more activity, with logs ranging from debug messages from <code>gamecontrollerd</code> to reports from <code>WindowServer</code>.
+</p>
+
+
+<div id="orgbc66cc3" class="figure">
+<p><img src="./images/console.png" alt="console.png" />
+</p>
+</div>
+
+<p>
+The <code>WindowServer</code> logs concerning some apps connecting and disconnecting from GameController-related functions matches what we saw in the profiler output well. SkyLight implied it was associated with <code>WindowServer</code> somehow, and here it is! Some apps seem to be requesting monitor information from the daemon via  <code>-[_GCControllerManager setupHIDMonitor:]</code>, which is odd since until now the daemon appeared to be concerned with mouse events only. This also legitimizes the process a lot - at first it looked kind of spooky because of the strange name, high CPU usage, and mouse monitoring, but these requests from normal applications highlight how it's clearly a normal part of the ecosystem.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbbea0bd" class="outline-2">
+<h2 id="orgbbea0bd">Part 3: Peeking at the Binary</h2>
+<div class="outline-text-2" id="text-orgbbea0bd">
+<p>
+The next best way to find out more is to hop right into the binary and poke around with a reverse engineering tool like <a href="https://www.hopperapp.com/">Hopper</a>, which will be most useful to us through its ability to locate symbols (function names, strings, etc.) within a binary, disassemble (get assembly code from binary), and decompile (get pseudocode from binary). If we remember from one of our <code>ps aux</code> calls way back, we know the binary is located at <code>/usr/libexec/gamecontrollerd</code>.
+</p>
+
+<p>
+Right off the bat, the functionreferenced in the console logs, <code>-[_GCControllerManager setupHIDMonitor:]</code>, is not anywhere within the binary, and any reference to <code>GCControllerManager</code> is external. One such reference (annotated by Hopper) is 
+</p>
+<pre class="example">
+000000010001c078         extern function code                                   ; in /System/Library/Frameworks/GameController.framework/Versions/A/GameController, DATA XREF=-[GCDaemon acceptNewConnection:fromGCEnabledApp:]+144, objc_cls_ref__GCAppClientProxy
+		     _OBJC_CLASS_$__GCControllerManagerServer:
+</pre>
+<p>
+Unfortunately, no references to the function are anywhere in this framework's directory either. Dead end, although the directory is filled with game-related things like <code>XboxHapticCapabilityGraph.json</code>, which implies that at least this does truly live up to its name and is solely for game controllers.
+</p>
+
+<p>
+Paging a bit more through the binary yields symbols like <code>-[GCDGameControllerDelegate listener:shouldAcceptNewConnections]</code> provides extra evidence of this process listening to mouse events, yet the absence of the word "mouse" in symbols and the presence of symbols like <code>-[GCDGameControllerDelegate addController:forward:]</code> really do imply this daemon is just for video game controller.
+</p>
+
+<p>
+At this point, the trail runs cold.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org305bda7" class="outline-2">
+<h2 id="org305bda7">Part 4: Coming soon?</h2>
+</div>
+</div>
+</body>
+</html>
