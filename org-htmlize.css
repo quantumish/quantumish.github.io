@@ -1,0 +1,4111 @@
+.org-all-the-icons-blue {
+        /* all-the-icons-blue */
+        color: #3b6ea8;
+      }
+      .org-all-the-icons-blue-alt {
+        /* all-the-icons-blue-alt */
+        color: #29838d;
+      }
+      .org-all-the-icons-cyan {
+        /* all-the-icons-cyan */
+        color: #398eac;
+      }
+      .org-all-the-icons-cyan-alt {
+        /* all-the-icons-cyan-alt */
+        color: #398eac;
+      }
+      .org-all-the-icons-dblue {
+        /* all-the-icons-dblue */
+        color: #5272AF;
+      }
+      .org-all-the-icons-dcyan {
+        /* all-the-icons-dcyan */
+        color: #2c7088;
+      }
+      .org-all-the-icons-dgreen {
+        /* all-the-icons-dgreen */
+        color: #4b7937;
+      }
+      .org-all-the-icons-dmaroon {
+        /* all-the-icons-dmaroon */
+        color: #69253f;
+      }
+      .org-all-the-icons-dorange {
+        /* all-the-icons-dorange */
+        color: #782f1a;
+      }
+      .org-all-the-icons-dpink {
+        /* all-the-icons-dpink */
+        color: #a85066;
+      }
+      .org-all-the-icons-dpurple {
+        /* all-the-icons-dpurple */
+        color: #5c1b54;
+      }
+      .org-all-the-icons-dred {
+        /* all-the-icons-dred */
+        color: #6b2234;
+      }
+      .org-all-the-icons-dsilver {
+        /* all-the-icons-dsilver */
+        color: #c3c3c3;
+      }
+      .org-all-the-icons-dyellow {
+        /* all-the-icons-dyellow */
+        color: #4b7937;
+      }
+      .org-all-the-icons-green {
+        /* all-the-icons-green */
+        color: #6cad50;
+      }
+      .org-all-the-icons-ivy-rich-archive {
+        /* all-the-icons-ivy-rich-archive-face */
+        color: #6cad50;
+      }
+      .org-all-the-icons-ivy-rich-bookmark {
+        /* all-the-icons-ivy-rich-bookmark-face */
+        font-style: italic;
+      }
+      .org-all-the-icons-ivy-rich-dir {
+        /* all-the-icons-ivy-rich-dir-face */
+        color: #b6b6b6;
+      }
+      .org-all-the-icons-ivy-rich-doc {
+        /* all-the-icons-ivy-rich-doc-face */
+        font-style: italic;
+      }
+      .org-all-the-icons-ivy-rich-file-modes {
+        /* all-the-icons-ivy-rich-file-modes-face */
+        color: #6cad50;
+      }
+      .org-all-the-icons-ivy-rich-file-name {
+        /* all-the-icons-ivy-rich-file-name-face */
+        font-style: italic;
+      }
+      .org-all-the-icons-ivy-rich-file-owner {
+        /* all-the-icons-ivy-rich-file-owner-face */
+        color: #537b42;
+      }
+      .org-all-the-icons-ivy-rich-icon {
+        /* all-the-icons-ivy-rich-icon-face */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-all-the-icons-ivy-rich-indicator {
+        /* all-the-icons-ivy-rich-indicator-face */
+        color: #99324b;
+      }
+      .org-all-the-icons-ivy-rich-install {
+        /* all-the-icons-ivy-rich-install-face */
+        color: #6cad50;
+      }
+      .org-all-the-icons-ivy-rich-major-mode {
+        /* all-the-icons-ivy-rich-major-mode-face */
+        color: #537b42;
+      }
+      .org-all-the-icons-ivy-rich-path {
+        /* all-the-icons-ivy-rich-path-face */
+        font-style: italic;
+      }
+      .org-all-the-icons-ivy-rich-process-buffer {
+        /* all-the-icons-ivy-rich-process-buffer-face */
+        color: #537b42;
+      }
+      .org-all-the-icons-ivy-rich-process-command {
+        /* all-the-icons-ivy-rich-process-command-face */
+        font-style: italic;
+      }
+      .org-all-the-icons-ivy-rich-process-id {
+        /* all-the-icons-ivy-rich-process-id-face */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-all-the-icons-ivy-rich-process-status {
+        /* all-the-icons-ivy-rich-process-status-face */
+        color: #6cad50;
+      }
+      .org-all-the-icons-ivy-rich-process-status-alt {
+        /* all-the-icons-ivy-rich-process-status-alt-face */
+        color: #99324b;
+      }
+      .org-all-the-icons-ivy-rich-process-thread {
+        /* all-the-icons-ivy-rich-process-thread-face */
+        color: #b6b6b6;
+      }
+      .org-all-the-icons-ivy-rich-process-tty {
+        /* all-the-icons-ivy-rich-process-tty-face */
+        color: #b6b6b6;
+      }
+      .org-all-the-icons-ivy-rich-project {
+        /* all-the-icons-ivy-rich-project-face */
+        color: #6cad50;
+      }
+      .org-all-the-icons-ivy-rich-size {
+        /* all-the-icons-ivy-rich-size-face */
+        color: #9e9e9e;
+      }
+      .org-all-the-icons-ivy-rich-time {
+        /* all-the-icons-ivy-rich-time-face */
+        color: #9e9e9e;
+      }
+      .org-all-the-icons-ivy-rich-version {
+        /* all-the-icons-ivy-rich-version-face */
+        color: #537b42;
+      }
+      .org-all-the-icons-lblue {
+        /* all-the-icons-lblue */
+        color: #7599c2;
+      }
+      .org-all-the-icons-lcyan {
+        /* all-the-icons-lcyan */
+        color: #74afc4;
+      }
+      .org-all-the-icons-lgreen {
+        /* all-the-icons-lgreen */
+        color: #98c584;
+      }
+      .org-all-the-icons-lmaroon {
+        /* all-the-icons-lmaroon */
+        color: #b6728c;
+      }
+      .org-all-the-icons-lorange {
+        /* all-the-icons-lorange */
+        color: #c47c67;
+      }
+      .org-all-the-icons-lpink {
+        /* all-the-icons-lpink */
+        color: #d1a2ae;
+      }
+      .org-all-the-icons-lpurple {
+        /* all-the-icons-lpurple */
+        color: #a868a1;
+      }
+      .org-all-the-icons-lred {
+        /* all-the-icons-lred */
+        color: #b76f81;
+      }
+      .org-all-the-icons-lsilver {
+        /* all-the-icons-lsilver */
+        color: #ebebeb;
+      }
+      .org-all-the-icons-lyellow {
+        /* all-the-icons-lyellow */
+        color: #98c584;
+      }
+      .org-all-the-icons-maroon {
+        /* all-the-icons-maroon */
+        color: #97365b;
+      }
+      .org-all-the-icons-orange {
+        /* all-the-icons-orange */
+        color: #ac4426;
+      }
+      .org-all-the-icons-pink {
+        /* all-the-icons-pink */
+        color: #bc798a;
+      }
+      .org-all-the-icons-purple {
+        /* all-the-icons-purple */
+        color: #842879;
+      }
+      .org-all-the-icons-purple-alt {
+        /* all-the-icons-purple-alt */
+        color: #b4a6b2;
+      }
+      .org-all-the-icons-red {
+        /* all-the-icons-red */
+        color: #99324b;
+      }
+      .org-all-the-icons-red-alt {
+        /* all-the-icons-red-alt */
+        color: #b7a8ab;
+      }
+      .org-all-the-icons-silver {
+        /* all-the-icons-silver */
+        color: #dadada;
+      }
+      .org-all-the-icons-yellow {
+        /* all-the-icons-yellow */
+        color: #6cad50;
+      }
+      .org-bold {
+        /* bold */
+        font-weight: bold;
+      }
+      .org-bookmark-menu-bookmark {
+        /* bookmark-menu-bookmark */
+        font-weight: bold;
+      }
+      .org-bookmark-menu-heading {
+        /* bookmark-menu-heading */
+        color: #6cad50;
+      }
+      .org-border {
+      }
+      .org-browse-url-button {
+        /* browse-url-button */
+        color: #537b42;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-buffer-menu-buffer {
+        /* buffer-menu-buffer */
+        font-weight: bold;
+      }
+      .org-builtin {
+        /* font-lock-builtin-face */
+        color: #537b42;
+      }
+      .org-button {
+        /* button */
+        color: #537b42;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-c-annotation {
+        /* c-annotation-face */
+        color: #537b42;
+      }
+      .org-calendar-month-header {
+        /* calendar-month-header */
+        color: #537b42;
+      }
+      .org-calendar-today {
+        /* calendar-today */
+        text-decoration: underline;
+      }
+      .org-calendar-weekday-header {
+        /* calendar-weekday-header */
+        color: #537b42;
+      }
+      .org-calendar-weekend-header {
+        /* calendar-weekend-header */
+        color: #b1b1b1;
+      }
+      .org-ccls-call-hierarchy-node-base {
+        /* ccls-call-hierarchy-node-base-face */
+        color: #ff4500;
+      }
+      .org-ccls-call-hierarchy-node-derived {
+        /* ccls-call-hierarchy-node-derived-face */
+        color: #ffa500;
+      }
+      .org-ccls-call-hierarchy-node-normal {
+      }
+      .org-ccls-code-lens {
+        /* ccls-code-lens-face */
+        color: #9e9e9e;
+      }
+      .org-ccls-code-lens-mouse {
+      }
+      .org-ccls-inheritance-hierarchy-base {
+        /* ccls-inheritance-hierarchy-base-face */
+        color: #ff4500;
+      }
+      .org-ccls-sem-global-variable {
+      }
+      .org-ccls-sem-local {
+      }
+      .org-ccls-sem-local-function {
+      }
+      .org-ccls-sem-member {
+        /* ccls-sem-member-face */
+        font-style: italic;
+      }
+      .org-ccls-sem-static {
+        /* ccls-sem-static-face */
+        font-weight: bold;
+      }
+      .org-ccls-sem-static-field {
+        /* ccls-sem-static-field-face */
+        font-weight: bold;
+      }
+      .org-ccls-sem-static-method {
+        /* ccls-sem-static-method-face */
+        font-weight: bold;
+      }
+      .org-ccls-skipped-range {
+        /* ccls-skipped-range-face */
+        color: #9e9e9e;
+      }
+      .org-ccls-tree-header-line {
+        /* ccls-tree-header-line-face */
+        color: #bebebe;
+        font-size: 80%;
+      }
+      .org-ccls-tree-icon {
+        /* ccls-tree-icon-face */
+        color: #bebebe;
+      }
+      .org-ccls-tree-mode-line {
+        /* ccls-tree-mode-line-face */
+        color: #bebebe;
+        font-style: italic;
+      }
+      .org-ccls-tree-mouse {
+        /* ccls-tree-mouse-face */
+        background-color: #00ff00;
+      }
+      .org-ccls-tree-root {
+        /* ccls-tree-root-face */
+        font-size: 150%;
+      }
+      .org-centaur-tabs-active-bar {
+        /* centaur-tabs-active-bar-face */
+        background-color: #537b42;
+      }
+      .org-centaur-tabs-close-mouse {
+        /* centaur-tabs-close-mouse-face */
+        text-decoration: underline;
+      }
+      .org-centaur-tabs-close-selected {
+        /* centaur-tabs-close-selected */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-centaur-tabs-close-unselected {
+        /* centaur-tabs-close-unselected */
+        color: #454545;
+        background-color: #FFFFFF;
+      }
+      .org-centaur-tabs-default {
+        /* centaur-tabs-default */
+        color: #FFFFFF;
+        background-color: #FFFFFF;
+      }
+      .org-centaur-tabs-modified-marker-selected {
+        /* centaur-tabs-modified-marker-selected */
+        color: #537b42;
+        background-color: #FFFFFF;
+      }
+      .org-centaur-tabs-modified-marker-unselected {
+        /* centaur-tabs-modified-marker-unselected */
+        color: #537b42;
+        background-color: #FFFFFF;
+      }
+      .org-centaur-tabs-selected {
+        /* centaur-tabs-selected */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-centaur-tabs-selected-modified {
+        /* centaur-tabs-selected-modified */
+        color: #29838d;
+        background-color: #FFFFFF;
+      }
+      .org-centaur-tabs-unselected {
+        /* centaur-tabs-unselected */
+        color: #454545;
+        background-color: #FFFFFF;
+      }
+      .org-centaur-tabs-unselected-modified {
+        /* centaur-tabs-unselected-modified */
+        color: #29838d;
+        background-color: #FFFFFF;
+      }
+      .org-change-log-acknowledgment {
+        /* change-log-acknowledgment */
+        color: #b1b1b1;
+      }
+      .org-change-log-conditionals {
+        /* change-log-conditionals */
+        color: #000000;
+      }
+      .org-change-log-date {
+        /* change-log-date */
+        color: #6cad50;
+      }
+      .org-change-log-email {
+        /* change-log-email */
+        color: #000000;
+      }
+      .org-change-log-file {
+        /* change-log-file */
+        color: #537b42;
+      }
+      .org-change-log-function {
+        /* change-log-function */
+        color: #000000;
+      }
+      .org-change-log-list {
+        /* change-log-list */
+        color: #537b42;
+      }
+      .org-change-log-name {
+        /* change-log-name */
+        color: #537b42;
+      }
+      .org-comint-highlight-input {
+        /* comint-highlight-input */
+        font-weight: bold;
+      }
+      .org-comint-highlight-prompt {
+        /* comint-highlight-prompt */
+        color: #537b42;
+      }
+      .org-comment {
+        /* font-lock-comment-face */
+        color: #b1b1b1;
+      }
+      .org-comment-delimiter {
+        /* font-lock-comment-delimiter-face */
+        color: #b1b1b1;
+      }
+      .org-company-echo {
+      }
+      .org-company-echo-common {
+        /* company-echo-common */
+        color: #8b1a1a;
+      }
+      .org-company-preview {
+        /* company-preview */
+        color: #b1b1b1;
+      }
+      .org-company-preview-common {
+        /* company-preview-common */
+        color: #537b42;
+        background-color: #e0e0e0;
+      }
+      .org-company-preview-search {
+        /* company-preview-search */
+        color: #FFFFFF;
+        background-color: #537b42;
+        font-weight: bold;
+      }
+      .org-company-scrollbar-bg {
+        /* company-scrollbar-bg */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-company-scrollbar-fg {
+        /* company-scrollbar-fg */
+        background-color: #537b42;
+      }
+      .org-company-template-field {
+        /* company-template-field */
+        color: #6cad50;
+        background-color: #fafafa;
+        font-weight: bold;
+      }
+      .org-company-tooltip {
+        /* company-tooltip */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-company-tooltip-annotation {
+        /* company-tooltip-annotation */
+        color: #842879;
+      }
+      .org-company-tooltip-annotation-selection {
+        /* company-tooltip-annotation-selection */
+        color: #842879;
+      }
+      .org-company-tooltip-common {
+        /* company-tooltip-common */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-company-tooltip-common-selection {
+        /* company-tooltip-common-selection */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-company-tooltip-mouse {
+        /* company-tooltip-mouse */
+        color: #FFFFFF;
+        background-color: #97365b;
+      }
+      .org-company-tooltip-quick-access {
+        /* company-tooltip-quick-access */
+        color: #842879;
+      }
+      .org-company-tooltip-quick-access-selection {
+        /* company-tooltip-quick-access-selection */
+        color: #842879;
+      }
+      .org-company-tooltip-search {
+        /* company-tooltip-search */
+        color: #FFFFFF;
+        background-color: #537b42;
+        font-weight: bold;
+      }
+      .org-company-tooltip-search-selection {
+        /* company-tooltip-search-selection */
+        background-color: #3e5c31;
+      }
+      .org-company-tooltip-selection {
+        /* company-tooltip-selection */
+        background-color: #537b42;
+        font-weight: bold;
+      }
+      .org-compilation-column-number {
+        /* compilation-column-number */
+        color: #b1b1b1;
+      }
+      .org-compilation-error {
+        /* compilation-error */
+        color: #99324b;
+        font-weight: bold;
+      }
+      .org-compilation-info {
+        /* compilation-info */
+        color: #6cad50;
+      }
+      .org-compilation-line-number {
+        /* compilation-line-number */
+        color: #537b42;
+      }
+      .org-compilation-mode-line-exit {
+        /* compilation-mode-line-exit */
+        color: #6cad50;
+      }
+      .org-compilation-mode-line-fail {
+        /* compilation-mode-line-fail */
+        color: #99324b;
+        font-weight: bold;
+      }
+      .org-compilation-mode-line-run {
+        /* compilation-mode-line-run */
+        color: #6cad50;
+        font-style: italic;
+      }
+      .org-compilation-warning {
+        /* compilation-warning */
+        color: #6cad50;
+        font-style: italic;
+      }
+      .org-completions-annotations {
+        /* completions-annotations */
+        font-style: italic;
+      }
+      .org-completions-common-part {
+        /* completions-common-part */
+        color: #0000cd;
+      }
+      .org-completions-first-difference {
+        /* completions-first-difference */
+        font-weight: bold;
+      }
+      .org-constant {
+        /* font-lock-constant-face */
+        color: #537b42;
+      }
+      .org-counsel--mark-ring-highlight {
+        /* counsel-mark-ring-highlight */
+        color: #fafafa;
+        background-color: #537b42;
+      }
+      .org-counsel-active-mode {
+        /* counsel-active-mode */
+        color: #537b42;
+      }
+      .org-counsel-application-name {
+        /* counsel-application-name */
+        color: #537b42;
+      }
+      .org-counsel-evil-register {
+        /* counsel-evil-register-face */
+        color: #3b6ea8;
+        font-weight: bold;
+      }
+      .org-counsel-key-binding {
+        /* counsel-key-binding */
+        color: #537b42;
+      }
+      .org-counsel-outline-1 {
+        /* counsel-outline-1 */
+        color: #3b6ea8;
+        font-weight: bold;
+      }
+      .org-counsel-outline-2 {
+        /* counsel-outline-2 */
+        color: #97365b;
+        font-weight: bold;
+      }
+      .org-counsel-outline-3 {
+        /* counsel-outline-3 */
+        color: #842879;
+        font-weight: bold;
+      }
+      .org-counsel-outline-4 {
+        /* counsel-outline-4 */
+        color: #6c92bd;
+        font-weight: bold;
+      }
+      .org-counsel-outline-5 {
+        /* counsel-outline-5 */
+        color: #b16883;
+        font-weight: bold;
+      }
+      .org-counsel-outline-6 {
+        /* counsel-outline-6 */
+        color: #9db6d3;
+        font-weight: bold;
+      }
+      .org-counsel-outline-7 {
+        /* counsel-outline-7 */
+        color: #cb9aad;
+        font-weight: bold;
+      }
+      .org-counsel-outline-8 {
+        /* counsel-outline-8 */
+        color: #d7e2ed;
+        font-weight: bold;
+      }
+      .org-counsel-outline-default {
+        /* counsel-outline-default */
+        color: #537b42;
+      }
+      .org-counsel-variable-documentation {
+        /* counsel-variable-documentation */
+        color: #b1b1b1;
+      }
+      .org-css-property {
+        /* css-property */
+        color: #e35140;
+      }
+      .org-css-proprietary-property {
+        /* css-proprietary-property */
+        color: #C62D43;
+      }
+      .org-css-selector {
+        /* css-selector */
+        color: #F98859;
+      }
+      .org-cursor {
+        /* cursor */
+        background-color: #537b42;
+      }
+      .org-custom-button {
+        /* custom-button */
+        color: #3b6ea8;
+        background-color: #FFFFFF;
+      }
+      .org-custom-button-mouse {
+        /* custom-button-mouse */
+        color: #FFFFFF;
+        background-color: #3b6ea8;
+      }
+      .org-custom-button-pressed {
+        /* custom-button-pressed */
+        color: #FFFFFF;
+        background-color: #3b6ea8;
+      }
+      .org-custom-button-pressed-unraised {
+        /* custom-button-pressed-unraised */
+        color: #FFFFFF;
+        background-color: #842879;
+      }
+      .org-custom-button-unraised {
+        /* custom-button-unraised */
+        color: #842879;
+        background-color: #FFFFFF;
+      }
+      .org-custom-changed {
+        /* custom-changed */
+        color: #3b6ea8;
+        background-color: #FFFFFF;
+      }
+      .org-custom-comment {
+        /* custom-comment */
+        color: #000000;
+        background-color: #bdbdbd;
+      }
+      .org-custom-comment-tag {
+        /* custom-comment-tag */
+        color: #bdbdbd;
+      }
+      .org-custom-documentation {
+      }
+      .org-custom-face-tag {
+        /* custom-face-tag */
+        color: #97365b;
+      }
+      .org-custom-group-subtitle {
+        /* custom-group-subtitle */
+        color: #99324b;
+      }
+      .org-custom-group-tag {
+        /* custom-group-tag */
+        color: #842879;
+      }
+      .org-custom-group-tag-1 {
+        /* custom-group-tag-1 */
+        color: #3b6ea8;
+      }
+      .org-custom-invalid {
+        /* custom-invalid */
+        color: #99324b;
+        background-color: #ead6db;
+      }
+      .org-custom-link {
+        /* custom-link */
+        color: #537b42;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-custom-modified {
+        /* custom-modified */
+        color: #3b6ea8;
+        background-color: #d7e2ed;
+      }
+      .org-custom-rogue {
+        /* custom-rogue */
+        color: #ffc0cb;
+        background-color: #000000;
+      }
+      .org-custom-saved {
+        /* custom-saved */
+        color: #6cad50;
+        background-color: #e1eedc;
+        font-weight: bold;
+      }
+      .org-custom-set {
+        /* custom-set */
+        color: #6cad50;
+        background-color: #FFFFFF;
+      }
+      .org-custom-state {
+        /* custom-state */
+        color: #6cad50;
+        background-color: #e1eedc;
+      }
+      .org-custom-themed {
+        /* custom-themed */
+        color: #6cad50;
+        background-color: #FFFFFF;
+      }
+      .org-custom-variable-button {
+        /* custom-variable-button */
+        color: #6cad50;
+        text-decoration: underline;
+      }
+      .org-custom-variable-obsolete {
+        /* custom-variable-obsolete */
+        color: #bdbdbd;
+        background-color: #FFFFFF;
+      }
+      .org-custom-variable-tag {
+        /* custom-variable-tag */
+        color: #97365b;
+      }
+      .org-custom-visibility {
+        /* custom-visibility */
+        color: #3b6ea8;
+      }
+      .org-dashboard-banner-logo-title {
+        /* dashboard-banner-logo-title */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-dashboard-footer {
+        /* dashboard-footer */
+        color: #b6b6b6;
+      }
+      .org-dashboard-heading {
+        /* dashboard-heading */
+        color: #537b42;
+      }
+      .org-dashboard-items {
+        /* dashboard-items-face */
+        font-weight: bold;
+      }
+      .org-dashboard-navigator {
+        /* dashboard-navigator */
+        color: #537b42;
+      }
+      .org-dashboard-no-items {
+        /* dashboard-no-items-face */
+        font-weight: bold;
+      }
+      .org-dashboard-text-banner {
+        /* dashboard-text-banner */
+        color: #537b42;
+      }
+      .org-diary {
+        /* diary */
+        color: #ff0000;
+      }
+      .org-diff-added {
+        /* diff-added */
+        color: #6cad50;
+        background-color: #FFFFFF;
+      }
+      .org-diff-changed {
+        /* diff-changed */
+        color: #842879;
+      }
+      .org-diff-context {
+        /* diff-context */
+        color: #1e1e1e;
+      }
+      .org-diff-file-header {
+        /* diff-file-header */
+        color: #3b6ea8;
+      }
+      .org-diff-function {
+        /* diff-function */
+        color: #398eac;
+      }
+      .org-diff-header {
+        /* diff-header */
+        color: #398eac;
+      }
+      .org-diff-hunk-header {
+        /* diff-hunk-header */
+        color: #842879;
+      }
+      .org-diff-index {
+        /* diff-index */
+        color: #3b6ea8;
+      }
+      .org-diff-indicator-added {
+        /* diff-indicator-added */
+        color: #22aa22;
+        background-color: #FFFFFF;
+      }
+      .org-diff-indicator-changed {
+        /* diff-indicator-changed */
+        color: #aaaa22;
+      }
+      .org-diff-indicator-removed {
+        /* diff-indicator-removed */
+        color: #aa2222;
+        background-color: #e0e0e0;
+      }
+      .org-diff-nonexistent {
+        /* diff-nonexistent */
+        color: #3b6ea8;
+      }
+      .org-diff-refine-added {
+        /* diff-refine-added */
+        color: #6cad50;
+        background-color: #FFFFFF;
+      }
+      .org-diff-refine-changed {
+        /* diff-refine-changed */
+        color: #842879;
+      }
+      .org-diff-refine-removed {
+        /* diff-refine-removed */
+        color: #99324b;
+        background-color: #e0e0e0;
+      }
+      .org-diff-removed {
+        /* diff-removed */
+        color: #99324b;
+        background-color: #e0e0e0;
+      }
+      .org-dired-directory {
+        /* dired-directory */
+        color: #537b42;
+      }
+      .org-dired-flagged {
+        /* dired-flagged */
+        color: #99324b;
+      }
+      .org-dired-header {
+        /* dired-header */
+        color: #3b6ea8;
+        font-weight: bold;
+      }
+      .org-dired-ignored {
+        /* dired-ignored */
+        color: #b1b1b1;
+      }
+      .org-dired-mark {
+        /* dired-mark */
+        color: #ac4426;
+        font-weight: bold;
+      }
+      .org-dired-marked {
+        /* dired-marked */
+        color: #97365b;
+        font-weight: bold;
+      }
+      .org-dired-perm-write {
+        /* dired-perm-write */
+        color: #000000;
+        text-decoration: underline;
+      }
+      .org-dired-set-id {
+        /* dired-set-id */
+        color: #6cad50;
+      }
+      .org-dired-special {
+        /* dired-special */
+        color: #000000;
+      }
+      .org-dired-symlink {
+        /* dired-symlink */
+        color: #398eac;
+        font-weight: bold;
+      }
+      .org-dired-warning {
+        /* dired-warning */
+        color: #6cad50;
+      }
+      .org-doc {
+        /* font-lock-doc-face */
+        color: #b6b6b6;
+      }
+      .org-doom-modeline-bar {
+        /* doom-modeline-bar */
+        background-color: #537b42;
+      }
+      .org-doom-modeline-bar-inactive {
+      }
+      .org-doom-modeline-battery-charging {
+        /* doom-modeline-battery-charging */
+        color: #6cad50;
+      }
+      .org-doom-modeline-battery-critical {
+        /* doom-modeline-battery-critical */
+        color: #99324b;
+      }
+      .org-doom-modeline-battery-error {
+        /* doom-modeline-battery-error */
+        color: #99324b;
+      }
+      .org-doom-modeline-battery-full {
+        /* doom-modeline-battery-full */
+        color: #6cad50;
+      }
+      .org-doom-modeline-battery-normal {
+        /* doom-modeline-battery-normal */
+        background-color: #f2f2f2;
+      }
+      .org-doom-modeline-battery-warning {
+        /* doom-modeline-battery-warning */
+        color: #6cad50;
+      }
+      .org-doom-modeline-buffer-file {
+        /* doom-modeline-buffer-file */
+        font-weight: bold;
+      }
+      .org-doom-modeline-buffer-minor-mode {
+        /* doom-modeline-buffer-minor-mode */
+        color: #b6b6b6;
+      }
+      .org-doom-modeline-buffer-path {
+        /* doom-modeline-buffer-path */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-doom-modeline-buffer-timemachine {
+        /* doom-modeline-buffer-timemachine */
+        font-weight: bold;
+        font-style: italic;
+      }
+      .org-doom-modeline-debug-visual {
+        /* doom-modeline-debug-visual */
+        background-color: #C62D43;
+      }
+      .org-doom-modeline-evil-normal-state {
+        /* doom-modeline-evil-normal-state */
+        color: #6cad50;
+        font-weight: bold;
+      }
+      .org-doom-modeline-evil-operator-state {
+        /* doom-modeline-evil-operator-state */
+        font-weight: bold;
+      }
+      .org-doom-modeline-evil-replace-state {
+        /* doom-modeline-evil-replace-state */
+        color: #99324b;
+        font-weight: bold;
+      }
+      .org-doom-modeline-evil-visual-state {
+        /* doom-modeline-evil-visual-state */
+        color: #6cad50;
+        font-weight: bold;
+      }
+      .org-doom-modeline-highlight {
+        /* doom-modeline-highlight */
+        color: #537b42;
+      }
+      .org-doom-modeline-host {
+        /* doom-modeline-host */
+        font-style: italic;
+      }
+      .org-doom-modeline-lsp-error {
+        /* doom-modeline-lsp-error */
+        color: #99324b;
+      }
+      .org-doom-modeline-lsp-running {
+        /* doom-modeline-lsp-running */
+        color: #6cad50;
+      }
+      .org-doom-modeline-lsp-success {
+        /* doom-modeline-lsp-success */
+        color: #6cad50;
+      }
+      .org-doom-modeline-lsp-warning {
+        /* doom-modeline-lsp-warning */
+        color: #6cad50;
+      }
+      .org-doom-modeline-notification {
+        /* doom-modeline-notification */
+        color: #6cad50;
+        font-weight: bold;
+      }
+      .org-doom-modeline-panel {
+        /* doom-modeline-panel */
+        color: #fafafa;
+        background-color: #537b42;
+      }
+      .org-doom-modeline-repl-success {
+        /* doom-modeline-repl-success */
+        color: #6cad50;
+      }
+      .org-doom-modeline-repl-warning {
+        /* doom-modeline-repl-warning */
+        color: #6cad50;
+      }
+      .org-doom-modeline-spc {
+        /* doom-modeline-spc-face */
+        background-color: #f2f2f2;
+      }
+      .org-doom-modeline-unread-number {
+        /* doom-modeline-unread-number */
+        font-style: italic;
+      }
+      .org-doom-modeline-vspc {
+      }
+      .org-doom-themes-org-at-tag {
+        /* doom-themes-org-at-tag */
+        color: #398eac;
+      }
+      .org-doom-themes-org-hash-tag {
+        /* doom-themes-org-hash-tag */
+        color: #b6b6b6;
+      }
+      .org-doom-themes-treemacs-file {
+        /* doom-themes-treemacs-file-face */
+        color: #b6b6b6;
+      }
+      .org-doom-themes-treemacs-root {
+        /* doom-themes-treemacs-root-face */
+        color: #6cad50;
+      }
+      .org-doom-themes-visual-bell {
+        /* doom-themes-visual-bell */
+        background-color: #99324b;
+      }
+      .org-eldoc-highlight-function-argument {
+        /* eldoc-highlight-function-argument */
+        font-weight: bold;
+      }
+      .org-epa-field-body {
+        /* epa-field-body */
+        font-style: italic;
+      }
+      .org-epa-field-name {
+        /* epa-field-name */
+        font-weight: bold;
+      }
+      .org-epa-mark {
+        /* epa-mark */
+        color: #ff0000;
+        font-weight: bold;
+      }
+      .org-epa-string {
+        /* epa-string */
+        color: #00008b;
+      }
+      .org-epa-validity-disabled {
+        /* epa-validity-disabled */
+        font-style: italic;
+      }
+      .org-epa-validity-high {
+        /* epa-validity-high */
+        font-weight: bold;
+      }
+      .org-epa-validity-low {
+        /* epa-validity-low */
+        font-style: italic;
+      }
+      .org-epa-validity-medium {
+        /* epa-validity-medium */
+        font-style: italic;
+      }
+      .org-error {
+        /* error */
+        color: #99324b;
+      }
+      .org-escape-glyph {
+        /* escape-glyph */
+        color: #398eac;
+      }
+      .org-eshell-ls-archive {
+        /* eshell-ls-archive */
+        color: #97365b;
+      }
+      .org-eshell-ls-backup {
+        /* eshell-ls-backup */
+        color: #6cad50;
+      }
+      .org-eshell-ls-clutter {
+        /* eshell-ls-clutter */
+        color: #99324b;
+      }
+      .org-eshell-ls-directory {
+        /* eshell-ls-directory */
+        color: #3b6ea8;
+      }
+      .org-eshell-ls-executable {
+        /* eshell-ls-executable */
+        color: #6cad50;
+      }
+      .org-eshell-ls-missing {
+        /* eshell-ls-missing */
+        color: #99324b;
+      }
+      .org-eshell-ls-product {
+        /* eshell-ls-product */
+        color: #ac4426;
+      }
+      .org-eshell-ls-readonly {
+        /* eshell-ls-readonly */
+        color: #ac4426;
+      }
+      .org-eshell-ls-special {
+        /* eshell-ls-special */
+        color: #842879;
+      }
+      .org-eshell-ls-symlink {
+        /* eshell-ls-symlink */
+        color: #398eac;
+      }
+      .org-eshell-ls-unreadable {
+        /* eshell-ls-unreadable */
+        color: #9e9e9e;
+      }
+      .org-eshell-prompt {
+        /* eshell-prompt */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-eww-form-checkbox {
+        /* eww-form-checkbox */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-eww-form-file {
+        /* eww-form-file */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-eww-form-select {
+        /* eww-form-select */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-eww-form-submit {
+        /* eww-form-submit */
+        color: #000000;
+        background-color: #eeeeee;
+      }
+      .org-eww-form-text {
+        /* eww-form-text */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-eww-form-textarea {
+        /* eww-form-textarea */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-eww-invalid-certificate {
+        /* eww-invalid-certificate */
+        color: #99324b;
+      }
+      .org-eww-valid-certificate {
+        /* eww-valid-certificate */
+        color: #537b42;
+      }
+      .org-ffap {
+        /* ffap */
+        color: #fafafa;
+        background-color: #537b42;
+      }
+      .org-file-name-shadow {
+        /* file-name-shadow */
+        color: #9e9e9e;
+      }
+      .org-fill-column-indicator {
+        /* fill-column-indicator */
+        color: #9e9e9e;
+      }
+      .org-fixed-pitch {
+      }
+      .org-fixed-pitch-serif {
+      }
+      .org-flycheck-delimited-error {
+      }
+      .org-flycheck-error {
+        /* flycheck-error */
+        text-decoration: underline;
+      }
+      .org-flycheck-error-delimiter {
+      }
+      .org-flycheck-error-list-checker-name {
+        /* flycheck-error-list-checker-name */
+        color: #537b42;
+      }
+      .org-flycheck-error-list-column-number {
+      }
+      .org-flycheck-error-list-error {
+        /* flycheck-error-list-error */
+        color: #99324b;
+      }
+      .org-flycheck-error-list-error-message {
+      }
+      .org-flycheck-error-list-filename {
+      }
+      .org-flycheck-error-list-highlight {
+        /* flycheck-error-list-highlight */
+        font-weight: bold;
+      }
+      .org-flycheck-error-list-id {
+        /* flycheck-error-list-id */
+        color: #6cad50;
+      }
+      .org-flycheck-error-list-id-with-explainer {
+        /* flycheck-error-list-id-with-explainer */
+        color: #6cad50;
+      }
+      .org-flycheck-error-list-info {
+        /* flycheck-error-list-info */
+        color: #6cad50;
+      }
+      .org-flycheck-error-list-line-number {
+      }
+      .org-flycheck-error-list-warning {
+        /* flycheck-error-list-warning */
+        color: #6cad50;
+      }
+      .org-flycheck-fringe-error {
+        /* flycheck-fringe-error */
+        color: #99324b;
+        background-color: #FFFFFF;
+      }
+      .org-flycheck-fringe-info {
+        /* flycheck-fringe-info */
+        color: #6cad50;
+        background-color: #FFFFFF;
+      }
+      .org-flycheck-fringe-warning {
+        /* flycheck-fringe-warning */
+        color: #6cad50;
+        background-color: #FFFFFF;
+      }
+      .org-flycheck-info {
+        /* flycheck-info */
+        text-decoration: underline;
+      }
+      .org-flycheck-verify-select-checker {
+      }
+      .org-flycheck-warning {
+        /* flycheck-warning */
+        text-decoration: underline;
+      }
+      .org-fringe {
+        /* fringe */
+        color: #bdbdbd;
+        background-color: #FFFFFF;
+      }
+      .org-function-name {
+        /* font-lock-function-name-face */
+        color: #537b42;
+      }
+      .org-git-commit-comment-action {
+        /* git-commit-comment-action */
+        font-weight: bold;
+      }
+      .org-git-commit-comment-branch-local {
+        /* git-commit-comment-branch-local */
+        color: #97365b;
+      }
+      .org-git-commit-comment-branch-remote {
+        /* git-commit-comment-branch-remote */
+        color: #6cad50;
+      }
+      .org-git-commit-comment-detached {
+        /* git-commit-comment-detached */
+        color: #ac4426;
+      }
+      .org-git-commit-comment-file {
+        /* git-commit-comment-file */
+        color: #842879;
+      }
+      .org-git-commit-comment-heading {
+        /* git-commit-comment-heading */
+        color: #537b42;
+      }
+      .org-git-commit-keyword {
+        /* git-commit-keyword */
+        color: #398eac;
+        font-style: italic;
+      }
+      .org-git-commit-known-pseudo-header {
+        /* git-commit-known-pseudo-header */
+        color: #b6b6b6;
+        font-weight: bold;
+        font-style: italic;
+      }
+      .org-git-commit-nonempty-second-line {
+        /* git-commit-nonempty-second-line */
+        color: #99324b;
+        background-color: #fafafa;
+        font-weight: bold;
+        font-style: italic;
+      }
+      .org-git-commit-overlong-summary {
+        /* git-commit-overlong-summary */
+        color: #99324b;
+        background-color: #fafafa;
+        font-weight: bold;
+        font-style: italic;
+      }
+      .org-git-commit-pseudo-header {
+        /* git-commit-pseudo-header */
+        color: #b6b6b6;
+        font-style: italic;
+      }
+      .org-git-commit-summary {
+        /* git-commit-summary */
+        color: #6cad50;
+      }
+      .org-glyphless-char {
+        /* glyphless-char */
+        font-size: 60%;
+      }
+      .org-gnus-button {
+        /* gnus-button */
+        font-weight: bold;
+      }
+      .org-gnus-cite-1 {
+        /* gnus-cite-1 */
+        color: #842879;
+      }
+      .org-gnus-cite-10 {
+        /* gnus-cite-10 */
+        color: #6cad50;
+      }
+      .org-gnus-cite-11 {
+        /* gnus-cite-11 */
+        color: #6cad50;
+      }
+      .org-gnus-cite-2 {
+        /* gnus-cite-2 */
+        color: #6cad50;
+      }
+      .org-gnus-cite-3 {
+        /* gnus-cite-3 */
+        color: #97365b;
+      }
+      .org-gnus-cite-4 {
+        /* gnus-cite-4 */
+        color: #6cad50;
+      }
+      .org-gnus-cite-5 {
+        /* gnus-cite-5 */
+        color: #6cad50;
+      }
+      .org-gnus-cite-6 {
+        /* gnus-cite-6 */
+        color: #6cad50;
+      }
+      .org-gnus-cite-7 {
+        /* gnus-cite-7 */
+        color: #97365b;
+      }
+      .org-gnus-cite-8 {
+        /* gnus-cite-8 */
+        color: #97365b;
+      }
+      .org-gnus-cite-9 {
+        /* gnus-cite-9 */
+        color: #97365b;
+      }
+      .org-gnus-cite-attribution {
+        /* gnus-cite-attribution */
+        font-style: italic;
+      }
+      .org-gnus-emphasis-bold {
+        /* gnus-emphasis-bold */
+        font-weight: bold;
+      }
+      .org-gnus-emphasis-bold-italic {
+        /* gnus-emphasis-bold-italic */
+        font-weight: bold;
+        font-style: italic;
+      }
+      .org-gnus-emphasis-highlight-words {
+        /* gnus-emphasis-highlight-words */
+        color: #ffff00;
+        background-color: #000000;
+      }
+      .org-gnus-emphasis-italic {
+        /* gnus-emphasis-italic */
+        font-style: italic;
+      }
+      .org-gnus-emphasis-strikethru {
+        /* gnus-emphasis-strikethru */
+        text-decoration: line-through;
+      }
+      .org-gnus-emphasis-underline {
+        /* gnus-emphasis-underline */
+        text-decoration: underline;
+      }
+      .org-gnus-emphasis-underline-bold {
+        /* gnus-emphasis-underline-bold */
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-gnus-emphasis-underline-bold-italic {
+        /* gnus-emphasis-underline-bold-italic */
+        font-weight: bold;
+        font-style: italic;
+        text-decoration: underline;
+      }
+      .org-gnus-emphasis-underline-italic {
+        /* gnus-emphasis-underline-italic */
+        font-style: italic;
+        text-decoration: underline;
+      }
+      .org-gnus-group-mail-1 {
+        /* gnus-group-mail-1 */
+        color: #000000;
+        font-weight: bold;
+      }
+      .org-gnus-group-mail-1-empty {
+        /* gnus-group-mail-1-empty */
+        color: #9e9e9e;
+      }
+      .org-gnus-group-mail-2 {
+        /* gnus-group-mail-2 */
+        color: #000000;
+        font-weight: bold;
+      }
+      .org-gnus-group-mail-2-empty {
+        /* gnus-group-mail-2-empty */
+        color: #9e9e9e;
+      }
+      .org-gnus-group-mail-3 {
+        /* gnus-group-mail-3 */
+        color: #000000;
+        font-weight: bold;
+      }
+      .org-gnus-group-mail-3-empty {
+        /* gnus-group-mail-3-empty */
+        color: #9e9e9e;
+      }
+      .org-gnus-group-mail-low {
+        /* gnus-group-mail-low */
+        color: #000000;
+      }
+      .org-gnus-group-mail-low-empty {
+        /* gnus-group-mail-low-empty */
+        color: #9e9e9e;
+      }
+      .org-gnus-group-news-1 {
+        /* gnus-group-news-1 */
+        color: #000000;
+        font-weight: bold;
+      }
+      .org-gnus-group-news-1-empty {
+        /* gnus-group-news-1-empty */
+        color: #9e9e9e;
+      }
+      .org-gnus-group-news-2 {
+        /* gnus-group-news-2 */
+        color: #000000;
+        font-weight: bold;
+      }
+      .org-gnus-group-news-2-empty {
+        /* gnus-group-news-2-empty */
+        color: #9e9e9e;
+      }
+      .org-gnus-group-news-3 {
+        /* gnus-group-news-3 */
+        color: #000000;
+        font-weight: bold;
+      }
+      .org-gnus-group-news-3-empty {
+        /* gnus-group-news-3-empty */
+        color: #9e9e9e;
+      }
+      .org-gnus-group-news-4 {
+        /* gnus-group-news-4 */
+        color: #000000;
+        font-weight: bold;
+      }
+      .org-gnus-group-news-4-empty {
+        /* gnus-group-news-4-empty */
+        color: #9e9e9e;
+      }
+      .org-gnus-group-news-5 {
+        /* gnus-group-news-5 */
+        color: #000000;
+        font-weight: bold;
+      }
+      .org-gnus-group-news-5-empty {
+        /* gnus-group-news-5-empty */
+        color: #9e9e9e;
+      }
+      .org-gnus-group-news-6 {
+        /* gnus-group-news-6 */
+        color: #000000;
+        font-weight: bold;
+      }
+      .org-gnus-group-news-6-empty {
+        /* gnus-group-news-6-empty */
+        color: #9e9e9e;
+      }
+      .org-gnus-group-news-low {
+        /* gnus-group-news-low */
+        color: #9e9e9e;
+        font-weight: bold;
+      }
+      .org-gnus-group-news-low-empty {
+        /* gnus-group-news-low-empty */
+        color: #9e9e9e;
+      }
+      .org-gnus-header-content {
+        /* gnus-header-content */
+        color: #842879;
+      }
+      .org-gnus-header-from {
+        /* gnus-header-from */
+        color: #842879;
+      }
+      .org-gnus-header-name {
+        /* gnus-header-name */
+        color: #6cad50;
+      }
+      .org-gnus-header-newsgroups {
+        /* gnus-header-newsgroups */
+        color: #842879;
+      }
+      .org-gnus-header-subject {
+        /* gnus-header-subject */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-gnus-signature {
+        /* gnus-signature */
+        color: #6cad50;
+      }
+      .org-gnus-splash {
+        /* gnus-splash */
+        color: #888888;
+      }
+      .org-gnus-summary-cancelled {
+        /* gnus-summary-cancelled */
+        color: #99324b;
+        text-decoration: line-through;
+      }
+      .org-gnus-summary-high-ancient {
+        /* gnus-summary-high-ancient */
+        color: #b1b1b1;
+        font-style: italic;
+      }
+      .org-gnus-summary-high-read {
+        /* gnus-summary-high-read */
+        color: #323232;
+      }
+      .org-gnus-summary-high-ticked {
+        /* gnus-summary-high-ticked */
+        color: #ab5e7b;
+      }
+      .org-gnus-summary-high-undownloaded {
+        /* gnus-summary-high-undownloaded */
+        color: #008b8b;
+        font-weight: bold;
+      }
+      .org-gnus-summary-high-unread {
+        /* gnus-summary-high-unread */
+        color: #89bd72;
+      }
+      .org-gnus-summary-low-ancient {
+        /* gnus-summary-low-ancient */
+        color: #7e7e7e;
+        font-style: italic;
+      }
+      .org-gnus-summary-low-read {
+        /* gnus-summary-low-read */
+        color: #000000;
+      }
+      .org-gnus-summary-low-ticked {
+        /* gnus-summary-low-ticked */
+        color: #782b48;
+      }
+      .org-gnus-summary-low-undownloaded {
+        /* gnus-summary-low-undownloaded */
+        color: #008b8b;
+        font-style: italic;
+      }
+      .org-gnus-summary-low-unread {
+        /* gnus-summary-low-unread */
+        color: #568a40;
+      }
+      .org-gnus-summary-normal-ancient {
+        /* gnus-summary-normal-ancient */
+        color: #9e9e9e;
+        font-style: italic;
+      }
+      .org-gnus-summary-normal-read {
+        /* gnus-summary-normal-read */
+        color: #000000;
+      }
+      .org-gnus-summary-normal-ticked {
+        /* gnus-summary-normal-ticked */
+        color: #97365b;
+      }
+      .org-gnus-summary-normal-undownloaded {
+        /* gnus-summary-normal-undownloaded */
+        color: #008b8b;
+      }
+      .org-gnus-summary-normal-unread {
+        /* gnus-summary-normal-unread */
+        color: #6cad50;
+        font-weight: bold;
+      }
+      .org-gnus-summary-selected {
+        /* gnus-summary-selected */
+        color: #3b6ea8;
+        font-weight: bold;
+      }
+      .org-header-line {
+        /* header-line */
+        background-color: #f2f2f2;
+      }
+      .org-header-line-highlight {
+        /* header-line-highlight */
+        color: #fafafa;
+        background-color: #537b42;
+      }
+      .org-help-argument-name {
+        /* help-argument-name */
+        font-style: italic;
+      }
+      .org-hi-aquamarine {
+        /* hi-aquamarine */
+        background-color: #7fffd4;
+      }
+      .org-hi-black-b {
+        /* hi-black-b */
+        font-weight: bold;
+      }
+      .org-hi-black-hb {
+        /* hi-black-hb */
+        font-size: 167%;
+        font-weight: bold;
+      }
+      .org-hi-blue {
+        /* hi-blue */
+        background-color: #3b6ea8;
+      }
+      .org-hi-blue-b {
+        /* hi-blue-b */
+        color: #3b6ea8;
+        font-weight: bold;
+      }
+      .org-hi-green {
+        /* hi-green */
+        background-color: #6cad50;
+      }
+      .org-hi-green-b {
+        /* hi-green-b */
+        color: #6cad50;
+        font-weight: bold;
+      }
+      .org-hi-pink {
+        /* hi-pink */
+        background-color: #97365b;
+      }
+      .org-hi-red-b {
+        /* hi-red-b */
+        color: #99324b;
+        font-weight: bold;
+      }
+      .org-hi-salmon {
+        /* hi-salmon */
+        background-color: #ffa07a;
+      }
+      .org-hi-yellow {
+        /* hi-yellow */
+        background-color: #6cad50;
+      }
+      .org-highlight {
+        /* highlight */
+        color: #fafafa;
+        background-color: #537b42;
+      }
+      .org-hl-line {
+        /* hl-line */
+        background-color: #FFFFFF;
+      }
+      .org-hl-todo {
+        /* hl-todo */
+        color: #99324b;
+        font-weight: bold;
+      }
+      .org-holiday {
+        /* holiday */
+        background-color: #ffc0cb;
+      }
+      .org-homoglyph {
+        /* homoglyph */
+        color: #a52a2a;
+      }
+      .org-hydra-face-amaranth {
+        /* hydra-face-amaranth */
+        color: #97365b;
+        font-weight: bold;
+      }
+      .org-hydra-face-blue {
+        /* hydra-face-blue */
+        color: #3b6ea8;
+        font-weight: bold;
+      }
+      .org-hydra-face-pink {
+        /* hydra-face-pink */
+        color: #842879;
+        font-weight: bold;
+      }
+      .org-hydra-face-red {
+        /* hydra-face-red */
+        color: #99324b;
+        font-weight: bold;
+      }
+      .org-hydra-face-teal {
+        /* hydra-face-teal */
+        color: #29838d;
+        font-weight: bold;
+      }
+      .org-info-header-node {
+        /* info-header-node */
+        color: #a52a2a;
+        font-weight: bold;
+        font-style: italic;
+      }
+      .org-info-header-xref {
+        /* info-header-xref */
+        color: #537b42;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-info-index-match {
+        /* info-index-match */
+        color: #6cad50;
+        background-color: #fafafa;
+        font-weight: bold;
+      }
+      .org-info-menu-header {
+        /* info-menu-header */
+        font-weight: bold;
+      }
+      .org-info-menu-star {
+        /* info-menu-star */
+        color: #ff0000;
+      }
+      .org-info-node {
+        /* info-node */
+        color: #a52a2a;
+        font-weight: bold;
+        font-style: italic;
+      }
+      .org-info-quoted {
+      }
+      .org-info-title-1 {
+        /* info-title-1 */
+        font-size: 172%;
+        font-weight: bold;
+      }
+      .org-info-title-2 {
+        /* info-title-2 */
+        font-size: 144%;
+        font-weight: bold;
+      }
+      .org-info-title-3 {
+        /* info-title-3 */
+        font-size: 120%;
+        font-weight: bold;
+      }
+      .org-info-title-4 {
+        /* info-title-4 */
+        font-weight: bold;
+      }
+      .org-info-xref {
+        /* info-xref */
+        color: #537b42;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-internal-border {
+      }
+      .org-isearch {
+        /* isearch */
+        color: #fafafa;
+        background-color: #cbd7c6;
+        font-weight: bold;
+      }
+      .org-isearch-fail {
+        /* isearch-fail */
+        color: #fafafa;
+        background-color: #99324b;
+        font-weight: bold;
+      }
+      .org-italic {
+        /* italic */
+        font-style: italic;
+      }
+      .org-ivy-action {
+        /* ivy-action */
+        color: #537b42;
+      }
+      .org-ivy-completions-annotations {
+        /* ivy-completions-annotations */
+        font-style: italic;
+      }
+      .org-ivy-confirm {
+        /* ivy-confirm-face */
+        color: #6cad50;
+      }
+      .org-ivy-current-match {
+        /* ivy-current-match */
+        background-color: #e0e0e0;
+      }
+      .org-ivy-cursor {
+        /* ivy-cursor */
+        color: #ffffff;
+        background-color: #000000;
+      }
+      .org-ivy-grep-info {
+        /* ivy-grep-info */
+        color: #6cad50;
+      }
+      .org-ivy-grep-line-number {
+        /* ivy-grep-line-number */
+        color: #537b42;
+      }
+      .org-ivy-highlight {
+        /* ivy-highlight-face */
+        color: #842879;
+      }
+      .org-ivy-match-required {
+        /* ivy-match-required-face */
+        color: #99324b;
+      }
+      .org-ivy-minibuffer-match-face-1 {
+        /* ivy-minibuffer-match-face-1 */
+        color: #c6c6c6;
+      }
+      .org-ivy-minibuffer-match-face-2 {
+        /* ivy-minibuffer-match-face-2 */
+        color: #97365b;
+        background-color: #f5f5f5;
+      }
+      .org-ivy-minibuffer-match-face-3 {
+        /* ivy-minibuffer-match-face-3 */
+        color: #6cad50;
+        background-color: #f5f5f5;
+      }
+      .org-ivy-minibuffer-match-face-4 {
+        /* ivy-minibuffer-match-face-4 */
+        color: #6cad50;
+        background-color: #f5f5f5;
+      }
+      .org-ivy-minibuffer-match-highlight {
+        /* ivy-minibuffer-match-highlight */
+        color: #842879;
+      }
+      .org-ivy-modified-buffer {
+        /* ivy-modified-buffer */
+        color: #6cad50;
+        font-weight: bold;
+      }
+      .org-ivy-modified-outside-buffer {
+        /* ivy-modified-outside-buffer */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-ivy-org {
+        /* ivy-org */
+        color: #6c92bd;
+        font-weight: bold;
+      }
+      .org-ivy-prompt-match {
+        /* ivy-prompt-match */
+        background-color: #e0e0e0;
+      }
+      .org-ivy-remote {
+        /* ivy-remote */
+        color: #110099;
+      }
+      .org-ivy-separator {
+        /* ivy-separator */
+        color: #b6b6b6;
+      }
+      .org-ivy-subdir {
+        /* ivy-subdir */
+        color: #537b42;
+      }
+      .org-ivy-virtual {
+        /* ivy-virtual */
+        color: #b6b6b6;
+        font-style: italic;
+      }
+      .org-ivy-yanked-word {
+        /* ivy-yanked-word */
+        color: #fafafa;
+        background-color: #537b42;
+      }
+      .org-keyword {
+        /* font-lock-keyword-face */
+        color: #537b42;
+      }
+      .org-lazy-highlight {
+        /* lazy-highlight */
+        color: #fafafa;
+        background-color: #cbd7c6;
+      }
+      .org-line-number {
+        /* line-number */
+        color: #9e9e9e;
+        background-color: #FFFFFF;
+      }
+      .org-line-number-major-tick {
+        /* line-number-major-tick */
+        background-color: #d9d9d9;
+        font-weight: bold;
+      }
+      .org-line-number-minor-tick {
+        /* line-number-minor-tick */
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+      .org-link {
+        /* link */
+        color: #537b42;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-link-visited {
+        /* link-visited */
+        color: #8b008b;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-log-edit-header {
+        /* log-edit-header */
+        color: #537b42;
+      }
+      .org-log-edit-summary {
+        /* log-edit-summary */
+        color: #537b42;
+      }
+      .org-log-edit-unknown-header {
+        /* log-edit-unknown-header */
+        color: #b1b1b1;
+      }
+      .org-lsp-details {
+        /* lsp-details-face */
+        color: #9e9e9e;
+        font-size: 80%;
+      }
+      .org-lsp-face-highlight-read {
+        /* lsp-face-highlight-read */
+        color: #fafafa;
+        background-color: #e0e0e0;
+        font-weight: bold;
+      }
+      .org-lsp-face-highlight-textual {
+        /* lsp-face-highlight-textual */
+        color: #fafafa;
+        background-color: #e0e0e0;
+        font-weight: bold;
+      }
+      .org-lsp-face-highlight-write {
+        /* lsp-face-highlight-write */
+        color: #fafafa;
+        background-color: #e0e0e0;
+        font-weight: bold;
+      }
+      .org-lsp-face-rename {
+        /* lsp-face-rename */
+        text-decoration: underline;
+      }
+      .org-lsp-face-semhl-class {
+        /* lsp-face-semhl-class */
+        color: #6cad50;
+      }
+      .org-lsp-face-semhl-comment {
+        /* lsp-face-semhl-comment */
+        color: #b1b1b1;
+      }
+      .org-lsp-face-semhl-constant {
+        /* lsp-face-semhl-constant */
+        color: #537b42;
+      }
+      .org-lsp-face-semhl-deprecated {
+        /* lsp-face-semhl-deprecated */
+        text-decoration: line-through;
+      }
+      .org-lsp-face-semhl-enum {
+        /* lsp-face-semhl-enum */
+        color: #6cad50;
+      }
+      .org-lsp-face-semhl-event {
+        /* lsp-face-semhl-event */
+        color: #000000;
+      }
+      .org-lsp-face-semhl-function {
+        /* lsp-face-semhl-function */
+        color: #537b42;
+      }
+      .org-lsp-face-semhl-interface {
+        /* lsp-face-semhl-interface */
+        color: #6cad50;
+      }
+      .org-lsp-face-semhl-keyword {
+        /* lsp-face-semhl-keyword */
+        color: #537b42;
+      }
+      .org-lsp-face-semhl-label {
+        /* lsp-face-semhl-label */
+        color: #b1b1b1;
+      }
+      .org-lsp-face-semhl-macro {
+        /* lsp-face-semhl-macro */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-lsp-face-semhl-member {
+        /* lsp-face-semhl-member */
+        color: #000000;
+      }
+      .org-lsp-face-semhl-method {
+        /* lsp-face-semhl-method */
+        color: #537b42;
+      }
+      .org-lsp-face-semhl-namespace {
+        /* lsp-face-semhl-namespace */
+        color: #6cad50;
+        font-weight: bold;
+      }
+      .org-lsp-face-semhl-number {
+        /* lsp-face-semhl-number */
+        color: #537b42;
+      }
+      .org-lsp-face-semhl-operator {
+        /* lsp-face-semhl-operator */
+        color: #537b42;
+      }
+      .org-lsp-face-semhl-parameter {
+        /* lsp-face-semhl-parameter */
+        color: #000000;
+      }
+      .org-lsp-face-semhl-property {
+        /* lsp-face-semhl-property */
+        color: #000000;
+      }
+      .org-lsp-face-semhl-regexp {
+        /* lsp-face-semhl-regexp */
+        color: #6cad50;
+        font-style: italic;
+      }
+      .org-lsp-face-semhl-string {
+        /* lsp-face-semhl-string */
+        color: #6cad50;
+      }
+      .org-lsp-face-semhl-struct {
+        /* lsp-face-semhl-struct */
+        color: #6cad50;
+      }
+      .org-lsp-face-semhl-type {
+        /* lsp-face-semhl-type */
+        color: #6cad50;
+      }
+      .org-lsp-face-semhl-type-parameter {
+        /* lsp-face-semhl-type-parameter */
+        color: #6cad50;
+      }
+      .org-lsp-face-semhl-variable {
+        /* lsp-face-semhl-variable */
+        color: #000000;
+      }
+      .org-lsp-installation-buffer {
+        /* lsp-installation-buffer-face */
+        color: #00ff00;
+      }
+      .org-lsp-installation-finished-buffer {
+        /* lsp-installation-finished-buffer-face */
+        color: #ffa500;
+      }
+      .org-lsp-rename-placeholder {
+        /* lsp-rename-placeholder-face */
+        color: #000000;
+      }
+      .org-lsp-rust-analyzer-inlay {
+        /* lsp-rust-analyzer-inlay-face */
+        color: #b1b1b1;
+      }
+      .org-lsp-rust-analyzer-inlay-chain {
+        /* lsp-rust-analyzer-inlay-chain-face */
+        color: #b1b1b1;
+      }
+      .org-lsp-rust-analyzer-inlay-param {
+        /* lsp-rust-analyzer-inlay-param-face */
+        color: #b1b1b1;
+      }
+      .org-lsp-rust-analyzer-inlay-type {
+        /* lsp-rust-analyzer-inlay-type-face */
+        color: #b1b1b1;
+      }
+      .org-lsp-signature {
+        /* lsp-signature-face */
+        color: #9e9e9e;
+        font-size: 80%;
+      }
+      .org-lsp-signature-posframe {
+        /* lsp-signature-posframe */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-lv-separator {
+        /* lv-separator */
+        background-color: #cccccc;
+      }
+      .org-mac-ts-caret-position {
+      }
+      .org-mac-ts-converted-text {
+        /* mac-ts-converted-text */
+        text-decoration: underline;
+      }
+      .org-mac-ts-raw-text {
+        /* mac-ts-raw-text */
+        text-decoration: underline;
+      }
+      .org-mac-ts-selected-converted-text {
+        /* mac-ts-selected-converted-text */
+        text-decoration: underline;
+      }
+      .org-magit-bisect-bad {
+        /* magit-bisect-bad */
+        color: #99324b;
+      }
+      .org-magit-bisect-good {
+        /* magit-bisect-good */
+        color: #6cad50;
+      }
+      .org-magit-bisect-skip {
+        /* magit-bisect-skip */
+        color: #ac4426;
+      }
+      .org-magit-blame-date {
+        /* magit-blame-date */
+        color: #99324b;
+      }
+      .org-magit-blame-dimmed {
+        /* magit-blame-dimmed */
+        color: #b1b1b1;
+      }
+      .org-magit-blame-hash {
+        /* magit-blame-hash */
+        color: #398eac;
+      }
+      .org-magit-blame-heading {
+        /* magit-blame-heading */
+        color: #ac4426;
+        background-color: #e0e0e0;
+      }
+      .org-magit-blame-highlight {
+        /* magit-blame-highlight */
+        color: #000000;
+        background-color: #cccccc;
+      }
+      .org-magit-blame-margin {
+        /* magit-blame-margin */
+        color: #000000;
+        background-color: #cccccc;
+      }
+      .org-magit-blame-name {
+      }
+      .org-magit-blame-summary {
+      }
+      .org-magit-branch-current {
+        /* magit-branch-current */
+        color: #3b6ea8;
+      }
+      .org-magit-branch-local {
+        /* magit-branch-local */
+        color: #398eac;
+      }
+      .org-magit-branch-remote {
+        /* magit-branch-remote */
+        color: #6cad50;
+      }
+      .org-magit-branch-remote-head {
+        /* magit-branch-remote-head */
+        color: #6cad50;
+      }
+      .org-magit-branch-upstream {
+        /* magit-branch-upstream */
+        font-style: italic;
+      }
+      .org-magit-cherry-equivalent {
+        /* magit-cherry-equivalent */
+        color: #842879;
+      }
+      .org-magit-cherry-unmatched {
+        /* magit-cherry-unmatched */
+        color: #398eac;
+      }
+      .org-magit-diff-added {
+        /* magit-diff-added */
+        color: #568a40;
+        background-color: #f0f6ed;
+      }
+      .org-magit-diff-added-highlight {
+        /* magit-diff-added-highlight */
+        color: #6cad50;
+        background-color: #e1eedc;
+        font-weight: bold;
+      }
+      .org-magit-diff-base {
+        /* magit-diff-base */
+        color: #89361e;
+        background-color: #f6ece9;
+      }
+      .org-magit-diff-base-highlight {
+        /* magit-diff-base-highlight */
+        color: #ac4426;
+        background-color: #eed9d3;
+        font-weight: bold;
+      }
+      .org-magit-diff-conflict-heading {
+        /* magit-diff-conflict-heading */
+        color: #FFFFFF;
+        background-color: #dabed6;
+      }
+      .org-magit-diff-context {
+        /* magit-diff-context */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-magit-diff-context-highlight {
+        /* magit-diff-context-highlight */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-magit-diff-file-heading {
+        /* magit-diff-file-heading */
+        color: #000000;
+        font-weight: bold;
+      }
+      .org-magit-diff-file-heading-highlight {
+        /* magit-diff-file-heading-highlight */
+        background-color: #FFFFFF;
+      }
+      .org-magit-diff-file-heading-selection {
+        /* magit-diff-file-heading-selection */
+        color: #97365b;
+        background-color: #5272AF;
+        font-weight: bold;
+      }
+      .org-magit-diff-hunk-heading {
+        /* magit-diff-hunk-heading */
+        color: #FFFFFF;
+        background-color: #dabed6;
+      }
+      .org-magit-diff-hunk-heading-highlight {
+        /* magit-diff-hunk-heading-highlight */
+        color: #FFFFFF;
+        background-color: #842879;
+        font-weight: bold;
+      }
+      .org-magit-diff-hunk-heading-selection {
+        /* magit-diff-hunk-heading-selection */
+        color: #8b4c39;
+        background-color: #842879;
+        font-weight: bold;
+      }
+      .org-magit-diff-hunk-region {
+        /* magit-diff-hunk-region */
+        font-weight: bold;
+      }
+      .org-magit-diff-lines-boundary {
+        /* magit-diff-lines-boundary */
+        color: #6cad50;
+        background-color: #99324b;
+      }
+      .org-magit-diff-lines-heading {
+        /* magit-diff-lines-heading */
+        color: #6cad50;
+        background-color: #99324b;
+      }
+      .org-magit-diff-our {
+        /* magit-diff-our */
+        color: #7a283c;
+        background-color: #d8ced1;
+      }
+      .org-magit-diff-our-highlight {
+        /* magit-diff-our-highlight */
+        color: #99324b;
+        background-color: #d1bdc2;
+        font-weight: bold;
+      }
+      .org-magit-diff-removed {
+        /* magit-diff-removed */
+        color: #7a283c;
+        background-color: #d8ced1;
+      }
+      .org-magit-diff-removed-highlight {
+        /* magit-diff-removed-highlight */
+        color: #99324b;
+        background-color: #d1bdc2;
+        font-weight: bold;
+      }
+      .org-magit-diff-revision-summary {
+        /* magit-diff-revision-summary */
+        color: #FFFFFF;
+        background-color: #dabed6;
+      }
+      .org-magit-diff-revision-summary-highlight {
+        /* magit-diff-revision-summary-highlight */
+        color: #FFFFFF;
+        background-color: #842879;
+        font-weight: bold;
+      }
+      .org-magit-diff-their {
+        /* magit-diff-their */
+        color: #568a40;
+        background-color: #f0f6ed;
+      }
+      .org-magit-diff-their-highlight {
+        /* magit-diff-their-highlight */
+        color: #6cad50;
+        background-color: #e1eedc;
+        font-weight: bold;
+      }
+      .org-magit-diff-whitespace-warning {
+        /* magit-diff-whitespace-warning */
+        background-color: #99324b;
+      }
+      .org-magit-diffstat-added {
+        /* magit-diffstat-added */
+        color: #6cad50;
+      }
+      .org-magit-diffstat-removed {
+        /* magit-diffstat-removed */
+        color: #99324b;
+      }
+      .org-magit-dimmed {
+        /* magit-dimmed */
+        color: #b1b1b1;
+      }
+      .org-magit-filename {
+        /* magit-filename */
+        color: #842879;
+      }
+      .org-magit-hash {
+        /* magit-hash */
+        color: #b1b1b1;
+      }
+      .org-magit-head {
+        /* magit-head */
+        color: #398eac;
+      }
+      .org-magit-header-line {
+        /* magit-header-line */
+        color: #424242;
+        background-color: #5272AF;
+        font-weight: bold;
+      }
+      .org-magit-header-line-key {
+        /* magit-header-line-key */
+        color: #537b42;
+      }
+      .org-magit-header-line-log-select {
+        /* magit-header-line-log-select */
+        font-weight: bold;
+      }
+      .org-magit-keyword {
+        /* magit-keyword */
+        color: #6cad50;
+      }
+      .org-magit-keyword-squash {
+        /* magit-keyword-squash */
+        color: #6cad50;
+      }
+      .org-magit-log-author {
+        /* magit-log-author */
+        color: #ac4426;
+      }
+      .org-magit-log-date {
+        /* magit-log-date */
+        color: #3b6ea8;
+      }
+      .org-magit-log-graph {
+        /* magit-log-graph */
+        color: #b1b1b1;
+      }
+      .org-magit-mode-line-process {
+        /* magit-mode-line-process */
+        color: #537b42;
+      }
+      .org-magit-mode-line-process-error {
+        /* magit-mode-line-process-error */
+        color: #99324b;
+      }
+      .org-magit-process-ng {
+        /* magit-process-ng */
+        color: #99324b;
+      }
+      .org-magit-process-ok {
+        /* magit-process-ok */
+        color: #6cad50;
+      }
+      .org-magit-reflog-amend {
+        /* magit-reflog-amend */
+        color: #97365b;
+      }
+      .org-magit-reflog-checkout {
+        /* magit-reflog-checkout */
+        color: #3b6ea8;
+      }
+      .org-magit-reflog-cherry-pick {
+        /* magit-reflog-cherry-pick */
+        color: #6cad50;
+      }
+      .org-magit-reflog-commit {
+        /* magit-reflog-commit */
+        color: #6cad50;
+      }
+      .org-magit-reflog-merge {
+        /* magit-reflog-merge */
+        color: #6cad50;
+      }
+      .org-magit-reflog-other {
+        /* magit-reflog-other */
+        color: #398eac;
+      }
+      .org-magit-reflog-rebase {
+        /* magit-reflog-rebase */
+        color: #97365b;
+      }
+      .org-magit-reflog-remote {
+        /* magit-reflog-remote */
+        color: #398eac;
+      }
+      .org-magit-reflog-reset {
+        /* magit-reflog-reset */
+        color: #99324b;
+      }
+      .org-magit-refname {
+        /* magit-refname */
+        color: #b1b1b1;
+      }
+      .org-magit-refname-pullreq {
+        /* magit-refname-pullreq */
+        color: #b1b1b1;
+      }
+      .org-magit-refname-stash {
+        /* magit-refname-stash */
+        color: #b1b1b1;
+      }
+      .org-magit-refname-wip {
+        /* magit-refname-wip */
+        color: #b1b1b1;
+      }
+      .org-magit-section-heading {
+        /* magit-section-heading */
+        color: #3b6ea8;
+        font-weight: bold;
+      }
+      .org-magit-section-heading-selection {
+        /* magit-section-heading-selection */
+        color: #ac4426;
+        font-weight: bold;
+      }
+      .org-magit-section-highlight {
+        /* magit-section-highlight */
+        background-color: #FFFFFF;
+      }
+      .org-magit-section-secondary-heading {
+        /* magit-section-secondary-heading */
+        color: #842879;
+        font-weight: bold;
+      }
+      .org-magit-sequence-done {
+        /* magit-sequence-done */
+        color: #b1b1b1;
+      }
+      .org-magit-sequence-drop {
+        /* magit-sequence-drop */
+        color: #99324b;
+      }
+      .org-magit-sequence-exec {
+        /* magit-sequence-exec */
+        color: #b1b1b1;
+      }
+      .org-magit-sequence-head {
+        /* magit-sequence-head */
+        color: #3b6ea8;
+      }
+      .org-magit-sequence-onto {
+        /* magit-sequence-onto */
+        color: #b1b1b1;
+      }
+      .org-magit-sequence-part {
+        /* magit-sequence-part */
+        color: #ac4426;
+      }
+      .org-magit-sequence-pick {
+        /* magit-sequence-pick */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-magit-sequence-stop {
+        /* magit-sequence-stop */
+        color: #6cad50;
+      }
+      .org-magit-signature-bad {
+        /* magit-signature-bad */
+        color: #99324b;
+      }
+      .org-magit-signature-error {
+        /* magit-signature-error */
+        color: #99324b;
+      }
+      .org-magit-signature-expired {
+        /* magit-signature-expired */
+        color: #ac4426;
+      }
+      .org-magit-signature-expired-key {
+        /* magit-signature-expired-key */
+        color: #ac4426;
+      }
+      .org-magit-signature-good {
+        /* magit-signature-good */
+        color: #6cad50;
+      }
+      .org-magit-signature-revoked {
+        /* magit-signature-revoked */
+        color: #97365b;
+      }
+      .org-magit-signature-untrusted {
+        /* magit-signature-untrusted */
+        color: #6cad50;
+      }
+      .org-magit-tag {
+        /* magit-tag */
+        color: #6cad50;
+      }
+      .org-markdown-blockquote {
+        /* markdown-blockquote-face */
+        color: #b6b6b6;
+        font-style: italic;
+      }
+      .org-markdown-bold {
+        /* markdown-bold-face */
+        color: #ac4426;
+        font-weight: bold;
+      }
+      .org-markdown-code {
+        /* markdown-code-face */
+        background-color: #e0e0e0;
+      }
+      .org-markdown-comment {
+        /* markdown-comment-face */
+        color: #b1b1b1;
+      }
+      .org-markdown-footnote-marker {
+        /* markdown-footnote-marker-face */
+        color: #537b42;
+      }
+      .org-markdown-footnote-text {
+        /* markdown-footnote-text-face */
+        color: #b1b1b1;
+      }
+      .org-markdown-gfm-checkbox {
+        /* markdown-gfm-checkbox-face */
+        color: #537b42;
+      }
+      .org-markdown-header {
+        /* markdown-header-face */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-markdown-header-delimiter {
+        /* markdown-header-delimiter-face */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-markdown-header-face-1 {
+        /* markdown-header-face-1 */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-markdown-header-face-2 {
+        /* markdown-header-face-2 */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-markdown-header-face-3 {
+        /* markdown-header-face-3 */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-markdown-header-face-4 {
+        /* markdown-header-face-4 */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-markdown-header-face-5 {
+        /* markdown-header-face-5 */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-markdown-header-face-6 {
+        /* markdown-header-face-6 */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-markdown-header-rule {
+        /* markdown-header-rule-face */
+        color: #537b42;
+      }
+      .org-markdown-highlight {
+        /* markdown-highlight-face */
+        color: #fafafa;
+        background-color: #537b42;
+      }
+      .org-markdown-hr {
+        /* markdown-hr-face */
+        color: #537b42;
+      }
+      .org-markdown-html-attr-name {
+        /* markdown-html-attr-name-face */
+        color: #000000;
+      }
+      .org-markdown-html-attr-value {
+        /* markdown-html-attr-value-face */
+        color: #6cad50;
+      }
+      .org-markdown-html-entity {
+        /* markdown-html-entity-face */
+        color: #000000;
+      }
+      .org-markdown-html-tag-delimiter {
+        /* markdown-html-tag-delimiter-face */
+        color: #537b42;
+      }
+      .org-markdown-html-tag-name {
+        /* markdown-html-tag-name-face */
+        color: #537b42;
+      }
+      .org-markdown-italic {
+        /* markdown-italic-face */
+        color: #842879;
+        font-style: italic;
+      }
+      .org-markdown-language-info {
+        /* markdown-language-info-face */
+        color: #6cad50;
+      }
+      .org-markdown-language-keyword {
+        /* markdown-language-keyword-face */
+        color: #6cad50;
+      }
+      .org-markdown-line-break {
+        /* markdown-line-break-face */
+        color: #537b42;
+        text-decoration: underline;
+      }
+      .org-markdown-link {
+        /* markdown-link-face */
+        color: #537b42;
+      }
+      .org-markdown-link-title {
+        /* markdown-link-title-face */
+        color: #b1b1b1;
+      }
+      .org-markdown-list {
+        /* markdown-list-face */
+        color: #99324b;
+      }
+      .org-markdown-markup {
+        /* markdown-markup-face */
+        color: #537b42;
+      }
+      .org-markdown-math {
+        /* markdown-math-face */
+        color: #6cad50;
+      }
+      .org-markdown-metadata-key {
+        /* markdown-metadata-key-face */
+        color: #99324b;
+      }
+      .org-markdown-metadata-value {
+        /* markdown-metadata-value-face */
+        color: #6cad50;
+      }
+      .org-markdown-missing-link {
+        /* markdown-missing-link-face */
+        color: #6cad50;
+      }
+      .org-markdown-plain-url {
+        /* markdown-plain-url-face */
+        color: #537b42;
+      }
+      .org-markdown-pre {
+        /* markdown-pre-face */
+        color: #6cad50;
+      }
+      .org-markdown-reference {
+        /* markdown-reference-face */
+        color: #b6b6b6;
+      }
+      .org-markdown-strike-through {
+        /* markdown-strike-through-face */
+        text-decoration: line-through;
+      }
+      .org-markdown-url {
+        /* markdown-url-face */
+        color: #97365b;
+      }
+      .org-match {
+        /* match */
+        color: #6cad50;
+        background-color: #fafafa;
+        font-weight: bold;
+      }
+      .org-menu {
+      }
+      .org-message-cited-text-1 {
+        /* message-cited-text-1 */
+        color: #97365b;
+      }
+      .org-message-cited-text-2 {
+        /* message-cited-text-2 */
+        color: #6cad50;
+      }
+      .org-message-cited-text-3 {
+        /* message-cited-text-3 */
+        color: #97365b;
+      }
+      .org-message-cited-text-4 {
+        /* message-cited-text-4 */
+        color: #6cad50;
+      }
+      .org-message-header-cc {
+        /* message-header-cc */
+        color: #466838;
+        font-weight: bold;
+      }
+      .org-message-header-name {
+        /* message-header-name */
+        color: #6cad50;
+      }
+      .org-message-header-newsgroups {
+        /* message-header-newsgroups */
+        color: #6cad50;
+      }
+      .org-message-header-other {
+        /* message-header-other */
+        color: #842879;
+      }
+      .org-message-header-subject {
+        /* message-header-subject */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-message-header-to {
+        /* message-header-to */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-message-header-xheader {
+        /* message-header-xheader */
+        color: #b6b6b6;
+      }
+      .org-message-mml {
+        /* message-mml */
+        color: #b1b1b1;
+        font-style: italic;
+      }
+      .org-message-separator {
+        /* message-separator */
+        color: #b1b1b1;
+      }
+      .org-minibuffer-prompt {
+        /* minibuffer-prompt */
+        color: #537b42;
+      }
+      .org-mm-command-output {
+        /* mm-command-output */
+        color: #cd0000;
+      }
+      .org-mm-uu-extract {
+        /* mm-uu-extract */
+        color: #006400;
+        background-color: #ffffe0;
+      }
+      .org-mode-line {
+        /* mode-line */
+        background-color: #f2f2f2;
+      }
+      .org-mode-line-buffer-id {
+        /* mode-line-buffer-id */
+        font-weight: bold;
+      }
+      .org-mode-line-buffer-id-inactive {
+        /* mode-line-buffer-id-inactive */
+        font-weight: bold;
+      }
+      .org-mode-line-emphasis {
+        /* mode-line-emphasis */
+        color: #537b42;
+      }
+      .org-mode-line-highlight {
+        /* mode-line-highlight */
+        color: #fafafa;
+        background-color: #537b42;
+      }
+      .org-mode-line-inactive {
+        /* mode-line-inactive */
+        color: #9e9e9e;
+        background-color: #e5e5e5;
+      }
+      .org-mouse {
+      }
+      .org-mouse-drag-and-drop-region {
+        /* mouse-drag-and-drop-region */
+        background-color: #bdbdbd;
+      }
+      .org-negation-char {
+        /* font-lock-negation-char-face */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-next-error {
+        /* next-error */
+        background-color: #bdbdbd;
+      }
+      .org-nobreak-hyphen {
+        /* nobreak-hyphen */
+        color: #a52a2a;
+      }
+      .org-nobreak-space {
+        /* nobreak-space */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-olivetti-fringe {
+        /* olivetti-fringe */
+        color: #bdbdbd;
+        background-color: #FFFFFF;
+      }
+      .org-org-agenda-calendar-event {
+        /* org-agenda-calendar-event */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-org-agenda-calendar-sexp {
+        /* org-agenda-calendar-sexp */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-org-agenda-clocking {
+        /* org-agenda-clocking */
+        background-color: #d7e2ed;
+      }
+      .org-org-agenda-column-dateline {
+        /* org-agenda-column-dateline */
+        background-color: #e5e5e5;
+      }
+      .org-org-agenda-current-time {
+        /* org-agenda-current-time */
+        color: #b1b1b1;
+      }
+      .org-org-agenda-date {
+        /* org-agenda-date */
+        color: #842879;
+      }
+      .org-org-agenda-date-today {
+        /* org-agenda-date-today */
+        color: #b57eae;
+      }
+      .org-org-agenda-date-weekend {
+        /* org-agenda-date-weekend */
+        color: #4f1848;
+      }
+      .org-org-agenda-diary {
+        /* org-agenda-diary */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-org-agenda-dimmed-todo {
+        /* org-agenda-dimmed-todo-face */
+        color: #b1b1b1;
+      }
+      .org-org-agenda-done {
+        /* org-agenda-done */
+        color: #9e9e9e;
+        font-weight: bold;
+      }
+      .org-org-agenda-filter-category {
+        /* org-agenda-filter-category */
+        background-color: #f2f2f2;
+      }
+      .org-org-agenda-filter-effort {
+        /* org-agenda-filter-effort */
+        background-color: #f2f2f2;
+      }
+      .org-org-agenda-filter-regexp {
+        /* org-agenda-filter-regexp */
+        background-color: #f2f2f2;
+      }
+      .org-org-agenda-filter-tags {
+        /* org-agenda-filter-tags */
+        background-color: #f2f2f2;
+      }
+      .org-org-agenda-restriction-lock {
+        /* org-agenda-restriction-lock */
+        background-color: #eeeeee;
+      }
+      .org-org-agenda-structure {
+        /* org-agenda-structure */
+        color: #000000;
+      }
+      .org-org-archived {
+        /* org-archived */
+        color: #b6b6b6;
+      }
+      .org-org-block {
+        /* org-block */
+        background-color: #e0e0e0;
+      }
+      .org-org-block-begin-line {
+        /* org-block-begin-line */
+        color: #b1b1b1;
+        background-color: #e0e0e0;
+      }
+      .org-org-block-end-line {
+        /* org-block-end-line */
+        color: #b1b1b1;
+        background-color: #e0e0e0;
+      }
+      .org-org-checkbox {
+        /* org-checkbox */
+        color: #6cad50;
+        font-weight: bold;
+      }
+      .org-org-checkbox-statistics-done {
+        /* org-checkbox-statistics-done */
+        color: #9e9e9e;
+        font-weight: bold;
+      }
+      .org-org-checkbox-statistics-todo {
+        /* org-checkbox-statistics-todo */
+        color: #6cad50;
+        font-weight: bold;
+      }
+      .org-org-cite {
+        /* org-cite */
+        color: #537b42;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-org-cite-key {
+        /* org-cite-key */
+        color: #537b42;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-org-clock-overlay {
+        /* org-clock-overlay */
+        color: #000000;
+        background-color: #d3d3d3;
+      }
+      .org-org-code {
+        /* org-code */
+        color: #ac4426;
+        background-color: #e0e0e0;
+      }
+      .org-org-column {
+        /* org-column */
+        background-color: #e5e5e5;
+      }
+      .org-org-column-title {
+        /* org-column-title */
+        background-color: #e5e5e5;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-org-date {
+        /* org-date */
+        color: #6cad50;
+      }
+      .org-org-date-selected {
+        /* org-date-selected */
+        color: #ff0000;
+      }
+      .org-org-default {
+      }
+      .org-org-dispatcher-highlight {
+        /* org-dispatcher-highlight */
+        color: #00008b;
+        background-color: #c6e2ff;
+        font-weight: bold;
+      }
+      .org-org-document-info {
+        /* org-document-info */
+        color: #537b42;
+      }
+      .org-org-document-info-keyword {
+        /* org-document-info-keyword */
+        color: #9e9e9e;
+      }
+      .org-org-document-title {
+        /* org-document-title */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-org-done {
+        /* org-done */
+        color: #9e9e9e;
+        font-weight: bold;
+      }
+      .org-org-drawer {
+        /* org-drawer */
+        color: #b6b6b6;
+      }
+      .org-org-ellipsis {
+        /* org-ellipsis */
+        color: #b1b1b1;
+      }
+      .org-org-footnote {
+        /* org-footnote */
+        color: #ac4426;
+      }
+      .org-org-formula {
+        /* org-formula */
+        color: #398eac;
+      }
+      .org-org-habit-alert {
+        /* org-habit-alert-face */
+        background-color: #b5d6a7;
+        font-weight: bold;
+      }
+      .org-org-habit-alert-future {
+        /* org-habit-alert-future-face */
+        background-color: #d2e6ca;
+        font-weight: bold;
+      }
+      .org-org-habit-clear {
+        /* org-habit-clear-face */
+        background-color: #bdbdbd;
+        font-weight: bold;
+      }
+      .org-org-habit-clear-future {
+        /* org-habit-clear-future-face */
+        background-color: #e0e0e0;
+        font-weight: bold;
+      }
+      .org-org-habit-overdue {
+        /* org-habit-overdue-face */
+        background-color: #cc98a5;
+        font-weight: bold;
+      }
+      .org-org-habit-overdue-future {
+        /* org-habit-overdue-future-face */
+        background-color: #e0c1c9;
+        font-weight: bold;
+      }
+      .org-org-habit-ready {
+        /* org-habit-ready-face */
+        background-color: #9db6d3;
+        font-weight: bold;
+      }
+      .org-org-habit-ready-future {
+        /* org-habit-ready-future-face */
+        background-color: #c4d3e4;
+        font-weight: bold;
+      }
+      .org-org-headline-done {
+        /* org-headline-done */
+        color: #9e9e9e;
+      }
+      .org-org-headline-todo {
+        /* org-headline-todo */
+        color: #8b0000;
+      }
+      .org-org-hide {
+        /* org-hide */
+        color: #FFFFFF;
+      }
+      .org-org-indent {
+        /* org-indent */
+        color: #FFFFFF;
+      }
+      .org-org-latex-and-related {
+        /* org-latex-and-related */
+        color: #424242;
+        font-weight: bold;
+      }
+      .org-org-level-1 {
+        /* org-level-1 */
+        color: #3b6ea8;
+        font-weight: bold;
+      }
+      .org-org-level-2 {
+        /* org-level-2 */
+        color: #97365b;
+        font-weight: bold;
+      }
+      .org-org-level-3 {
+        /* org-level-3 */
+        color: #842879;
+        font-weight: bold;
+      }
+      .org-org-level-4 {
+        /* org-level-4 */
+        color: #6c92bd;
+        font-weight: bold;
+      }
+      .org-org-level-5 {
+        /* org-level-5 */
+        color: #b16883;
+        font-weight: bold;
+      }
+      .org-org-level-6 {
+        /* org-level-6 */
+        color: #9db6d3;
+        font-weight: bold;
+      }
+      .org-org-level-7 {
+        /* org-level-7 */
+        color: #cb9aad;
+        font-weight: bold;
+      }
+      .org-org-level-8 {
+        /* org-level-8 */
+        color: #d7e2ed;
+        font-weight: bold;
+      }
+      .org-org-link {
+        /* org-link */
+        color: #537b42;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-org-list-dt {
+        /* org-list-dt */
+        color: #537b42;
+      }
+      .org-org-macro {
+        /* org-macro */
+        color: #424242;
+        font-weight: bold;
+      }
+      .org-org-meta-line {
+        /* org-meta-line */
+        color: #b6b6b6;
+      }
+      .org-org-mode-line-clock {
+        /* org-mode-line-clock */
+        background-color: #f2f2f2;
+      }
+      .org-org-mode-line-clock-overrun {
+        /* org-mode-line-clock-overrun */
+        background-color: #ff0000;
+      }
+      .org-org-priority {
+        /* org-priority */
+        color: #99324b;
+      }
+      .org-org-property-value {
+        /* org-property-value */
+        color: #b6b6b6;
+      }
+      .org-org-quote {
+        /* org-quote */
+        background-color: #e0e0e0;
+        font-style: italic;
+      }
+      .org-org-roam-dim {
+        /* org-roam-dim */
+        color: #999999;
+      }
+      .org-org-roam-header-line {
+        /* org-roam-header-line */
+        color: #8b6508;
+        font-weight: bold;
+      }
+      .org-org-roam-olp {
+        /* org-roam-olp */
+        color: #999999;
+      }
+      .org-org-roam-preview-heading {
+        /* org-roam-preview-heading */
+        color: #4d4d4d;
+        background-color: #cccccc;
+      }
+      .org-org-roam-preview-heading-highlight {
+        /* org-roam-preview-heading-highlight */
+        color: #4d4d4d;
+        background-color: #bfbfbf;
+      }
+      .org-org-roam-preview-heading-selection {
+        /* org-roam-preview-heading-selection */
+        color: #8b4c39;
+        background-color: #bfbfbf;
+      }
+      .org-org-roam-preview-region {
+        /* org-roam-preview-region */
+        font-weight: bold;
+      }
+      .org-org-roam-title {
+        /* org-roam-title */
+        font-weight: bold;
+      }
+      .org-org-scheduled {
+        /* org-scheduled */
+        color: #000000;
+      }
+      .org-org-scheduled-previously {
+        /* org-scheduled-previously */
+        color: #424242;
+      }
+      .org-org-scheduled-today {
+        /* org-scheduled-today */
+        color: #616161;
+      }
+      .org-org-sexp-date {
+        /* org-sexp-date */
+        color: #000000;
+      }
+      .org-org-special-keyword {
+        /* org-special-keyword */
+        color: #b6b6b6;
+      }
+      .org-org-superstar-first {
+        /* org-superstar-first */
+        color: #6cad50;
+      }
+      .org-org-superstar-header-bullet {
+      }
+      .org-org-superstar-item {
+        /* org-superstar-item */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-org-superstar-leading {
+        /* org-superstar-leading */
+        color: #bebebe;
+        background-color: #FFFFFF;
+      }
+      .org-org-table {
+        /* org-table */
+        color: #842879;
+      }
+      .org-org-table-header {
+        /* org-table-header */
+        color: #000000;
+        background-color: #d3d3d3;
+      }
+      .org-org-tag {
+        /* org-tag */
+        color: #b6b6b6;
+      }
+      .org-org-tag-group {
+        /* org-tag-group */
+        color: #b6b6b6;
+      }
+      .org-org-target {
+        /* org-target */
+        text-decoration: underline;
+      }
+      .org-org-time-grid {
+        /* org-time-grid */
+        color: #b1b1b1;
+      }
+      .org-org-todo {
+        /* org-todo */
+        color: #6cad50;
+        font-weight: bold;
+      }
+      .org-org-upcoming-deadline {
+        /* org-upcoming-deadline */
+        color: #323232;
+      }
+      .org-org-upcoming-distant-deadline {
+        /* org-upcoming-distant-deadline */
+        color: #7f7f7f;
+      }
+      .org-org-variable-pitch-fixed {
+      }
+      .org-org-verbatim {
+        /* org-verbatim */
+        color: #6cad50;
+      }
+      .org-org-verse {
+        /* org-verse */
+        background-color: #e0e0e0;
+      }
+      .org-org-warning {
+        /* org-warning */
+        color: #6cad50;
+      }
+      .org-outline-1 {
+        /* outline-1 */
+        color: #3b6ea8;
+        font-weight: bold;
+      }
+      .org-outline-2 {
+        /* outline-2 */
+        color: #97365b;
+        font-weight: bold;
+      }
+      .org-outline-3 {
+        /* outline-3 */
+        color: #842879;
+        font-weight: bold;
+      }
+      .org-outline-4 {
+        /* outline-4 */
+        color: #6c92bd;
+        font-weight: bold;
+      }
+      .org-outline-5 {
+        /* outline-5 */
+        color: #b16883;
+        font-weight: bold;
+      }
+      .org-outline-6 {
+        /* outline-6 */
+        color: #9db6d3;
+        font-weight: bold;
+      }
+      .org-outline-7 {
+        /* outline-7 */
+        color: #cb9aad;
+        font-weight: bold;
+      }
+      .org-outline-8 {
+        /* outline-8 */
+        color: #d7e2ed;
+        font-weight: bold;
+      }
+      .org-package-description {
+        /* package-description */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-package-name {
+        /* package-name */
+        color: #537b42;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-package-status-avail-obso {
+        /* package-status-avail-obso */
+        color: #99324b;
+      }
+      .org-package-status-available {
+        /* package-status-available */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-package-status-built-in {
+        /* package-status-built-in */
+        color: #537b42;
+      }
+      .org-package-status-dependency {
+        /* package-status-dependency */
+        color: #b1b1b1;
+      }
+      .org-package-status-disabled {
+        /* package-status-disabled */
+        color: #6cad50;
+      }
+      .org-package-status-external {
+        /* package-status-external */
+        color: #537b42;
+      }
+      .org-package-status-held {
+        /* package-status-held */
+        color: #537b42;
+      }
+      .org-package-status-incompat {
+        /* package-status-incompat */
+        color: #99324b;
+      }
+      .org-package-status-installed {
+        /* package-status-installed */
+        color: #b1b1b1;
+      }
+      .org-package-status-unsigned {
+        /* package-status-unsigned */
+        color: #6cad50;
+      }
+      .org-powerline-active0 {
+        /* powerline-active0 */
+        background-color: #FFFFFF;
+      }
+      .org-powerline-active1 {
+        /* powerline-active1 */
+        background-color: #ffffff;
+      }
+      .org-powerline-active2 {
+        /* powerline-active2 */
+        color: #424242;
+        background-color: #ffffff;
+      }
+      .org-powerline-inactive0 {
+        /* powerline-inactive0 */
+        color: #9e9e9e;
+        background-color: #eeeeee;
+      }
+      .org-powerline-inactive1 {
+        /* powerline-inactive1 */
+        color: #9e9e9e;
+        background-color: #eeeeee;
+      }
+      .org-powerline-inactive2 {
+        /* powerline-inactive2 */
+        color: #9e9e9e;
+        background-color: #eeeeee;
+      }
+      .org-preprocessor {
+        /* font-lock-preprocessor-face */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-query-replace {
+        /* query-replace */
+        color: #fafafa;
+        background-color: #cbd7c6;
+        font-weight: bold;
+      }
+      .org-read-multiple-choice {
+        /* read-multiple-choice-face */
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-regexp-grouping-backslash {
+        /* font-lock-regexp-grouping-backslash */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-regexp-grouping-construct {
+        /* font-lock-regexp-grouping-construct */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-region {
+        /* region */
+        background-color: #bdbdbd;
+      }
+      .org-rmail-header-name {
+        /* rmail-header-name */
+        color: #537b42;
+      }
+      .org-rmail-highlight {
+        /* rmail-highlight */
+        color: #fafafa;
+        background-color: #537b42;
+      }
+      .org-rust-builtin-formatting-macro {
+        /* rust-builtin-formatting-macro */
+        color: #537b42;
+      }
+      .org-rust-question-mark {
+        /* rust-question-mark */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-rust-string-interpolation {
+        /* rust-string-interpolation */
+        color: #6cad50;
+        font-style: italic;
+      }
+      .org-rust-unsafe {
+        /* rust-unsafe */
+        color: #6cad50;
+      }
+      .org-scroll-bar {
+      }
+      .org-secondary-selection {
+        /* secondary-selection */
+        background-color: #bdbdbd;
+      }
+      .org-sgml-namespace {
+        /* sgml-namespace */
+        color: #537b42;
+      }
+      .org-sh-escaped-newline {
+        /* sh-escaped-newline */
+        color: #6cad50;
+      }
+      .org-sh-heredoc {
+        /* sh-heredoc */
+        color: #6cad50;
+      }
+      .org-sh-quoted-exec {
+        /* sh-quoted-exec */
+        color: #537b42;
+        font-weight: bold;
+      }
+      .org-shadow {
+        /* shadow */
+        color: #9e9e9e;
+      }
+      .org-show-paren-match {
+        /* show-paren-match */
+        color: #99324b;
+        background-color: #fafafa;
+      }
+      .org-show-paren-match-expression {
+        /* show-paren-match-expression */
+        color: #99324b;
+        background-color: #fafafa;
+      }
+      .org-show-paren-mismatch {
+        /* show-paren-mismatch */
+        color: #fafafa;
+        background-color: #99324b;
+      }
+      .org-shr-abbreviation {
+        /* shr-abbreviation */
+        text-decoration: underline;
+      }
+      .org-shr-link {
+        /* shr-link */
+        color: #537b42;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-shr-selected-link {
+        /* shr-selected-link */
+        color: #537b42;
+        background-color: #ff0000;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .org-shr-strike-through {
+        /* shr-strike-through */
+        text-decoration: line-through;
+      }
+      .org-smerge-base {
+        /* smerge-base */
+        background-color: #d7e2ed;
+      }
+      .org-smerge-lower {
+        /* smerge-lower */
+        background-color: #e1eedc;
+      }
+      .org-smerge-markers {
+        /* smerge-markers */
+        color: #FFFFFF;
+        background-color: #b1b1b1;
+        font-weight: bold;
+      }
+      .org-smerge-refined-added {
+        /* smerge-refined-added */
+        color: #6cad50;
+        background-color: #FFFFFF;
+      }
+      .org-smerge-refined-changed {
+      }
+      .org-smerge-refined-removed {
+        /* smerge-refined-removed */
+        color: #99324b;
+        background-color: #e0e0e0;
+      }
+      .org-smerge-upper {
+        /* smerge-upper */
+        background-color: #d1bdc2;
+      }
+      .org-solaire-default {
+        /* solaire-default-face */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-solaire-fringe {
+        /* solaire-fringe-face */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-solaire-header-line {
+        /* solaire-header-line-face */
+        background-color: #f2f2f2;
+      }
+      .org-solaire-hl-line {
+        /* solaire-hl-line-face */
+        background-color: #FFFFFF;
+      }
+      .org-solaire-mode-line {
+        /* solaire-mode-line-face */
+        background-color: #f2f2f2;
+      }
+      .org-solaire-mode-line-inactive {
+        /* solaire-mode-line-inactive-face */
+        color: #9e9e9e;
+        background-color: #FFFFFF;
+      }
+      .org-solaire-org-hide {
+        /* solaire-org-hide-face */
+        color: #1b0a19;
+      }
+      .org-solaire-region {
+        /* solaire-region-face */
+        background-color: #bdbdbd;
+      }
+      .org-straight-process-command {
+        /* straight-process-command */
+        font-weight: bold;
+      }
+      .org-straight-process-error {
+        /* straight-process-error */
+        color: #ff0000;
+        font-weight: bold;
+      }
+      .org-string {
+        /* font-lock-string-face */
+        color: #6cad50;
+      }
+      .org-success {
+        /* success */
+        color: #6cad50;
+      }
+      .org-swiper-background-match-face-1 {
+        /* swiper-background-match-face-1 */
+        color: #9e9e9e;
+        background-color: #47b12a6a4403;
+      }
+      .org-swiper-background-match-face-2 {
+        /* swiper-background-match-face-2 */
+        color: #fafafa;
+        background-color: #e1936b8a8338;
+        font-weight: bold;
+      }
+      .org-swiper-background-match-face-3 {
+        /* swiper-background-match-face-3 */
+        color: #fafafa;
+        background-color: #d8ddb057b8e1;
+        font-weight: bold;
+      }
+      .org-swiper-background-match-face-4 {
+        /* swiper-background-match-face-4 */
+        color: #fafafa;
+        background-color: #f1889047803f;
+        font-weight: bold;
+      }
+      .org-swiper-line {
+        /* swiper-line-face */
+        color: #fafafa;
+        background-color: #3b6ea8;
+      }
+      .org-swiper-match-face-1 {
+        /* swiper-match-face-1 */
+        color: #9e9e9e;
+        background-color: #fafafa;
+      }
+      .org-swiper-match-face-2 {
+        /* swiper-match-face-2 */
+        color: #fafafa;
+        background-color: #ac4426;
+        font-weight: bold;
+      }
+      .org-swiper-match-face-3 {
+        /* swiper-match-face-3 */
+        color: #fafafa;
+        background-color: #97365b;
+        font-weight: bold;
+      }
+      .org-swiper-match-face-4 {
+        /* swiper-match-face-4 */
+        color: #fafafa;
+        background-color: #6cad50;
+        font-weight: bold;
+      }
+      .org-tab-bar {
+        /* tab-bar */
+        color: #FFFFFF;
+        background-color: #FFFFFF;
+      }
+      .org-tab-bar-tab {
+        /* tab-bar-tab */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-tab-bar-tab-inactive {
+        /* tab-bar-tab-inactive */
+        color: #454545;
+        background-color: #FFFFFF;
+      }
+      .org-tab-line {
+        /* tab-line */
+        color: #FFFFFF;
+        background-color: #FFFFFF;
+      }
+      .org-tab-line-close-highlight {
+        /* tab-line-close-highlight */
+        color: #537b42;
+      }
+      .org-tab-line-highlight {
+        /* tab-line-highlight */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-tab-line-tab {
+        /* tab-line-tab */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-tab-line-tab-current {
+        /* tab-line-tab-current */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-tab-line-tab-inactive {
+        /* tab-line-tab-inactive */
+        color: #454545;
+        background-color: #FFFFFF;
+      }
+      .org-table-cell {
+        /* table-cell */
+        color: #e5e5e5;
+        background-color: #0000ff;
+      }
+      .org-tabulated-list-fake-header {
+        /* tabulated-list-fake-header */
+        font-weight: bold;
+        text-decoration: underline;
+        text-decoration: overline;
+      }
+      .org-term {
+        /* term */
+        color: #000000;
+      }
+      .org-term-bold {
+        /* term-bold */
+        font-weight: bold;
+      }
+      .org-term-color-black {
+        /* term-color-black */
+        color: #fafafa;
+        background-color: #fafafa;
+      }
+      .org-term-color-blue {
+        /* term-color-blue */
+        color: #3b6ea8;
+        background-color: #3b6ea8;
+      }
+      .org-term-color-cyan {
+        /* term-color-cyan */
+        color: #398eac;
+        background-color: #398eac;
+      }
+      .org-term-color-green {
+        /* term-color-green */
+        color: #6cad50;
+        background-color: #6cad50;
+      }
+      .org-term-color-magenta {
+        /* term-color-magenta */
+        color: #97365b;
+        background-color: #97365b;
+      }
+      .org-term-color-red {
+        /* term-color-red */
+        color: #99324b;
+        background-color: #99324b;
+      }
+      .org-term-color-white {
+        /* term-color-white */
+        color: #424242;
+        background-color: #424242;
+      }
+      .org-term-color-yellow {
+        /* term-color-yellow */
+        color: #6cad50;
+        background-color: #6cad50;
+      }
+      .org-term-underline {
+        /* term-underline */
+        text-decoration: underline;
+      }
+      .org-tool-bar {
+        /* tool-bar */
+        color: #000000;
+        background-color: #bfbfbf;
+      }
+      .org-tooltip {
+        /* tooltip */
+        color: #000000;
+        background-color: #FFFFFF;
+      }
+      .org-trailing-whitespace {
+        /* trailing-whitespace */
+        background-color: #99324b;
+      }
+      .org-transient-active-infix {
+        /* transient-active-infix */
+        background-color: #bdbdbd;
+      }
+      .org-transient-amaranth {
+        /* transient-amaranth */
+        color: #E52B50;
+      }
+      .org-transient-argument {
+        /* transient-argument */
+        color: #6cad50;
+      }
+      .org-transient-blue {
+        /* transient-blue */
+        color: #0000ff;
+      }
+      .org-transient-disabled-suffix {
+        /* transient-disabled-suffix */
+        color: #000000;
+        background-color: #ff0000;
+        font-weight: bold;
+      }
+      .org-transient-enabled-suffix {
+        /* transient-enabled-suffix */
+        color: #000000;
+        background-color: #00ff00;
+        font-weight: bold;
+      }
+      .org-transient-heading {
+        /* transient-heading */
+        color: #537b42;
+      }
+      .org-transient-higher-level {
+        /* transient-higher-level */
+        text-decoration: underline;
+      }
+      .org-transient-inactive-argument {
+        /* transient-inactive-argument */
+        color: #9e9e9e;
+      }
+      .org-transient-inactive-value {
+        /* transient-inactive-value */
+        color: #9e9e9e;
+      }
+      .org-transient-inapt-suffix {
+        /* transient-inapt-suffix */
+        color: #9e9e9e;
+        font-style: italic;
+      }
+      .org-transient-key {
+        /* transient-key */
+        color: #537b42;
+      }
+      .org-transient-mismatched-key {
+        /* transient-mismatched-key */
+        text-decoration: underline;
+      }
+      .org-transient-nonstandard-key {
+        /* transient-nonstandard-key */
+        text-decoration: underline;
+      }
+      .org-transient-pink {
+        /* transient-pink */
+        color: #FF6EB4;
+      }
+      .org-transient-red {
+        /* transient-red */
+        color: #ff0000;
+      }
+      .org-transient-separator {
+        /* transient-separator */
+        background-color: #cccccc;
+      }
+      .org-transient-teal {
+        /* transient-teal */
+        color: #367588;
+      }
+      .org-transient-unreachable {
+        /* transient-unreachable */
+        color: #9e9e9e;
+      }
+      .org-transient-unreachable-key {
+        /* transient-unreachable-key */
+        color: #9e9e9e;
+      }
+      .org-transient-value {
+        /* transient-value */
+        color: #6cad50;
+      }
+      .org-tty-menu-disabled {
+        /* tty-menu-disabled-face */
+        color: #d3d3d3;
+        background-color: #0000ff;
+      }
+      .org-tty-menu-enabled {
+        /* tty-menu-enabled-face */
+        color: #ffff00;
+        background-color: #0000ff;
+        font-weight: bold;
+      }
+      .org-tty-menu-selected {
+        /* tty-menu-selected-face */
+        background-color: #ff0000;
+      }
+      .org-type {
+        /* font-lock-type-face */
+        color: #6cad50;
+      }
+      .org-underline {
+        /* underline */
+        text-decoration: underline;
+      }
+      .org-variable-name {
+        /* font-lock-variable-name-face */
+        color: #000000;
+      }
+      .org-variable-pitch {
+      }
+      .org-vc-conflict-state {
+      }
+      .org-vc-edited-state {
+      }
+      .org-vc-locally-added-state {
+      }
+      .org-vc-locked-state {
+      }
+      .org-vc-missing-state {
+      }
+      .org-vc-needs-update-state {
+      }
+      .org-vc-removed-state {
+      }
+      .org-vc-state-base {
+      }
+      .org-vc-up-to-date-state {
+      }
+      .org-vertical-border {
+        /* vertical-border */
+        color: #c4c4c4;
+        background-color: #c4c4c4;
+      }
+      .org-warning {
+        /* warning */
+        color: #6cad50;
+      }
+      .org-warning-1 {
+        /* font-lock-warning-face */
+        color: #6cad50;
+      }
+      .org-which-func {
+        /* which-func */
+        color: #3b6ea8;
+      }
+      .org-which-key-command-description {
+        /* which-key-command-description-face */
+        color: #3b6ea8;
+      }
+      .org-which-key-docstring {
+        /* which-key-docstring-face */
+        color: #b1b1b1;
+      }
+      .org-which-key-group-description {
+        /* which-key-group-description-face */
+        color: #842879;
+      }
+      .org-which-key-highlighted-command {
+        /* which-key-highlighted-command-face */
+        color: #3b6ea8;
+        text-decoration: underline;
+      }
+      .org-which-key-key {
+        /* which-key-key-face */
+        color: #6cad50;
+      }
+      .org-which-key-local-map-description {
+        /* which-key-local-map-description-face */
+        color: #97365b;
+      }
+      .org-which-key-note {
+        /* which-key-note-face */
+        color: #b1b1b1;
+      }
+      .org-which-key-separator {
+        /* which-key-separator-face */
+        color: #b1b1b1;
+      }
+      .org-which-key-special-key {
+        /* which-key-special-key-face */
+        color: #6cad50;
+        font-weight: bold;
+      }
+      .org-widget-button {
+        /* widget-button */
+        font-weight: bold;
+      }
+      .org-widget-button-pressed {
+        /* widget-button-pressed */
+        color: #99324b;
+      }
+      .org-widget-documentation {
+        /* widget-documentation */
+        color: #6cad50;
+      }
+      .org-widget-field {
+        /* widget-field */
+        background-color: #e0e0e0;
+      }
+      .org-widget-inactive {
+        /* widget-inactive */
+        color: #9e9e9e;
+      }
+      .org-widget-single-line-field {
+        /* widget-single-line-field */
+        background-color: #e0e0e0;
+      }
+      .org-window-divider {
+        /* window-divider */
+        color: #c4c4c4;
+        background-color: #c4c4c4;
+      }
+      .org-window-divider-first-pixel {
+        /* window-divider-first-pixel */
+        color: #c4c4c4;
+        background-color: #c4c4c4;
+      }
+      .org-window-divider-last-pixel {
+        /* window-divider-last-pixel */
+        color: #c4c4c4;
+        background-color: #c4c4c4;
+      }
+      .org-xref-file-header {
+        /* xref-file-header */
+        color: #6cad50;
+      }
+      .org-xref-line-number {
+        /* xref-line-number */
+        color: #537b42;
+      }
+      .org-xref-match {
+        /* xref-match */
+        color: #6cad50;
+        background-color: #fafafa;
+        font-weight: bold;
+      }
+      .org-yas--field-debug {
+      }
+      .org-yas-field-highlight {
+        /* yas-field-highlight-face */
+        color: #6cad50;
+        background-color: #fafafa;
+        font-weight: bold;
+      }
