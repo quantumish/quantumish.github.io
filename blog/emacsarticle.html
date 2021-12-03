@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-03 Fri 10:31 -->
+<!-- 2021-12-03 Fri 10:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>A Quick Emacs Setup</title>
@@ -193,7 +193,8 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { width: 90%; }
 </style>
-<link rel="stylesheet" href="file:///Users/davfrei/org.css"><link rel="stylesheet" href="https://quantumish.github.io/admonition.css"><script src="https://kit.fontawesome.com/76c5ce8bda.js" crossorigin="anonymous"
+<link rel="stylesheet" href="https://quantumish.github.io/org.css">
+<link rel="stylesheet" href="https://quantumish.github.io/org-htmlize.css">
 
         <style>
         /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -266,9 +267,9 @@
 <div id="content" class="content">
 <h1 class="title">A Quick Emacs Setup</h1>
 
-<div id="outline-container-org1142aab" class="outline-2">
-<h2 id="org1142aab">About</h2>
-<div class="outline-text-2" id="text-org1142aab">
+<div id="outline-container-orga3026a0" class="outline-2">
+<h2 id="orga3026a0">About</h2>
+<div class="outline-text-2" id="text-orga3026a0">
 <p>
 In my crusade to convince everyone to use Emacs, I've realized a <i>somewhat</i> (i.e. packages but nothing too specific like keybinds) opinionated guide that allows for a nice setup could be useful. The goal is to quickly get to an editor that looks pretty and can be used comfortably to write code.<br />
 </p>
@@ -311,9 +312,9 @@ This assumes you have a general idea of how to get around in Emacs: if not, see 
 </div>
 </div>
 
-<div id="outline-container-org3c97dfc" class="outline-2">
-<h2 id="org3c97dfc">Packages</h2>
-<div class="outline-text-2" id="text-org3c97dfc">
+<div id="outline-container-orgcaffaad" class="outline-2">
+<h2 id="orgcaffaad">Packages</h2>
+<div class="outline-text-2" id="text-orgcaffaad">
 <p>
 First, let's set the package archives.<br />
 </p>
@@ -342,9 +343,9 @@ Install it via <kbd>M-x package-install RET use-package</kbd>. Then, we can set 
 </div>
 </div>
 
-<div id="outline-container-org4e084a1" class="outline-2">
-<h2 id="org4e084a1">Undoing Defaults</h2>
-<div class="outline-text-2" id="text-org4e084a1">
+<div id="outline-container-org4fb5f60" class="outline-2">
+<h2 id="org4fb5f60">Undoing Defaults</h2>
+<div class="outline-text-2" id="text-org4fb5f60">
 <p>
 Emacs has some default behaviors that are generally annoying. Let's disable them!<br />
 </p>
@@ -381,9 +382,9 @@ Emacs has some default behaviors that are generally annoying. Let's disable them
 </div>
 </div>
 
-<div id="outline-container-org61697e8" class="outline-2">
-<h2 id="org61697e8">Doom-Themes</h2>
-<div class="outline-text-2" id="text-org61697e8">
+<div id="outline-container-org5c69b97" class="outline-2">
+<h2 id="org5c69b97">Doom-Themes</h2>
+<div class="outline-text-2" id="text-org5c69b97">
 <p>
 In my opinion, Doom Emacs has the cleanest-looking UI setup for Emacs, so it's up next. Soon, we'll be at a setup that looks much closer to a modern editor by setting up a nice theme that overhauls Emacs' normal look as well as adding plenty of extra improvements: icons, contrast, tabs, and a tree.<br />
 </p>
@@ -461,9 +462,9 @@ There are general themeing alternatives to doom-themes, namely:<br />
 </div>
 </div>
 
-<div id="outline-container-orgeb3f66d" class="outline-2">
-<h2 id="orgeb3f66d">Minbuffer completion</h2>
-<div class="outline-text-2" id="text-orgeb3f66d">
+<div id="outline-container-org3cafaa9" class="outline-2">
+<h2 id="org3cafaa9">Minbuffer completion</h2>
+<div class="outline-text-2" id="text-org3cafaa9">
 <p>
 Next, let's improve interactions with Emacs: things like finding files, running commands, switching buffers, etc&#x2026; by using <code>ivy</code>, a light(ish) minibuffer completion system. Ivy is one of the more popular packages for this, meaning that there's quite a bit of integration with other packages. Notably, <code>counsel</code> extends its functionality and <code>swiper</code> provides a nicer interface to interactive search.<br />
 </p>
@@ -520,9 +521,9 @@ There's quite a bit of competition here:<br />
 </div>
 </div>
 
-<div id="outline-container-orgef1b096" class="outline-2">
-<h2 id="orgef1b096">LSP</h2>
-<div class="outline-text-2" id="text-orgef1b096">
+<div id="outline-container-org8efdcf9" class="outline-2">
+<h2 id="org8efdcf9">LSP</h2>
+<div class="outline-text-2" id="text-org8efdcf9">
 <p>
 <code>lsp-mode</code> enables us to get Intellisense-esque features in Emacs: setting it up requires both config on Emacs' side and installing actual language servers on your side. Check the <a href="https://github.com/emacs-lsp/lsp-mode">lsp-mode page</a> to find the server for your preferred language - although brace yourself for the potential for lots of debugging if the server doesn't work as expected on your system.<br />
 </p>
@@ -559,9 +560,9 @@ It can do more than just provide good completions: you can jump to definitions a
 </div>
 </div>
 
-<div id="outline-container-org59a4068" class="outline-2">
-<h2 id="org59a4068">Company</h2>
-<div class="outline-text-2" id="text-org59a4068">
+<div id="outline-container-orgde6ca98" class="outline-2">
+<h2 id="orgde6ca98">Company</h2>
+<div class="outline-text-2" id="text-orgde6ca98">
 <p>
 <code>company-mode</code> provides code completions in Emacs, and will work together with <code>lsp-mode</code> to provide a nice experience. On top of that, let's use add-ons that allow documentation for completions to pop up and also let <code>prescient</code> make things better like it did with Ivy.<br />
 </p>
@@ -592,9 +593,9 @@ It can do more than just provide good completions: you can jump to definitions a
 </div>
 </div>
 
-<div id="outline-container-org2223bb8" class="outline-2">
-<h2 id="org2223bb8">Flycheck</h2>
-<div class="outline-text-2" id="text-org2223bb8">
+<div id="outline-container-org8f7c92c" class="outline-2">
+<h2 id="org8f7c92c">Flycheck</h2>
+<div class="outline-text-2" id="text-org8f7c92c">
 <p>
 Next, we can add linting to the editor with flycheck!<br />
 </p>
@@ -665,9 +666,9 @@ Want an alternative look for flycheck? Hate squigglies? Add this under the <code
 </div>
 </div>
 
-<div id="outline-container-org31aa75e" class="outline-2">
-<h2 id="org31aa75e">YASnippet</h2>
-<div class="outline-text-2" id="text-org31aa75e">
+<div id="outline-container-orgb83b252" class="outline-2">
+<h2 id="orgb83b252">YASnippet</h2>
+<div class="outline-text-2" id="text-orgb83b252">
 <p>
 YASnippet is the premiere package for snippets, so let's install it.<br />
 </p>
@@ -684,9 +685,9 @@ To make a snippet for a specific mode, call <code>yas-new-snippet</code>. Refer 
 </div>
 </div>
 
-<div id="outline-container-orgba6ebf3" class="outline-2">
-<h2 id="orgba6ebf3">Git</h2>
-<div class="outline-text-2" id="text-orgba6ebf3">
+<div id="outline-container-orgc9b811a" class="outline-2">
+<h2 id="orgc9b811a">Git</h2>
+<div class="outline-text-2" id="text-orgc9b811a">
 <p>
 Let's install the wonderful git porcelain Magit and some extra usefulness.<br />
 </p>
@@ -702,9 +703,9 @@ Let's install the wonderful git porcelain Magit and some extra usefulness.<br />
 </div>
 </div>
 
-<div id="outline-container-org5bb3469" class="outline-3">
-<h3 id="org5bb3469">Speedy guide to Magit</h3>
-<div class="outline-text-3" id="text-org5bb3469">
+<div id="outline-container-orgb3bc63a" class="outline-3">
+<h3 id="orgb3bc63a">Speedy guide to Magit</h3>
+<div class="outline-text-3" id="text-orgb3bc63a">
 <p>
 Essentially everything you see is interactive: try pressing <kbd>TAB</kbd> or <kbd>RET</kbd> over it.<br />
 </p>
@@ -726,9 +727,9 @@ Go to <a href="https://magit.vc/manual/magit.html">Magit's manual</a> for more d
 </div>
 </div>
 
-<div id="outline-container-orgccf8995" class="outline-2">
-<h2 id="orgccf8995">Help</h2>
-<div class="outline-text-2" id="text-orgccf8995">
+<div id="outline-container-org04d828c" class="outline-2">
+<h2 id="org04d828c">Help</h2>
+<div class="outline-text-2" id="text-org04d828c">
 <p>
 In order to make some parts of exploring Emacs slightly nicer, let's install <code>helpful</code> which overhauls the Help interface, and <code>which-key</code> which helps you discover keybinds.<br />
 </p>
@@ -762,9 +763,9 @@ In order to make some parts of exploring Emacs slightly nicer, let's install <co
 </div>
 
 
-<div id="outline-container-orgb45bf54" class="outline-2">
-<h2 id="orgb45bf54">That's all, folks!</h2>
-<div class="outline-text-2" id="text-orgb45bf54">
+<div id="outline-container-org9dc2a32" class="outline-2">
+<h2 id="org9dc2a32">That's all, folks!</h2>
+<div class="outline-text-2" id="text-org9dc2a32">
 <p>
 Congrats, you have a base config that looks nice and has a decent set of features now!<br />
 </p>
