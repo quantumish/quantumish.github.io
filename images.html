@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-08-31 Wed 20:27 -->
+<!-- 2022-09-01 Thu 09:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Image Manipulation</title>
@@ -193,7 +193,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<link rel="stylesheet" href="https://quantumish.github.io/admonition.css">
 <link rel="stylesheet" href="https://quantumish.github.io/org.css">
+<link rel="stylesheet" href="https://quantumish.github.io/org-htmlize.css">
 
         <style>
         /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -269,10 +271,10 @@
 This is my writeup for the first assignment! Please run the associated code in the root directory first by running:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh"># download needed images
+<pre class="src src-sh"><span class="org-comment-delimiter"># </span><span class="org-comment">download needed images</span>
 wget https://i.imgur.com/fyDOvfz.jpg image1.jpg
 wget https://i.imgur.com/0DANhnn.jpg image2.jpg
-# run generator script for this assignment
+<span class="org-comment-delimiter"># </span><span class="org-comment">run generator script for this assignment</span>
 cargo run --example image-manipulation
 </pre>
 </div>
@@ -284,9 +286,9 @@ This will generate the images referenced by this document. Alternatively, see th
 I used <code>image-rs</code> for my base implementation of the exercises: it's a handy high level library for working with images in Rust, although its abstractions come with some annoyances sometimes.
 </p>
 
-<div id="outline-container-org66e8697" class="outline-2">
-<h2 id="org66e8697">Exercise 1: dimming</h2>
-<div class="outline-text-2" id="text-org66e8697">
+<div id="outline-container-org8324b13" class="outline-2">
+<h2 id="org8324b13">Exercise 1: dimming</h2>
+<div class="outline-text-2" id="text-org8324b13">
 <blockquote>
 <p>
 Recall from lecture that the value of each pixel represents its brightness. Implement a function that takes in an image and returns the same image, but half as bright as the original image.
@@ -297,52 +299,52 @@ Recall from lecture that the value of each pixel represents its brightness. Impl
 Writing such a function is pretty straightforward - although I do a bit more than I have to. I chose to preemptively allocate the correct amount of space for the vector so that I wouldn't have to lose a bit of time to reallocation. I then add all the values to the vector using <code>extend</code> to consume the entire iterator. I also opted to take a integer "division factor" instead of just an arbitrary fraction, since then I could stick to simple integer division and not worry about casting to a float and back.
 </p>
 <div class="org-src-container">
-<pre class="src src-rust">pub fn dim(img: DynamicImage, factor: u8) -&gt; Result&lt;DynamicImage&gt; {
-	let (w, h) = img.dimensions();
-	let mut out: Vec&lt;u8&gt; = Vec::with_capacity((w*h*3) as usize);
-	out.extend(img.as_bytes().iter().map(|i| i/factor));	
-	let buf = ImageBuffer::from_vec(w, h, out)
-		.ok_or(anyhow!("Couldn't convert buffer."))?;
-	Ok(DynamicImage::ImageRgb8(buf))
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">dim</span>(<span class="org-variable-name">img</span>: <span class="org-type">DynamicImage</span>, <span class="org-variable-name">factor</span>: <span class="org-type">u8</span>) -&gt; <span class="org-type">Result</span>&lt;<span class="org-type">DynamicImage</span>&gt; {
+    <span class="org-keyword">let</span> (w, h) = img.dimensions();
+    <span class="org-keyword">let</span> <span class="org-keyword">mut</span> <span class="org-variable-name">out</span>: <span class="org-type">Vec</span>&lt;<span class="org-type">u8</span>&gt; = <span class="org-type">Vec</span>::with_capacity((w*h*3) <span class="org-keyword">as</span> <span class="org-type">usize</span>);
+    out.extend(img.as_bytes().iter().map(|i| i/factor));    
+    <span class="org-keyword">let</span> <span class="org-variable-name">buf</span> = <span class="org-type">ImageBuffer</span>::from_vec(w, h, out)
+        .ok_or(<span class="org-preprocessor">anyhow!</span>(<span class="org-string">"Couldn't convert buffer."</span>))<span class="org-rust-question-mark">?</span>;
+    <span class="org-type">Ok</span>(<span class="org-type">DynamicImage</span>::<span class="org-type">ImageRgb8</span>(buf))
 }
 </pre>
 </div>
 
 
-<div id="orgc162aad" class="figure">
-<p><img src="./imgs/dim.png" alt="dim.png" />
+<div id="org8f7b289" class="figure">
+<p><img src="../dim.png" alt="dim.png" />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8817e3e" class="outline-3">
-<h3 id="org8817e3e">Optimized</h3>
-<div class="outline-text-3" id="text-org8817e3e">
+<div id="outline-container-org90f5da8" class="outline-3">
+<h3 id="org90f5da8">Optimized</h3>
+<div class="outline-text-3" id="text-org90f5da8">
 <p>
 How do we make this function quick? It's actually not that hard! The compiler does most of the work for us - and in general trying to out-optimize the compiler can be a long and painful battle not often worth fighting. The one big change though is that we get a whole lot simpler: let the user handle the <code>image-rs</code> stuff, and just give the the function an input and output buffer.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">pub fn dim(bytes: &amp;[u8], out: &amp;mut [u8], factor: u8) {
-	for (n, i) in bytes.iter().enumerate() {
-		out[n] = i/factor;
-	}
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">dim</span>(<span class="org-variable-name">bytes</span>: <span class="org-rust-ampersand">&amp;</span>[<span class="org-type">u8</span>], <span class="org-variable-name">out</span>: <span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> [<span class="org-type">u8</span>], <span class="org-variable-name">factor</span>: <span class="org-type">u8</span>) {
+    <span class="org-keyword">for</span> (n, i) <span class="org-keyword">in</span> bytes.iter().enumerate() {
+        out[n] = i/factor;
+    }
 }
 </pre>
 </div>
 
 <p>
-Glancing at the assembly output of <code>cargo asm</code> (an awesome tool you can install with <kbd>cargo install cargo-asm</kbd>!) we might be disappointed to see that the compiler is <i>not</i> using SIMD instructions to dim many bytes of RGB at once!
+Glancing at the assembly output of <code>cargo asm</code> (an awesome tool you can install with <code>cargo install cargo-asm</code>!) we might be disappointed to see that the compiler is <i>not</i> using SIMD instructions to dim many bytes of RGB at once!
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm">; ... stuff above
-; out[n] = i/factor;
-ldrb    w11, [x9]
-add     x12, x9, #1
-and     w9, w4, #0xff
-udiv    w9, w11, w9 ; &lt;-- only a udiv?? really?
-; stuff below...
+<pre class="src src-asm"><span class="org-comment-delimiter">; </span><span class="org-comment">... stuff above</span>
+<span class="org-comment-delimiter">; </span><span class="org-comment">out[n] = i/factor;</span>
+<span class="org-function-name">ldrb</span>    <span class="org-keyword">w11</span>, [x9]
+<span class="org-function-name">add</span>     <span class="org-keyword">x12</span>, x9, #1
+<span class="org-function-name">and</span>     <span class="org-keyword">w9</span>, w4, #0xff
+<span class="org-function-name">udiv</span>    <span class="org-keyword">w9</span>, w11, w9 <span class="org-comment-delimiter">; </span><span class="org-comment">&lt;-- only a udiv?? really?</span>
+<span class="org-comment-delimiter">; </span><span class="org-comment">stuff below...</span>
 </pre>
 </div>
 
@@ -355,10 +357,10 @@ We can do a bit better though, since the assignment does specifically say we wan
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">pub fn dim2(bytes: &amp;[u8], out: &amp;mut [u8]) {
-	for (n, i) in bytes.iter().enumerate() {
-		out[n] = i/2;
-	}
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">dim2</span>(<span class="org-variable-name">bytes</span>: <span class="org-rust-ampersand">&amp;</span>[<span class="org-type">u8</span>], <span class="org-variable-name">out</span>: <span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> [<span class="org-type">u8</span>]) {
+    <span class="org-keyword">for</span> (n, i) <span class="org-keyword">in</span> bytes.iter().enumerate() {
+        out[n] = i/2;
+    }
 }
 </pre>
 </div>
@@ -368,11 +370,11 @@ Looking at the assembly output there shows that it now uses the SIMD we desired:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm">; ... stuff above
-; out[n] = i/2;
-ldr      q0, [x10], #16
-ushr.16b v0, v0, #1 ; &lt;-- yay! SIMD and a faster instruction
-; stuff below ...
+<pre class="src src-asm"><span class="org-comment-delimiter">; </span><span class="org-comment">... stuff above</span>
+<span class="org-comment-delimiter">; </span><span class="org-comment">out[n] = i/2;</span>
+<span class="org-function-name">ldr</span>      <span class="org-keyword">q0</span>, [x10], #16
+<span class="org-function-name">ushr</span>.16b v0, v0, #1 <span class="org-comment-delimiter">; </span><span class="org-comment">&lt;-- yay! SIMD and a faster instruction</span>
+<span class="org-comment-delimiter">; </span><span class="org-comment">stuff below ...</span>
 </pre>
 </div>
 
@@ -385,24 +387,24 @@ You may notice I put the number two in a <code>black_box</code>, which is a util
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">fn bench_dims(c: &amp;mut Criterion) {
-	let mut group = c.benchmark_group("Dimming");
-	for sz in 8..14 {
-		let sz = 2_u32.pow(sz);
-		let img = utils::gen_image(sz);
-		group.bench_with_input(BenchmarkId::new("dim", sz), &amp;img, |b, i| {
-			let (w, h) = i.dimensions();
-			let mut out: Vec&lt;u8&gt; = vec![0; (w*h*3) as usize];		
-			let bytes = i.as_bytes();
-			b.iter(|| optimized::cpu::dim(&amp;bytes[..], &amp;mut out[..], black_box(2)))
-		});
-		group.bench_with_input(BenchmarkId::new("dim2", sz), &amp;img, |b, i| {
-			let (w, h) = i.dimensions();
-			let mut out: Vec&lt;u8&gt; = vec![0; (w*h*3) as usize];		
-			let bytes = i.as_bytes();
-			b.iter(|| optimized::cpu::dim2(&amp;bytes[..], &amp;mut out[..]))
-		});
-	}
+<pre class="src src-rust"><span class="org-keyword">fn</span> <span class="org-function-name">bench_dims</span>(<span class="org-variable-name">c</span>: <span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> <span class="org-type">Criterion</span>) {
+    <span class="org-keyword">let</span> <span class="org-keyword">mut</span> <span class="org-variable-name">group</span> = c.benchmark_group(<span class="org-string">"Dimming"</span>);
+    <span class="org-keyword">for</span> <span class="org-variable-name">sz</span> <span class="org-keyword">in</span> 8..14 {
+        <span class="org-keyword">let</span> <span class="org-variable-name">sz</span> = 2_<span class="org-type">u32</span>.pow(sz);
+        <span class="org-keyword">let</span> <span class="org-variable-name">img</span> = <span class="org-constant">utils</span>::gen_image(sz);
+        group.bench_with_input(<span class="org-type">BenchmarkId</span>::new(<span class="org-string">"dim"</span>, sz), <span class="org-rust-ampersand">&amp;</span>img, |b, i| {
+            <span class="org-keyword">let</span> (w, h) = i.dimensions();
+            <span class="org-keyword">let</span> <span class="org-keyword">mut</span> <span class="org-variable-name">out</span>: <span class="org-type">Vec</span>&lt;<span class="org-type">u8</span>&gt; = <span class="org-preprocessor">vec!</span>[0; (w*h*3) <span class="org-keyword">as</span> <span class="org-type">usize</span>];       
+            <span class="org-keyword">let</span> <span class="org-variable-name">bytes</span> = i.as_bytes();
+            b.iter(|| <span class="org-constant">optimized</span>::<span class="org-constant">cpu</span>::dim(<span class="org-rust-ampersand">&amp;</span>bytes[..], <span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> out[..], black_box(2)))
+        });
+        group.bench_with_input(<span class="org-type">BenchmarkId</span>::new(<span class="org-string">"dim2"</span>, sz), <span class="org-rust-ampersand">&amp;</span>img, |b, i| {
+            <span class="org-keyword">let</span> (w, h) = i.dimensions();
+            <span class="org-keyword">let</span> <span class="org-keyword">mut</span> <span class="org-variable-name">out</span>: <span class="org-type">Vec</span>&lt;<span class="org-type">u8</span>&gt; = <span class="org-preprocessor">vec!</span>[0; (w*h*3) <span class="org-keyword">as</span> <span class="org-type">usize</span>];       
+            <span class="org-keyword">let</span> <span class="org-variable-name">bytes</span> = i.as_bytes();
+            b.iter(|| <span class="org-constant">optimized</span>::<span class="org-constant">cpu</span>::dim2(<span class="org-rust-ampersand">&amp;</span>bytes[..], <span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> out[..]))
+        });
+    }
 }
 </pre>
 </div>
@@ -413,8 +415,8 @@ We can then visualize the difference:
 
 <div class="org-center">
 
-<div id="org76f8099" class="figure">
-<p><img src="./imgs/dimming.svg" alt="dimming.svg" class="org-svg" />
+<div id="orgb9959f8" class="figure">
+<p><img src="../dimming.svg" alt="dimming.svg" class="org-svg" />
 </p>
 </div>
 </div>
@@ -426,9 +428,9 @@ Woah! That's a pretty serious difference, although it makes some sense given how
 </div>
 </div>
 
-<div id="outline-container-orgaea74dc" class="outline-2">
-<h2 id="orgaea74dc">Exercise 2: Convert to greyscale</h2>
-<div class="outline-text-2" id="text-orgaea74dc">
+<div id="outline-container-org895b451" class="outline-2">
+<h2 id="org895b451">Exercise 2: Convert to greyscale</h2>
+<div class="outline-text-2" id="text-org895b451">
 <blockquote>
 <p>
 Implement a function that takes in an RGB color image and outputs that same image in grayscale.
@@ -439,34 +441,272 @@ Implement a function that takes in an RGB color image and outputs that same imag
 Mostly the same boilerplate, although I use <code>image-rs</code>' direct pixel grabbing interface this time. Addition of the R, G, and B values requires widening the bytes to 16-bit so there aren't any overflows and then casting back to an 8-bit int in the end.
 </p>
 <div class="org-src-container">
-<pre class="src src-rust">pub fn greyscale(img: DynamicImage) -&gt; Result&lt;DynamicImage&gt; {	
-	let (w, h) = img.dimensions();
-	let mut out: Vec&lt;u8&gt; = vec![0; (w*h) as usize];	
-	for (n, i) in img.pixels().enumerate() {
-		let vals = i.2.0;
-		let sum = vals[0] as u16
-			+ vals[1] as u16
-			+ vals[2] as u16;
-		out[n] = (sum/3) as u8;
-	}
-	let buf = ImageBuffer::from_vec(w, h, out)
-		.ok_or(anyhow!("Couldn't convert buffer."))?;
-	Ok(DynamicImage::ImageLuma8(buf)) // encode image as greyscale	
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">greyscale</span>(<span class="org-variable-name">img</span>: <span class="org-type">DynamicImage</span>) -&gt; <span class="org-type">Result</span>&lt;<span class="org-type">DynamicImage</span>&gt; {   
+    <span class="org-keyword">let</span> (w, h) = img.dimensions();
+    <span class="org-keyword">let</span> <span class="org-keyword">mut</span> <span class="org-variable-name">out</span>: <span class="org-type">Vec</span>&lt;<span class="org-type">u8</span>&gt; = <span class="org-preprocessor">vec!</span>[0; (w*h) <span class="org-keyword">as</span> <span class="org-type">usize</span>]; 
+    <span class="org-keyword">for</span> (n, i) <span class="org-keyword">in</span> img.pixels().enumerate() {
+        <span class="org-keyword">let</span> <span class="org-variable-name">vals</span> = i.2.0;
+        <span class="org-keyword">let</span> <span class="org-variable-name">sum</span> = vals[0] <span class="org-keyword">as</span> <span class="org-type">u16</span>
+            + vals[1] <span class="org-keyword">as</span> <span class="org-type">u16</span>
+            + vals[2] <span class="org-keyword">as</span> <span class="org-type">u16</span>;
+        out[n] = (sum/3) <span class="org-keyword">as</span> <span class="org-type">u8</span>;
+    }
+    <span class="org-keyword">let</span> <span class="org-variable-name">buf</span> = <span class="org-type">ImageBuffer</span>::from_vec(w, h, out)
+        .ok_or(<span class="org-preprocessor">anyhow!</span>(<span class="org-string">"Couldn't convert buffer."</span>))<span class="org-rust-question-mark">?</span>;
+    <span class="org-type">Ok</span>(<span class="org-type">DynamicImage</span>::<span class="org-type">ImageLuma8</span>(buf)) <span class="org-comment-delimiter">// </span><span class="org-comment">encode image as greyscale  </span>
 }
 </pre>
 </div>
 
 
-<div id="org561e686" class="figure">
-<p><img src="./imgs/grey.png" alt="grey.png" />
+<div id="org60ca6ad" class="figure">
+<p><img src="../grey.png" alt="grey.png" />
 </p>
+</div>
+</div>
+
+<div id="outline-container-org36398e5" class="outline-3">
+<h3 id="org36398e5">Optimized</h3>
+<div class="outline-text-3" id="text-org36398e5">
+<p>
+If you thought the last optimization was a long side tangent, get ready for a whole lot more. I spent most of my time in this assignment trying to make greyscaling quick. Feel free to skip this section.
+</p>
+
+<p>
+To begin, it's not immediately obvious <i>how</i> one would actually SIMD-optimize a greyscale when the bytes are laid out as [r g b r g b &#x2026; r g b] and we need to process 3 (not even 4, which would be more palatable) components at once.
+</p>
+</div>
+
+<div id="outline-container-org38e62ed" class="outline-4">
+<h4 id="org38e62ed">First Attempt</h4>
+<div class="outline-text-4" id="text-org38e62ed">
+<p>
+After searching around for a bit, I found an interesting technique detailed <a href="http://ftp.cvut.cz/kernel/people/geoff/cell/ps3-linux-docs/CellProgrammingTutorial/BasicsOfSIMDProgramming.html">here</a> that essentially processes chunks of 12 bytes at a time (or 4 pixels), loads all of the red bytes into a SIMD register, all of the blue into another, and all of the green into a third.
+</p>
+
+<p>
+This has some downsides though: mainly that we're doing a strided access of memory which is a little awkward to implement. Doing manual SIMD is also a journey, especially on ARM. Rust has unsafe wrappers around the NEON instrinsics (thin wrappers around assembly) in <code>std::aarch64</code>, but this means that I spent a good amount of time combing through lists of functions to figure out which one corresponded to the operation I wanted. Since I originally hoped to work with a modified greyscale algorithm that had a weighted average of the R, G, and B values I opted to cast to 32-bit floats and use the intrinsics there to multiply by constants.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">simd4_greyscale</span>(<span class="org-variable-name">buf</span>: <span class="org-rust-ampersand">&amp;</span>[<span class="org-type">u8</span>], <span class="org-variable-name">out</span>: <span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> [<span class="org-type">u8</span>]) {
+    <span class="org-keyword">for</span> <span class="org-variable-name">i</span> <span class="org-keyword">in</span> 0..buf.len()/12 {
+        <span class="org-keyword">let</span> <span class="org-variable-name">off</span> = i*12;
+        <span class="org-keyword">let</span> <span class="org-variable-name">r</span> = [buf[off + 0] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 3] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 6] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 9] <span class="org-keyword">as</span> <span class="org-type">f32</span>];
+        <span class="org-keyword">let</span> <span class="org-variable-name">g</span> = [buf[off + 1] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 4] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 7] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 10] <span class="org-keyword">as</span> <span class="org-type">f32</span>];
+        <span class="org-keyword">let</span> <span class="org-variable-name">b</span> = [buf[off + 2] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 5] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 8] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 11] <span class="org-keyword">as</span> <span class="org-type">f32</span>];
+        <span class="org-keyword">let</span> <span class="org-keyword">mut</span> <span class="org-variable-name">ret</span> = [0.0; 4];
+        <span class="org-rust-unsafe">unsafe</span> {
+            <span class="org-keyword">let</span> <span class="org-variable-name">r_simd</span> = vld1q_f32(r.as_ptr());
+            <span class="org-keyword">let</span> <span class="org-variable-name">g_simd</span> = vld1q_f32(g.as_ptr());
+            <span class="org-keyword">let</span> <span class="org-variable-name">b_simd</span> = vld1q_f32(b.as_ptr());
+            <span class="org-keyword">let</span> <span class="org-variable-name">r_simd</span> = vmulq_n_f32(r_simd, 0.33);
+            <span class="org-keyword">let</span> <span class="org-variable-name">r_simd</span> = vmlaq_n_f32(g_simd, r_simd, 0.33);
+            <span class="org-keyword">let</span> <span class="org-variable-name">r_simd</span> = vmlaq_n_f32(b_simd, r_simd, 0.33);
+            vst1q_f32(ret.as_mut_ptr(), r_simd);
+        }
+        <span class="org-keyword">for</span> <span class="org-variable-name">j</span> <span class="org-keyword">in</span> 0..4 {
+            out[i*4 + j] = ret[j] <span class="org-keyword">as</span> <span class="org-type">u8</span>;
+        }
+    }
+}
+</pre>
+</div>
+
+<p>
+I'm gonna dive into a bit more depth with this function, mostly because it's quite a bit more unreadable than everything else I've shown thus far. First off (pun intended), the loop and <code>off</code> calculation is used for loading the image data 12 bytes at a time as mentioned earlier. The next thing you notice is the huge block of array logic:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span class="org-keyword">let</span> <span class="org-variable-name">r</span> = [buf[off + 0] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 3] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 6] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 9] <span class="org-keyword">as</span> <span class="org-type">f32</span>];
+<span class="org-keyword">let</span> <span class="org-variable-name">g</span> = [buf[off + 1] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 4] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 7] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 10] <span class="org-keyword">as</span> <span class="org-type">f32</span>];
+<span class="org-keyword">let</span> <span class="org-variable-name">b</span> = [buf[off + 2] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 5] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 8] <span class="org-keyword">as</span> <span class="org-type">f32</span>, buf[off + 11] <span class="org-keyword">as</span> <span class="org-type">f32</span>];
+</pre>
+</div>
+
+<p>
+This is used to extract each of the red, green, and blue bytes from the 12-byte subsequence we're processing and cast them to <code>f32</code> so we can use them. You might wonder why this is all manually typed out instead of written as a nice loop. All of this logic is run every time we process four pixels, and so adding extra conditionals and logic actually has an impact on the runtime.
+</p>
+
+<p>
+Then, there's the big <code>unsafe</code> block with a bunch of terse function names. These are the NEON intrinsics! We start off by loading the r, g, and b arrays we made into SIMD registers.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span class="org-keyword">let</span> <span class="org-variable-name">r_simd</span> = vld1q_f32(r.as_ptr());
+<span class="org-keyword">let</span> <span class="org-variable-name">g_simd</span> = vld1q_f32(g.as_ptr());
+<span class="org-keyword">let</span> <span class="org-variable-name">b_simd</span> = vld1q_f32(b.as_ptr());
+</pre>
+</div>
+
+<p>
+Next, we multiply each of the R values by 0.33 (approximating division by 1/3 + mostly a legacy from me originally trying to use a different algorithm).
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span class="org-keyword">let</span> <span class="org-variable-name">r_simd</span> = vmulq_n_f32(r_simd, 0.33);
+</pre>
+</div>
+
+<p>
+We then do the same to the G and B channels, but continue accumulating the results in the <code>r_simd</code> register:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span class="org-keyword">let</span> <span class="org-variable-name">r_simd</span> = vmlaq_n_f32(g_simd, r_simd, 0.33);
+<span class="org-keyword">let</span> <span class="org-variable-name">r_simd</span> = vmlaq_n_f32(b_simd, r_simd, 0.33);
+</pre>
+</div>
+
+<p>
+Then, we finally store the contents of <code>r_simd</code> (which are now each of the greyscaled pixels) into our <code>ret</code> array, which we later use to add pixels to the output image.
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">vst1q_f32(ret.as_mut_ptr(), r_simd);
+</pre>
+</div>
+
+<p>
+Alright! Now we have <i>something</i> to work with. All this casting to <code>f32</code> isn't ideal, and there exist registers than can act on eight <code>u8</code> at once, which should theoretically be way better!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org00224af" class="outline-4">
+<h4 id="org00224af">Second Attempt</h4>
+<div class="outline-text-4" id="text-org00224af">
+<p>
+Let's just do what we did before but with 8 pixels (24 bytes) at a time! This immediately makes the array loading step much nastier, but the performance tradeoff is still there, so the code stays:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">r = [buf[off+0], buf[off+3], buf[off+6], buf[off+ 9], buf[off+12], buf[off+15], buf[off+18], buf[off+21]];
+g = [buf[off+1], buf[off+4], buf[off+7], buf[off+10], buf[off+13], buf[off+16], buf[off+19], buf[off+22]];
+b = [buf[off+2], buf[off+5], buf[off+8], buf[off+11], buf[off+14], buf[off+17], buf[off+20], buf[off+23]];
+</pre>
+</div>
+
+<p>
+We obviously can't multiply by a float like before since we're working with a bunch of <code>u8</code> now, but that isn't a problem, since that system wasn't very necessary to begin with. If we stick to the simple averaging RGB strategy, all we need is integer division, which we have.
+</p>
+
+
+<div id="org9cdb1fe" class="figure">
+<p><img src="https://i.imgur.com/IKpPkDV.png" alt="IKpPkDV.png" />
+</p>
+</div>
+<div class="org-center">
+<p>
+Pictured: all ARM NEON division instructions
+</p>
+
+<p>
+(excluding reciprocal estimation functions, which are also for <code>f32</code> data)
+</p>
+</div>
+
+<p>
+&#x2026;right? right?
+</p>
+
+<blockquote>
+<p>
+NEON doesn't have any integer division instructions, because they are expensive to implement in hardware. - <a href="https://tttapa.github.io/Pages/Raspberry-Pi/NEON/Division.html">https://tttapa.github.io/Pages/Raspberry-Pi/NEON/Division.html</a>
+</p>
+</blockquote>
+
+<p>
+Amazing. Well, one alternative strategy often used when there is no hardware multiply/divide (which is also recommended by this source) is to work with bit shifts and other arithmetic operations. After some searching, it seemed as if most ways of doing this either required widening the type to a <code>u16</code> (not great) or doing some really confusing bit math.
+</p>
+
+<p>
+<i>Alternatively</i>, we could divide by four.
+</p>
+
+<p>
+Averaging three numbers by dividing their sum by four is not recommended<sup>[citation needed]</sup>, but we don't need amazing precision: we just need the image to look grey. Dividing by <i>four</i> is substantially easier: we just bit shift right twice. Since we're staying in <code>u8</code> form the entire time we have to divide before rather than after (or else we'll overflow), so we simply shift all of the register and then add them:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust"><span class="org-keyword">let</span> <span class="org-variable-name">res</span> = vadd_u8(
+      vadd_u8(
+          vshr_n_u8(r_simd, 2),
+          vshr_n_u8(g_simd, 2)
+      ),
+    vshr_n_u8(b_simd, 2)
+);
+</pre>
+</div>
+
+<p>
+This gives us our complete 8x SIMD function:
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">simd8_greyscale</span>(<span class="org-variable-name">buf</span>: <span class="org-rust-ampersand">&amp;</span>[<span class="org-type">u8</span>], <span class="org-variable-name">out</span>: <span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> [<span class="org-type">u8</span>]) {
+    <span class="org-keyword">let</span> (<span class="org-keyword">mut</span> r, <span class="org-keyword">mut</span> g, <span class="org-keyword">mut</span> b) = ([0; 8], [0; 8], [0; 8]);
+    <span class="org-keyword">let</span> <span class="org-variable-name">ptr</span> = out.as_mut_ptr();
+    <span class="org-keyword">for</span> <span class="org-variable-name">i</span> <span class="org-keyword">in</span> 0..buf.len()/24 {
+        <span class="org-keyword">let</span> <span class="org-variable-name">off</span> = i*24;
+        r = [buf[off+0], buf[off+3], buf[off+6], buf[off+ 9], buf[off+12], buf[off+15], buf[off+18], buf[off+21]];
+        g = [buf[off+1], buf[off+4], buf[off+7], buf[off+10], buf[off+13], buf[off+16], buf[off+19], buf[off+22]];
+        b = [buf[off+2], buf[off+5], buf[off+8], buf[off+11], buf[off+14], buf[off+17], buf[off+20], buf[off+23]];
+        <span class="org-rust-unsafe">unsafe</span> {
+            <span class="org-keyword">let</span> <span class="org-variable-name">r_simd</span> = vld1_u8(r.as_ptr());
+            <span class="org-keyword">let</span> <span class="org-variable-name">g_simd</span> = vld1_u8(g.as_ptr());
+            <span class="org-keyword">let</span> <span class="org-variable-name">b_simd</span> = vld1_u8(b.as_ptr());
+            <span class="org-keyword">let</span> <span class="org-variable-name">res</span> = vadd_u8(
+                vadd_u8(
+                    vshr_n_u8(r_simd, 2),
+                    vshr_n_u8(g_simd, 2)
+                ),
+                vshr_n_u8(b_simd, 2)
+            );
+            vst1_u8(ptr.add(i*8), res);
+        }
+    }
+}
+</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org04a073d" class="outline-2">
-<h2 id="org04a073d">Exercise 3: RGB exclusion</h2>
-<div class="outline-text-2" id="text-org04a073d">
+<div id="outline-container-org45865e7" class="outline-4">
+<h4 id="org45865e7">Benchmarking</h4>
+<div class="outline-text-4" id="text-org45865e7">
+<p>
+After talking some with my friend Riley, he suggested a third, simpler approach that hopefully let the compiler do the work for me (that unfortunately only worked on RGBA images, wasting a byte per pixel):
+</p>
+<div class="org-src-container">
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">riley_greyscale</span>(<span class="org-variable-name">buf</span>: <span class="org-rust-ampersand">&amp;</span>[<span class="org-type">u8</span>], <span class="org-variable-name">out</span>: <span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> [<span class="org-type">u8</span>]) {
+    <span class="org-keyword">let</span> <span class="org-variable-name">pixels</span>: <span class="org-rust-ampersand">&amp;</span>[<span class="org-type">u32</span>] = <span class="org-constant">bytemuck</span>::cast_slice::&lt;<span class="org-type">u8</span>, <span class="org-type">u32</span>&gt;(buf);
+    <span class="org-keyword">for</span> (n, pixel) <span class="org-keyword">in</span> pixels.enumerate() {
+        <span class="org-keyword">let</span> [r, g, b, _a] = pixel.to_be_bytes();
+        <span class="org-keyword">let</span> <span class="org-variable-name">comp</span> = ((r <span class="org-keyword">as</span> <span class="org-type">u32</span> + g <span class="org-keyword">as</span> <span class="org-type">u32</span> + b <span class="org-keyword">as</span> <span class="org-type">u32</span>) / 3) <span class="org-keyword">as</span> <span class="org-type">u8</span>;
+        out[n] = comp;
+    }   
+}
+</pre>
+</div>
+
+<p>
+Benchmarking all 3 of these functions gives the following plot:
+</p>
+
+
+<div id="orgc0796ae" class="figure">
+<p><img src="https://i.imgur.com/BQK0kxU.png" alt="BQK0kxU.png" />
+</p>
+</div>
+
+<p>
+Not great. We'd expect <code>simd8</code> at the very least to be twice as fast as <code>simd4</code>. On top of that, peeking at the assembly for <code>riley</code> shows that it wasn't even vectorized! It's hard to tell without line-by-line profiling, but my bet is that the awkward strided memory loads probably offset most of the bonus given by SIMD. On top of that, all those shift operations might also cancel some stuff out when it comes to <code>simd8</code> (or the casts for <code>simd4</code>).
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8591386" class="outline-2">
+<h2 id="org8591386">Exercise 3: RGB exclusion</h2>
+<div class="outline-text-2" id="text-org8591386">
 <blockquote>
 <p>
 Implement a function that takes in an image and a channel, and returns an image without the specified channel.
@@ -478,24 +718,24 @@ For convienence, this function takes a character instead of an index, and then j
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">pub fn rgb_restrict(img: DynamicImage, channel: char) -&gt; Result&lt;DynamicImage&gt; {
-	let (w, h) = img.dimensions();
-	let mut out: Vec&lt;u8&gt; = Vec::with_capacity((w*h*3) as usize);	
-	let index = match channel {
-		'R' =&gt; 0,
-		'G' =&gt; 1,
-		'B' =&gt; 2,
-		_ =&gt; { return Err(anyhow!("Invalid color channel")); }
-	};
-	out.extend(&amp;mut
-			   img.as_bytes()
-			   .iter()
-			   .enumerate()
-			   .map(|(n,i)| if n % 3 == index { 0 } else { *i })
-	);
-	let buf = ImageBuffer::from_vec(w, h, out)
-		.ok_or(anyhow!("Couldn't convert buffer"))?;
-	Ok(DynamicImage::ImageRgb8(buf))
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">rgb_restrict</span>(<span class="org-variable-name">img</span>: <span class="org-type">DynamicImage</span>, <span class="org-variable-name">channel</span>: <span class="org-type">char</span>) -&gt; <span class="org-type">Result</span>&lt;<span class="org-type">DynamicImage</span>&gt; {
+    <span class="org-keyword">let</span> (w, h) = img.dimensions();
+    <span class="org-keyword">let</span> <span class="org-keyword">mut</span> <span class="org-variable-name">out</span>: <span class="org-type">Vec</span>&lt;<span class="org-type">u8</span>&gt; = <span class="org-type">Vec</span>::with_capacity((w*h*3) <span class="org-keyword">as</span> <span class="org-type">usize</span>);    
+    <span class="org-keyword">let</span> <span class="org-variable-name">index</span> = <span class="org-keyword">match</span> channel {
+        <span class="org-string">'R'</span> =&gt; 0,
+        <span class="org-string">'G'</span> =&gt; 1,
+        <span class="org-string">'B'</span> =&gt; 2,
+        _ =&gt; { <span class="org-keyword">return</span> <span class="org-type">Err</span>(<span class="org-preprocessor">anyhow!</span>(<span class="org-string">"Invalid color channel"</span>)); }
+    };
+    out.extend(<span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span>
+               img.as_bytes()
+               .iter()
+               .enumerate()
+               .map(|(n,i)| <span class="org-keyword">if</span> n % 3 == index { 0 } <span class="org-keyword">else</span> { *i })
+    );
+    <span class="org-keyword">let</span> <span class="org-variable-name">buf</span> = <span class="org-type">ImageBuffer</span>::from_vec(w, h, out)
+        .ok_or(<span class="org-preprocessor">anyhow!</span>(<span class="org-string">"Couldn't convert buffer"</span>))<span class="org-rust-question-mark">?</span>;
+    <span class="org-type">Ok</span>(<span class="org-type">DynamicImage</span>::<span class="org-type">ImageRgb8</span>(buf))
 }
 </pre>
 </div>
@@ -504,42 +744,49 @@ For convienence, this function takes a character instead of an index, and then j
 Running this with each of the channels R, G, B gives us the following images:
 </p>
 
-<div class="flex" id="org7d72f5f">
+<div class="flexbox" id="org4eb6a26">
+<div class="flexitem" id="org9efbbb7">
 
-<div id="org6a64973" class="figure">
-<p><img src="./imgs/rgb_r.png" alt="rgb_r.png" />
-</p>
-</div>
-
-
-<div id="orge84a525" class="figure">
-<p><img src="./imgs/rgb_g.png" alt="rgb_g.png" />
-</p>
-</div>
-
-
-<div id="org7f45024" class="figure">
-<p><img src="./imgs/rgb_b.png" alt="rgb_b.png" />
+<div id="org17d06af" class="figure">
+<p><img src="../rgb_r.png" alt="rgb_r.png" />
 </p>
 </div>
 
 </div>
+<div class="flexitem" id="org1bd7c66">
+
+<div id="org95c1e7e" class="figure">
+<p><img src="../rgb_g.png" alt="rgb_g.png" />
+</p>
 </div>
 
-<div id="outline-container-orgc30ec87" class="outline-3">
-<h3 id="orgc30ec87">Optimized</h3>
-<div class="outline-text-3" id="text-orgc30ec87">
+</div>
+<div class="flexitem" id="org03bdfd5">
+
+<div id="org7f0838d" class="figure">
+<p><img src="../rgb_b.png" alt="rgb_b.png" />
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div id="outline-container-orge97cc63" class="outline-3">
+<h3 id="orge97cc63">Optimized</h3>
+<div class="outline-text-3" id="text-orge97cc63">
 <p>
 I didn't forsee there being a nice way to optimize this any more, so I once again just went for the simplification route, letting the compiler do its best and stripping away unnecessary features (like the nice character to channel index converter).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">pub fn exclude(bytes: &amp;[u8], out: &amp;mut [u8], index: usize) {
-	for n in 0..bytes.len() {
-		if n % 3 == index {
-			out[n] = 0;
-		}
-	}
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">exclude</span>(<span class="org-variable-name">bytes</span>: <span class="org-rust-ampersand">&amp;</span>[<span class="org-type">u8</span>], <span class="org-variable-name">out</span>: <span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> [<span class="org-type">u8</span>], <span class="org-variable-name">index</span>: <span class="org-type">usize</span>) {
+    <span class="org-keyword">for</span> <span class="org-variable-name">n</span> <span class="org-keyword">in</span> 0..bytes.len() {
+        <span class="org-keyword">if</span> n % 3 == index {
+            out[n] = 0;
+        }
+    }
 }
 </pre>
 </div>
@@ -551,9 +798,9 @@ No SIMD to gain here, unfortunately.
 </div>
 </div>
 
-<div id="outline-container-orge4f1f58" class="outline-2">
-<h2 id="orge4f1f58">Advanced Exercise 1</h2>
-<div class="outline-text-2" id="text-orge4f1f58">
+<div id="outline-container-orgf42515b" class="outline-2">
+<h2 id="orgf42515b">Advanced Exercise 1</h2>
+<div class="outline-text-2" id="text-orgf42515b">
 <blockquote>
 <p>
 Implement a function that takes in an image and an LAB channel, and returns an image without the specified channel.
@@ -568,8 +815,8 @@ I used a rust library for color space handling called <code>palette</code> - it 
 Let's define a <code>ColorChannel</code> trait that requires a struct be convertible to and from <code>Srgb</code> as well as support zeroing out a user-supplied channel.
 </p>
 <div class="org-src-container">
-<pre class="src src-rust">pub trait ColorChannel: IntoColor&lt;Srgb&gt; + FromColor&lt;Srgb&gt; {
-	fn zero_channel(&amp;mut self, channel: char) -&gt; Result&lt;()&gt;;
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">trait</span> <span class="org-variable-name">ColorChannel</span>: <span class="org-type">IntoColor</span>&lt;<span class="org-type">Srgb</span>&gt; + <span class="org-type">FromColor</span>&lt;<span class="org-type">Srgb</span>&gt; {
+    <span class="org-keyword">fn</span> <span class="org-function-name">zero_channel</span>(<span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> <span class="org-keyword">self</span>, <span class="org-variable-name">channel</span>: <span class="org-type">char</span>) -&gt; <span class="org-type">Result</span>&lt;()&gt;;
 }
 </pre>
 </div>
@@ -579,16 +826,16 @@ We can then quickly implement this trait for <code>Lab</code>:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">impl ColorChannel for Lab {
-	fn zero_channel(&amp;mut self, channel: char) -&gt; Result&lt;()&gt; {
-		match channel.to_ascii_uppercase() {
-			'L' =&gt; self.l = 0.0,
-			'A' =&gt; self.a = 0.0,
-			'B' =&gt; self.b = 0.0,
-			_ =&gt; { return Err(anyhow!("Invalid color channel")); }
-		}
-		Ok(())
-	}
+<pre class="src src-rust"><span class="org-keyword">impl</span> <span class="org-type">ColorChannel</span> <span class="org-keyword">for</span> <span class="org-type">Lab</span> {
+    <span class="org-keyword">fn</span> <span class="org-function-name">zero_channel</span>(<span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> <span class="org-keyword">self</span>, <span class="org-variable-name">channel</span>: <span class="org-type">char</span>) -&gt; <span class="org-type">Result</span>&lt;()&gt; {
+        <span class="org-keyword">match</span> channel.to_ascii_uppercase() {
+            <span class="org-string">'L'</span> =&gt; <span class="org-keyword">self</span>.l = 0.0,
+            <span class="org-string">'A'</span> =&gt; <span class="org-keyword">self</span>.a = 0.0,
+            <span class="org-string">'B'</span> =&gt; <span class="org-keyword">self</span>.b = 0.0,
+            _ =&gt; { <span class="org-keyword">return</span> <span class="org-type">Err</span>(<span class="org-preprocessor">anyhow!</span>(<span class="org-string">"Invalid color channel"</span>)); }
+        }
+        <span class="org-type">Ok</span>(())
+    }
 }
 </pre>
 </div>
@@ -598,22 +845,22 @@ Now with this out of the way, we can implement the restriction function generica
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">pub fn restrict&lt;Space: ColorChannel&gt;(img: DynamicImage, channel: char) -&gt; Result&lt;DynamicImage&gt; {
-	let (w, h) = img.dimensions();
-	let mut out: Vec&lt;u8&gt; = Vec::with_capacity((w*h*3) as usize);
-	for i in img.pixels() {
-		let rgb = Srgb::from_components(
-			(i.2.0[0], i.2.0[1], i.2.0[2])			
-		).into_format::&lt;f32&gt;();
-		let mut color: Space = rgb.into_color();
-		color.set_channel(channel)?;
-		let orig: Srgb = color.into_color();
-		let orig = orig.into_format::&lt;u8&gt;().into_components();
-		out.extend([orig.0, orig.1, orig.2]);
-	}	
-	let buf = ImageBuffer::from_vec(w, h, out)
-		.ok_or(anyhow!("Couldn't convert buffer"))?;
-	Ok(DynamicImage::ImageRgb8(buf))
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">restrict</span>&lt;<span class="org-variable-name">Space</span>: <span class="org-type">ColorChannel</span>&gt;(<span class="org-variable-name">img</span>: <span class="org-type">DynamicImage</span>, <span class="org-variable-name">channel</span>: <span class="org-type">char</span>) -&gt; <span class="org-type">Result</span>&lt;<span class="org-type">DynamicImage</span>&gt; {
+    <span class="org-keyword">let</span> (w, h) = img.dimensions();
+    <span class="org-keyword">let</span> <span class="org-keyword">mut</span> <span class="org-variable-name">out</span>: <span class="org-type">Vec</span>&lt;<span class="org-type">u8</span>&gt; = <span class="org-type">Vec</span>::with_capacity((w*h*3) <span class="org-keyword">as</span> <span class="org-type">usize</span>);
+    <span class="org-keyword">for</span> <span class="org-variable-name">i</span> <span class="org-keyword">in</span> img.pixels() {
+        <span class="org-keyword">let</span> <span class="org-variable-name">rgb</span> = <span class="org-type">Srgb</span>::from_components(
+            (i.2.0[0], i.2.0[1], i.2.0[2])          
+        ).into_format::&lt;<span class="org-type">f32</span>&gt;();
+        <span class="org-keyword">let</span> <span class="org-keyword">mut</span> <span class="org-variable-name">color</span>: <span class="org-type">Space</span> = rgb.into_color();
+        color.set_channel(channel)<span class="org-rust-question-mark">?</span>;
+        <span class="org-keyword">let</span> <span class="org-variable-name">orig</span>: <span class="org-type">Srgb</span> = color.into_color();
+        <span class="org-keyword">let</span> <span class="org-variable-name">orig</span> = orig.into_format::&lt;<span class="org-type">u8</span>&gt;().into_components();
+        out.extend([orig.0, orig.1, orig.2]);
+    }   
+    <span class="org-keyword">let</span> <span class="org-variable-name">buf</span> = <span class="org-type">ImageBuffer</span>::from_vec(w, h, out)
+        .ok_or(<span class="org-preprocessor">anyhow!</span>(<span class="org-string">"Couldn't convert buffer"</span>))<span class="org-rust-question-mark">?</span>;
+    <span class="org-type">Ok</span>(<span class="org-type">DynamicImage</span>::<span class="org-type">ImageRgb8</span>(buf))
 }
 </pre>
 </div>
@@ -623,7 +870,7 @@ We can then restrict an image's L channel in LAB space with the following code:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">let out = restrict::&lt;Lab&gt;(img, 'L').unwrap();  
+<pre class="src src-rust"><span class="org-keyword">let</span> <span class="org-variable-name">out</span> = restrict::&lt;<span class="org-type">Lab</span>&gt;(img, <span class="org-string">'L'</span>).unwrap();  
 </pre>
 </div>
 
@@ -631,31 +878,38 @@ We can then restrict an image's L channel in LAB space with the following code:
 Doing this for each of the channels yields the following images:
 </p>
 
-<div class="flex" id="org9966911">
+<div class="flexbox" id="orge2ad28d">
+<div class="flexitem" id="orgdb6bde5">
 
-<div id="orgd0b31b4" class="figure">
-<p><img src="./imgs/lab_l.png" alt="lab_l.png" />
-</p>
-</div>
-
-
-<div id="org3ee29ba" class="figure">
-<p><img src="./imgs/lab_a.png" alt="lab_a.png" />
-</p>
-</div>
-
-
-<div id="orgc7268d8" class="figure">
-<p><img src="./imgs/lab_b.png" alt="lab_b.png" />
+<div id="orgdf1a2f0" class="figure">
+<p><img src="../lab_l.png" alt="lab_l.png" />
 </p>
 </div>
 
 </div>
+<div class="flexitem" id="org63f4be6">
+
+<div id="orgdadbea0" class="figure">
+<p><img src="../lab_a.png" alt="lab_a.png" />
+</p>
 </div>
 
-<div id="outline-container-org19751ae" class="outline-3">
-<h3 id="org19751ae">What is LAB?</h3>
-<div class="outline-text-3" id="text-org19751ae">
+</div>
+<div class="flexitem" id="orgd7dbd0a">
+
+<div id="org4229cbb" class="figure">
+<p><img src="../lab_b.png" alt="lab_b.png" />
+</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div id="outline-container-orgdf93436" class="outline-3">
+<h3 id="orgdf93436">What is LAB?</h3>
+<div class="outline-text-3" id="text-orgdf93436">
 <blockquote>
 <p>
 Explain what the L, A and B channels are and what happens when you take away the L and A channels.
@@ -671,8 +925,8 @@ We can expect taking away the L (lightness) and A (red-green) scales to provide 
 </p>
 
 
-<div id="org6b59872" class="figure">
-<p><img src="./imgs/lab_la.png" alt="lab_la.png" />
+<div id="org255b1b2" class="figure">
+<p><img src="../lab_la.png" alt="lab_la.png" />
 </p>
 </div>
 
@@ -683,9 +937,9 @@ And that's what we see!
 </div>
 </div>
 
-<div id="outline-container-org904f75d" class="outline-2">
-<h2 id="org904f75d">Advanced Exercise 2</h2>
-<div class="outline-text-2" id="text-org904f75d">
+<div id="outline-container-orgec75698" class="outline-2">
+<h2 id="orgec75698">Advanced Exercise 2</h2>
+<div class="outline-text-2" id="text-orgec75698">
 <blockquote>
 <p>
 Explain what the H, S and V channels are and what happens when you take away the both the H and S channels.
@@ -701,31 +955,59 @@ Since we implemented the <code>restrict</code> function in a generic manner, all
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">impl ColorChannel for Hsv {
-	fn zero_channel(&amp;mut self, channel: char) -&gt; Result&lt;()&gt; {
-		match channel.to_ascii_uppercase() {
-			'H' =&gt; self.hue = RgbHue::from_degrees(0.0),
-			'S' =&gt; self.saturation = 0.0,
-			'V' =&gt; self.value = 0.0,
-			_ =&gt; { return Err(anyhow!("Invalid color channel")); }
-		}
-		Ok(())
-	}
+<pre class="src src-rust"><span class="org-keyword">impl</span> <span class="org-type">ColorChannel</span> <span class="org-keyword">for</span> <span class="org-type">Hsv</span> {
+    <span class="org-keyword">fn</span> <span class="org-function-name">zero_channel</span>(<span class="org-rust-ampersand">&amp;</span><span class="org-keyword">mut</span> <span class="org-keyword">self</span>, <span class="org-variable-name">channel</span>: <span class="org-type">char</span>) -&gt; <span class="org-type">Result</span>&lt;()&gt; {
+        <span class="org-keyword">match</span> channel.to_ascii_uppercase() {
+            <span class="org-string">'H'</span> =&gt; <span class="org-keyword">self</span>.hue = <span class="org-type">RgbHue</span>::from_degrees(0.0),
+            <span class="org-string">'S'</span> =&gt; <span class="org-keyword">self</span>.saturation = 0.0,
+            <span class="org-string">'V'</span> =&gt; <span class="org-keyword">self</span>.value = 0.0,
+            _ =&gt; { <span class="org-keyword">return</span> <span class="org-type">Err</span>(<span class="org-preprocessor">anyhow!</span>(<span class="org-string">"Invalid color channel"</span>)); }
+        }
+        <span class="org-type">Ok</span>(())
+    }
 }
 </pre>
 </div>
 
 <p>
-The H channel of an HSV color is <i>hue</i>, an angle describing a position in a standard color wheel. The S channel, <i>saturation</i>, is roughly a measure of the intensity of the color. Finally, the V channel represents <i>value</i> which is a measure of how bright the color is.
+The H channel of an HSV color is <i>hue</i>, an angle describing a position in a standard color wheel. The S channel, <i>saturation</i>, is roughly a measure of the intensity of the color. Finally, the V channel represents <i>value</i> which is a measure of how bright the color is. We can see this by dropping off each of the channels respectively:
 </p>
+
+<div class="flexbox" id="org904c152">
+<div class="flexitem" id="org1ce4915">
+
+<div id="orga9050de" class="figure">
+<p><img src="../hsv_h.png" alt="hsv_h.png" />
+</p>
+</div>
+
+</div>
+<div class="flexitem" id="org0d35049">
+
+<div id="orgb3c6356" class="figure">
+<p><img src="../hsv_s.png" alt="hsv_s.png" />
+</p>
+</div>
+
+</div>
+<div class="flexitem" id="org0123661">
+
+<div id="org65b6b64" class="figure">
+<p><img src="../hsv_v.png" alt="hsv_v.png" />
+</p>
+</div>
+
+</div>
+
+</div>
 
 <p>
 Thus, dropping H (hue) and S (saturation) should give a equivalent of a greyscale image: an image with the default hue (red) but no color intensity (so ultimately grey) that still retains brightness (hence greyscale).
 </p>
 
 
-<div id="orge9d361d" class="figure">
-<p><img src="./imgs/hsv_hs.png" alt="hsv_hs.png" />
+<div id="org1827225" class="figure">
+<p><img src="../hsv_hs.png" alt="hsv_hs.png" />
 </p>
 </div>
 
@@ -735,9 +1017,9 @@ Once again, that's what we see!
 </div>
 </div>
 
-<div id="outline-container-org8adf648" class="outline-2">
-<h2 id="org8adf648">Advanced Exercise 3</h2>
-<div class="outline-text-2" id="text-org8adf648">
+<div id="outline-container-org161bd12" class="outline-2">
+<h2 id="org161bd12">Advanced Exercise 3</h2>
+<div class="outline-text-2" id="text-org161bd12">
 <blockquote>
 <p>
 Implement the following method, which takes in two images and returns a new image where the left half of the image is the left half of image1 and the right half of the image is the right half of image2. Exclude the specified channel for the given image. 
@@ -749,19 +1031,19 @@ First off, let's make a function that combines images. <code>image-rs</code> has
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">pub fn combine(img: DynamicImage, img2: DynamicImage) -&gt; Result&lt;DynamicImage&gt; {
-	if img.dimensions() != img2.dimensions() {
-		return Err(anyhow!("Images not same size"));
-	}
-	let (w, h) = img.dimensions();
-	let img = ImageBuffer::from_fn(w, h, |x, y| {
-		if x &gt; w/2 {			
-			img2.get_pixel(x, y)
-		} else {
-			img.get_pixel(x, y)			
-		}
-	});
-	Ok(DynamicImage::ImageRgba8(img))
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">combine</span>(<span class="org-variable-name">img</span>: <span class="org-type">DynamicImage</span>, <span class="org-variable-name">img2</span>: <span class="org-type">DynamicImage</span>) -&gt; <span class="org-type">Result</span>&lt;<span class="org-type">DynamicImage</span>&gt; {
+    <span class="org-keyword">if</span> img.dimensions() != img2.dimensions() {
+        <span class="org-keyword">return</span> <span class="org-type">Err</span>(<span class="org-preprocessor">anyhow!</span>(<span class="org-string">"Images not same size"</span>));
+    }
+    <span class="org-keyword">let</span> (w, h) = img.dimensions();
+    <span class="org-keyword">let</span> <span class="org-variable-name">img</span> = <span class="org-type">ImageBuffer</span>::from_fn(w, h, |x, y| {
+        <span class="org-keyword">if</span> x &gt; w/2 {            
+            img2.get_pixel(x, y)
+        } <span class="org-keyword">else</span> {
+            img.get_pixel(x, y)         
+        }
+    });
+    <span class="org-type">Ok</span>(<span class="org-type">DynamicImage</span>::<span class="org-type">ImageRgba8</span>(img))
 }
 </pre>
 </div>
@@ -771,10 +1053,10 @@ Since we already have a way of restricting RGB channels, we can now use both to 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">pub fn fancy_combine(img1: DynamicImage, img2: DynamicImage, channel1: char, channel2: char) {
-	let img2 = rgb_restrict(img2.clone(), channel1).unwrap();
-	let img1 = rgb_restrict(img1.clone(), channel2).unwrap();	
-	combine(img1, img2).unwrap()
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">fancy_combine</span>(<span class="org-variable-name">img1</span>: <span class="org-type">DynamicImage</span>, <span class="org-variable-name">img2</span>: <span class="org-type">DynamicImage</span>, <span class="org-variable-name">channel1</span>: <span class="org-type">char</span>, <span class="org-variable-name">channel2</span>: <span class="org-type">char</span>) {
+    <span class="org-keyword">let</span> <span class="org-variable-name">img2</span> = rgb_restrict(img2.clone(), channel1).unwrap();
+    <span class="org-keyword">let</span> <span class="org-variable-name">img1</span> = rgb_restrict(img1.clone(), channel2).unwrap();   
+    combine(img1, img2).unwrap()
 }
 </pre>
 </div>
@@ -784,16 +1066,16 @@ Using this we can now make a combined image with distinctly excluded channels!
 </p>
 
 
-<div id="org3e44406" class="figure">
-<p><img src="./imgs/combined.png" alt="combined.png" />
+<div id="orgda4101a" class="figure">
+<p><img src="../combined.png" alt="combined.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgcea5331" class="outline-2">
-<h2 id="orgcea5331">Advanced Exercise 4</h2>
-<div class="outline-text-2" id="text-orgcea5331">
+<div id="outline-container-org78b5781" class="outline-2">
+<h2 id="org78b5781">Advanced Exercise 4</h2>
+<div class="outline-text-2" id="text-org78b5781">
 <blockquote>
 <p>
 Implement a function that takes a single image, and performs a different operation to each of the 4 quadrants of the image, returning an image that merges the 4 quadrants back together.
@@ -805,30 +1087,30 @@ We can use the same lambda-based method but handle each corner differently:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-rust">pub fn quarters(img: DynamicImage) -&gt; DynamicImage {
-	let (w, h) = img.dimensions();
-	let img = ImageBuffer::from_fn(w, h, |x, y| {
-		let orig = img.get_pixel(x, y);
-		if x &gt; w/2 &amp;&amp; y &gt; h/2 {			
-			Rgba::&lt;u8&gt;([orig[0].checked_mul(2).unwrap_or(255), orig[1]/2, orig[2], orig[3]])
-		} else if x &gt; w/2 &amp;&amp; y &lt; h/2 {
-			let sum = orig[0] as u16 + orig[1] as u16 + orig[2] as u16;
-			let avg = (sum/3) as u8;
-			Rgba::&lt;u8&gt;([avg, avg, avg, orig[3]])
-		} else if x &lt; w/2 &amp;&amp; y &gt; h/2 {
-			Rgba::&lt;u8&gt;([orig[2], orig[1], orig[0], orig[3]])
-		} else {
-			Rgba::&lt;u8&gt;([orig[0], orig[1], orig[2], orig[3]/4])
-		}
-	});
-	DynamicImage::ImageRgba8(img)
+<pre class="src src-rust"><span class="org-keyword">pub</span> <span class="org-keyword">fn</span> <span class="org-function-name">quarters</span>(<span class="org-variable-name">img</span>: <span class="org-type">DynamicImage</span>) -&gt; <span class="org-type">DynamicImage</span> {
+    <span class="org-keyword">let</span> (w, h) = img.dimensions();
+    <span class="org-keyword">let</span> <span class="org-variable-name">img</span> = <span class="org-type">ImageBuffer</span>::from_fn(w, h, |x, y| {
+        <span class="org-keyword">let</span> <span class="org-variable-name">orig</span> = img.get_pixel(x, y);
+        <span class="org-keyword">if</span> x &gt; w/2 &amp;&amp; y &gt; h/2 {         
+            <span class="org-type">Rgba</span>::&lt;<span class="org-type">u8</span>&gt;([orig[0].checked_mul(2).unwrap_or(255), orig[1]/2, orig[2], orig[3]])
+        } <span class="org-keyword">else</span> <span class="org-keyword">if</span> x &gt; w/2 &amp;&amp; y &lt; h/2 {
+            <span class="org-keyword">let</span> <span class="org-variable-name">sum</span> = orig[0] <span class="org-keyword">as</span> <span class="org-type">u16</span> + orig[1] <span class="org-keyword">as</span> <span class="org-type">u16</span> + orig[2] <span class="org-keyword">as</span> <span class="org-type">u16</span>;
+            <span class="org-keyword">let</span> <span class="org-variable-name">avg</span> = (sum/3) <span class="org-keyword">as</span> <span class="org-type">u8</span>;
+            <span class="org-type">Rgba</span>::&lt;<span class="org-type">u8</span>&gt;([avg, avg, avg, orig[3]])
+        } <span class="org-keyword">else</span> <span class="org-keyword">if</span> x &lt; w/2 &amp;&amp; y &gt; h/2 {
+            <span class="org-type">Rgba</span>::&lt;<span class="org-type">u8</span>&gt;([orig[2], orig[1], orig[0], orig[3]])
+        } <span class="org-keyword">else</span> {
+            <span class="org-type">Rgba</span>::&lt;<span class="org-type">u8</span>&gt;([orig[0], orig[1], orig[2], orig[3]/4])
+        }
+    });
+    <span class="org-type">DynamicImage</span>::<span class="org-type">ImageRgba8</span>(img)
 }
 </pre>
 </div>
 
 
-<div id="org248da08" class="figure">
-<p><img src="./imgs/quarters.png" alt="quarters.png" />
+<div id="org1bb1e36" class="figure">
+<p><img src="../quarters.png" alt="quarters.png" />
 </p>
 </div>
 </div>
