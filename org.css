@@ -236,40 +236,40 @@ pre {
     flex-direction: column;
 }
 
-blockquote {
-    display: flex;
-    max-width: 500px;
-    font-size: x-large;
-    /* height: 100px; */
-    line-height: var(--line-height);
-    margin: 0;
-    padding: 0;
-    text-align: var(--justify-important);
-}
+/* blockquote { */
+/*     display: flex; */
+/*     max-width: 500px; */
+/*     font-size: x-large; */
+/*     /\* height: 100px; *\/ */
+/*     line-height: var(--line-height); */
+/*     margin: 0; */
+/*     padding: 0; */
+/*     text-align: var(--justify-important); */
+/* } */
 
 
 
-blockquote::before, blockquote::after {
-    content: '"';
-    font-size: 45px;
-    /* padding: 0 0.7rem; */
-    margin: 0;
-    padding: 0;
-}
+/* blockquote::before, blockquote::after { */
+/*     content: '"'; */
+/*     font-size: 45px; */
+/*     /\* padding: 0 0.7rem; *\/ */
+/*     margin: 0; */
+/*     padding: 0; */
+/* } */
 
-blockquote footer {
-    color: var(--color-text-secondary);
-    display: block;
-    font-size: small;
-    line-height: var(--line-height);
-    padding: 1.5rem 0;
-    /*border: 1px solid red;*/
-}
+/* blockquote footer { */
+/*     color: var(--color-text-secondary); */
+/*     display: block; */
+/*     font-size: small; */
+/*     line-height: var(--line-height); */
+/*     padding: 1.5rem 0; */
+/*     /\*border: 1px solid red;*\/ */
+/* } */
 
-blockquote p {
-    margin: 20px 1px 5px 1px;
-    font-style: italic;
-}
+/* blockquote p { */
+/*     margin: 20px 1px 5px 1px; */
+/*     font-style: italic; */
+/* } */
 
 pre.src-rust:before { content: 'Rust'; }
 pre.src-stdout:before { content: 'stdout'; }
