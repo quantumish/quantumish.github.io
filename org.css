@@ -275,3 +275,7 @@ blockquote p {
 pre.src-rust:before { content: 'Rust'; }
 pre.src-stdout:before { content: 'stdout'; }
 
+.flexbox {
+	display: flex;
+	justify-content: space-evenly;
+}
