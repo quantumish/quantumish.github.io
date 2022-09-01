@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-08-31 Wed 20:27 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Image Manipulation</title>
+<meta name="author" content="NUS15260-12-davfrei" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" href="https://quantumish.github.io/org.css">
+
+        <style>
+        /* From: https://endlessparentheses.com/public/css/endless.css */
+        /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+        kbd
+        {
+          -moz-border-radius: 6px;
+          -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          -webkit-border-radius: 6px;
+          -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          background-color: #f7f7f7;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          color: #333;
+          display: inline-block;
+          font-family: 'Droid Sans Mono', monospace;
+          font-size: 80%;
+          font-weight: normal;
+          line-height: inherit;
+          margin: 0 .1em;
+          padding: .08em .4em;
+          text-shadow: 0 1px 0 #fff;
+          word-spacing: -4px;
+        
+          box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+        }
+        </style>
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+        <script type="text/javascript">
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+            }
+        </script>
+        
+         <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+          <script>
+                 $(document).ready(function() {
+                     $('.tooltip').tooltipster({
+                         theme: 'tooltipster-punk',
+                         contentAsHTML: true,
+                         animation: 'grow',
+                         delay: [100,500],
+                         // trigger: 'click'
+                         trigger: 'custom',
+                         triggerOpen: {
+                             mouseenter: true
+                         },
+                         triggerClose: {
+                             originClick: true,
+                             scroll: true
+                         }
+         });
+                 });
+             </script>
+        
+        <style>
+           abbr {color: red;}
+        
+           .tooltip { border-bottom: 1px dotted #000;
+                      color:red;
+                      text-decoration: none;}
+        </style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Image Manipulation</h1>
+<p>
+This is my writeup for the first assignment! Please run the associated code in the root directory first by running:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"># download needed images
+wget https://i.imgur.com/fyDOvfz.jpg image1.jpg
+wget https://i.imgur.com/0DANhnn.jpg image2.jpg
+# run generator script for this assignment
+cargo run --example image-manipulation
+</pre>
+</div>
+<p>
+This will generate the images referenced by this document. Alternatively, see the online copy at TODO (if <i>this</i> is the online copy, you can ignore all of this).
+</p>
+
+<p>
+I used <code>image-rs</code> for my base implementation of the exercises: it's a handy high level library for working with images in Rust, although its abstractions come with some annoyances sometimes.
+</p>
+
+<div id="outline-container-org66e8697" class="outline-2">
+<h2 id="org66e8697">Exercise 1: dimming</h2>
+<div class="outline-text-2" id="text-org66e8697">
+<blockquote>
+<p>
+Recall from lecture that the value of each pixel represents its brightness. Implement a function that takes in an image and returns the same image, but half as bright as the original image.
+</p>
+</blockquote>
+
+<p>
+Writing such a function is pretty straightforward - although I do a bit more than I have to. I chose to preemptively allocate the correct amount of space for the vector so that I wouldn't have to lose a bit of time to reallocation. I then add all the values to the vector using <code>extend</code> to consume the entire iterator. I also opted to take a integer "division factor" instead of just an arbitrary fraction, since then I could stick to simple integer division and not worry about casting to a float and back.
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">pub fn dim(img: DynamicImage, factor: u8) -&gt; Result&lt;DynamicImage&gt; {
+	let (w, h) = img.dimensions();
+	let mut out: Vec&lt;u8&gt; = Vec::with_capacity((w*h*3) as usize);
+	out.extend(img.as_bytes().iter().map(|i| i/factor));	
+	let buf = ImageBuffer::from_vec(w, h, out)
+		.ok_or(anyhow!("Couldn't convert buffer."))?;
+	Ok(DynamicImage::ImageRgb8(buf))
+}
+</pre>
+</div>
+
+
+<div id="orgc162aad" class="figure">
+<p><img src="./imgs/dim.png" alt="dim.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8817e3e" class="outline-3">
+<h3 id="org8817e3e">Optimized</h3>
+<div class="outline-text-3" id="text-org8817e3e">
+<p>
+How do we make this function quick? It's actually not that hard! The compiler does most of the work for us - and in general trying to out-optimize the compiler can be a long and painful battle not often worth fighting. The one big change though is that we get a whole lot simpler: let the user handle the <code>image-rs</code> stuff, and just give the the function an input and output buffer.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">pub fn dim(bytes: &amp;[u8], out: &amp;mut [u8], factor: u8) {
+	for (n, i) in bytes.iter().enumerate() {
+		out[n] = i/factor;
+	}
+}
+</pre>
+</div>
+
+<p>
+Glancing at the assembly output of <code>cargo asm</code> (an awesome tool you can install with <kbd>cargo install cargo-asm</kbd>!) we might be disappointed to see that the compiler is <i>not</i> using SIMD instructions to dim many bytes of RGB at once!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-asm">; ... stuff above
+; out[n] = i/factor;
+ldrb    w11, [x9]
+add     x12, x9, #1
+and     w9, w4, #0xff
+udiv    w9, w11, w9 ; &lt;-- only a udiv?? really?
+; stuff below...
+</pre>
+</div>
+
+<p>
+This is likely due to the fact that ARM's NEON intrinsics (their version of SIMD) don't have an instruction for unsigned 8-bit integer divide, which I would only find out later.
+</p>
+
+<p>
+We can do a bit better though, since the assignment does specifically say we want to dim by half, and so the generality of a <code>factor</code> argument is technically not needed. We can then instead hard code division by 2 into a <code>dim2</code> function like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">pub fn dim2(bytes: &amp;[u8], out: &amp;mut [u8]) {
+	for (n, i) in bytes.iter().enumerate() {
+		out[n] = i/2;
+	}
+}
+</pre>
+</div>
+
+<p>
+Looking at the assembly output there shows that it now uses the SIMD we desired: dimming 16 bytes of the image at a time! It also uses a slightly faster right shift instruction, which makes sense since dividing by two is equivalent to shifting a number right in binary (just like how 12/10 = 1.2)!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-asm">; ... stuff above
+; out[n] = i/2;
+ldr      q0, [x10], #16
+ushr.16b v0, v0, #1 ; &lt;-- yay! SIMD and a faster instruction
+; stuff below ...
+</pre>
+</div>
+
+<p>
+We can further demonstrate the improvement by using <code>criterion</code>, another great Rust tool for benchmarking. Let's quickly try generating random images of exponentially increasing size and see how they compare!
+</p>
+
+<p>
+You may notice I put the number two in a <code>black_box</code>, which is a utility from <code>criterion</code> that makes values opaque to the compiler so it doesn't be too clever when optimizing. It's likely an overly paranoid usage here though, as as it shouldn't be able to do much about it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">fn bench_dims(c: &amp;mut Criterion) {
+	let mut group = c.benchmark_group("Dimming");
+	for sz in 8..14 {
+		let sz = 2_u32.pow(sz);
+		let img = utils::gen_image(sz);
+		group.bench_with_input(BenchmarkId::new("dim", sz), &amp;img, |b, i| {
+			let (w, h) = i.dimensions();
+			let mut out: Vec&lt;u8&gt; = vec![0; (w*h*3) as usize];		
+			let bytes = i.as_bytes();
+			b.iter(|| optimized::cpu::dim(&amp;bytes[..], &amp;mut out[..], black_box(2)))
+		});
+		group.bench_with_input(BenchmarkId::new("dim2", sz), &amp;img, |b, i| {
+			let (w, h) = i.dimensions();
+			let mut out: Vec&lt;u8&gt; = vec![0; (w*h*3) as usize];		
+			let bytes = i.as_bytes();
+			b.iter(|| optimized::cpu::dim2(&amp;bytes[..], &amp;mut out[..]))
+		});
+	}
+}
+</pre>
+</div>
+
+<p>
+We can then visualize the difference:
+</p>
+
+<div class="org-center">
+
+<div id="org76f8099" class="figure">
+<p><img src="./imgs/dimming.svg" alt="dimming.svg" class="org-svg" />
+</p>
+</div>
+</div>
+
+<p>
+Woah! That's a pretty serious difference, although it makes some sense given how <code>dim2</code> not only processes 16 bytes at a time but also uses a right shift. They're both still increasing at the same rate, but even that linear speedup has a very distinct difference in real world cases.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaea74dc" class="outline-2">
+<h2 id="orgaea74dc">Exercise 2: Convert to greyscale</h2>
+<div class="outline-text-2" id="text-orgaea74dc">
+<blockquote>
+<p>
+Implement a function that takes in an RGB color image and outputs that same image in grayscale.
+</p>
+</blockquote>
+
+<p>
+Mostly the same boilerplate, although I use <code>image-rs</code>' direct pixel grabbing interface this time. Addition of the R, G, and B values requires widening the bytes to 16-bit so there aren't any overflows and then casting back to an 8-bit int in the end.
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">pub fn greyscale(img: DynamicImage) -&gt; Result&lt;DynamicImage&gt; {	
+	let (w, h) = img.dimensions();
+	let mut out: Vec&lt;u8&gt; = vec![0; (w*h) as usize];	
+	for (n, i) in img.pixels().enumerate() {
+		let vals = i.2.0;
+		let sum = vals[0] as u16
+			+ vals[1] as u16
+			+ vals[2] as u16;
+		out[n] = (sum/3) as u8;
+	}
+	let buf = ImageBuffer::from_vec(w, h, out)
+		.ok_or(anyhow!("Couldn't convert buffer."))?;
+	Ok(DynamicImage::ImageLuma8(buf)) // encode image as greyscale	
+}
+</pre>
+</div>
+
+
+<div id="org561e686" class="figure">
+<p><img src="./imgs/grey.png" alt="grey.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org04a073d" class="outline-2">
+<h2 id="org04a073d">Exercise 3: RGB exclusion</h2>
+<div class="outline-text-2" id="text-org04a073d">
+<blockquote>
+<p>
+Implement a function that takes in an image and a channel, and returns an image without the specified channel.
+</p>
+</blockquote>
+
+<p>
+For convienence, this function takes a character instead of an index, and then just maps it to one using a small switch (<code>match</code> really) statement. This is also handleable with a good <code>map</code> call, and so for succinctness I went with that again.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">pub fn rgb_restrict(img: DynamicImage, channel: char) -&gt; Result&lt;DynamicImage&gt; {
+	let (w, h) = img.dimensions();
+	let mut out: Vec&lt;u8&gt; = Vec::with_capacity((w*h*3) as usize);	
+	let index = match channel {
+		'R' =&gt; 0,
+		'G' =&gt; 1,
+		'B' =&gt; 2,
+		_ =&gt; { return Err(anyhow!("Invalid color channel")); }
+	};
+	out.extend(&amp;mut
+			   img.as_bytes()
+			   .iter()
+			   .enumerate()
+			   .map(|(n,i)| if n % 3 == index { 0 } else { *i })
+	);
+	let buf = ImageBuffer::from_vec(w, h, out)
+		.ok_or(anyhow!("Couldn't convert buffer"))?;
+	Ok(DynamicImage::ImageRgb8(buf))
+}
+</pre>
+</div>
+
+<p>
+Running this with each of the channels R, G, B gives us the following images:
+</p>
+
+<div class="flex" id="org7d72f5f">
+
+<div id="org6a64973" class="figure">
+<p><img src="./imgs/rgb_r.png" alt="rgb_r.png" />
+</p>
+</div>
+
+
+<div id="orge84a525" class="figure">
+<p><img src="./imgs/rgb_g.png" alt="rgb_g.png" />
+</p>
+</div>
+
+
+<div id="org7f45024" class="figure">
+<p><img src="./imgs/rgb_b.png" alt="rgb_b.png" />
+</p>
+</div>
+
+</div>
+</div>
+
+<div id="outline-container-orgc30ec87" class="outline-3">
+<h3 id="orgc30ec87">Optimized</h3>
+<div class="outline-text-3" id="text-orgc30ec87">
+<p>
+I didn't forsee there being a nice way to optimize this any more, so I once again just went for the simplification route, letting the compiler do its best and stripping away unnecessary features (like the nice character to channel index converter).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">pub fn exclude(bytes: &amp;[u8], out: &amp;mut [u8], index: usize) {
+	for n in 0..bytes.len() {
+		if n % 3 == index {
+			out[n] = 0;
+		}
+	}
+}
+</pre>
+</div>
+
+<p>
+No SIMD to gain here, unfortunately. 
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge4f1f58" class="outline-2">
+<h2 id="orge4f1f58">Advanced Exercise 1</h2>
+<div class="outline-text-2" id="text-orge4f1f58">
+<blockquote>
+<p>
+Implement a function that takes in an image and an LAB channel, and returns an image without the specified channel.
+</p>
+</blockquote>
+
+<p>
+I used a rust library for color space handling called <code>palette</code> - it provides <code>IntoColor</code> and <code>FromColor</code> traits that allow for conversion between a number of predefined color sets: <code>Lab</code>, <code>Srgb</code>, <code>Hsv</code>, etc. Reading ahead a little bit, I noticed the next exercise had us do something very similar but with HSV, so I went ahead and did a bit of generalization.
+</p>
+
+<p>
+Let's define a <code>ColorChannel</code> trait that requires a struct be convertible to and from <code>Srgb</code> as well as support zeroing out a user-supplied channel.
+</p>
+<div class="org-src-container">
+<pre class="src src-rust">pub trait ColorChannel: IntoColor&lt;Srgb&gt; + FromColor&lt;Srgb&gt; {
+	fn zero_channel(&amp;mut self, channel: char) -&gt; Result&lt;()&gt;;
+}
+</pre>
+</div>
+
+<p>
+We can then quickly implement this trait for <code>Lab</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">impl ColorChannel for Lab {
+	fn zero_channel(&amp;mut self, channel: char) -&gt; Result&lt;()&gt; {
+		match channel.to_ascii_uppercase() {
+			'L' =&gt; self.l = 0.0,
+			'A' =&gt; self.a = 0.0,
+			'B' =&gt; self.b = 0.0,
+			_ =&gt; { return Err(anyhow!("Invalid color channel")); }
+		}
+		Ok(())
+	}
+}
+</pre>
+</div>
+
+<p>
+Now with this out of the way, we can implement the restriction function generically for any color space <code>Space</code> by converting each pixel's RGB value to it, zeroing out the user supplied channel, and converting it back to RGB.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">pub fn restrict&lt;Space: ColorChannel&gt;(img: DynamicImage, channel: char) -&gt; Result&lt;DynamicImage&gt; {
+	let (w, h) = img.dimensions();
+	let mut out: Vec&lt;u8&gt; = Vec::with_capacity((w*h*3) as usize);
+	for i in img.pixels() {
+		let rgb = Srgb::from_components(
+			(i.2.0[0], i.2.0[1], i.2.0[2])			
+		).into_format::&lt;f32&gt;();
+		let mut color: Space = rgb.into_color();
+		color.set_channel(channel)?;
+		let orig: Srgb = color.into_color();
+		let orig = orig.into_format::&lt;u8&gt;().into_components();
+		out.extend([orig.0, orig.1, orig.2]);
+	}	
+	let buf = ImageBuffer::from_vec(w, h, out)
+		.ok_or(anyhow!("Couldn't convert buffer"))?;
+	Ok(DynamicImage::ImageRgb8(buf))
+}
+</pre>
+</div>
+
+<p>
+We can then restrict an image's L channel in LAB space with the following code:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">let out = restrict::&lt;Lab&gt;(img, 'L').unwrap();  
+</pre>
+</div>
+
+<p>
+Doing this for each of the channels yields the following images:
+</p>
+
+<div class="flex" id="org9966911">
+
+<div id="orgd0b31b4" class="figure">
+<p><img src="./imgs/lab_l.png" alt="lab_l.png" />
+</p>
+</div>
+
+
+<div id="org3ee29ba" class="figure">
+<p><img src="./imgs/lab_a.png" alt="lab_a.png" />
+</p>
+</div>
+
+
+<div id="orgc7268d8" class="figure">
+<p><img src="./imgs/lab_b.png" alt="lab_b.png" />
+</p>
+</div>
+
+</div>
+</div>
+
+<div id="outline-container-org19751ae" class="outline-3">
+<h3 id="org19751ae">What is LAB?</h3>
+<div class="outline-text-3" id="text-org19751ae">
+<blockquote>
+<p>
+Explain what the L, A and B channels are and what happens when you take away the L and A channels.
+</p>
+</blockquote>
+
+<p>
+The LAB colorspace (CIELAB? L*a*b*?) is one designed to better match human perception: the L channel represents the <i>lightness</i> of the image, the  channel is a color scale from red to green, and the B channel is a color scale from orange to blue. This is because humans generally process color in this manner: you can't picture an "orangish blue" or a "reddish green" because your brain perceives colors as a scale between them.
+</p>
+
+<p>
+We can expect taking away the L (lightness) and A (red-green) scales to provide us with a very dim image that primarily consists of orange and blue.
+</p>
+
+
+<div id="org6b59872" class="figure">
+<p><img src="./imgs/lab_la.png" alt="lab_la.png" />
+</p>
+</div>
+
+<p>
+And that's what we see!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org904f75d" class="outline-2">
+<h2 id="org904f75d">Advanced Exercise 2</h2>
+<div class="outline-text-2" id="text-org904f75d">
+<blockquote>
+<p>
+Explain what the H, S and V channels are and what happens when you take away the both the H and S channels.
+</p>
+
+<p>
+It may help you to implement a function that performs HSV decomposition and removes these channels; this is optional.
+</p>
+</blockquote>
+
+<p>
+Since we implemented the <code>restrict</code> function in a generic manner, all we need to do is implement the <code>ColorChannel</code> trait for HSV! The one notable difference is that since hue is an angle we have to initialize it more intentionally.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">impl ColorChannel for Hsv {
+	fn zero_channel(&amp;mut self, channel: char) -&gt; Result&lt;()&gt; {
+		match channel.to_ascii_uppercase() {
+			'H' =&gt; self.hue = RgbHue::from_degrees(0.0),
+			'S' =&gt; self.saturation = 0.0,
+			'V' =&gt; self.value = 0.0,
+			_ =&gt; { return Err(anyhow!("Invalid color channel")); }
+		}
+		Ok(())
+	}
+}
+</pre>
+</div>
+
+<p>
+The H channel of an HSV color is <i>hue</i>, an angle describing a position in a standard color wheel. The S channel, <i>saturation</i>, is roughly a measure of the intensity of the color. Finally, the V channel represents <i>value</i> which is a measure of how bright the color is.
+</p>
+
+<p>
+Thus, dropping H (hue) and S (saturation) should give a equivalent of a greyscale image: an image with the default hue (red) but no color intensity (so ultimately grey) that still retains brightness (hence greyscale).
+</p>
+
+
+<div id="orge9d361d" class="figure">
+<p><img src="./imgs/hsv_hs.png" alt="hsv_hs.png" />
+</p>
+</div>
+
+<p>
+Once again, that's what we see!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8adf648" class="outline-2">
+<h2 id="org8adf648">Advanced Exercise 3</h2>
+<div class="outline-text-2" id="text-org8adf648">
+<blockquote>
+<p>
+Implement the following method, which takes in two images and returns a new image where the left half of the image is the left half of image1 and the right half of the image is the right half of image2. Exclude the specified channel for the given image. 
+</p>
+</blockquote>
+
+<p>
+First off, let's make a function that combines images. <code>image-rs</code> has a nice feature where you can generate an image from a lambda function that returns pack the value of a given pixel coordinate. Combined with the utilities for fetching a pixel from an image given some coordinates, this makes generating a combined image quite simple.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">pub fn combine(img: DynamicImage, img2: DynamicImage) -&gt; Result&lt;DynamicImage&gt; {
+	if img.dimensions() != img2.dimensions() {
+		return Err(anyhow!("Images not same size"));
+	}
+	let (w, h) = img.dimensions();
+	let img = ImageBuffer::from_fn(w, h, |x, y| {
+		if x &gt; w/2 {			
+			img2.get_pixel(x, y)
+		} else {
+			img.get_pixel(x, y)			
+		}
+	});
+	Ok(DynamicImage::ImageRgba8(img))
+}
+</pre>
+</div>
+
+<p>
+Since we already have a way of restricting RGB channels, we can now use both to build up this function.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">pub fn fancy_combine(img1: DynamicImage, img2: DynamicImage, channel1: char, channel2: char) {
+	let img2 = rgb_restrict(img2.clone(), channel1).unwrap();
+	let img1 = rgb_restrict(img1.clone(), channel2).unwrap();	
+	combine(img1, img2).unwrap()
+}
+</pre>
+</div>
+
+<p>
+Using this we can now make a combined image with distinctly excluded channels!
+</p>
+
+
+<div id="org3e44406" class="figure">
+<p><img src="./imgs/combined.png" alt="combined.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcea5331" class="outline-2">
+<h2 id="orgcea5331">Advanced Exercise 4</h2>
+<div class="outline-text-2" id="text-orgcea5331">
+<blockquote>
+<p>
+Implement a function that takes a single image, and performs a different operation to each of the 4 quadrants of the image, returning an image that merges the 4 quadrants back together.
+</p>
+</blockquote>
+
+<p>
+We can use the same lambda-based method but handle each corner differently:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-rust">pub fn quarters(img: DynamicImage) -&gt; DynamicImage {
+	let (w, h) = img.dimensions();
+	let img = ImageBuffer::from_fn(w, h, |x, y| {
+		let orig = img.get_pixel(x, y);
+		if x &gt; w/2 &amp;&amp; y &gt; h/2 {			
+			Rgba::&lt;u8&gt;([orig[0].checked_mul(2).unwrap_or(255), orig[1]/2, orig[2], orig[3]])
+		} else if x &gt; w/2 &amp;&amp; y &lt; h/2 {
+			let sum = orig[0] as u16 + orig[1] as u16 + orig[2] as u16;
+			let avg = (sum/3) as u8;
+			Rgba::&lt;u8&gt;([avg, avg, avg, orig[3]])
+		} else if x &lt; w/2 &amp;&amp; y &gt; h/2 {
+			Rgba::&lt;u8&gt;([orig[2], orig[1], orig[0], orig[3]])
+		} else {
+			Rgba::&lt;u8&gt;([orig[0], orig[1], orig[2], orig[3]/4])
+		}
+	});
+	DynamicImage::ImageRgba8(img)
+}
+</pre>
+</div>
+
+
+<div id="org248da08" class="figure">
+<p><img src="./imgs/quarters.png" alt="quarters.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
