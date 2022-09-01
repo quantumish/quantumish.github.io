@@ -249,6 +249,7 @@ pre {
 
 
 
+
 /* blockquote::before, blockquote::after { */
 /*     content: '"'; */
 /*     font-size: 45px; */
@@ -266,10 +267,10 @@ pre {
 /*     /\*border: 1px solid red;*\/ */
 /* } */
 
-/* blockquote p { */
-/*     margin: 20px 1px 5px 1px; */
-/*     font-style: italic; */
-/* } */
+blockquote p {
+    /* margin: 20px 1px 5px 1px; */
+    font-style: italic;
+}
 
 pre.src-rust:before { content: 'Rust'; }
 pre.src-stdout:before { content: 'stdout'; }
