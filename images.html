@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-09-01 Thu 09:56 -->
+<!-- 2022-09-01 Thu 09:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Image Manipulation</title>
@@ -279,16 +279,16 @@ cargo run --example image-manipulation
 </pre>
 </div>
 <p>
-This will generate the images referenced by this document. Alternatively, see the online copy at TODO (if <i>this</i> is the online copy, you can ignore all of this).
+This will generate the images referenced by this document. Alternatively, see the online copy <a href="https://quantumish.github.io/images.html">here</a> (if <i>this</i> is the online copy, you can ignore all of this).
 </p>
 
 <p>
 I used <code>image-rs</code> for my base implementation of the exercises: it's a handy high level library for working with images in Rust, although its abstractions come with some annoyances sometimes.
 </p>
 
-<div id="outline-container-org8324b13" class="outline-2">
-<h2 id="org8324b13">Exercise 1: dimming</h2>
-<div class="outline-text-2" id="text-org8324b13">
+<div id="outline-container-org6894541" class="outline-2">
+<h2 id="org6894541">Exercise 1: dimming</h2>
+<div class="outline-text-2" id="text-org6894541">
 <blockquote>
 <p>
 Recall from lecture that the value of each pixel represents its brightness. Implement a function that takes in an image and returns the same image, but half as bright as the original image.
@@ -311,15 +311,15 @@ Writing such a function is pretty straightforward - although I do a bit more tha
 </div>
 
 
-<div id="org8f7b289" class="figure">
+<div id="org9a46a96" class="figure">
 <p><img src="../dim.png" alt="dim.png" />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org90f5da8" class="outline-3">
-<h3 id="org90f5da8">Optimized</h3>
-<div class="outline-text-3" id="text-org90f5da8">
+<div id="outline-container-orgfb9e99c" class="outline-3">
+<h3 id="orgfb9e99c">Optimized</h3>
+<div class="outline-text-3" id="text-orgfb9e99c">
 <p>
 How do we make this function quick? It's actually not that hard! The compiler does most of the work for us - and in general trying to out-optimize the compiler can be a long and painful battle not often worth fighting. The one big change though is that we get a whole lot simpler: let the user handle the <code>image-rs</code> stuff, and just give the the function an input and output buffer.
 </p>
@@ -415,7 +415,7 @@ We can then visualize the difference:
 
 <div class="org-center">
 
-<div id="orgb9959f8" class="figure">
+<div id="org2a22375" class="figure">
 <p><img src="../dimming.svg" alt="dimming.svg" class="org-svg" />
 </p>
 </div>
@@ -428,9 +428,9 @@ Woah! That's a pretty serious difference, although it makes some sense given how
 </div>
 </div>
 
-<div id="outline-container-org895b451" class="outline-2">
-<h2 id="org895b451">Exercise 2: Convert to greyscale</h2>
-<div class="outline-text-2" id="text-org895b451">
+<div id="outline-container-orgced8d7f" class="outline-2">
+<h2 id="orgced8d7f">Exercise 2: Convert to greyscale</h2>
+<div class="outline-text-2" id="text-orgced8d7f">
 <blockquote>
 <p>
 Implement a function that takes in an RGB color image and outputs that same image in grayscale.
@@ -459,15 +459,15 @@ Mostly the same boilerplate, although I use <code>image-rs</code>' direct pixel 
 </div>
 
 
-<div id="org60ca6ad" class="figure">
+<div id="orgecd58f5" class="figure">
 <p><img src="../grey.png" alt="grey.png" />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org36398e5" class="outline-3">
-<h3 id="org36398e5">Optimized</h3>
-<div class="outline-text-3" id="text-org36398e5">
+<div id="outline-container-org6788352" class="outline-3">
+<h3 id="org6788352">Optimized</h3>
+<div class="outline-text-3" id="text-org6788352">
 <p>
 If you thought the last optimization was a long side tangent, get ready for a whole lot more. I spent most of my time in this assignment trying to make greyscaling quick. Feel free to skip this section.
 </p>
@@ -477,9 +477,9 @@ To begin, it's not immediately obvious <i>how</i> one would actually SIMD-optimi
 </p>
 </div>
 
-<div id="outline-container-org38e62ed" class="outline-4">
-<h4 id="org38e62ed">First Attempt</h4>
-<div class="outline-text-4" id="text-org38e62ed">
+<div id="outline-container-org7043152" class="outline-4">
+<h4 id="org7043152">First Attempt</h4>
+<div class="outline-text-4" id="text-org7043152">
 <p>
 After searching around for a bit, I found an interesting technique detailed <a href="http://ftp.cvut.cz/kernel/people/geoff/cell/ps3-linux-docs/CellProgrammingTutorial/BasicsOfSIMDProgramming.html">here</a> that essentially processes chunks of 12 bytes at a time (or 4 pixels), loads all of the red bytes into a SIMD register, all of the blue into another, and all of the green into a third.
 </p>
@@ -571,9 +571,9 @@ Alright! Now we have <i>something</i> to work with. All this casting to <code>f3
 </div>
 </div>
 
-<div id="outline-container-org00224af" class="outline-4">
-<h4 id="org00224af">Second Attempt</h4>
-<div class="outline-text-4" id="text-org00224af">
+<div id="outline-container-orgd60cb4b" class="outline-4">
+<h4 id="orgd60cb4b">Second Attempt</h4>
+<div class="outline-text-4" id="text-orgd60cb4b">
 <p>
 Let's just do what we did before but with 8 pixels (24 bytes) at a time! This immediately makes the array loading step much nastier, but the performance tradeoff is still there, so the code stays:
 </p>
@@ -589,7 +589,7 @@ We obviously can't multiply by a float like before since we're working with a bu
 </p>
 
 
-<div id="org9cdb1fe" class="figure">
+<div id="org120a440" class="figure">
 <p><img src="https://i.imgur.com/IKpPkDV.png" alt="IKpPkDV.png" />
 </p>
 </div>
@@ -668,9 +668,9 @@ This gives us our complete 8x SIMD function:
 </div>
 </div>
 
-<div id="outline-container-org45865e7" class="outline-4">
-<h4 id="org45865e7">Benchmarking</h4>
-<div class="outline-text-4" id="text-org45865e7">
+<div id="outline-container-org70217c4" class="outline-4">
+<h4 id="org70217c4">Benchmarking</h4>
+<div class="outline-text-4" id="text-org70217c4">
 <p>
 After talking some with my friend Riley, he suggested a third, simpler approach that hopefully let the compiler do the work for me (that unfortunately only worked on RGBA images, wasting a byte per pixel):
 </p>
@@ -691,7 +691,7 @@ Benchmarking all 3 of these functions gives the following plot:
 </p>
 
 
-<div id="orgc0796ae" class="figure">
+<div id="org886fa78" class="figure">
 <p><img src="https://i.imgur.com/BQK0kxU.png" alt="BQK0kxU.png" />
 </p>
 </div>
@@ -704,9 +704,9 @@ Not great. We'd expect <code>simd8</code> at the very least to be twice as fast 
 </div>
 </div>
 
-<div id="outline-container-org8591386" class="outline-2">
-<h2 id="org8591386">Exercise 3: RGB exclusion</h2>
-<div class="outline-text-2" id="text-org8591386">
+<div id="outline-container-org251be1e" class="outline-2">
+<h2 id="org251be1e">Exercise 3: RGB exclusion</h2>
+<div class="outline-text-2" id="text-org251be1e">
 <blockquote>
 <p>
 Implement a function that takes in an image and a channel, and returns an image without the specified channel.
@@ -744,26 +744,26 @@ For convienence, this function takes a character instead of an index, and then j
 Running this with each of the channels R, G, B gives us the following images:
 </p>
 
-<div class="flexbox" id="org4eb6a26">
-<div class="flexitem" id="org9efbbb7">
+<div class="flexbox" id="orgd12b62c">
+<div class="flexitem" id="org090ac8a">
 
-<div id="org17d06af" class="figure">
+<div id="orgc5927d5" class="figure">
 <p><img src="../rgb_r.png" alt="rgb_r.png" />
 </p>
 </div>
 
 </div>
-<div class="flexitem" id="org1bd7c66">
+<div class="flexitem" id="org31d131d">
 
-<div id="org95c1e7e" class="figure">
+<div id="orge6341a5" class="figure">
 <p><img src="../rgb_g.png" alt="rgb_g.png" />
 </p>
 </div>
 
 </div>
-<div class="flexitem" id="org03bdfd5">
+<div class="flexitem" id="orge7d0e56">
 
-<div id="org7f0838d" class="figure">
+<div id="orge33ae39" class="figure">
 <p><img src="../rgb_b.png" alt="rgb_b.png" />
 </p>
 </div>
@@ -773,9 +773,9 @@ Running this with each of the channels R, G, B gives us the following images:
 </div>
 </div>
 
-<div id="outline-container-orge97cc63" class="outline-3">
-<h3 id="orge97cc63">Optimized</h3>
-<div class="outline-text-3" id="text-orge97cc63">
+<div id="outline-container-orgf6bd16e" class="outline-3">
+<h3 id="orgf6bd16e">Optimized</h3>
+<div class="outline-text-3" id="text-orgf6bd16e">
 <p>
 I didn't forsee there being a nice way to optimize this any more, so I once again just went for the simplification route, letting the compiler do its best and stripping away unnecessary features (like the nice character to channel index converter).
 </p>
@@ -798,9 +798,9 @@ No SIMD to gain here, unfortunately.
 </div>
 </div>
 
-<div id="outline-container-orgf42515b" class="outline-2">
-<h2 id="orgf42515b">Advanced Exercise 1</h2>
-<div class="outline-text-2" id="text-orgf42515b">
+<div id="outline-container-org8ff8c77" class="outline-2">
+<h2 id="org8ff8c77">Advanced Exercise 1</h2>
+<div class="outline-text-2" id="text-org8ff8c77">
 <blockquote>
 <p>
 Implement a function that takes in an image and an LAB channel, and returns an image without the specified channel.
@@ -878,26 +878,26 @@ We can then restrict an image's L channel in LAB space with the following code:
 Doing this for each of the channels yields the following images:
 </p>
 
-<div class="flexbox" id="orge2ad28d">
-<div class="flexitem" id="orgdb6bde5">
+<div class="flexbox" id="org674de41">
+<div class="flexitem" id="org9fab87a">
 
-<div id="orgdf1a2f0" class="figure">
+<div id="orgcaf3c86" class="figure">
 <p><img src="../lab_l.png" alt="lab_l.png" />
 </p>
 </div>
 
 </div>
-<div class="flexitem" id="org63f4be6">
+<div class="flexitem" id="orgec090d6">
 
-<div id="orgdadbea0" class="figure">
+<div id="org226ad1d" class="figure">
 <p><img src="../lab_a.png" alt="lab_a.png" />
 </p>
 </div>
 
 </div>
-<div class="flexitem" id="orgd7dbd0a">
+<div class="flexitem" id="orgd678457">
 
-<div id="org4229cbb" class="figure">
+<div id="orgff3cf34" class="figure">
 <p><img src="../lab_b.png" alt="lab_b.png" />
 </p>
 </div>
@@ -907,9 +907,9 @@ Doing this for each of the channels yields the following images:
 </div>
 </div>
 
-<div id="outline-container-orgdf93436" class="outline-3">
-<h3 id="orgdf93436">What is LAB?</h3>
-<div class="outline-text-3" id="text-orgdf93436">
+<div id="outline-container-org432b012" class="outline-3">
+<h3 id="org432b012">What is LAB?</h3>
+<div class="outline-text-3" id="text-org432b012">
 <blockquote>
 <p>
 Explain what the L, A and B channels are and what happens when you take away the L and A channels.
@@ -925,7 +925,7 @@ We can expect taking away the L (lightness) and A (red-green) scales to provide 
 </p>
 
 
-<div id="org255b1b2" class="figure">
+<div id="org12873c2" class="figure">
 <p><img src="../lab_la.png" alt="lab_la.png" />
 </p>
 </div>
@@ -937,9 +937,9 @@ And that's what we see!
 </div>
 </div>
 
-<div id="outline-container-orgec75698" class="outline-2">
-<h2 id="orgec75698">Advanced Exercise 2</h2>
-<div class="outline-text-2" id="text-orgec75698">
+<div id="outline-container-org13845af" class="outline-2">
+<h2 id="org13845af">Advanced Exercise 2</h2>
+<div class="outline-text-2" id="text-org13845af">
 <blockquote>
 <p>
 Explain what the H, S and V channels are and what happens when you take away the both the H and S channels.
@@ -973,26 +973,26 @@ Since we implemented the <code>restrict</code> function in a generic manner, all
 The H channel of an HSV color is <i>hue</i>, an angle describing a position in a standard color wheel. The S channel, <i>saturation</i>, is roughly a measure of the intensity of the color. Finally, the V channel represents <i>value</i> which is a measure of how bright the color is. We can see this by dropping off each of the channels respectively:
 </p>
 
-<div class="flexbox" id="org904c152">
-<div class="flexitem" id="org1ce4915">
+<div class="flexbox" id="org24cb3be">
+<div class="flexitem" id="orgbf80ec6">
 
-<div id="orga9050de" class="figure">
+<div id="orgda89112" class="figure">
 <p><img src="../hsv_h.png" alt="hsv_h.png" />
 </p>
 </div>
 
 </div>
-<div class="flexitem" id="org0d35049">
+<div class="flexitem" id="orgbee08dc">
 
-<div id="orgb3c6356" class="figure">
+<div id="orge723e36" class="figure">
 <p><img src="../hsv_s.png" alt="hsv_s.png" />
 </p>
 </div>
 
 </div>
-<div class="flexitem" id="org0123661">
+<div class="flexitem" id="org71d9739">
 
-<div id="org65b6b64" class="figure">
+<div id="orgb1f6be8" class="figure">
 <p><img src="../hsv_v.png" alt="hsv_v.png" />
 </p>
 </div>
@@ -1006,7 +1006,7 @@ Thus, dropping H (hue) and S (saturation) should give a equivalent of a greyscal
 </p>
 
 
-<div id="org1827225" class="figure">
+<div id="orgd02e7f1" class="figure">
 <p><img src="../hsv_hs.png" alt="hsv_hs.png" />
 </p>
 </div>
@@ -1017,9 +1017,9 @@ Once again, that's what we see!
 </div>
 </div>
 
-<div id="outline-container-org161bd12" class="outline-2">
-<h2 id="org161bd12">Advanced Exercise 3</h2>
-<div class="outline-text-2" id="text-org161bd12">
+<div id="outline-container-org39a8b6c" class="outline-2">
+<h2 id="org39a8b6c">Advanced Exercise 3</h2>
+<div class="outline-text-2" id="text-org39a8b6c">
 <blockquote>
 <p>
 Implement the following method, which takes in two images and returns a new image where the left half of the image is the left half of image1 and the right half of the image is the right half of image2. Exclude the specified channel for the given image. 
@@ -1066,16 +1066,16 @@ Using this we can now make a combined image with distinctly excluded channels!
 </p>
 
 
-<div id="orgda4101a" class="figure">
+<div id="org6296fd7" class="figure">
 <p><img src="../combined.png" alt="combined.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org78b5781" class="outline-2">
-<h2 id="org78b5781">Advanced Exercise 4</h2>
-<div class="outline-text-2" id="text-org78b5781">
+<div id="outline-container-org9e9aa0a" class="outline-2">
+<h2 id="org9e9aa0a">Advanced Exercise 4</h2>
+<div class="outline-text-2" id="text-org9e9aa0a">
 <blockquote>
 <p>
 Implement a function that takes a single image, and performs a different operation to each of the 4 quadrants of the image, returning an image that merges the 4 quadrants back together.
@@ -1109,7 +1109,7 @@ We can use the same lambda-based method but handle each corner differently:
 </div>
 
 
-<div id="org1bb1e36" class="figure">
+<div id="org6b1f2f4" class="figure">
 <p><img src="../quarters.png" alt="quarters.png" />
 </p>
 </div>
