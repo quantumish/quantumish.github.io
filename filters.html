@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-09-14 Wed 20:15 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Filters</title>
+<meta name="author" content="NUS15260-12-davfrei" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" href="https://quantumish.github.io/admonition.css">
+<link rel="stylesheet" href="https://quantumish.github.io/org.css">
+<link rel="stylesheet" href="https://quantumish.github.io/org-htmlize.css">
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Filters</h1>
+
+<div id="outline-container-orgdc19f25" class="outline-2">
+<h2 id="orgdc19f25">Exercise 1</h2>
+<div class="outline-text-2" id="text-orgdc19f25">
+<blockquote>
+<ol class="org-ol">
+<li>Take a look at the filters in the following code cell. What do you think they do? You may want to run <kbd>display()</kbd> on the filter to visualize it.</li>
+<li>Run the filters using <kbd>naive_convolution_filter</kbd> to verify your answer.</li>
+</ol>
+</blockquote>
+
+<p>
+The first kernel sets the value of each pixel to the value of the pixel two pixels to the right of it, which effectively just shifts the entire image left by two pixels. Since our current implementation of convolution uses zero padding, this means we're going to have two columns of black pixels at the right side.
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">filter1</span> = np.array([
+        [0,0,0,0,0],
+        [0,0,0,0,0],
+        [0,0,0,0,1],
+        [0,0,0,0,0],
+        [0,0,0,0,0]
+])
+</pre>
+</div>
+
+
+<div id="orgcc5e75a" class="figure">
+<p><img src="./imgs/filter1.jpg" alt="filter1.jpg" />
+</p>
+</div>
+
+<p>
+This is exactly like the identity filter we discussed in class, but it has a 2 instead of a 1, meaning it'll set the pixel to double its current value. This should thus produce an image that is twice as bright.
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">filter2</span> = np.array([
+        [0,0,0],
+        [0,2,0],
+        [0,0,0]
+])
+</pre>
+</div>
+
+
+<div id="orgfcc5ab2" class="figure">
+<p><img src="./imgs/filter2.jpg" alt="filter2.jpg" />
+</p>
+</div>
+
+<p>
+This filter is less obvious&#x2026; it weights the value of the pixel it's setting highly but also compensates for that by negatively weighting the pixels surrounding it. So, things with darker surroundings (things near an edge?) should look brighter? Maybe some sort of emboss/sharpening?
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-comment-delimiter"># </span><span class="org-comment">Hint: check the lecture slides for a familiar-looking filter</span>
+<span class="org-variable-name">filter3</span> = np.array([
+        [-.11,-.11,-.11],
+        [-.11,1.88,-.11],
+        [-.11,-.11,-.11],
+])
+</pre>
+</div>
+
+
+<div id="orgce00b0f" class="figure">
+<p><img src="./imgs/filter3.jpg" alt="filter3.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org971fc95" class="outline-2">
+<h2 id="org971fc95">Exercise 2</h2>
+<div class="outline-text-2" id="text-org971fc95">
+<blockquote>
+<p>
+So far, we've only run the naive implementation on a grayscale image. Add a color image of your choice and run a filter on it, showing both the original image and the output of the filter.
+</p>
+
+<p>
+As you can see, the filter runs on all three channels. Create an implementation that allows applying different filters to each channel, and submit the output of using at least two different filters on the same image.
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">def</span> <span class="org-function-name">naive_convolution_filter_rgb</span>(image, kernels):
+        <span class="org-doc">"""</span>
+<span class="org-doc">        Args:</span>
+<span class="org-doc">                image: numpy array of shape (Hi, Wi).</span>
+<span class="org-doc">                kernels: Dictionary between channels (R, G, or B) and numpy arrays of various shapes</span>
+<span class="org-doc">        Returns:</span>
+<span class="org-doc">                out: numpy array of shape (Hi, Wi).</span>
+<span class="org-doc">        """</span>
+        out = np.zeros(image.shape)
+
+        <span class="org-keyword">assert</span>(<span class="org-builtin">len</span>(kernels) &lt; 3 <span class="org-keyword">and</span> <span class="org-builtin">len</span>(kernels) &gt; 0)
+        <span class="org-keyword">for</span> image_row <span class="org-keyword">in</span> <span class="org-builtin">range</span>(image.shape[0]):
+                <span class="org-keyword">for</span> image_column <span class="org-keyword">in</span> <span class="org-builtin">range</span>(image.shape[1]):
+                        <span class="org-variable-name">output_value</span> = np.zeros(3)
+                        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-builtin">range</span>(3):
+                                <span class="org-variable-name">chan</span> = [<span class="org-string">"R"</span>, <span class="org-string">"G"</span>, <span class="org-string">"B"</span>][i]
+                                <span class="org-keyword">if</span> chan <span class="org-keyword">not</span> <span class="org-keyword">in</span> <span class="org-variable-name">kernels</span>:
+                                        output_value[<span class="org-variable-name">i</span>] += image[image_row, image_column][i]
+                                        <span class="org-keyword">continue</span>
+                                <span class="org-variable-name">kernel</span> = kernels[chan]
+                                <span class="org-keyword">for</span> kernel_row <span class="org-keyword">in</span> <span class="org-builtin">range</span>(kernel.shape[0]):
+                                        <span class="org-keyword">for</span> kernel_column <span class="org-keyword">in</span> <span class="org-builtin">range</span>(kernel.shape[1]):
+                                                <span class="org-variable-name">image_row_offset</span> = math.ceil(kernel_row - kernel.shape[0] / 2)
+                                                <span class="org-variable-name">image_column_offset</span> = math.ceil(kernel_column - kernel.shape[1] / 2)
+
+                                                <span class="org-keyword">if</span> (image_row + image_row_offset &lt; 0 <span class="org-keyword">or</span>
+                                                        image_row + image_row_offset &gt;= image.shape[0] <span class="org-keyword">or</span>
+                                                        image_column + image_column_offset &lt; 0 <span class="org-keyword">or</span>
+                                                        image_column + image_column_offset &gt;= image.shape[1]):
+                                                        <span class="org-variable-name">image_value</span> = np.zeros(3)
+                                                <span class="org-keyword">else</span>:
+                                                        image_value = image[image_row + image_row_offset, image_column + image_column_offset]
+
+                                                <span class="org-variable-name">output_value</span>[<span class="org-variable-name">i</span>] += image_value[i] * kernel[kernel_row, kernel_column]
+
+                        <span class="org-variable-name">out</span>[<span class="org-variable-name">image_row</span>, <span class="org-variable-name">image_column</span>] = output_value
+
+        <span class="org-keyword">return</span> out
+</pre>
+</div>
+
+<p>
+The tweaks required to add RGB support for convolution are not super substantial: there's now an additional for loop to apply a different kernel depending on the channel or skip the convolution part entirely if the user doesn't supply a kernel for that channel.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-builtin">range</span>(3):
+        <span class="org-variable-name">chan</span> = [<span class="org-string">"R"</span>, <span class="org-string">"G"</span>, <span class="org-string">"B"</span>][i]
+        <span class="org-keyword">if</span> chan <span class="org-keyword">not</span> <span class="org-keyword">in</span> <span class="org-variable-name">kernels</span>:
+                output_value[<span class="org-variable-name">i</span>] += image[image_row, image_column][i]
+                <span class="org-keyword">continue</span>
+        <span class="org-variable-name">kernel</span> = kernels[chan]
+</pre>
+</div>
+
+<p>
+As a result of the ability to have a different kernel per color channel, the interface changed. Instead of passing in a NumPy array for the kernel, you now pass in a dictionary of kernels associated with color channels.
+</p>
+
+<p>
+Finally, the update step now sets individual channels rather than the value of all three:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">output_value</span>[<span class="org-variable-name">i</span>] += image_value[i] * kernel[kernel_row, kernel_column]
+</pre>
+</div>
+
+<p>
+Now let's try it:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">display(naive_convolution_filter_rgb(image, {<span class="org-string">"R"</span>: filter2, <span class="org-string">"B"</span>: filter1}))
+</pre>
+</div>
+
+
+<div id="orgcb6b165" class="figure">
+<p><img src="./imgs/imagerb.jpg" alt="imagerb.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org774293b" class="outline-2">
+<h2 id="org774293b">Exercise 3</h2>
+<div class="outline-text-2" id="text-org774293b">
+<blockquote>
+<p>
+Create your own filter(s) and describe their output.
+</p>
+</blockquote>
+
+<p>
+One problem about the traditional all-ones blur filter is that it dramatically amplifies the brightness of the image, so the first filter I made was just one that was normalized so that the brightnesses would add up to 1 - preserving the brightness while still blurring the image.
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">blur_nicely</span> = np.array([
+        [0.111, 0.111, 0.111],
+        [0.111, 0.111, 0.111],
+        [0.111, 0.111, 0.111]
+])
+</pre>
+</div>
+
+
+<div id="orgc6d8ee8" class="figure">
+<p><img src="./imgs/blur_nicely.jpg" alt="blur_nicely.jpg" />
+</p>
+</div>
+
+<p>
+After seeing the sharpness filter, and thinking more about the idea of a pixel's surroundings canceling it out, I made the following filter, which brightens dim pixels with bright surroundings and dims bright pixels with dark surroundings. I don't have a particular word for it, but it made interesting patterns that reminded me of some sort of frosted glass. 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">fil</span> = np.array([
+        [0.5, 0.5, 0.5],
+        [0.5, -3, 0.5],
+        [0.5, 0.5, 0.5]
+])
+</pre>
+</div>
+
+
+<div id="org0b4b1d4" class="figure">
+<p><img src="./imgs/emboss.jpg" alt="emboss.jpg" />
+</p>
+</div>
+
+<p>
+Continuing down the vein of pixel surroundings canceling things, I experimented with a filter where the surroundings would cancel out entirely for uniform pixel values. This filter brightens pixels with bright pixels to the left of it and dark pixels to the right, and vice versa. This creates a filter that brightens pixels with fast shifts in brightness (horizontally). 
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">fil2</span> =  np.array([
+        [1, 0, -1],
+        [1, 0, -1],
+        [1, 0, -1],
+])
+</pre>
+</div>
+
+
+<div id="org6b387e1" class="figure">
+<p><img src="./imgs/edges.jpg" alt="edges.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5273f65" class="outline-2">
+<h2 id="org5273f65">Advanced Exercise 2</h2>
+<div class="outline-text-2" id="text-org5273f65">
+<p>
+You may have noticed that <kbd>naive_convolutional_filter</kbd> is quite slow. Create an implementation that is faster, using the <kbd>time</kbd> library to demonstrate the difference in performance. Your implementation must return the same output as the naive implementation.
+</p>
+
+<p>
+An easy first step (and the most effective one!) is to include Numba, a python package for JIT compiling NumPy code. 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">import</span> numba
+</pre>
+</div>
+
+<p>
+Numba's interface is quite simple: just a simple decorator above your existing function (presuming it's compatible, which ours happens to be in this case!)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-type">@numba.jit</span>(nopython=<span class="org-constant">True</span>, nogil=<span class="org-constant">True</span>)
+<span class="org-keyword">def</span> <span class="org-function-name">numba_convolution_filter</span>(image, kernel):
+        <span class="org-doc">"""</span>
+<span class="org-doc">        Args:</span>
+<span class="org-doc">                image: numpy array of shape (Hi, Wi).</span>
+<span class="org-doc">                kernel: numpy array of shape (Hk, Wk).</span>
+<span class="org-doc">        Returns:</span>
+<span class="org-doc">                out: numpy array of shape (Hi, Wi).</span>
+<span class="org-doc">        """</span>
+        out = np.zeros(image.shape)
+
+        <span class="org-keyword">for</span> image_row <span class="org-keyword">in</span> <span class="org-builtin">range</span>(image.shape[0]):
+                <span class="org-keyword">for</span> image_column <span class="org-keyword">in</span> <span class="org-builtin">range</span>(image.shape[1]):
+                        output_value = 0.0
+                        <span class="org-keyword">for</span> kernel_row <span class="org-keyword">in</span> <span class="org-builtin">range</span>(kernel.shape[0]):
+                                <span class="org-keyword">for</span> kernel_column <span class="org-keyword">in</span> <span class="org-builtin">range</span>(kernel.shape[1]):
+                                        image_row_offset = math.ceil(kernel_row - kernel.shape[0] / 2)
+                                        image_column_offset = math.ceil(kernel_column - kernel.shape[1] / 2)
+
+                                        <span class="org-keyword">if</span> (image_row + image_row_offset &lt; 0 <span class="org-keyword">or</span> 
+                                                image_row + image_row_offset &gt;= image.shape[0] <span class="org-keyword">or</span>
+                                                image_column + image_column_offset &lt; 0 <span class="org-keyword">or</span> 
+                                                image_column + image_column_offset &gt;= image.shape[1]):
+                                                image_value = 0.0
+                                        <span class="org-keyword">else</span>:
+                                                image_value = image[image_row + image_row_offset, image_column + image_column_offset]
+
+                                        output_value += image_value * kernel[kernel_row, kernel_column]
+
+                        out[image_row, image_column] = output_value
+
+        <span class="org-keyword">return</span> out
+</pre>
+</div>
+
+<p>
+This feels like cheating though, so let's do some optimization ourselves. Our convolution operation is essentially just doing a matrix multiplication between the kernel and different regions of the image and then summing across the result, so let's actually use a matrix multiply function.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">def</span> <span class="org-function-name">matrix_convolution_filter</span>(image, kernel):
+        <span class="org-doc">"""</span>
+<span class="org-doc">        Args:</span>
+<span class="org-doc">                image: numpy array of shape (Hi, Wi).</span>
+<span class="org-doc">                kernel: numpy array of shape (Hk, Wk).</span>
+<span class="org-doc">        Returns:</span>
+<span class="org-doc">                out: numpy array of shape (Hi, Wi).</span>
+<span class="org-doc">        """</span>
+        out = np.zeros(image.shape)
+        <span class="org-variable-name">rows</span>, <span class="org-variable-name">cols</span> = image.shape[:2]
+
+        <span class="org-comment-delimiter"># </span><span class="org-comment">Preemptively pad the image</span>
+        <span class="org-variable-name">image</span> = np.pad(image, (math.floor(kernel.shape[0]/2), math.floor(kernel.shape[1]/2)))
+
+        <span class="org-keyword">for</span> image_row <span class="org-keyword">in</span> <span class="org-builtin">range</span>(rows):
+                <span class="org-keyword">for</span> image_column <span class="org-keyword">in</span> <span class="org-builtin">range</span>(cols):
+
+                        <span class="org-comment-delimiter"># </span><span class="org-comment">Pull out the region of the image being processed by the kernel</span>
+                        <span class="org-variable-name">region</span> = np.zeros((kernel.shape[0], kernel.shape[1]))
+                        <span class="org-keyword">for</span> kernel_row <span class="org-keyword">in</span> <span class="org-builtin">range</span>(kernel.shape[0]):
+                                <span class="org-keyword">for</span> kernel_column <span class="org-keyword">in</span> <span class="org-builtin">range</span>(kernel.shape[1]):
+                                        <span class="org-variable-name">region</span>[<span class="org-variable-name">kernel_row</span>, <span class="org-variable-name">kernel_column</span>] = image[image_row+kernel_row, image_column+kernel_column]
+
+                        <span class="org-comment-delimiter"># </span><span class="org-comment">Get the new pixel value by matmul and sum</span>
+                        <span class="org-variable-name">new</span> = kernel * region
+                        <span class="org-variable-name">out</span>[<span class="org-variable-name">image_row</span>, <span class="org-variable-name">image_column</span>] = np.<span class="org-builtin">sum</span>(new)            
+
+        <span class="org-keyword">return</span> out
+</pre>
+</div>
+<p>
+The function's also much more readable now! In fact, we could likely go even further and shorten the code for pulling out the region of the image by using some creative NumPy slicing.
+</p>
+
+<p>
+We can also slap a <code>@numba.jit(nopython=True, nogil=True)</code> on top, too.
+</p>
+
+<p>
+You might notice this implementation (and technically the previous, although it's pretty subtle since it's an artifact of how Numba adds types to my code) doesn't handle color images! This saves a bit of a headache with matrix math and other random implementation details, and I'm technically allowed to do it given the docstring of the provided convolution function: 
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-doc">"""</span>
+<span class="org-doc">Args:</span>
+<span class="org-doc">        image: numpy array of shape (Hi, Wi).</span>
+<span class="org-doc">        kernel: numpy array of shape (Hk, Wk).</span>
+<span class="org-doc">Returns:</span>
+<span class="org-doc">        out: numpy array of shape (Hi, Wi).</span>
+<span class="org-doc">"""</span>
+</pre>
+</div>
+<p>
+No color channel mentioned there! 
+</p>
+
+<p>
+Quickly benchmarking all four (with a separate numba matrix version) on a grayscaled version of this <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/440px-Image_created_with_a_mobile_phone.png">image</a> gives us: 
+</p>
+<pre class="example">
+naive: 6.442496061325073
+numba naive: 0.29589176177978516
+matrix: 4.418210744857788
+numba matrix: 0.3837759494781494
+</pre>
+<p>
+Surprisingly, using Numba on the matrix based version did not yield as much of a performance increase as it on the naive function. I'm betting the manual filling of the <code>region</code> matrix is what's throwing it off.
+</p>
+</div>
+
+<div id="outline-container-orga5b89a6" class="outline-3">
+<h3 id="orga5b89a6">Further Optimization Opportunities</h3>
+<div class="outline-text-3" id="text-orga5b89a6">
+<p>
+There's a bunch of things I messed with that I ultimately didn't have time for: 
+</p>
+<ul class="org-ul">
+<li><code>taichi</code> is a cool Numba-like library that goes one step further by GPU-accelerating your code</li>
+<li><code>pymp</code> mimics OpenMP APIs in python, which provides really simple drop-in parallelism for loops</li>
+<li><code>pyopencl</code> would let me write a convolution kernel in OpenCL and use that to speed up the convolution operations. Convolutions are a good fit for GPU programming since we can calculate the value for every pixel independently!</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1e5e545" class="outline-2">
+<h2 id="org1e5e545">Advanced Exercise 1</h2>
+<div class="outline-text-2" id="text-org1e5e545">
+<p>
+Reverse order! This is mostly because I wanted to introduce NumPy first, as this part of the assignment would be a huge headache without it. To really test our boundary handling, let's define a much beefier shifting filter: 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">shift</span> = np.zeros((81, 81))
+<span class="org-variable-name">shift</span>[0, 0] = 1
+</pre>
+</div>
+
+<p>
+This leads to a lot more math, so we're going to appreciate Numba saving us the waiting time that comes with it. Handling boundary conditions is as simple as pulling out the if-else spitting out the image value and replacing it with a generic function call:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">if</span> (image_row + image_row_offset &lt; 0 <span class="org-keyword">or</span> 
+        image_row + image_row_offset &gt;= image.shape[0] <span class="org-keyword">or</span>
+        image_column + image_column_offset &lt; 0 <span class="org-keyword">or</span> 
+        image_column + image_column_offset &gt;= image.shape[1]):
+        <span class="org-variable-name">image_value</span> = 0
+<span class="org-keyword">else</span>:
+        image_value = image[image_row + image_row_offset, image_column + image_column_offset]
+</pre>
+</div>
+
+<p>
+becomes&#x2026; 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">image_value</span> = strategy(image, image_row, image_column, image_row_offset, image_column_offset)
+</pre>
+</div>
+
+<p>
+This leads to a somewhat cleaner function:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-type">@numba.jit</span>(nopython=<span class="org-constant">True</span>)
+<span class="org-keyword">def</span> <span class="org-function-name">boundary_convolution_filter</span>(image, kernel, strategy=replicate):
+        <span class="org-doc">"""</span>
+<span class="org-doc">        Args:</span>
+<span class="org-doc">                image: numpy array of shape (Hi, Wi).</span>
+<span class="org-doc">                kernel: numpy array of shape (Hk, Wk).</span>
+<span class="org-doc">                strategy: Numba-accelerated (w/ nopython pipeline) function taking</span>
+<span class="org-doc">                        image, image_row, image_col, image_row_offset, image_col_offset and returning</span>
+<span class="org-doc">                        and returning a pixel value. Defaults to replicate().</span>
+<span class="org-doc">        Returns:</span>
+<span class="org-doc">                out: numpy array of shape (Hi, Wi).</span>
+<span class="org-doc">        """</span>
+        out = np.zeros(image.shape)
+
+        <span class="org-keyword">for</span> image_row <span class="org-keyword">in</span> <span class="org-builtin">range</span>(image.shape[0]):
+                <span class="org-keyword">for</span> image_column <span class="org-keyword">in</span> <span class="org-builtin">range</span>(image.shape[1]):
+                        output_value = np.zeros(3)
+                        <span class="org-keyword">for</span> kernel_row <span class="org-keyword">in</span> <span class="org-builtin">range</span>(kernel.shape[0]):
+                                <span class="org-keyword">for</span> kernel_column <span class="org-keyword">in</span> <span class="org-builtin">range</span>(kernel.shape[1]):
+                                        image_row_offset = math.ceil(kernel_row - kernel.shape[0] / 2)
+                                        image_column_offset = math.ceil(kernel_column - kernel.shape[1] / 2)
+
+                                        image_value = strategy(image, image_row, image_column, image_row_offset, image_column_offset)
+                                        output_value += image_value * kernel[kernel_row, kernel_column]
+
+                        out[image_row, image_column] = output_value
+
+        <span class="org-keyword">return</span> out
+</pre>
+</div>
+
+<p>
+We can then implement the <code>replicate</code> method, which entails repeating the values of pixels at the edge of the image for padding. We do this simply by replacing any potentially out-of-bounds rows/columns with the first/final rows/columns of the image.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-type">@numba.jit</span>(nopython=<span class="org-constant">True</span>)
+<span class="org-keyword">def</span> <span class="org-function-name">replicate</span>(image, image_row, image_column, image_row_offset, image_column_offset):
+        row = <span class="org-builtin">min</span>(image_row + image_row_offset, image.shape[0])
+        row = <span class="org-builtin">max</span>(row, 0)
+        col = <span class="org-builtin">min</span>(image_column + image_column_offset, image.shape[1])
+        col = <span class="org-builtin">max</span>(col, 0)    
+        <span class="org-keyword">return</span> image[row, col]
+</pre>
+</div>
+
+<p>
+Running this on our dog image with the aggressive diagonal shift filter gives us what we expect: the corners is solid (since it's replicating the one corner pixel) and the top and left parts are streaks since they continuously use the closest pixel in the source image.
+</p>
+
+
+<div id="orgca634b4" class="figure">
+<p><img src="./imgs/dog_replicate.jpg" alt="dog_replicate.jpg" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
