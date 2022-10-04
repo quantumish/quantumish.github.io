@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-10-03 Mon 21:22 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Edge Detection</title>
+<meta name="author" content="NUS15260-12-davfrei" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" href="https://quantumish.github.io/admonition.css">
+<link rel="stylesheet" href="https://quantumish.github.io/org.css">
+<link rel="stylesheet" href="https://quantumish.github.io/org-htmlize.css">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Edge Detection</h1>
+<p>
+This is my writeup for the Edge Detection assignment! You can reproduce this by running the following commands in the root directory (repository <a href="https://github.com/quantumish/cs280/">here</a>).
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">python3.10 -m pip install scikit-image numpy matplotlib
+<span class="org-builtin">cd</span> misc/
+<span class="org-comment-delimiter"># </span><span class="org-comment">download needed images</span>
+wget https://i.imgur.com/0QwYCrn.jpg road.jpg
+wget https://i.imgur.com/3wpkukL.png noisy_einstein.png
+wget https://i.imgur.com/3E0XsKs.png iguana.png
+wget https://i.imgur.com/LDAvVPt.jpg stripes.jpg
+<span class="org-comment-delimiter"># </span><span class="org-comment">run generator script for this assignment</span>
+python3.10 edges.py
+</pre>
+</div>
+<p>
+This will generate the images referenced by this document.
+</p>
+
+<div id="outline-container-orgd0df56a" class="outline-2">
+<h2 id="orgd0df56a">Simple Edge Detection</h2>
+<div class="outline-text-2" id="text-orgd0df56a">
+</div>
+<div id="outline-container-orgbeab7b7" class="outline-3">
+<h3 id="orgbeab7b7">Exercise 1</h3>
+<div class="outline-text-3" id="text-orgbeab7b7">
+<blockquote>
+<p>
+The image is dark, and it's hard to tell where the edges are that we found. How can we improve on this? Can we do this in a single filter?
+</p>
+</blockquote>
+
+<p>
+We can double the brightness of the resulting edges by changing the ones in our filter to twos: 
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">fil</span> = np.array([[2, 0, -2]])
+display(cv2.filter2D(image, -1, fil))
+</pre>
+</div>
+
+<div id="orgb34e0cb" class="figure">
+<p><img src="./imgs/brighter.jpg" alt="brighter.jpg" />
+</p>
+</div>
+
+<blockquote>
+<p>
+The algorithm finds lots of edges, but we don't care about all of them. Could we keep only the brightest edges somehow?
+</p>
+</blockquote>
+
+<p>
+A straightforward way to do this would to just be to set a threshold for how bright an edge has to be for us to retain it, and then black out all pixels in the output image that are dimmer than that threshold: 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">result</span> = cv2.filter2D(image, -1, fil)
+<span class="org-variable-name">threshold</span> = 60
+<span class="org-keyword">def</span> <span class="org-function-name">f</span>(x):
+        <span class="org-keyword">if</span> x &lt; <span class="org-variable-name">threshold</span>:
+                <span class="org-keyword">return</span> 0
+        <span class="org-keyword">else</span>:
+                <span class="org-keyword">return</span> x
+result = np.vectorize(f)(result)
+display(result)
+</pre>
+</div>
+<p>
+Our operations are per-pixel, so we can get some bonus performance with <code>np.vectorize</code>.
+</p>
+
+
+<div id="org010cdea" class="figure">
+<p><img src="./imgs/filtered.jpg" alt="filtered.jpg" />
+</p>
+</div>
+
+<blockquote>
+<p>
+We used a horizontal derivative filter. Create and run a vertical derivative filter. Should it look similar? Does it? Find an image where the horizontal and vertical derivative filters produce very different output.
+</p>
+</blockquote>
+
+<p>
+We can get a vertical derivative by just transposing our horizontal filter. Theoretically, this vertical filter should perform better on horizontal stripes:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">stripes</span> = cv2.imread(<span class="org-string">'./imgs/stripes.jpg'</span>)
+<span class="org-variable-name">fil</span> = np.array([[2, 0, -2]]) <span class="org-comment-delimiter"># </span><span class="org-comment">needs to be a 2d array!</span>
+display(cv2.filter2D(stripes, -1, np.transpose(fil)))
+display(cv2.filter2D(stripes, -1, fil))
+</pre>
+</div>
+<p>
+<img src="./imgs/vert.jpg" alt="vert.jpg" />
+<img src="./imgs/nonvert.jpg" alt="nonvert.jpg" />
+</p>
+
+<p>
+And it does! The horizontal filters finds nothing (as it should, since there aren't any horizontal changes in this image!).
+</p>
+
+<blockquote>
+<p>
+How does the derivative filter respond to noise? Load and run the filter on the noisy<sub>einstein</sub> image. Can you improve on this result?
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">einstein</span> = cv2.imread(<span class="org-string">'./imgs/noisy_einstein.png'</span>)
+display(cv2.filter2D(einstein, -1, fil*2))
+</pre>
+</div>
+
+<div id="org716f53f" class="figure">
+<p><img src="./imgs/einstein.jpg" alt="einstein.jpg" />
+</p>
+</div>
+
+<p>
+Unsurprisingly, it performs poorly! There's now a lot of random derivatives that don't actually indicate edges, polluting the image. 
+</p>
+
+<p>
+We can try to do better by removing this noise by blurring the image first:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">display(cv2.filter2D(cv2.filter2D(einstein, -1, np.ones((3,3))/9), -1, fil*2))
+</pre>
+</div>
+
+
+<div id="org064e889" class="figure">
+<p><img src="./imgs/blur_einstein.jpg" alt="blur_einstein.jpg" />
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org35c8b73" class="outline-2">
+<h2 id="org35c8b73">Advanced Edge Detection</h2>
+<div class="outline-text-2" id="text-org35c8b73">
+</div>
+<div id="outline-container-org5feddda" class="outline-3">
+<h3 id="org5feddda">Gaussian Blur</h3>
+<div class="outline-text-3" id="text-org5feddda">
+<blockquote>
+<p>
+Recall from lecture that the two parameters to Gaussian blur are kernel size and sigma. How do changing these parameters affect the output of the blur filter? You may want to find a different example image to illustrate your point.
+</p>
+</blockquote>
+
+<p>
+Let's vary \(\sigma\) first:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">display(cv2.GaussianBlur(einstein, (5,5), 0.1))
+display(cv2.GaussianBlur(einstein, (5,5), 0.5))
+display(cv2.GaussianBlur(einstein, (5,5), 1))
+display(cv2.GaussianBlur(einstein, (5,5), 2))
+display(cv2.GaussianBlur(einstein, (5,5), 10))
+</pre>
+</div>
+
+<p>
+<img src="./imgs/sigma01.jpg" alt="sigma01.jpg" />
+<img src="./imgs/sigma05.jpg" alt="sigma05.jpg" />
+<img src="./imgs/sigma1.jpg" alt="sigma1.jpg" />
+<img src="./imgs/sigma2.jpg" alt="sigma2.jpg" />
+<img src="./imgs/sigma10.jpg" alt="sigma10.jpg" />
+</p>
+
+<p>
+\(\sigma\) seems to vary the degree to which the image is blurred!
+</p>
+
+<p>
+Now we can vary the kernel size:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">display(cv2.GaussianBlur(einstein, (5,5), 0.1))
+display(cv2.GaussianBlur(einstein, (15,15), 0.1))
+display(cv2.GaussianBlur(einstein, (25,25), 0.1))
+display(cv2.GaussianBlur(einstein, (45,45), 0.1))
+</pre>
+</div>
+
+<p>
+<img src="./imgs/kern5.jpg" alt="kern5.jpg" />
+<img src="./imgs/kern15.jpg" alt="kern15.jpg" />
+<img src="./imgs/kern25.jpg" alt="kern25.jpg" />
+<img src="./imgs/kern45.jpg" alt="kern45.jpg" />
+</p>
+
+<p>
+It's challenging to pick it out with the naked eye - but we know from our earlier work with filters what a kernel is doing, so we can say that increasing the kernel size simply involves more of the surrounding pixel values in the blurring process.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org81d2372" class="outline-3">
+<h3 id="org81d2372">Canny Edge Detection</h3>
+<div class="outline-text-3" id="text-org81d2372">
+<blockquote>
+<p>
+Play with the thresholds to get different output. How does changing each threshold affect the edges that the algorithm finds?
+</p>
+</blockquote>
+
+<p>
+Let's first experiment with the low threshold:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">display(feature.canny(coins, sigma=1, low_threshold=5, high_threshold=50))
+display(feature.canny(coins, sigma=1, low_threshold=25, high_threshold=50))
+display(feature.canny(coins, sigma=1, low_threshold=40, high_threshold=50))
+display(feature.canny(coins, sigma=1, low_threshold=45, high_threshold=50))
+</pre>
+</div>
+
+<p>
+<img src="./imgs/low_5.jpg" alt="low_5.jpg" />
+<img src="./imgs/low_25.jpg" alt="low_25.jpg" />
+<img src="./imgs/low_40.jpg" alt="low_40.jpg" />
+<img src="./imgs/low_45.jpg" alt="low_45.jpg" />
+</p>
+
+<p>
+The low threshold primarily exists as a method of preventing broken lines caused by pixels skirting above and below the threshold for being considered an edge (by allowing "weak edge" connected to "strong edge" pixels to count as edges). Thus, as we begin to raise it increasingly high, we see more broken up lines - like the third coin from the top on the right side.
+</p>
+
+<p>
+Now let's tweak the high threshold:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">display(feature.canny(coins, sigma=1, low_threshold=25, high_threshold=30))
+display(feature.canny(coins, sigma=1, low_threshold=25, high_threshold=50))
+display(feature.canny(coins, sigma=1, low_threshold=25, high_threshold=80))
+display(feature.canny(coins, sigma=1, low_threshold=25, high_threshold=90))
+</pre>
+</div>
+
+<p>
+<img src="./imgs/high_30.jpg" alt="high_30.jpg" />
+<img src="./imgs/high_50.jpg" alt="high_50.jpg" />
+<img src="./imgs/high_80.jpg" alt="high_80.jpg" />
+<img src="./imgs/high_90.jpg" alt="high_90.jpg" />
+</p>
+
+<p>
+The originally low value for the high threshold means that a bunch of random pixels were counted as strong edges, and combined with some random weak edge neighbors, you get extra noise edges. This effect immediately goes away when we raise the high threshold a bit: even though the weak edge pixels remained, they don't amount to anything unless they border a strong edge pixel, and thus the extra lines go away. Once we raise it even higher, genuine edges that were on the lower end begin to be treated as if they weren't edges.
+</p>
+
+<blockquote>
+<p>
+Imagine that you have an image with lots of false positives: that is, it finds lots of edges that aren't actually edges. How would you adjust thresholds to improve the result?
+</p>
+</blockquote>
+
+<p>
+As we just discussed, we'd want to raise the high threshold (and I suppose the low threshold a bit). The few false positive strong edges allow the nearby false positive weak edges to be considered edges as well, thus forming more noticeable false positive edges .
+</p>
+
+<blockquote>
+<p>
+Imagine that you have an image where the edges don't connect well: that is, it finds some edges, but the edges tend to be broken lines instead of solid lines. How would you adjust thresholds to improve the result?
+</p>
+</blockquote>
+
+<p>
+The "broken lines" effect is likely a result of thresholds being too high - especially the low theeshold. Any edges with small variations that go above and below the low threshold will only have parts considered as edges: thus making them look like broken ones. Lowering the low thresholds allows the weaker pixels adjacent to the strong parts of the edge to be considered as part of the edge (and so the edge will be fully visible).
+</p>
+
+<blockquote>
+<p>
+Remember from exercise 1 that the two parameters to the Gaussian blur are kernel size and sigma, and that both affect the output of the blur filter. Notice that skimage's canny implementation only takes sigma as a parameter. Without modifying the source code, how might you incorporate a different kernel size into the implementation?
+</p>
+</blockquote>
+
+<p>
+We can pre-blur the image with our own custom kernel size and have the Canny edge detector not blur it at all by setting \(\sigma\) to 0.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">prepross</span> = cv2.GaussianBlur(coins, (5,5), 0.1)
+display(feature.canny(coins, sigma=0, low_threshold=25, high_threshold=50))
+</pre>
+</div>
+
+
+<div id="org6f6982c" class="figure">
+<p><img src="./imgs/prepross.jpg" alt="prepross.jpg" />
+</p>
+</div>
+
+<blockquote>
+<p>
+Try to improve the edges you find by tweaking the parameters.
+</p>
+</blockquote>
+<p>
+I chose to skip this question.
+</p>
+
+<blockquote>
+<p>
+Try running the edge detector on some different images. skimage.data has a good set to start with. You can also look at Berkeley's collection of benchmark images. Take notes on which images Canny performs well on, and which it does not.
+</p>
+</blockquote>
+<p>
+I chose to skip this question, too.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org197cc2a" class="outline-3">
+<h3 id="org197cc2a">Hough Transform</h3>
+<div class="outline-text-3" id="text-org197cc2a">
+<blockquote>
+<p>
+We've found some lines. Lots of them, in fact. Using only the techniques we've learned so far, how can we clean up this image to only show the lines that correspond to lanes? Optional: implement some of them and show the improvement in the produced image.
+</p>
+</blockquote>
+
+<p>
+First off, we can pass the Hough transform the output of a better tuned Canny edge detection, which will let us have more control over what lines the Hough transform can find. By manipulating the thresholds for the Canny filter, we can only keep the strongest of edges, already filtering out of the noise in the lines produced.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">image</span> = cv2.imread(<span class="org-string">'./imgs/road.jpg'</span>, flags=cv2.IMREAD_GRAYSCALE)
+
+edge_image = feature.canny(image, sigma=1, low_threshold=20, high_threshold=80)
+lines = probabilistic_hough_line(edge_image, threshold=1, line_length=20, line_gap=5)
+show_lines(image, lines)
+
+edge_image = feature.canny(image, sigma=1, low_threshold=100, high_threshold=120)
+lines = probabilistic_hough_line(edge_image, threshold=1, line_length=20, line_gap=5)
+show_lines(edge_image, lines)
+</pre>
+</div>
+
+<p>
+<img src="./imgs/poor_canny.jpg" alt="poor_canny.jpg" />
+<img src="./imgs/mediocre_canny.jpg" alt="mediocre_canny.jpg" />
+</p>
+
+<p>
+This only does a smidge better, and it's a barely noticeable improvement.
+</p>
+
+<p>
+Alternatively, we can try to create a mask of the white spots of the image, since we know that the lane dividers are nearly pure white. We'll need to pick (and tune) a brightness threshold that pulls out primarily the lane dividers. 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">  <span class="org-variable-name">image</span> = cv2.imread(<span class="org-string">'./imgs/road.jpg'</span>, flags=cv2.IMREAD_GRAYSCALE)
+
+<span class="org-keyword">for</span> row <span class="org-keyword">in</span> <span class="org-builtin">range</span>(image.shape[0]):
+        <span class="org-keyword">for</span> col <span class="org-keyword">in</span> <span class="org-builtin">range</span>(image.shape[1]):
+                <span class="org-keyword">if</span> image[row, col] &gt; 200:
+                        image[<span class="org-variable-name">row</span>,<span class="org-variable-name">col</span>] = 255
+                <span class="org-keyword">else</span>:
+                        image[<span class="org-variable-name">row</span>,<span class="org-variable-name">col</span>] = 0
+
+edge_image = feature.canny(image, sigma=1, low_threshold=100, high_threshold=120)            
+lines = probabilistic_hough_line(edge_image, threshold=1, line_length=5, line_gap=5)
+display(image)
+show_lines(image, lines)
+
+</pre>
+</div>
+
+<p>
+<img src="./imgs/masked_image.jpg" alt="masked_image.jpg" />
+<img src="./imgs/masked.jpg" alt="masked.jpg" />
+</p>
+
+
+<blockquote>
+<p>
+We can also use additional information that we have about the image; namely, we know that our images are always coming from a camera mounted on the front of the car. How could we use this information to improve on our lane-finding algorithm? Optional: implement your suggestion and  show the improvement in the produced image.
+</p>
+</blockquote>
+
+<p>
+Since the camera is mounted on the front of the car, we know a few things:
+</p>
+<ul class="org-ul">
+<li>The lane dividers will be lines that roughly share a vanishing point in the center of the image (approximately the horizon)</li>
+<li>Lane dividers on the left side of the images will have positive slope, and those on the right will have negative slope</li>
+<li>The magnitude of slope for a lane divider will be higher as it gets closer to the center of the image</li>
+</ul>
+
+<p>
+We can use the last two methods to get a pretty good heuristic for filtering our lines (combined with the earlier strategy of using a Canny filter first). After some tuning of thresholds, we get: 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-variable-name">edge_image</span> = feature.canny(image, sigma=1, low_threshold=100, high_threshold=120)
+lines = probabilistic_hough_line(edge_image, threshold=50, line_length=25, line_gap=30)
+final_lines = []
+<span class="org-keyword">for</span> line <span class="org-keyword">in</span> lines:
+        <span class="org-keyword">try</span>:
+                slope = (line[1][0]-line[0][0])/(line[1][1]-line[0][1])
+                <span class="org-keyword">if</span> <span class="org-builtin">abs</span>(slope) &gt; 4:
+                        <span class="org-keyword">continue</span>
+                <span class="org-keyword">if</span> line[0][0] &lt; image.shape[1]/2 <span class="org-keyword">and</span> slope &lt; 0:            
+                        final_lines.append(line)
+                <span class="org-keyword">elif</span> line[0][0] &gt; image.shape[1]/2 <span class="org-keyword">and</span> slope &gt; 0:
+                        final_lines.append(line)
+        <span class="org-keyword">except</span>:
+                <span class="org-keyword">pass</span>
+show_lines(edge_image, lines)
+show_lines(edge_image, final_lines)
+</pre>
+</div>
+
+<p>
+This code is somewhat confusing since all of the logic is backwards: the image coordinate system places the origin in the top left of the image instead of the bottom left. The manual slope check is a tuned constant trying to cut off lines with too shallow a slope to be immediate lanes - although it's <i>also</i> backwards.
+</p>
+
+<p>
+<img src="./imgs/prefilter.jpg" alt="prefilter.jpg" />
+<img src="./imgs/postfilter.jpg" alt="postfilter.jpg" />
+</p>
+
+<blockquote>
+<p>
+A video is just a series of images (usually 30 images per second). Imagine that your lane-finding algorithm is being fed a video from a front-mounted camera. Describe how you would use your lane-finding algorithm to keep the car driving straight and in its lane.
+</p>
+</blockquote>
+
+<p>
+The goal is to essentially keep it so the lanes closest to you vanish at the origin and never intersect if continued outwards into the road. If they do intersect at some point on the road, that means the car is unaligned and about to commit some serious road safety violations. We can use a similar slope-based method to find the lanes, and then throw an error if we don't find 2 (because then some of the basic slope tests have failed and thus something is wrong).
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
