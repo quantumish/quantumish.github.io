@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-11-06 Sun 15:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Image Stitching</title>
+<meta name="author" content="NUS15260-12-davfrei" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" href="https://quantumish.github.io/org.css">
+<link rel="stylesheet" href="https://quantumish.github.io/admonition.css">
+<script src="https://kit.fontawesome.com/76c5ce8bda.js" crossorigin="anonymous"></script>
+<style>.admonition-content > * {margin: 0px 0px 8px 0px;} .admonition-title{padding: 0.3em 0.25em;}</style>
+
+        <style>
+        /* From: https://endlessparentheses.com/public/css/endless.css */
+        /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+        kbd
+        {
+          -moz-border-radius: 6px;
+          -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          -webkit-border-radius: 6px;
+          -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          background-color: #f7f7f7;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          color: #333;
+          display: inline-block;
+          font-family: 'Droid Sans Mono', monospace;
+          font-size: 80%;
+          font-weight: normal;
+          line-height: inherit;
+          margin: 0 .1em;
+          padding: .08em .4em;
+          text-shadow: 0 1px 0 #fff;
+          word-spacing: -4px;
+        
+          box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+        }
+        </style>
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+        <script type="text/javascript">
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+            }
+        </script>
+        
+         <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+          <script>
+                 $(document).ready(function() {
+                     $('.tooltip').tooltipster({
+                         theme: 'tooltipster-punk',
+                         contentAsHTML: true,
+                         animation: 'grow',
+                         delay: [100,500],
+                         // trigger: 'click'
+                         trigger: 'custom',
+                         triggerOpen: {
+                             mouseenter: true
+                         },
+                         triggerClose: {
+                             originClick: true,
+                             scroll: true
+                         }
+         });
+                 });
+             </script>
+        
+        <style>
+           abbr {color: red;}
+        
+           .tooltip { border-bottom: 1px dotted #000;
+                      color:red;
+                      text-decoration: none;}
+        </style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Image Stitching</h1>
+
+
+<div id="outline-container-org67f344a" class="outline-2">
+<h2 id="org67f344a">intro</h2>
+<div class="outline-text-2" id="text-org67f344a">
+<p>
+Whether it's been the panorama mode in your phone's camera app or the far-off landscapes captured by the <i>Curiosity</i> rover, image stitching has been the basis for a variety of interesting images.<br />
+</p>
+
+
+<div id="orga1820ae" class="figure">
+<p><img src="https://www.nasa.gov/sites/default/files/thumbnails/image/pia23623-1041.jpg" alt="pia23623-1041.jpg" /><br />
+</p>
+</div>
+
+<p>
+But how does it work? There's not an immediately intuitive algorithm for combining two different images of the same scene — with no other info but the images themselves.<br />
+</p>
+
+<div class="admonition" style="--admonition-color: 235, 195, 52;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Some Background Needed</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+I'm going to assume you have general familiarity with linear algebra and a loose background in single-variable calculus (ok, I'll assume you know what a partial derivative is, too).<br />
+</p>
+
+</div></div></div>
+</div>
+</div>
+
+<div id="outline-container-orgf305563" class="outline-2">
+<h2 id="orgf305563">how does it work?</h2>
+<div class="outline-text-2" id="text-orgf305563">
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-info-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Note</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+This section is essentially a high-level summary of <a href="http://xperimex.com/blog/panorama-homography/?utm_source=pocket_mylist"><i>Pleasing Panoramas and Matrix Multiplication</i></a>, which is a nice article and my starting point for all of this!<br />
+</p>
+
+<p>
+Another important disclaimer: unless stated otherwise, none of the images in this article were created by me, mostly because making some of the example figures for this would involve quite a lot of work (and actual implementation of these algorithms) on my end — and it's already been done.<br />
+</p>
+
+<p>
+You may wonder why this section is so short. It's because, in my opinion, the <i>stitching</i> part of image stitching is the easy part.<br />
+</p>
+
+</div></div></div>
+
+<p>
+So. We have two images that we'd like to combine into one mega-image with the full details of both:<br />
+</p>
+
+<div class="flexbox" id="orge58912b">
+<div class="flexitem" id="org80f3578">
+
+<div id="orgbc502ad" class="figure">
+<p><img src="http://xperimex.com/img/panorama-homography/desk2.jpg" alt="desk2.jpg" width="500"/><br />
+</p>
+</div>
+
+</div>
+<div class="flexitem" id="org54df381">
+
+<div id="org5ddbab1" class="figure">
+<p><img src="http://xperimex.com/img/panorama-homography/desk1.jpg" alt="desk1.jpg" width="500"/><br />
+</p>
+</div>
+
+</div>
+
+</div>
+
+<p>
+First off, us humans can tell this is the same scene and even accurately predict where the images are relative to one another because we can identify areas of the image we know correspond to the same object — for example, the top left corner of the monitor is in both images. Naively, we could just try and superimpose these images and shift them until the top left corner of the monitor in both images lines up:<br />
+</p>
+
+
+<div id="org64a9b3c" class="figure">
+<p><img src="http://xperimex.com/img/panorama-homography/firstPanoAttempt.jpg" alt="firstPanoAttempt.jpg" /><br />
+</p>
+</div>
+
+<p>
+This doesn't work. Why? Well, traditionally when panoramas are taken, the photographer <i>rotates</i> around and periodically takes photos from different perspectives. Our algorithm just now assumes that these two photos were taken from the same perspective and so lining them up side by side will just work, but this is certainly not the case. Even if a photographer were to try a smooth pan along a straight path, humans aren't perfect, and so we'll still get variations in perspective.<br />
+</p>
+
+<p>
+Another problem with our algorithm is that it only checks if <i>one</i> point lines up between the two images, and ignores any other disparities. If we could find a lot of common points between the two and line them all up, the errors would get increasingly subtle. Let's pick about 10 for now:<br />
+</p>
+
+<div class="flexbox" id="org5e89747">
+<div class="flexitem" id="org41a044e">
+
+<div id="orgfade9c8" class="figure">
+<p><img src="http://xperimex.com/img/panorama-homography/desk2labels.jpg" alt="desk2labels.jpg" width="500" /><br />
+</p>
+</div>
+
+</div>
+<div class="flexitem" id="orgcd87d2c">
+
+<div id="org91b0d59" class="figure">
+<p><img src="http://xperimex.com/img/panorama-homography/desk1labels.jpg" alt="desk1labels.jpg" width="500" /><br />
+</p>
+</div>
+
+</div>
+
+</div>
+
+<p>
+Okay, now we have one half of the problem fixed. As for the other: maybe instead of just shifting images over, we could try accounting for a possible change in perspective by applying some linear transformation to the image:<br />
+</p>
+
+\begin{align*}
+\underbrace{\begin{bmatrix} ? & ? \\ ? & ? \end{bmatrix}}_{\substack{\text{Some linear}\\ {\text{transformation}}}} \cdot \underbrace{\begin{bmatrix} x \\ y \end{bmatrix}}_{\substack{\text{Pixel}\\\text{coordinates}}} = \underbrace{\begin{bmatrix} x' \\ y' \end{bmatrix}}_{\substack{\text{New}\\\text{coordinates}}}
+\end{align*}
+
+<p>
+This at first sounds way nicer — after all, we can now actually skew images that were taken at a different angle! But we've lost something important: translation.<br />
+</p>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 3, 144, 252;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-question-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Why can't linear transformations encode translation again?</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content"><p>
+<p>
+Translations (or any function with a constant term) aren't linear! We define linearity as a transformation being <i>additive</i> (\(f(a+b) = f(a) + f(b)\)) and <i>homogenous</i> (\(\lambda f(a) = f(\lambda a)\)), and addition of a constant isn't homogenous! Example:<br />
+</p>
+
+<p>
+Let \(f\) be a linear transformation from \(\mathbb{R}^2 \to \mathbb{R}^2\) such that \(f(v)\) (where \(v \in \mathbb{R}^2\)) is equal to \(v + \begin{pmatrix} 1 \\ 1 \end{pmatrix} \).<br />
+Now let \(u = \begin{pmatrix} 1 \\ 2 \end{pmatrix} \) and \(\lambda = 2\):<br />
+</p>
+
+\begin{align*}
+\lambda f(u) = 2 \cdot \left(\begin{pmatrix} 1 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix} \right) = 2 \cdot \begin{pmatrix} 2 \\ 3 \end{pmatrix} = \begin{pmatrix} 4 \\ 6 \end{pmatrix} 
+\end{align*}
+\begin{align*}
+f(\lambda u) = 2\cdot \begin{pmatrix} 1 \\ 2 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix}  = \begin{pmatrix} 3 \\ 5 \end{pmatrix}
+\end{align*}
+
+<p>
+As we can see, \(f(\lambda u) \neq \lambda f(u)\), and thus \(f\) is not homogenous and not linear!<br />
+</p>
+
+</p></div></div></details>
+
+<p>
+There's a way out: using homogenous coordinates. We're going to add a third dimension \(z\) to all our coordinates and decide that our image is on the plane of \(z=1\). This means that our previous \((x,y)\) coordinates are now going to be \((x,y,1)\). Now, we'd like to start thinking about linear transformations in <i>this</i> space, but we're going to impose one more restriction first. If any linear transformation results in \(z\) not equal to 1 (let's call that value \(w\)) we're just going to treat it as if it was \((\frac{x}{w}, \frac{y}{w}, 1)\), effectively projecting all of 3d space beyond the \(z=1\) plane onto it.<br />
+</p>
+
+<p>
+If you think about it, this is what cameras do — an image is a 2d projection of points in 3d space:<br />
+</p>
+
+
+<div id="org54bcd96" class="figure">
+<p><img src="http://xperimex.com/img/panorama-homography/projectivePlane.png" alt="projectivePlane.png" /><br />
+</p>
+</div>
+
+<p>
+The primary benefit of all this is that we can simulate affine transformations like translation in 2d space with normal linear transformations in 3d space. Translating an image on top of another in 3d space is as simple as just rotating one of the corresponding planes a bit (resulting in it casting more of a "shadow" onto the final image):<br />
+</p>
+
+
+<div id="org0b93fd3" class="figure">
+<p><img src="http://xperimex.com/img/panorama-homography/photoception.png" alt="photoception.png" /><br />
+</p>
+</div>
+
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-info-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">This will only work for 180 degree panoramas!</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+Just from this image alone, it's pretty clear to see how applying this method to images <i>behind</i> the camera are going to lead to some bad results: projecting the camera's point of view onto a plane only works if the POV actually intersects the plane (which it won't if it's facing away from it).<br />
+</p>
+
+</div></div></div>
+
+<p>
+Now that we can properly manipulate images with linear transformations (albeit in these tricky homogenous coordinates), we can get to trying to align the points. We know we want to apply <i>some</i> linear transformation to points in one image so that they line up with those of another:<br />
+</p>
+
+\begin{align*}
+\begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix} = \begin{bmatrix} wx' \\ wy' \\ w \end{bmatrix} 
+\end{align*}
+
+<p>
+Again, the point may lie somewhere beyond the actual plane and we're just going to reproject that on: \((\frac{x'}{w}, \frac{y'}{w}, 1) = (wx', wy', w)\) so we denote it that way here. Matrix multiplication corresponds to a system of equations, and so now we can start thinking about solving for the constants in the matrix that will represent our transformation:<br />
+</p>
+\begin{align*}
+ax + by + c = wx'  \\
+dx + ey + f = wy'  \\
+gx + hy + i = w 
+\end{align*}
+
+<p>
+This can be simplified:<br />
+</p>
+\begin{align*}
+ax + by + c = (gx + hy + i)x' \\
+dx + ey + f = (gx + hy + i)y'
+\end{align*}
+<p>
+We know what we want \(x'\) and \(y'\) to be (the coordinates of the corresponding point in the other image), so we're left with just the matrix elements as unknowns!<br />
+</p>
+
+<p>
+We have nine variables, so we need at least nine equations to approximate them with a linear regression. As we've just seen, each pair of points in the images gives us two equations, and so we need at least 5 points to compute some values. We've got twice that amount, thankfully.<br />
+</p>
+
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-info-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">This method will always have some error!</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+Note again that we're using linear regression to find these values and so this is an approximation, not an exact solution. Some thought can reveal how an exact solution oftentimes won't be entirely possible: what if we chose just totally different points that we thought were part of the same object but weren't for some of our 10 points? It's possible that it's impossible to match up all of the chosen points perfectly.<br />
+</p>
+
+</div></div></div>
+
+<p>
+Once we have the values of \(a\) through \(i\), we can actually apply that transformation to the points in one of the images and then re-project them onto the \(z=1\) plane, giving us our final image! Do some blurring around the overlap region and we're good to go:<br />
+</p>
+
+
+<div id="org4b61381" class="figure">
+<p><img src="http://xperimex.com/img/panorama-homography/panorama.jpg" alt="panorama.jpg" /><br />
+</p>
+</div>
+
+<p>
+Woah! Not bad! Ok&#x2026; not <i>great</i>, as I still see some noticeable disparities, but a lot better than anything else we have. We can crop this down for our standard panorama:<br />
+</p>
+
+
+<div id="orgc754928" class="figure">
+<p><img src="http://xperimex.com/img/panorama-homography/panoramaCrop.jpg" alt="panoramaCrop.jpg" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org075ffe4" class="outline-2">
+<h2 id="org075ffe4">how do we find those points?</h2>
+<div class="outline-text-2" id="text-org075ffe4">
+<p>
+Previously, we just picked a bunch of points we manually identified as being the same thing across the two images. I don't know about your phone, but mine certainly doesn't ask me to check for common points with pixel precision whenever it makes a panorama, so there must be some way to automatically pick them.<br />
+</p>
+
+<p>
+On top of that, we know that picking more common points leads to a better panorama, so it'd be nice to have hundreds of points rather than tens of them.<br />
+</p>
+
+<p>
+So, we'd like to have some algorithm for identifying these common points automatically. My first thought here was to wonder how that was even possible algorithmically: maybe we'd need some sort of ML model?<br />
+</p>
+
+<p>
+There are in fact purely algorithmic methods for this: they revolve around detecting features in images and checking if the features have the same descriptors. How do we detect features algorithmically? Through laborious multi-step procedures riddled with math. Fun.<br />
+</p>
+</div>
+
+<div id="outline-container-orgaab3030" class="outline-3">
+<h3 id="orgaab3030">SIFT</h3>
+<div class="outline-text-3" id="text-orgaab3030">
+<p>
+SIFT — Scale Invariant Feature Transform — is perhaps the most well-known algorithm that finds these keypoints. Invented by David Lowe, it's goal is to find keypoints that are invariant under changes in lighting, noise, rotation, and image scale.<br />
+</p>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 108, 173, 96;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-list" aria-hidden="true"></i></div><div class="admonition-title-markdown">Sources and Further Reading</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content"><p>
+<ul class="org-ul">
+<li><a href="http://weitz.de/sift/">http://weitz.de/sift/</a><br /></li>
+<li><a href="https://www.cs.ubc.ca/~lowe/papers/iccv99.pdf">https://www.cs.ubc.ca/~lowe/papers/iccv99.pdf</a><br /></li>
+<li><a href="https://www.cs.ubc.ca/~lowe/papers/ijcv04.pdf">https://www.cs.ubc.ca/~lowe/papers/ijcv04.pdf</a><br /></li>
+</ul>
+
+</p></div></div></details>
+</div>
+
+<div id="outline-container-org68a3fab" class="outline-4">
+<h4 id="org68a3fab">Scale-Space Extrema</h4>
+<div class="outline-text-4" id="text-org68a3fab">
+<p>
+We begin by taking our image and doubling its size with bilinear interpolation as well as normalizing it.<br />
+</p>
+
+<p>
+Then we convolve it with a Gaussian kernel. We then convolve that result with the same kernel, and keep repeating this until we have a set of images with increasing amounts of blur. We then take the third to last image in this row, downsample it by 2x, and then repeat the process of blurring repeatedly all over again. This is continued until the images are too small to reasonably progress: and then we are left with multiple sets of images of varying blurredness and of exponentially decreasing size.<br />
+</p>
+
+
+<div id="orgb47263b" class="figure">
+<p><img src="./imgs/scalespace.png" alt="scalespace.png" /><br />
+</p>
+</div>
+
+<p>
+These rows you see are also known as <i>octaves</i>.<br />
+</p>
+
+<div class="admonition" style="--admonition-color: 3, 144, 252;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-question-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">What <i>is</i> any of this?</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+The motivation behind what we're doing at each step of the algorithm is going to be very confusing, unfortunately.<br />
+</p>
+
+<p>
+I failed to find any straightforward explanation of the primary 2x upscaling step. Lowe's original paper cites vague "performance" reasons and some brief intuiton that I can't seem to follow. My personal take is that maybe it's useful because it enables having one more octave than normal?<br />
+</p>
+
+<p>
+The big question here is really about this bizarre array of images we're building up with. We're actually creating something known as a <i>scale space</i>. The scale space representation of an image, according to Lowe and Wikipedia at least, is the family of images \(I(x, y; \sigma  )\) defined by the convolution of an image \(f(x,y)\) with a Gaussian filter \(G(x,y,\sigma)\). The confusing part of this is that all this varies is the \(\sigma\) of the filter (i.e. the blurring steps in our process) and so it doesn't explain why we downscaled and repeated it for smaller images.<br />
+</p>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 3, 144, 252;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-question-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Why a Gaussian filter?</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content"><p>
+<p>
+I don't know. Apparently it leads to some nicer axioms about scale spaces as is generally just the canonical way of doing it (but you could use a different filter??)<br />
+</p>
+
+</p></div></div></details>
+
+<p>
+Lowe thankfully does give some intuition for scale spaces, though: our goal is to find keypoints that are invariant to scale change, so we'd like to find features that ar estable across all scales. Reasons I've seen in other sources for the blurring part is because it "supresses small-scale structures."<br />
+</p>
+
+</div></div></div>
+
+<p>
+Now, we take the differences between adjacent images in these rows:<br />
+</p>
+
+
+<div id="org078e24e" class="figure">
+<p><img src="./imgs/diffogaussians.png" alt="diffogaussians.png" /><br />
+</p>
+</div>
+
+<p>
+For the next step, we need to step back for a second and think about what our rows really are: we established earlier that scale space is a family of images described by \(I(x,y,\sigma)\). So, by generating some of these images for increasing values of \(\sigma\), we're really just sampling this 3d space at various points along the \(\sigma\) axis. Neighbors in the row are thus also actually nearby in scale space!<br />
+</p>
+
+<p>
+Using this, we can look for extrema in scale space. We consider the 26 neighbors of a pixel in one of our images to be the eight pixels around it in its image, the nine pixels at the same location on the previous image in a row, and the nine pixels on the next image in the row. If our pixel's value is the greatest out of all of its neighbors, then it's an extrema!<br />
+</p>
+
+<p>
+Let's retrace our steps for a second. We had a bunch of rows of six images. We then took the differences between them, bringing us to 5 images. Then, we compared the pixels of an image to the pixels all around it in scale space, which necessitated knowing the pixel values of the images left and right of it in the row (meaning we couldn't use the first and last images), bringing us to 3.<br />
+</p>
+
+
+<div id="orga04f5d2" class="figure">
+<p><img src="./imgs/extrema.png" alt="extrema.png" /><br />
+</p>
+</div>
+
+<p>
+Pictured are the remaining 3 images per octave with the extrema marked on them. Yellow points are extrema that correspond to pixels with extremely low absolute values (likely due to noise), and are thus thrown away.<br />
+</p>
+
+<div class="admonition" style="--admonition-color: 3, 144, 252;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-question-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Is this a formal technique?</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+Yes. It's called the <i>difference of Gaussians</i> and this is all apparently approximating the Laplacian of the scale space function \(I(x, y, \sigma)\).<br />
+</p>
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 3, 144, 252;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-question-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">What's a Laplacian?</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content"><p>
+<p>
+I don't really get them, to be honest. It's apparently the divergence of the gradient. They also have something to do with the average __ of the values around them (rate of change? values? I've seen both claimed, which makes it doubly confusing).<br />
+</p>
+
+</p></div></div></details>
+
+</div></div></div>
+</div>
+</div>
+
+<div id="outline-container-org3bfa722" class="outline-4">
+<h4 id="org3bfa722">Keypoint Localization</h4>
+<div class="outline-text-4" id="text-org3bfa722">
+<p>
+These extrema have very discrete coordinates (as they're just pixels we found), and we'd prefer more precise values to make matching them up later easier. We could interpolate the locations of the extrema by using the quadratic Taylor expansion of the scale space function with the origin set at the point in question:<br />
+</p>
+\begin{align*}
+I(\mathbf{x}) = I + \frac{\partial I}{\partial\mathbf{x}}^T\mathbf{x} + \frac{1}{2}\mathbf{x}^T\frac{\partial^2I}{\partial\mathbf{x}^2}\mathbf{x}
+\end{align*}
+<p>
+where \(I\) and its derivatives are calculated numerically at that point and \(\mathbf{x}=(x,y,\sigma)^T\) is the offset from the point. The derivative of this approximation with respect to \(\mathbf{x}\) is then finding its root, yielding an expression for the offset of the  more precise extrema \(\hat{\mathbf{x}}\):<br />
+</p>
+\begin{align*}
+\hat{\mathbf{x}} = -\frac{\partial^2D}{\partial\mathbf{x}^2}^{-1} \frac{\partial D}{\partial \mathbf{x}}
+\end{align*}
+<p>
+The continuous coordinates allow for the ruling out of features that lie along edges, which aren't nice features because they're invariant along translations parallel to the edge (as that would result with them still being on the edge).<br />
+</p>
+
+<div class="admonition" style="--admonition-color: 3, 144, 252;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-question-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">How?</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+Via <a href="https://en.wikipedia.org/wiki/Principal_curvature">principal curvatures</a> of the scale space function, supposedly.<br />
+</p>
+
+</div></div></div>
+
+<p>
+Our keypoints are less numerous now, as we've eliminated both the low-contrast ones (with low absolute values) and the ones that lie along edges.<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org53b8687" class="outline-4">
+<h4 id="org53b8687">Reference Orientation</h4>
+<div class="outline-text-4" id="text-org53b8687">
+<p>
+Now, we assign orientations to all of our keypoints:<br />
+</p>
+<ul class="org-ul">
+<li>We begin by numerically computing the gradient of the scale space function for each pixel in a rectangular region around the point<br /></li>
+<li>We divide the directions from \(0^\circ\) to \(360^\circ\) into a number of bins (in this case we'll pick 36)<br /></li>
+<li>We then take the direction of each of the gradient vectors in the region and increment the bin it falls into by the magnitude of the gradient<br /></li>
+<li>The histogram is then smoothed via repeated box blurs<br /></li>
+<li>We pick the biggest bin as the orientation<br /></li>
+</ul>
+
+<p>
+Here's what it'd look like for the corner of Gauss' mouth in our image:<br />
+</p>
+
+
+<div id="org3457cf3" class="figure">
+<p><img src="./imgs/orientation.png" alt="orientation.png" /><br />
+</p>
+</div>
+
+<div class="admonition" style="--admonition-color: 3, 144, 252;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-question-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">"Box blurs"?</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+For once, it's just a fancy name for something we've all already seen: this filter.<br />
+</p>
+\begin{align*}
+\frac{1}{9}\begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & 1 \\ 1&1&1 \end{bmatrix} 
+\end{align*}
+<p>
+Except here it's presumably 1d, so:<br />
+</p>
+\begin{align*}
+\frac{1}{3}\begin{bmatrix} 1 & 1 & 1  \end{bmatrix} 
+\end{align*}
+
+</div></div></div>
+</div>
+</div>
+
+<div id="outline-container-org66a3ab4" class="outline-4">
+<h4 id="org66a3ab4">Keypoint Descriptor</h4>
+<div class="outline-text-4" id="text-org66a3ab4">
+<p>
+We'd next like to encode the surroundings of the keypoint somehow. One naive strategy would be to simply store the intensities of the pixels around it, but these could change drastically with a shift in perspective or lighting.<br />
+</p>
+
+<p>
+The strategy used in SIFT is actually based upon how neurons in the visual cortex function: they respond to gradients at a particular orientation with some tolerance for translational shifts. This was previously hypothesized to be for recognizing objects under a variety of 3d viewpoints, so SIFT draws inspiration from it.<br />
+</p>
+
+<p>
+Much like last time, we start by computing the gradient at various points in a region around the keypoint (albeit with a circular region this time). We then build histograms for the gradient directions (weighted by magnitude again) for various subregions of the circle. Here's a loose visualization from one of Lowe's papers on what this looks like graphically for 4 subregions:<br />
+</p>
+
+
+<div id="org0f5d8ae" class="figure">
+<p><img src="./imgs/lowedescriptor.png" alt="lowedescriptor.png" width="500"/><br />
+</p>
+</div>
+
+<p>
+Here's what a 16x16 descriptor array (aka histograms for 16 subregions) would look like for the same point of the image as earlier:<br />
+</p>
+
+
+<div id="org4afc6e0" class="figure">
+<p><img src="./imgs/descriptors.png" alt="descriptors.png" width="300"/><br />
+</p>
+</div>
+
+<p>
+Note an implementation detail here: we're actually doing all this math in a coordinate space where the orientation of the keypoint is treated as the y axis, making the descriptor relative to the keypoint and thus invariant under rotation.<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge0f2727" class="outline-4">
+<h4 id="orge0f2727">A Step Back</h4>
+<div class="outline-text-4" id="text-orge0f2727">
+<p>
+And with that, the bulk of the work is over! We've detected a bunch of keypoints with assigned orientations and descriptors. Let's recap how what we did helped:<br />
+</p>
+<ul class="org-ul">
+<li>All those downscaled and blurry images helped our keypoints be invariant to scale and minor shifts in perspective<br /></li>
+<li>Our filtering out of low contrast and edge keypoints helped eliminate unstable keypoints that likely wouldn't be invariant to simple changes in illumination<br /></li>
+<li>Our descriptors are relative to point and its orientation, and thus invariant under rotation/translation<br /></li>
+<li>We also normalize and threshold the histograms we operate upon to make sure that they're invariant global shifts in illumination (normalization) and aren't thrown off by any major local lighting changes (thresholding)<br /></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org65079ed" class="outline-4">
+<h4 id="org65079ed">Matching</h4>
+<div class="outline-text-4" id="text-org65079ed">
+<p>
+Now that we have these robust keypoints for images, we need to actually match them up. There's actually a lot more logic here, too (our old friend the Hough transform actually makes an appearance!), but I'm getting real tired of talking about SIFT, so I'm gonna make it quick.<br />
+</p>
+
+<p>
+Broadly, we look for keypoints in the other image within a given Euclidean distance of the descriptor vector (the representation of those histograms). We then take the ratio of the closest keypoint in the other image to the second-closest keypoint and drop any with a ratio of greater than 0.8 which prevents false positives.<br />
+</p>
+
+<p>
+There's a bunch more work into optimizing the matching process (as you might have hundreds of thousands of keypoints per image) and eliminating outliers/errors, but I'll leave you to investigate that on your own in the Wikipedia page.<br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5a79152" class="outline-3">
+<h3 id="org5a79152">SURF</h3>
+<div class="outline-text-3" id="text-org5a79152">
+<p>
+SIFT is pretty old: it was invented in 1999. Since then, there's been some advancements in the field of image stitching. One that came after it in 2006 was SURF — Speeded Up Robust Features — and it boasted faster speeds and more robust keypoints than SIFT. It builds upon some of the steps we talked about in SIFT:<br />
+</p>
+<ul class="org-ul">
+<li>Much like how SIFT approximated the Laplacian of the scale space function with a difference of Gaussians, SURF uses box blurs to approximate the Hessian matrix of the image (How? Why? Not sure.)<br /></li>
+<li>SURF also uses scale space, but somehow skips the step of having to repeatedly convolve images with a Gaussian kernel<br /></li>
+<li>SURF also computes orientation/descriptors of a keypoint but uses "Haar-wavelet responses" instead of the simple gradient method of SIFT<br /></li>
+</ul>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 108, 173, 96;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-list" aria-hidden="true"></i></div><div class="admonition-title-markdown">Further Reading/Sources</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content"><p>
+<p>
+This is where I got my loose SURF "intuition" from:<br />
+<a href="https://medium.com/data-breach/introduction-to-surf-speeded-up-robust-features-c7396d6e7c4e">https://medium.com/data-breach/introduction-to-surf-speeded-up-robust-features-c7396d6e7c4e</a><br />
+</p>
+
+</p></div></div></details>
+</div>
+</div>
+
+<div id="outline-container-org8f35cc8" class="outline-3">
+<h3 id="org8f35cc8">ML methods</h3>
+<div class="outline-text-3" id="text-org8f35cc8">
+<p>
+Let's revisit my earlier question: shouldn't this be an ML problem? Well, it is, and these days ML models can be used for the same task. One recent example is <a href="https://zju3dv.github.io/loftr/">LoFTR</a>:<br />
+</p>
+
+
+<div id="org4e6ad75" class="figure">
+<p><img src="https://zju3dv.github.io/loftr/images/loftr-arch.png" alt="loftr-arch.png" /><br />
+</p>
+</div>
+
+<p>
+Broadly, the model begins by getting feature maps from a CNN, plugging those into a transformer, using a special matching layer to match up points with a confidence score, then refining matches.<br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0922be8" class="outline-2">
+<h2 id="org0922be8">that's all for now</h2>
+<div class="outline-text-2" id="text-org0922be8">
+<p>
+We've taken a whirlwind tour through the general methods used for making the panoramas we're all familiar with, and I hope you have a little more appreciation for them now after understanding the complexity involved!<br />
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
