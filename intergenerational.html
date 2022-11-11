@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-11-10 Thu 23:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Intergenerational Utility</title>
+<meta name="author" content="NUS15260-12-davfrei" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" href="https://latex.now.sh/style.css">
+<link rel="stylesheet" href="https://quantumish.github.io/admonition.css">
+<script src="https://kit.fontawesome.com/76c5ce8bda.js" crossorigin="anonymous"></script>
+<style>.admonition-content > p {padding: 10px 0px 10px 0px; margin-top: 0rem;} .admonition-title{padding: 0.3em 0.25em;} body {max-width: 100ch} .admonition { margin-bottom: 1rem; margin-top: 1rem; } </style>
+
+        <style>
+        /* From: https://endlessparentheses.com/public/css/endless.css */
+        /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+        kbd
+        {
+          -moz-border-radius: 6px;
+          -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          -webkit-border-radius: 6px;
+          -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          background-color: #f7f7f7;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+          color: #333;
+          display: inline-block;
+          font-family: 'Droid Sans Mono', monospace;
+          font-size: 80%;
+          font-weight: normal;
+          line-height: inherit;
+          margin: 0 .1em;
+          padding: .08em .4em;
+          text-shadow: 0 1px 0 #fff;
+          word-spacing: -4px;
+        
+          box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+        }
+        </style>
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+        <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+        <script type="text/javascript">
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+            }
+        </script>
+        
+         <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+          <script>
+                 $(document).ready(function() {
+                     $('.tooltip').tooltipster({
+                         theme: 'tooltipster-punk',
+                         contentAsHTML: true,
+                         animation: 'grow',
+                         delay: [100,500],
+                         // trigger: 'click'
+                         trigger: 'custom',
+                         triggerOpen: {
+                             mouseenter: true
+                         },
+                         triggerClose: {
+                             originClick: true,
+                             scroll: true
+                         }
+         });
+                 });
+             </script>
+        
+        <style>
+           abbr {color: red;}
+        
+           .tooltip { border-bottom: 1px dotted #000;
+                      color:red;
+                      text-decoration: none;}
+        </style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+        extensions: ["[Contrib]/physics/physics.js"],
+        loader: {load: ['[tex]/physics']},
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em",
+               packages: {'[+]': ['physics']}
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Intergenerational Utility</h1>
+
+<div id="outline-container-org99533c9" class="outline-2">
+<h2 id="org99533c9">Introduction</h2>
+<div class="outline-text-2" id="text-org99533c9">
+<p>
+In class, we learned about Ramsey's equation for the discounting rate we should apply for future benefits:
+</p>
+\begin{align*}
+r = \rho + \theta g
+\end{align*}
+<p>
+We've now read (or at least read summaries of) pieces by two prominent figures in the field with very different opinions on what our choices of \(\rho\) and \(\theta\) should be. 
+</p>
+
+<p>
+However, we never really derived Ramsey's equation in class, nor do we have a strong understanding of the mathematical/numerical models used in this debate. The goal of this writeup is to explore some of the modeling techniques in more detail and see how they can better inform our choices of both the constants and policy in general.
+</p>
+
+<p>
+Let's start from the basics and work our way to Ramsey's equation as well as some extensions that could help us better understand the difference between Stern and Nordhaus.
+</p>
+
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-info-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Please turn on SVG rendering</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+<i>Please</i> set your MathJax renderer to SVG (which you can do by right clicking an equation, going to Math Settings \(\to\) Math Renderer \(\to\) SVG). This page will look so much better if you do. It adds to the \(\LaTeX\) theme (which I'm trying out with this!).
+</p>
+
+</div></div></div>
+
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-info-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Note</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+The majority of this page is essentially a high-level summary of the Stanford Encyclopedia of Philosophy's <a href="https://plato.stanford.edu/entries/ramsey-economics/"><i>Ramsey and Intergenerational Welfare Economics</i></a> page, alongside my own explanations to make things smoother to understand. 
+</p>
+
+</div></div></div>
+</div>
+</div>
+
+<div id="outline-container-orgbba4992" class="outline-2">
+<h2 id="orgbba4992">Ramsey's Model</h2>
+<div class="outline-text-2" id="text-orgbba4992">
+<p>
+Ramsey, in a general attempt to explore how much nations should save for the future, created the foundational framework for exploring intergenerational utility (from a perspective of classical utilitarianism, at least).
+</p>
+
+<p>
+In Ramsey's model a nation has a single non-depreciating commodity that can be used to produce output at any point in time. This output can then either be invested into adding to the amount of that commodity or consumed at that point in time. The goal now is to find the optimal amount of consumption/investment at each date.
+</p>
+
+<p>
+We make a number of other simplifications here:
+</p>
+<ul class="org-ul">
+<li>Even though the advancement of generations is distinct from the passage of time, we only think about the passage of time.</li>
+<li>We do not consider foreign trade.</li>
+<li>We do not consider technological progress (e.g. improvements in the quality of labor/capital).</li>
+<li>We do not consider natural resources.</li>
+<li>We do not consider uncertainty (notice how none of the equations are expected values!).
+<ul class="org-ul">
+<li>Importantly, we don't consider the risk of extinction, while the Stern Review does!</li>
+</ul></li>
+</ul>
+
+<p>
+Let \(K\) be the stock of the commodity, and \(F(K)\) the production at a point in time. \(F(0) = 0\), as there will be no output when there is no stock of the commodity. The marginal product of capital — the extent to which an increase in capital increases the output of the society — is positive (which is to say \(\dv{F}{K} > 0\)) yet does not increase with \(K\) (and thus \(\frac{\mathrm{d}^2F}{\mathrm{d}K^2} \leq 0\)).
+</p>
+
+<p>
+Furthermore, we define the consumption of resources \(C(t)\) and the investment of resources to be \(\dv{K}{t}\) (recall earlier that our model has us only able to invest in growing the stock of our single commodity). This then gives us our basic equation for describing the economy of this society:
+</p>
+\begin{align*}
+\underbrace{\dv{K(t)}{t}}_\text{investment} = \underbrace{F(K(t))}_\text{current output}  - \underbrace{C(t)}_\text{consumption}
+\end{align*}
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 3, 144, 252;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-question-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">What does negative investment mean?</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+If \(C(t) > F(K(t))\) the capital of the nation is eaten into and the stock of the commodity simply declines.
+</p>
+
+</div></div></details>
+</div>
+
+<div id="outline-container-org96a9e40" class="outline-3">
+<h3 id="org96a9e40">Decision-making</h3>
+<div class="outline-text-3" id="text-org96a9e40">
+<p>
+Let's place ourselves in the shoes of a well-meaning despot with complete control over this society. Our goal is to maximize intergenerational utility (as well as maintain a degree of intergenerational equity).
+</p>
+
+<p>
+Ramsey's model takes intergenerational utility to be the aggregate of all future utility evaluated at some point \(t\) (where \(\tau\) are dates beyond \(t\)). 
+</p>
+\begin{align*}
+V(t) &= \int_t^\infty U(\tau)\dd{\tau} \\
+&= \int_t^\infty U(C(\tau))\dd{\tau}
+\end{align*}
+<p>
+Ramsey makes similar assumptions about marginal well-being (the extent to which an increase in consumption increases utility): it is positive (\(\dv{U(C)}{C} > 0\)) yet decreases with \(C\) (\(\frac{\mathrm{d}^2 U(C)}{\mathrm{d}C^2} < 0\)).
+</p>
+
+<p>
+This equation for intergenerational utility is the basis for the equations Stern and Nordhaus consider in their arguments, although there's one key thing we're leaving out.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org64c79cf" class="outline-2">
+<h2 id="org64c79cf">Optimal Consumption</h2>
+<div class="outline-text-2" id="text-org64c79cf">
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-info-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Notational differences</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+I'm using \(C(t)\) to represent what is sometimes more formally referred to as the <i>consumption stream</i> \(\{C(t)\}\). I don't get what the braces are for, so I'm going to drop them. Consumption stream is a bit of an awkward term, but I suppose referring to it as a function might also sound weird. There's a small semantic difference between the terms, but it won't really matter for most of our purposes, so I'm sticking to consumption <i>stream</i> for now.
+</p>
+
+</div></div></div>
+
+<p>
+The primary thing we can control in our society is its consumption stream: how much of our output we choose to consume at each time \(t\). We'd like to choose \(C(t)\) such that our intergenerational utility from this point in time is maximized (we set the time of this decision making to 0 for convienience):
+</p>
+\begin{align*}
+V(0) = \int_0^\infty U(C(t))\dd{t}
+\end{align*}
+<p>
+There's a key problem here though, which you might've caught earlier. This integral does not converge in most cases: one simple example would be setting \(C(t)\) to a constant. Clearly, we need to formulate our goal a little better, as simply maximizing our integral doesn't exactly make sense.
+</p>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 125, 125, 125;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-arrow-right" aria-hidden="true"></i></div><div class="admonition-title-markdown">A Missing Link</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+I'm actually skipping over a second attempt Ramsey made in fixing this question, which was attempting to make the integral converge through some normalization of the utility function (by subtracting an upper bound for utility called "bliss" from it). I don't really get it, and it isn't essential for understanding this, so I skipped it.
+</p></div></div></details>
+
+<p>
+Let's call a consumption stream <i>feasible</i> if it can satisfy our original equation for our economy \(\dv{K(t)}{t} = F(K(t)) - C(t)\). 
+</p>
+
+<p>
+We can go on to define a feasible consumption stream \(C^*(t)\) being <i>superior</i> to another \(C(t)\) as when for all future \(t\):
+</p>
+\begin{align*}
+\int_0^t U(C^*(s))\dd{s} \geq \int_0^t U(C(s))\dd{s}
+\end{align*}
+<p>
+The <i>optimum</i> consumption stream is that which is superior to all other feasible ones. 
+</p>
+
+<p>
+In plain English: we want to find the optimal feasible consumption stream, which has a greater intergenerational utility than any other consumption stream for any range of time \(t\). This nicely skirts the issue of convergence, as neither integral needs to converge here for this statement to still be well-formed.
+</p>
+
+<p>
+We're still forgetting something important.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3be232e" class="outline-2">
+<h2 id="org3be232e">Discounting Future Well-Being</h2>
+<div class="outline-text-2" id="text-org3be232e">
+<p>
+The primary thing missing here is any discounting of future utility, the extent to which is one of the primary points of contention between figures like Ramsey/Stern and Nordhaus.
+</p>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 125, 125, 125;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-arrow-right" aria-hidden="true"></i></div><div class="admonition-title-markdown">Aside: Economists don't like each other!</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+Ramsey was not a fan of nonzero \(\delta\).
+</p>
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-quote-left" aria-hidden="true"></i></div><div class="admonition-title-markdown">Partha Dasgupta, "Ramsey and Intergenerational Welfare Economics"</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+<i>In the latter part of his paper Ramsey (1928: 553–555) did use equation (4) to study the problem of optimum saving, but he did not approve of the formulation. Instead, he wrote (p. 543) that to discount later \(U\)’s in comparison with earlier ones is <b>“… ethically indefensible and arises merely from the weakness of the imagination.”</b> In a book that inaugurated the formal study of economic development, Harrod (1948: 40) followed suit by calling the practice a “… <b>polite expression for rapacity</b> and the conquest of reason by passion.”</i>
+</p>
+
+</div></div></div>
+<p>
+Wow. Pulling no punches&#x2026;
+</p>
+
+<p>
+And then Nordhaus dedicates plenty of time to putting down the Stern Review:
+</p>
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-quote-left" aria-hidden="true"></i></div><div class="admonition-title-markdown">William Nordhaus, "The Stern Review on the Economics of Climate Change"</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+<i>In reflecting upon the haste and bulk, I am reminded of a remark by Mark Twain, who said he could write two pages in thirty days or thirty pages in two days, but he could not write two pages in two days. We could only wish that the Review’s authors had taken a few more months and written a more concise and consistent treatise.</i>
+</p>
+
+</div></div></div>
+
+<p>
+Not to mention, the author of the article this writeup is based off of is no fan of Nordhaus:
+</p>
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-quote-left" aria-hidden="true"></i></div><div class="admonition-title-markdown">Partha Dasgupta, "Ramsey and Intergenerational Welfare Economics"</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+The debate has on occasion been <b>shriller than even we economists are used to (see in particular Nordhaus, 2007)</b>. 
+</p>
+
+</div></div></div>
+<p>
+It even makes it into the conclusion, too.
+</p>
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-quote-left" aria-hidden="true"></i></div><div class="admonition-title-markdown">Partha Dasgupta, "Ramsey and Intergenerational Welfare Economics"</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+<b>The often shrill debate (e.g., Nordhaus, 2007)</b> on the extent to which global investment should be directed at reducing the deletarious effects of climate change was spurred by differences in model specification among climate-change economists.
+</p>
+
+</div></div></div>
+
+</div></div></details>
+
+<p>
+We can include such a factor by adding an exponential decay term to our integral:
+</p>
+\begin{align*}
+V(0) = \int_0^\infty U(C(t))e^{-\delta t} \dd{t}
+\end{align*}
+<p>
+A nonzero discount rate has the obvious downside that it values future wellbeing less, potentially allowing a decision that greatly benefits nearer generations but leaves the farther future with nothing. Ramsey himself and the Stern Review both primarily argue against placing less value on the well-being of future generations on the grounds that it lacks ethical justification and is generally considered unacceptable. Any time preference is viewed by this camp of economists as an irrationality or a misapplication of a <i>personal</i> rate of time preference to the decisions of a nation.
+</p>
+
+<p>
+At the same time, there is an argument to be made for nonzero discount rates: recall that we specified \(\dv{F}{K} > 0\). Output increases with capital, and thus reducing consumption today and investing in capital by a certain amount enables a growth in consumption by more than that amount in the future. Thus there is a "future bias" as the present generation can only aid future generations and not vice versa. To achieve our goal of intergenerational equity we should theoretically be seeking to account for this bias. Figures like Nordhaus also focus more on the practical concerns with near zero discount rates and lean more toward a <i>descriptive</i> approach based off of observed real interest rates.
+</p>
+</div>
+
+<div id="outline-container-org16363b2" class="outline-3">
+<h3 id="org16363b2">A Mathematical Argument</h3>
+<div class="outline-text-3" id="text-org16363b2">
+<p>
+Let's return to Ramsey's original equation for intergenerational utility, without discounting (aka a discount rate of zero): 
+</p>
+\begin{align*}
+V(t) = \int_t^\infty U(C(t))\dd{t}
+\end{align*}
+
+<p>
+First, a quick reminder that our definition of \(V(t)\) is a model we chose rather than a parameter of our system or a derived relationship. We can thus make statements about properties we'd like our \(V(t)\) function to have. 
+</p>
+
+<p>
+There's some basic properties we'd like to see from our function for intergenerational utility: continuity and monotonicity. Continuity is pretty straightforward. 
+</p>
+
+
+<p>
+Monotonicity is a bit of a convoluted way of expressing intuition we already have. Similar to earlier, let a <i>utility stream</i> \(U^*(t)\) be superior to another utility stream \(U(t)\) if \(U^*(t)\) is greater than or equal to \(U(t)\) at every \(t\). We also stipulate that there must be some growth in utility at some point (to rule out obviously unhelpful edge cases). We consider our function \(V(t)\) <i>monotonic</i> if the intergenerational utility for a society with a superior utility stream is higher than a society with a worse utility stream. Essentially: the intergenerational utility should go up if there is a net gain in utility across all of time. 
+</p>
+
+<p>
+Now, we can do something pretty awesome: we can prove that a \(V(t)\) with no discounting (like Ramsey's model) cannot satisfy both of these properties. This means that a discount factor of zero leads to unreasonable results.
+</p>
+
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-book" aria-hidden="true"></i></div><div class="admonition-title-markdown">Proof</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+Here is the theorem that formalizes what we just said in more precise mathematical terms:
+</p>
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-quote-left" aria-hidden="true"></i></div><div class="admonition-title-markdown">Peter A. Diamond, "The Evaluation of Infinite Utility Streams", <i>Econometrica</i>, 1965</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+<i>THEOREM: Let X be completely ordered by a preference ordering satisfying \((S2)\) and for which the sup metric generates a natural topology. Then condition \((C)\) is inconsistent with this preference ordering.</i>
+</p>
+
+</div></div></div>
+<p>
+That's a bunch to take in at once. Let's define things, starting from the beginning: \(X\) here is the set of all utility streams. A <i>preference ordering</i> here is simply some methodology of ordering this set of utility streams. \((S2)\) is the condition that \(U \geqslant U' \implies U \succ U'\), which is to say that if a utility stream is greater than another at every point in time, it is preferred. 
+</p>
+
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-arrow-right" aria-hidden="true"></i></div><div class="admonition-title-markdown">Aside: Notation</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<ul class="org-ul">
+<li>\(U \geqslant U'\) means the utility stream \(U\) is greater than or equal to \(U'\) at every point in time</li>
+<li>\(U \sim U'\) means we are <i>indifferent</i> between two utility streams</li>
+<li>\(U \succ U'\) means we <i>prefer</i> the utility stream \(U\) over \(U'\)</li>
+</ul>
+
+</div></div></div>
+<p>
+The <i>sup metric</i> is simply a distance function between utility streams \(d(U, U') = \sup_t |u_t - u_t'|\) (essentially just the max difference between the utility streams). \(X\) is said to have a <i>natural topology</i> if the sets \(\{U \in X | U \succsim U' \}\) and \(\{U \in X | U' \succsim U \}\) are closed for all \(U' \in X\). In plain English: the set of consumption streams preferred or indifferent to a given utility stream \(U\) and the set of consumption streams that \(U\) is preferred or indifferent over must both be closed (presumably under the limit operation). 
+</p>
+
+<p>
+Finally, we say that condition \((C)\) is inconsistent with this ordering. Condition \((C)\) is the presumption that we are treating utility as having equal value across generations: that \(U \sim U^t\) for all \(U \in X\) and all \(t = 1, 2, \ldots \) (where \(U^t\) is the utility at time \(t\) - be warned that we're about to use exponents of \(U\) for a totally different thing, so this notation is a one-time thing). 
+</p>
+
+<p>
+Let's try and rewrite this in simpler terms for a moment (then it's back to the math — sorry!):
+</p>
+<div class="admonition" style="--admonition-color: 173, 173, 173;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-quote-left" aria-hidden="true"></i></div><div class="admonition-title-markdown">Peter A. Diamond If He Was A Bit Less Obtuse</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+THEOREM: Suppose we have a system for preferring utility streams such that a utility stream greater than another at every point in time is preferred over it, and the set of utility streams preferred/indifferent to a utility stream is closed (and vice versa). Then, our condition of considering utility to have equal value across generations conflicts with this system for preferring utility streams.
+</p>
+
+</div></div></div>
+
+<p>
+Now, onto the proof. Begin by assuming condition \((C)\) is satisfied. We're also going to be considering discrete utility streams even though the underlying function is continuous (you can think of it as sampling it at a regular timestep), and thus they will look more like sequences than functions.
+</p>
+
+<p>
+Consider the utility stream
+</p>
+\begin{align*}
+U = \left (0, 1, 0, \frac{1}{2}, 1, \dots, 0, \frac{1}{2^k}, \frac{2}{2^k}, \dots, \frac{2^k -1}{2^k},1,0,\dots\right)
+\end{align*}
+<p>
+Then, define an entirely different utility stream \(U^k\): 
+</p>
+\begin{align*}
+U^k = \left (1,1,0,\frac{1}{2},1,\dots,0,0,\frac{1}{2^k},\dots,\frac{2^k-2}{2^k},\frac{2^k-1}{2^k}, 0, \dots\right)
+\end{align*}
+<p>
+There are two main differences between these utility streams: \(U^k\) has a 1 at \(t=1\) where \(U\) has a 0, and then \(U^k\) has consistently \(\frac{1}{2^k}\) less utility for the subsequence on the right. 
+</p>
+
+<p>
+It's clear from looking at the subsequence \(\frac{1}{2^k}, \frac{2}{2^k}, \dots, \frac{2^k -1}{2^k},1\) that it has \(2^k\) terms, as it's simply adding \(\frac{1}{2^k}\) each term until it reaches \(\frac{2^k}{2^k} = 1\), the last term of the subsequence. If \(U^k\) has \(\frac{1}{2^k}\) utility less than \(U\) for all \(2^k\) of these terms, this must mean that it has \(\frac{2^k}{2^k} = 1\) less utility across those terms in total. Subtracting this from our gain of 1 unit of utility at \(t=1\) gives us a net utility change of 0, thus making us indifferent between the two streams: \(U\sim U^k\). Note that our arithmetic manipulation of the utilities across timesteps is only this simple because we consider utility to have equal value at any generation due to condition \((C)\).
+</p>
+
+<p>
+Now, define another utility stream \(U^*\) that is \(U\) but with 1 more unit of utility at \(t=1\).
+</p>
+\begin{align*}
+U^* = \left (1, 1, 0, \frac{1}{2}, 1, \dots, 0, \frac{1}{2^k}, \frac{2}{2^k}, \dots, \frac{2^k -1}{2^k},1,0,\dots\right)
+\end{align*}
+<p>
+We can say that \(\lim\limits_{k\to\infty} U^k = U^*\), because as established earlier, outside of the initial utility of 1 at \(t=1\) (which \(U^*\) also has), the only difference between \(U^k\) and \(U\) is that it has \(\frac{1}{2^k}\) less utility for a portion of the stream. However, as \(k\to\infty\), this difference goes to 0, and thus \(\lim\limits_{k\to\infty} U^k = U^*\).
+</p>
+
+<p>
+If \(U\sim U^k\) for all \(k\) and \(\lim\limits_{k\to\infty} U^k = U^*\), then \(U \sim U^*\). 
+</p>
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 235, 195, 52;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Uh... no?</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+Okay, I'm paraphrasing in this part (and I have a few gaps in my understanding of this proof). The original proof claims that \(U \sim U^*\) immediately follows from \(\lim\limits_{k\to\infty} U^k = U^*\) since the underlying utility function \(f\) is continuous. I didn't entirely understand this logical jump, and so my explanation above leans a little into guesswork territory.
+</p>
+
+</div></div></details>
+
+<p>
+Yet \(U^* \geqslant U\) as it is definitionally the same everywhere else but higher at \(t=1\), and thus by our condition \((S2)\) we should have \(U^* \succ U\). This is a contradiction, and thus we can say condition \((C)\) is inconsistent with our other conditions.
+</p>
+
+</div></div></div>
+
+<div class="admonition" style="--admonition-color: 3, 144, 252;"><div class="admonition-title"><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-question-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Okay, wait, how does this relate back to our intergenerational utility function?</div></div></div><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+My understanding is that our intergenerational utility function is a preference ordering (as it's a function that essentially judges how good a consumption stream is) and thus the result of the proof directly applies to it.
+</p>
+
+</div></div></div>
+
+<p>
+Now that we know that treating utility as being equally valuable across generations leads to unreasonable answers (that are either discontinous or result in functions that don't give higher intergenerational utility to a universally higher utility stream), we can formulate our goal once more. We are trying to choose a consumption stream \(C(t)\) that maximizes the intergenerational utility of our society, defined as:
+</p>
+\begin{align*}
+V(0) = \int_0^\infty U(C(t))e^{-\delta t} \dd{t}
+\end{align*}
+<p>
+This is a much more reasonable question to ask, as the exponential decay term means that this integral will converge in many more cases than our original undiscounted equation would.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org9aac1f8" class="outline-2">
+<h2 id="org9aac1f8">Ramsey's Equation</h2>
+<div class="outline-text-2" id="text-org9aac1f8">
+<p>
+Let's say we have a feasible consumption stream \(C(t)\) and decide to reduce it by \(\Delta C(t)\) at a future date \(t\) and raise it back at \(t+\Delta t\). The loss in intergenerational utility would be 
+f\(e^{-\delta t}\dv{U}{C}\Delta C(t)\) (the change in utility per unit of consumption \(\dv{U}{C}\) multiplied by the amount of consumption reduced gives the amount of utility lost, which is then time-discounted). We'd like to find the rate \(\varrho\) at which we could increase consumption at \(t+\Delta t\) so as to have zero loss in intergenerational utility. This is effectively the rate at which the value of discounted utility depreciates with time, which is the discount rate \(r\) we already know, but written funny, because apparently having consistent notation is too much to ask. 
+</p>
+
+<p>
+We can represent this mathematically for instantaneous changes in time and consumption:
+</p>
+\begin{align*}
+\varrho(t) &= - \frac{\dv{}{t} \left (e^{-\delta t} \dv{U}{C}\right)}{e^{-\delta t} \dv{U}{C}}
+\end{align*}
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 125, 125, 125;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-arrow-right" aria-hidden="true"></i></div><div class="admonition-title-markdown">Where'd you get that from?</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+First off, the disappearance of \(\Delta C\) from our equation is because we're just interested in an infinitesmal change in our consumption which can be represented by \(\dv{U}{C}\). More broadly, the numerator is the time derivative (rather than with respect to consumption) of the discounted change in utility because we're trying to see how that changes with time (see definition of social discount above). Finally, we divide the derivative by the value because we're looking for a percentage.
+</p>
+
+</div></div></details>
+
+<p>
+This is secretly the Ramsey equation we learned in class. First off, that \(\varrho\) is actually just different notation for \(r\). Still, this is not exactly similar to the equation we're familiar with — we're gonna need to do some math to get there. Let's expand out the top term using the product rule and the chain rule:
+</p>
+\begin{align*}
+\varrho(t) &= -\frac{-\delta e^{-\delta t} \dv{U}{C} +e^{-\delta t} \frac{\mathrm{d}^2 U}{\mathrm{d}C^2}\dv{C}{t}}{e^{-\delta t}\dv{U}{C}}
+\end{align*}
+<p>
+Now for some algebraic simplification:
+</p>
+\begin{align*}
+\varrho(t) &= -\frac{-\delta e^{-\delta t} \dv{U}{C}}{e^{-\delta t}\dv{U}{C}} - \frac{e^{-\delta t} \frac{\mathrm{d}^2 U}{\mathrm{d}C^2}\dv{C}{t}}{e^{-\delta t}\dv{U}{C}} \\
+&= \delta - \frac{\frac{\mathrm{d}^2 U}{\mathrm{d}C^2} \dv{C}{t}}{\dv{U}{C}} \\
+&= \delta - \left(  \dv{C}{t} \cdot  \frac{\frac{\mathrm{d}^2 U}{\mathrm{d}C^2}}{\dv{U}{C}} \right) \\
+&= \delta + \left(  \dv{C}{t} \cdot  \frac{-\frac{\mathrm{d}^2 U}{\mathrm{d}C^2}}{\dv{U}{C}} \right)
+\end{align*}
+<p>
+We're in a more pleasant state now. Let's reintroduce some concepts you are likely already familiar with: the percentage growth of consumption (aka the economy) \(g(C(t)) = \frac{\dv{C}{t}}{C}\) and the elasticity of marginal utility \(\sigma(C(t))= \frac{-C\frac{\mathrm{d}^2 U}{\mathrm{d}C^2}}{\dv{U}{C}}\). These are already very close to what we're working with, and you might spot that their product is actually equivalent: as the extra \(C\) in the denominator of the growth rate and the extra \(C\) in the numerator of marginal utility cancel each other out.
+</p>
+\begin{align*}
+\varrho(t) &= \delta + \left (\frac{\dv{C}{t}}{C} \cdot \frac{-C \frac{\mathrm{d}^2 U}{\mathrm{d}C^2}}{\dv{U}{C}}\right ) \\
+&= \delta + \sigma(C(t))g(C(t))
+\end{align*}
+<p>
+We're finally in the same format as our original equation, although there's been some more notational drift with what symbols we use. Also, we express growth and elasticity of marginal utility of consumption here as functions. 
+</p>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 3, 144, 252;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-question-circle" aria-hidden="true"></i></div><div class="admonition-title-markdown">Hmm. That's a rather nasty equation for sigma there.</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content">
+<p>
+Pinning down an equation for elasticity of marginal utility with respect to consumption can be a bit confusing. What confuses me most there is the negative sign, as the rest of it is supposedly explained: according to some old Quora post the fraction of relative change in marginal utility of consumption over relative change in consumption simplifies down to \(\frac{C \frac{\mathrm{d}^2 U}{\mathrm{d}C^2}}{\dv{U}{C}}\). 
+</p>
+
+<p>
+This is actually the last part of this writeup I'm writing. I still need to edit the rest, and I'm tired, so let's just trust other people's algebra.
+</p>
+
+</div></div></details>
+</div>
+</div>
+
+<div id="outline-container-orgbc8340d" class="outline-2">
+<h2 id="orgbc8340d">A Step Further</h2>
+<div class="outline-text-2" id="text-orgbc8340d">
+<p>
+Let's assume our consumption stream is the <i>optimum</i> consumption stream defined earlier (superior to all others). This means that no change in consumption could improve our intergenerational utility. 
+</p>
+
+<p>
+In this situation, \(\varrho =  \delta + \sigma(C(t))g(C(t)) = \dv{F}{K}\). Why? Consider what would happen if \(\dv{F}{K} > \varrho\). We could reduce consumption by a unit less now (thus investing it and increasing the amount of capital \(K\)) and be able to increase consumption by \(1+\dv{F}{K}\) right after, which we know to be more even with discounting since \(\dv{F}{K} > \varrho\) (and the opposite situation applies if \(\dv{F}{K} < 0\)). 
+</p>
+
+<p>
+Let's make some more aggressive assumptions about the economy of our society: that the growth of output with capital is linear, and that we a have a special normalized utility function called an <i>iso-elastic</i> utility function:
+</p>
+\begin{align*}
+F(K) = \mu K, \mu > 0 \\
+U(C) = -C^{-(\sigma-1)}, \sigma > 1
+\end{align*}
+<p>
+\(\sigma\) is a constant value (no longer dependent on \(C(t)\)!) in this formulation. 
+</p>
+
+<p>
+We can now substitute into our current variation of Ramsey's equation and do some algebra to get some interesting results for our ideal change in consumption:
+</p>
+\begin{align*}
+\dv{F}{K} = \delta + \sigma g(C(t)) \\
+\mu = \delta + \sigma \frac{\dv{C}{t}}{C}\\
+\mu - \delta = \sigma \frac{\dv{C}{t}}{C}\\
+\frac{\mu - \delta}{\sigma} = \frac{\dv{C}{t}}{C}\\
+\dv{C(t)}{t} = \frac{\mu - \delta}{\sigma}C(t)
+\end{align*}
+<p>
+Integrating yields an exponential solution:
+</p>
+\begin{align*}
+C(t) = C(0) e^{\frac{\mu -\delta}{\sigma}t}
+\end{align*}
+<p>
+We finally have a function for our consumption stream! Nice! One small problem: we don't have a value for \(C(0)\). We could theoretically find a value through our knowledge that \(K(t)\) needs to grow as quickly as \(C(t)\) does (we'll lose capital if it grows less quickly or under-consume if it grows faster, which contradicts our optimal consumption stream) and we're given some initial capital \(K(0)\).
+</p>
+
+<p>
+Next, let's define the <i>saving rate</i> \(s\) as the percentage of our output that is invested:
+</p>
+\begin{align*}
+\dv{K(t)}{t} = s F(K) = s\mu K(t)
+\end{align*}
+<p>
+Integrate both sides again:
+</p>
+\begin{align*}
+K(t) = K(0)e^{s\mu t}
+\end{align*}
+<p>
+Since we've established earlier that \(K(t)\) needs to match \(C(t)\) in the optimal consumption stream, this must mean that the exponential terms must be equal and thus:
+</p>
+\begin{align*}
+\frac{\mu - \delta}{\sigma} =  s\mu  \\
+s = \frac{\mu - \delta}{\sigma\mu }
+\end{align*}
+<p>
+We now have a pretty clean equation for the optimal saving rate given some solid base parameters. This reduces down a bit further to \(s = \frac{1}{\sigma}\) if you let \(\delta = 0\) (but we've established how that's a very dubious choice).
+</p>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 125, 125, 125;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-arrow-right" aria-hidden="true"></i></div><div class="admonition-title-markdown">Sanity checking our equation</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content">
+<ul class="org-ul">
+<li>Our optimal saving rate <i>increases</i> with the return on investment \(\mu\), which makes sense: a higher return on investment means it is more optimal to save more.</li>
+<li>Our optimal saving rate <i>decreases</i> with the time discount rate $&delta; $, which also makes sense: if we value the well-being of future generations less our optimal consumption now should be higher and thus we should save less.</li>
+<li>Our optimal saving rate <i>decreases</i> with the elasticity of marginal utility $&sigma; $, which is also reasonable: the elasticity of marginal utility of consumption is all about weighting how much a gain in utility matters to a generation with less/more equity. A higher elasticity weights the marginal gain in utility for someone with less consumption by a lot, and thus encourages saving less in the current generation.</li>
+</ul>
+
+</div></div></details>
+
+
+<p>
+On top of that, if we take our equation \(\dv{C(t)}{t} = \frac{\mu - \delta}{\sigma}C(t)\) from slightly earlier, we can rearrange it to get an expression for the optimal growth of \(C(t)\): 
+</p>
+\begin{align*}
+g(C(t)) = \frac{\dv{C(t)}{t}}{C} = \frac{\mu -\delta}{\sigma} 
+\end{align*}
+</div>
+</div>
+
+<div id="outline-container-orge4a3ac5" class="outline-2">
+<h2 id="orge4a3ac5">Grounding Stern and Nordhaus</h2>
+<div class="outline-text-2" id="text-orge4a3ac5">
+<p>
+Using these equations for savings rate and growth we can quantify Nordhaus and Stern's arguments for \(\delta\) and \(\sigma\) in a new way. First, though, we need some sort of approximation for $&mu; $. We choose \(\mu = 0.05\), which is to say a 5% return on investment per year. 
+</p>
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 125, 125, 125;">
+  <summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-arrow-right" aria-hidden="true"></i></div><div class="admonition-title-markdown">That seems way too low. How did you get that?</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content">
+	  <p>
+Actual estimates for things like \(\mu\) are way higher, but it's hard to draw a direct comparison here. Ramsey's model considers the total capital of a nation, including hard-to-quantify things like health, knowledge, or ecosystems. 
+</p>
+
+</div></div></details>
+
+<p>
+For reference, here are Nordhaus and Stern's proposed values for the other constants:
+</p>
+\begin{align*}
+\text{Nordhaus (1994)}\hspace{25pt} \sigma = 1 &\text{  and  } \delta = 0.03 \\
+\text{Stern (2007)}\hspace{25pt} \sigma = 1 &\text{  and  } \delta = 0.001
+\end{align*}
+<p>
+These lead to starkly different results:
+</p>
+\begin{align*}
+\text{Nordhaus (1994)}\hspace{25pt} s = \frac{0.05 - 0.03}{0.05} &= 40\% \text{  and  }\hspace{5pt} g = \frac{0.05 - 0.03}{1} = 2\%  \\
+\text{Stern (2007)}\hspace{25pt} s = \frac{0.05 - 0.001}{0.05} &= 98\% \text{  and  } g = \frac{0.05 - 0.001}{1} = 4.9\%  \\
+\end{align*}
+<p>
+It's immediately clear that near-zero discount factors can lead to some unreasonable results (which is something we also see in Nordhaus' calculations!): saving <i>98%</i> of a nation's output is a very extreme answer. Even Nordhaus' comparatively conservative choice of \(\delta\) leads to a saving rate of 40%, which is not often accomplished by nations today (an example of a nation which <i>does</i> save around that much is China). It's important to qualify our statements here with the fact that we're operating in a highly idealized environment with reductionist definitions of \(U(t)\) and \(F(K(t))\), and so these statements aren't entirely damning — but they still demonstrate that there are generally clear disparities in results when we pick near-zero discount rates vs higher discount rates.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org93add91" class="outline-2">
+<h2 id="org93add91">Fancier Modeling</h2>
+<div class="outline-text-2" id="text-org93add91">
+<p>
+Here's some brief mentions of fancier extensions to Ramsey's model!
+</p>
+</div>
+
+<div id="outline-container-org3023a3e" class="outline-3">
+<h3 id="org3023a3e">Stern Review</h3>
+<div class="outline-text-3" id="text-org3023a3e">
+<p>
+The Stern Review also bases its work off of the models we've worked with! They call their intergenerational utility function \(W\) and begin with 
+</p>
+\begin{align*}
+W = \int_0^\infty U(C(t))e^{-\delta t}\dd{t}
+\end{align*}
+<p>
+They however introduce a number of extensions, the first of which being population:
+</p>
+\begin{align*}
+W = \int_0^\infty N(t)\hspace{3pt} U\hspace{-2pt}\left(\frac{C(t)}{N(t)}\right) e^{-\delta t} \dd{t}
+\end{align*}
+<p>
+They then consider utility across \(i\) different population groups, each with their own consumption \(C_i\) and population \(N_i\): 
+</p>
+\begin{align*}
+W = \int_0^\infty \sum_i N_i \hspace{3pt} U\left (\frac{C_i(t)}{N_i(t)}\right) \dd{t}
+\end{align*}
+<p>
+Later on, we get even crazier as we introduce some of the extended equations used in the PAGE2002 model. I don't even know what's happening in these, but you can at least tell they're in similar formats: 
+</p>
+\begin{align*}
+W = \sum_{t=1}^{2200} N(t) \ln C(t) e^{-\delta t} + \left(\frac{N_t \ln C_t}{\delta} + \frac{N_t g}{\delta^2}\right)
+\end{align*}
+\begin{align*}
+W = \sum_{t=1}^{2200} N(t) \left(\frac{C^{1-\eta}_\text{BGE}}{1-\eta} + gt\right )e^{-\delta t} + \left(\frac{N(t) \left(\frac{(C_\text{BGE}+200g)^{1-\eta}}{1-\eta}\right)}{\delta -g(1-\eta)} \right) e^{-\delta T}
+\end{align*}
+<p>
+The connections to the iso-elastic utility function we're familiar with from earlier are a little evident in the second example with its left term and all the \(1-\eta\) terms scattered around.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org06a0e70" class="outline-3">
+<h3 id="org06a0e70">Ramsey-Cass-Koopman</h3>
+<div class="outline-text-3" id="text-org06a0e70">
+<p>
+Another avenue for unique modeling is the Ramsey-Cass-Koopman model: whereas we considered the viewpoint of a single decision maker doing central planning for the economy earlier, the Ramsey-Cass-Koopman model is distributed. It also just factors in a whole lot more things that we previously did: stuff like labor, borrowing, wages, etc.
+</p>
+
+<p>
+We now have a number of <i>households</i>, each of which are trying to optimize their own intergenerational utility function:
+</p>
+\begin{align*}
+V = \int_{0}^\infty e^{-\delta t} U(C(t))L(t)\dd{t}
+\end{align*}
+<p>
+whilst satisfying an additional constraint \(\dv{B(t)}{t} = r(t)B(t) + W(t)L(t) - C(t)L(t)\) where \(B(t)\) is the family wealth, \(L(t)\) population, \(W(t)\) the "real wage" of capital, and \(r(t)\) the "rental rate" of capital.
+</p>
+
+<p>
+These households also own corresponding <i>firms</i> with capital, labor, and production.
+</p>
+
+<p>
+Going through a lengthyish derivation gives a system of two differential equations governing the behavior of this system:
+</p>
+\begin{align*}
+\frac{\dv{c(t)}{t}}{c(t)} &= \frac{f'(k(t)) - \delta - \sigma g}{\sigma}  \\
+\dv{b(t)}{t} &= f(k(t))-c(t)-(g+n)k(t)
+\end{align*}
+<p>
+This looks somewhat familiar, at least: we have remnants of the Ramsey equation in the \(\delta - \sigma g\) term. 
+</p>
+
+<details class="admonition admonition-note admonition-plugin" style="--admonition-color: 108, 173, 96;">
+<summary class="admonition-title "><div class="admonition-title-content"><div class="admonition-title-icon"><i class="fas fa-list" aria-hidden="true"></i></div><div class="admonition-title-markdown">Source</div></div><div class="collapser"><div class="handle"></div></div></summary><div class="admonition-content-holder"><div class="admonition-content">
+<a href="https://eml.berkeley.edu/~webfac/gourinchas/e202a_f14/Notes_Ramsey_Cass_Koopmans_pog.pdf">https://eml.berkeley.edu/~webfac/gourinchas/e202a_f14/Notes_Ramsey_Cass_Koopmans_pog.pdf</a>
+</div></div></details>
+</div>
+</div>
+
+<div id="outline-container-org0e3a6f9" class="outline-3">
+<h3 id="org0e3a6f9">DICE</h3>
+<div class="outline-text-3" id="text-org0e3a6f9">
+<p>
+There's also larger scale models that include a more complete variety of factors. One good example is the DICE model — cited by Nordhaus in his rebuttal to the Stern Review, and just a generally common intergenerational utility model used in these discussions.
+</p>
+
+<p>
+Peeking at <a href="http://webdice.rdcep.org">webDICE</a> reveals some more about the internals of the numerical model (they have some handy documentation!) 
+</p>
+
+<p>
+The core objective function remains similar (they use \(W\) for intergenerational utility): 
+</p>
+\begin{align*}
+W = \sum_{t=1}^{T_\text{max}} L(t)U(t)\frac{1}{(1+\delta)^t}
+\end{align*}
+<p>
+There's then a lot more equations handling the actual <i>climate</i> side of things listed <a href="http://webdice.rdcep.org/static/docs/Equations_141227.pdf">in this big document</a>. There's not much actual explanation of the core logic, though, so I had a hard time following what exactly was happening and why.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge64b83c" class="outline-2">
+<h2 id="orge64b83c">Conclusion</h2>
+<div class="outline-text-2" id="text-orge64b83c">
+<p>
+So here we are. We've explored some of the math behind the things we've talked about in class in more detail, and learned some pretty tangible things about the debate over discount factors in the progress! I find it really cool that we can make strong statements in what feel like hard-to-define ethical issues using math here. Reading an eight page paper full of economics <i>proofs</i> and straight math on JSTOR was a new and hilarious experience.
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>
