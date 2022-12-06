@@ -196,7 +196,7 @@
 <link rel="stylesheet" href="https://quantumish.github.io/org.css">
 <link rel="stylesheet" href="https://quantumish.github.io/admonition.css">
 <script src="https://kit.fontawesome.com/76c5ce8bda.js" crossorigin="anonymous"></script>
-<style>.admonition-content > * {margin: 0px 0px 8px 0px;} .admonition-title{padding: 0.3em 0.25em;}</style>
+<style>.admonition-content > * {margin: 0px 0px 8px 0px;} .admonition-title{padding: 0.3em 0.25em;}</Style>
 
         <style>
         /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -672,7 +672,7 @@ I(\mathbf{x}) = I + \frac{\partial I}{\partial\mathbf{x}}^T\mathbf{x} + \frac{1}
 where \(I\) and its derivatives are calculated numerically at that point and \(\mathbf{x}=(x,y,\sigma)^T\) is the offset from the point. The derivative of this approximation with respect to \(\mathbf{x}\) is then finding its root, yielding an expression for the offset of the  more precise extrema \(\hat{\mathbf{x}}\):<br />
 </p>
 \begin{align*}
-\hat{\mathbf{x}} = -\frac{\partial^2D}{\partial\mathbf{x}^2}^{-1} \frac{\partial D}{\partial \mathbf{x}}
+\hat{\mathbf{x}} = -\frac{\partial^2I}{\partial\mathbf{x}^2}^{-1} \frac{\partial I}{\partial \mathbf{x}}
 \end{align*}
 <p>
 The continuous coordinates allow for the ruling out of features that lie along edges, which aren't nice features because they're invariant along translations parallel to the edge (as that would result with them still being on the edge).<br />
