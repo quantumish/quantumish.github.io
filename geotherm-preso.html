@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Conduction</title>
+<meta name="author" content="David Freifeld"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js-master/dist/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js-master/dist/theme/latex.css" id="theme"/>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type='text/x-mathjax-config'>
+    MathJax.Hub.Config({
+        displayAlign: 'center',
+        displayIndent: '0em',
+		extensions: ['[Contrib]/physics/physics.js'],
+        loader: {load: ['[tex]/physics']},
+
+        'HTML-CSS': { scale: 100,
+                        linebreaks: { automatic: 'false' },
+                        webFont: 'TeX'
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: 'false' },
+              font: 'TeX'},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: 'AMS'},
+               MultLineWidth: '85%',
+               TagSide: 'right',
+               TagIndent: '.8em'
+	           <!-- packages: {'[+]': ['physics']} -->
+             }
+});
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Conduction</h1><p class="subtitle"></p>
+<h2 class="author">David Freifeld</h2>
+</section>
+
+<section>
+<section id="slide-orge649607">
+<h2 id="orge649607">Thermal Transfer</h2>
+<p>
+Heat transfer can occur through three different processes:
+</p>
+<ul>
+<li>Conduction: heat transfer through molecular collisions</li>
+<li>Convection: heat transfer through fluid motion of medium</li>
+<li>Radiation: heat transfer through electromagnetic radiation</li>
+
+</ul>
+
+</section>
+<section id="slide-orge649607-split">
+<ul>
+<li>Conduction is dominant in the lithosphere</li>
+<li>Convection is dominant in the mantle</li>
+<li>Radiation isn't really applicable in the Earth (try looking inside stars instead!)
+<ul>
+<li><i>Maybe</i> near the core: ESRF found some evidence in lowermost parts of mantle</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-orge649607-split">
+<ul>
+<li>Conduction when in solids (or just materials with high \(k\))</li>
+<li>Convection when liquids/gases (or <i>very very</i> hot mediums: convection is efficient)</li>
+<li>Radiation when things are <i>very</i> hot (\(\propto T^4\))</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org630b6e5">
+<h2 id="org630b6e5">Fourier's Law</h2>
+<p>
+Basic conductive transfer equation is given by:
+</p>
+<div>
+\begin{align*}
+q = - k \dv{T}{y}
+\end{align*}
+
+</div>
+<p>
+where
+</p>
+<ul>
+<li>\(q\) is heat flux (flow per unit area per unit time)</li>
+<li>\(k\) is the coefficient of thermal conductivity</li>
+<li>\(y\) is the direction the heat varies across.</li>
+
+</ul>
+
+</section>
+<section id="slide-org4691fdc">
+<h3 id="org4691fdc">What's \(k\)?</h3>
+<p>
+Fourier's Law isn't actually a law — more a definition of \(k\). Originally a quantitative observation made by Fourier.
+</p>
+
+<p>
+Why is conductive heat transfer is linearly proportional to temperature?
+</p>
+<ul>
+<li>Intuition: if things move twice as violently they will bump into each other around twice as much.</li>
+
+</ul>
+
+</section>
+<section id="slide-orged6e9ad">
+<h3 id="orged6e9ad">Brief History</h3>
+<ul>
+<li><b>Late 1600s</b>: Guillaume Amontons theorizes that temperature flows through solids, decreasing linearly.</li>
+<li><b>Early 1700s</b>
+<ul>
+<li>Joseph Black originates concepts of <i>specific</i> and <i>latent</i> heat</li>
+<li>Fahrenheit kickstarts quantitative studies with invention of mercury thermometer</li>
+
+</ul></li>
+<li><b>1777</b>: Carl Wilhelm Scheele differentiates conduction and convection</li>
+<li><b>1780</b>: Invention of calorimeter, melting ice's latent heat as a standard baseline</li>
+
+</ul>
+</section>
+<section id="slide-orged6e9ad-split">
+<ul>
+<li><b>Late 1700s</b>
+<ul>
+<li>Benjamin Franklin works with measuring thermal conductivity via coating metals with wax and melting the wax
+<ul>
+<li>Work continued by Ingen-Housz, Count Rumford</li>
+
+</ul></li>
+
+</ul></li>
+<li><b>1802</b>: Fourier begins work with heat diffusion, inspired by geophysics!
+<ul>
+<li>Interested in underground temperature variations</li>
+
+</ul></li>
+<li><b>1822</b>: Fourier publishes <i>The Analytical Theory of Heat</i></li>
+<li><b>&lt;1860</b>: Measurements of geothermal gradient.</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgad91f88">
+<h2 id="orgad91f88">Heat Flow Through A Slab</h2>
+<p>
+Imagine a uniform slab that has some temperature differential \(-\Delta T\) across its two sides and a length \(l\).
+</p>
+
+<div>
+\begin{align*}
+\dv{T}{y} =  \frac{-\Delta T}{l}
+\end{align*}
+
+</div>
+
+<div>
+\begin{align*}
+q = -k \dv{T}{y} = -k \frac{-\Delta T}{l} =  \frac{k\Delta T}{l}
+\end{align*}
+
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org1833d09">
+<h2 id="org1833d09">Heat Flow Through <i>The Earth</i></h2>
+<ul>
+<li>Sometime in the early 1800s, we first quantified the heat differential between deeper caves and shallower caves.
+<ul>
+<li>Rough measurement: \(\dv{T}{y} =\) 20-30 \(\frac{\mathrm{K}}{\mathrm{km}}\)</li>
+<li>Rough thermal conductivity of cave rocks: 2-3 \(\text{W m}^{-1}\text{ K}^{-1} \)</li>
+
+</ul></li>
+<li>We can then apply Fourier's Law, getting 40-90 \(\text{mW m}^{-2}\)
+<ul>
+<li>We drop the negative signs for convienience.</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-org829c4e3">
+<h3 id="org829c4e3">How do we measure \(\dv{T}{y}\)  today?</h3>
+<ul>
+<li>Via lowering <i>thermistors</i>  down deep drill holes</li>
+<li>Many complications:
+<ul>
+<li>Drilling fluid affects measurements</li>
+<li>Temperature equilibriates 1-2 years after</li>
+<li>During this, groundwater forms
+<ul>
+<li>If it flows, then it won't reach equilibrium
+<ul>
+<li>(e.g. if the hole went through an aquifer)</li>
+
+</ul></li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+
+
+</section>
+<section id="slide-org1d1c761">
+<h3 id="org1d1c761">How do we measure \(k\)?</h3>
+<p>
+Much simpler — we can do this in the lab!
+</p>
+
+<div style="display:flex;justify-content:space-between;margin:auto;">
+
+<div style="width:40%">
+
+<div id="org64f1ac5" class="figure">
+<p><img src="file:///Users/davfrei/Downloads/conductivity.png" alt="conductivity.png" />
+</p>
+</div>
+
+</div>
+
+<div style="width:50%; font-size: 25pt">
+<p>
+Derive an equation for the thermal conductivity of the unknown rock specimen given the depicted variables (assuming steady state).
+</p>
+<div style="font-size: 20pt">
+<p>
+<b>Tips</b>:
+</p>
+<ul>
+<li>Steady state \(\implies\) \(q\) is the same everywhere!</li>
+<li>You don't actually need \(T_C\).</li>
+<li>Thermal conductivity isn't additive — you probably don't want to combine things.</li>
+<li>Bonus: how would you incorporate the gaps (given length \(\delta \) and conductivity \(k_c\))?</li>
+
+</ul>
+</div></div>
+
+</div>
+
+<p class="fragment roll-in">
+Try calculating \(q\) for each section, solving for \(k_b\) after equating them
+</p>
+
+</section>
+<section id="slide-org1d1c761-split">
+
+<div>
+\begin{align*}
+q = k_r \frac{T_1-T_2}{d} = k_b \frac{T_H-T_1}{l} \\
+\boxed{k_r = k_b \frac{T_H-T_1}{T_1-T_2}\frac{d}{l}}
+\end{align*}
+
+</div>
+<div style="font-size: 20pt">
+<p>
+Bonus: can be put in the form
+</p>
+<div>
+\begin{align*}
+\boxed{\frac{T_1-T_2}{T_H-T_1} = \frac{k_b}{k_r}\frac{d}{l} + \frac{2\delta k_b}{lk_c}}
+\end{align*}
+
+</div>
+</div>
+
+
+</section>
+<section id="slide-org4fe65cb">
+<h3 id="org4fe65cb">Some Numbers</h3>
+<ul>
+<li>The mean heat flux across all continents is \(65 \pm 1.6 \text{ mW m}^{-2}\)
+<ul>
+<li>Peak regions are usually volcanic, yet have little net influence (same with tectonic activity)</li>
+<li>Radiogenic heat production <i>does</i> have a lot of infleunce (~50% of surface \(q\))</li>
+
+</ul></li>
+<li>The mean heat flux across the <i>ocean</i> is \(101 \pm 2.2 \text{ mW m}^{-2}\)
+<ul>
+<li>yet 10x less radiogenic heat production and 5x thinner crust</li>
+
+</ul></li>
+<li>Simple arithmetic gives Earth's  \(Q = 4.43 \cdot  10^{13}\) W</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf5f0e35">
+<h2 id="orgf5f0e35">Radiogenic Heat Production</h2>
+<ul>
+<li>Radioactive elements in the Earth (<kbd>U</kbd>, <kbd>Th</kbd>, <kbd>K</kbd>) produce heat</li>
+<li>We're primarily interested in a metric \(H\) of production per kg</li>
+<li>Naive: all heat flux due to radioactivity: \(H = \frac{Q}{M}\)
+<ul>
+<li>Reduction: core doesn't have much, so use mantle weight</li>
+<li>Reduction: account for heat production in crust</li>
+<li>Reduction: some heat flux is just cooling of the Earth</li>
+
+</ul></li>
+<li>Final (rough) number: \(H = 7.38\times10^{-12}\) W/kg</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org2874342">
+<h2 id="org2874342">1d Heat Conduction (again)</h2>
+</section>
+<section id="slide-org2874342-split">
+<div style="display:flex;justify-content:space-between;margin:auto;">
+
+<div style="width:50%">
+
+<div id="org30a9e1b" class="figure">
+<p><img src="file:///Users/davfrei/Desktop/Screen Shot 2023-02-15 at 4.40.32 PM.png" alt="Screen Shot 2023-02-15 at 4.40.32 PM.png" />
+</p>
+</div>
+</div>
+
+<div style="width:40%">
+<p>
+One way of modeling heat production of a rock: difference between heat flux coming in and heat flux coming out (total energy flow produced).
+</p>
+<div>
+\begin{align*}
+q(y+\delta y) - q(y)
+\end{align*}
+
+</div>
+</div>
+
+</div>
+
+
+</section>
+<section id="slide-org2874342-split">
+<p>
+First, a small approximation makes things easier:
+</p>
+<div>
+\begin{align*}
+q(y+\delta y) - q(y) &\approx \left(q(y) + \delta y \dv{q}{y}\right) - q(y) \\
+\end{align*}
+
+</div>
+<p>
+Things cancel:
+</p>
+<div>
+\begin{align*}
+\left(q(y) + \delta y \dv{q}{y}\right) - q(y)  &= \delta y \dv{q}{y}
+\end{align*}
+
+</div>
+
+</section>
+<section id="slide-org2874342-split">
+
+<p>
+Using Fourier's Law:
+</p>
+<div>
+\begin{align*}
+\delta y \dv{q}{y} &= \delta y \dv{}{y} \left(-k\dv{T}{y}\right) \\
+&= \delta y \left(-k\frac{\mathrm{d}^2T}{\mathrm{d}y^2}\right)
+\end{align*}
+
+</div>
+<p>
+This is equivalent to saying the heat production of a slice is:
+</p>
+<ul>
+<li>the change in temperature gradient per unit distance</li>
+<li>times the thermal conductivity of the slice</li>
+<li>times the length of the slice</li>
+
+</ul>
+
+</section>
+<section id="slide-org2874342-split">
+
+<p>
+We could also use \(H\) to model this! Heat production times density times "volume" (\(\rho H\delta y\)) gives total heat production in one dimension.  
+</p>
+
+<p>
+Equating these, we get:
+</p>
+<div>
+\begin{align*}
+\rho H\delta y = \delta y \left(-k\frac{\mathrm{d}^2T}{\mathrm{d}y^2}\right) \\
+\rho H =  -k\frac{\mathrm{d}^2T}{\mathrm{d}y^2}
+\end{align*}
+
+</div>
+</section>
+<section id="slide-org2874342-split">
+
+<p>
+Integrate with respect to \(y\):
+</p>
+<div>
+\begin{align*}
+\rho H y = \underbrace{-k \dv{T}{y}}_{q} + \, c_1
+\end{align*}
+
+</div>
+<p>
+Let \(c_1\) be \(q_0\).
+</p>
+
+</section>
+<section id="slide-org2874342-split">
+
+<p>
+Integrate, again:
+</p>
+<div>
+\begin{align*}
+\rho H \frac{y^2}{2} = -k T +  q_0y + c_2
+\end{align*}
+
+</div>
+
+<p>
+Let \(c_2=kT_0\):
+</p>
+<div>
+\begin{align*}
+\rho H \frac{y^2}{2} = -k T +  q_0y + kT_0  \\
+\boxed{T = T_0 + \frac{q_0}{k}y - \frac{ \rho H}{2k}y^2}
+\end{align*}
+
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org744c273">
+<h2 id="org744c273">Contential Geotherms</h2>
+<ul>
+<li>Surface rocks have more radioactive elements
+<ul>
+<li>\(H\) of surface granite is \(9.6 \times 10^{-10}\) W/kg</li>
+
+</ul></li>
+<li>So, radiogenic heat production decreases with depth!</li>
+<li>By how much?</li>
+
+</ul>
+
+</section>
+<section id="slide-org744c273-split">
+<p>
+Let's just guess that \(H\) decreases <i>exponentially</i> with depth: by a factor of \(e\) every \(h_r\) meters.
+</p>
+<div>
+\begin{align*}
+H=H_0 e^{-y / h_r}
+\end{align*}
+
+</div>
+<p>
+Earlier, we got \(\rho H =  -k\frac{\mathrm{d}^2T}{\mathrm{d}y^2}\). Plug in:
+</p>
+<div>
+\begin{align*}
+\rho H_0 e^{-y / h_r} =  -k\frac{\mathrm{d}^2T}{\mathrm{d}y^2}
+\end{align*}
+
+</div>
+</section>
+<section id="slide-org744c273-split">
+<p>
+Integrate, solve:
+</p>
+<div>
+\begin{align*}
+\rho H_0 h_r e^{-y / h_r} + c_1 =  k\dv{T}{y} \\
+-\rho H_0 h_r e^{-y / h_r} - q_m =  q \\
+\end{align*}
+
+</div>
+<p>
+At \(y=0\) (flip negative signs for convienience):
+</p>
+<div>
+\begin{align*}
+\rho H_0 h_r  + q_m = q_0
+\end{align*}
+
+</div>
+<p>
+\(q_0\) is thus a linear function of \(H_0\).
+</p>
+
+</section>
+<section id="slide-org744c273-split">
+
+<div style="display:flex;justify-content:space-between;margin:auto;">
+<div style="width:65%">
+
+<div id="orgff99230" class="figure">
+<p><img src="file:///Users/davfrei/Desktop/Screen Shot 2023-02-07 at 1.37.05 PM.png" alt="Screen Shot 2023-02-07 at 1.37.05 PM.png" />
+</p>
+</div>
+</div>
+
+<div style="width:30%">
+<p>
+If we actually go measure \(H_0\) and \(q\), we'll see this agrees with data, and thus our assumption of exponential decrease is (probably) accurate!
+</p>
+</div>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org00c0b96">
+<h2 id="org00c0b96">The Moon's Heat Flow</h2>
+<div style="display:flex;justify-content:space-between;margin:auto;">
+
+<div style="width:40%">
+
+<div id="orgd33ba62" class="figure">
+<p><img src="file:///Users/davfrei/Downloads/radial.png" alt="radial.png" />
+</p>
+</div>
+</div>
+
+<div style="width:50%">
+<p>
+Derive an equation for the temperature at a given radial distance.
+</p>
+</div>
+
+</div>
+
+</section>
+<section id="slide-org00c0b96-split">
+<p>
+<b><i>Important</i> Tips</b>:
+</p>
+<ul>
+<li>\(q\) gives you energy flow <i>per unit area</i> (also technically per unit time). This wasn't a problem for 1d, but it is here!</li>
+<li>Similarly, consider that volume (rather than length) is a factor in other parts of the derivation.</li>
+
+</ul>
+
+<p>
+<b>Tips</b>:
+</p>
+<ul>
+<li>The surface area of a sphere is \(4\pi r^2\)
+<ul>
+<li>A good approximation for a shell's volume is thus \(4\pi r^2dr\).</li>
+
+</ul></li>
+<li>Let \(c_1 = 0\) and \(c_2 = T_0+\frac{\rho H R^2}{6k}\) (where \(R\)  is total radius)
+<ul>
+<li>These satisfy nice boundary conditions (bonus: why?)</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-org00c0b96-split">
+<div>
+\begin{align*}
+T &= - \frac{\rho H}{6k} r^2 + \frac{c_1}{r} + c_2 \\
+&= \boxed{T_0 + \frac{\rho H}{6k}(R^2 - r^2)}
+\end{align*}
+
+</div>
+
+
+</section>
+<section id="slide-org00c0b96-split">
+<p>
+<b>Plugging things in!</b>
+</p>
+
+<ul>
+<li>Assume the heat production \(H\) is that of the Earth</li>
+<li>\(R=1738\) km and \(\rho = 3300\)  kg \(\text{m}^{-3}\)</li>
+
+</ul>
+
+<p>
+This gives a \(q_0\) of 14.1mW \(\text{m}^{-2}\) (close to the value that the Apollo missions found!), core temperature of 3904 K, and a surface temperature of 250 K.
+</p>
+
+</section>
+<section id="slide-org00c0b96-split">
+<p>
+Such a high core temperature implies the Moon's core is mostly melted, which is not corroborated by the Apollo mission. Thus, either
+</p>
+<ul>
+<li>conduction does not accurately model all heat transfer in the moon</li>
+<li>there is not a uniform distribution of radioactive material</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgfb5b85a">
+<h2 id="orgfb5b85a">2d Heat Conduction</h2>
+
+<div id="orga56883a" class="figure">
+<p><img src="file:///Users/davfrei/Desktop/Screen Shot 2023-02-15 at 6.07.30 PM.png" alt="Screen Shot 2023-02-15 at 6.07.30 PM.png" width="400" style="margin-left: 450px" />
+</p>
+</div>
+
+<p>
+Same old steps, new surface area expression:
+</p>
+<div>
+\begin{align*}
+(q_x(x+\delta x) - q_x(x))\delta y l + (q_y(y+\delta y) - q_y(y))\delta x l  \\
+\left (\pdv{q_x}{x} + \pdv{q_y}{y}\right )\delta x\delta y l 
+\end{align*}
+
+</div>
+</section>
+<section id="slide-orgfb5b85a-split">
+
+<p>
+Equate to \(\rho H (\delta x \delta y l)\):
+</p>
+
+<div>
+\begin{align*}
+\left (\pdv{q_x}{x} + \pdv{q_y}{y}\right )\delta x\delta y l  = \rho H (\delta x \delta y l) \\
+\pdv{q_x}{x} + \pdv{q_y}{y}  = \rho H
+\end{align*}
+
+</div>
+
+<p>
+From here, it's clear to see 3d conduction would just mean:
+</p>
+<div>
+\begin{align*}
+\pdv{q_x}{x} + \pdv{q_y}{y} + \pdv{q_z}{z}  = \rho H
+\end{align*}
+
+</div>
+
+</section>
+<section id="slide-orgfb5b85a-split">
+
+<p>
+Fourier's Law applies for individual directions. Substituting in gives:
+</p>
+<div>
+\begin{align*}
+\dv{}{x}\left (-k\pdv{T}{x}\right) + \dv{}{y}\left (-k\pdv{T}{y}\right)  + \dv{}{z}\left (-k\pdv{T}{z}\right)   = \rho H \\
+-k \left ( \frac{\partial^2 T}{\partial x^2} +  \frac{\partial^2 T}{\partial y^2} +  \frac{\partial^2 T}{\partial z^2} \right ) = \rho H
+\end{align*}
+
+</div>
+</section>
+<section id="slide-orgfb5b85a-split">
+<p>
+When \(H=0\), this is all just:
+</p>
+<div>
+\begin{align*}
+\frac{\partial^2 T}{\partial x^2} +  \frac{\partial^2 T}{\partial y^2} +  \frac{\partial^2 T}{\partial z^2} = 0
+\end{align*}
+
+</div>
+
+<p>
+This special form is known as <i>Laplace's Equation</i> and is relevant in a lot of other fields: 
+</p>
+<ul>
+<li>Fluid dynamics</li>
+<li>Magnetostatics</li>
+<li>Gravitational attraction</li>
+<li>Etc.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org98f25dd">
+<h2 id="org98f25dd">A Taste of Complexity</h2>
+<p>
+This is all still pretty simple!
+</p>
+<ul>
+<li>Time dependence</li>
+<li>Differential equations</li>
+<li>Misery</li>
+<li>Etc.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org07b3562">
+<h2 id="org07b3562">Current Research</h2>
+<p>
+These models, while simple, are actually used by research!
+</p>
+
+</section>
+<section id="slide-org07b3562-split">
+
+<p>
+<img src="file:///Users/davfrei/Desktop/Screen Shot 2023-02-07 at 1.48.36 PM.png" alt="Screen Shot 2023-02-07 at 1.48.36 PM.png" />
+<img src="file:///Users/davfrei/Desktop/Screen Shot 2023-02-07 at 1.44.56 PM.png" alt="Screen Shot 2023-02-07 at 1.44.56 PM.png" />
+</p>
+
+</section>
+<section id="slide-org07b3562-split">
+
+<p>
+<img src="file:///Users/davfrei/Desktop/Screen Shot 2023-02-07 at 1.43.16 PM.png" alt="Screen Shot 2023-02-07 at 1.43.16 PM.png" />
+<img src="file:///Users/davfrei/Desktop/Screen Shot 2023-02-07 at 1.45.46 PM.png" alt="Screen Shot 2023-02-07 at 1.45.46 PM.png" />
+</p>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js-master/dist/reveal.js"></script>
+<script src="./reveal.js-master/plugin/markdown/markdown.js"></script>
+<script src="./reveal.js-master/plugin/zoom/zoom.js"></script>
+<script src="./reveal.js-master/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes],
+height:900, width:1200, margin:0,
+multiplex: {
+    secret: '16754867148275827029', // null if client
+    id: '5af9c12a383c3c75', // id, obtained from socket.io server
+    url: 'https://reveal-multiplex.glitch.me' // Location of socket.io server
+},
+dependencies: [ { src: 'https://reveal-multiplex.glitch.me/socket.io/socket.io.js', async: true }, { src: 'https://reveal-multiplex.glitch.me/master.js', async: true } ]
+});
+
+</script>
+</body>
+</html>
